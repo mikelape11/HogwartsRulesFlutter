@@ -27,7 +27,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.1
+  cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +46,31 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/LOGOS/Logo3.png
+    - images/fondoAzul.png
+    - images/Gryffindor/gryffindor.png
     - images/Gryffindor/gryffindor2.png
+    - images/Gryffindor/Gry1.png
+    - images/Gryffindor/Gry2.png
+    - images/Gryffindor/Gry3.png
+    - images/Slytherin/slytherin.png
+    - images/Slytherin/slytherin2.png
+    - images/Slytherin/Sly1.png
+    - images/Slytherin/Sly2.png
+    - images/Slytherin/Sly3.png
+    - images/Ravenclaw/ravenclaw.png
+    - images/Ravenclaw/ravenclaw2.png
+    - images/Ravenclaw/Rav1.png
+    - images/Ravenclaw/Rav2.png
+    - images/Ravenclaw/Rav3.png
+    - images/Hufflepuff/hufflepuff.png
+    - images/Hufflepuff/hufflepuff.png
+    - images/Hufflepuff/Huf1.png
+    - images/Hufflepuff/Huf2.png
+    - images/Hufflepuff/Huf3.png
+    - images/fondo_01.jpg
+    - images/fondo_02.jpg
+    - images/fondo_03.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

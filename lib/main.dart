@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/pages/Portada/Portada.dart';
+import 'package:hogwarts_rules/pages/Portada/Inicio.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Portada(),
+      home: Inicio(),
     );
   }
 }
