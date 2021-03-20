@@ -21,39 +21,48 @@ class _PortadaState extends State<Portada> {
           )
         ),
         width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image:  AssetImage('images/LOGOS/Logo3.png'),
-                  //fit: BoxFit.cover, 
-                )
+            Center(
+              child: Container(
+                height: MediaQuery.of(context).size.height/1.25,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image:  AssetImage('images/LOGOS/Logo3.png'),
+                    //fit: BoxFit.cover, 
+                  )
+                ),
               ),
             ),
             Row(
-              children: [
-                SizedBox(height: 400),
+              children: [                 
                 Container(
-                  margin: EdgeInsets.only(left: 5),
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.yellow[900], size: 40,),
-                    // onPressed: ,
-                  ),
-                ),
+                  margin: EdgeInsets.only(left: 30),
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/carta.png'),
+                      //fit: BoxFit.cover, 
+                    )
+                  ),   
+                ),                                                 
+                SizedBox(width: MediaQuery.of(context).size.width/2.1),        
                 Container(
-                  margin: EdgeInsets.only(),
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_forward, color: Colors.blue[900], size: 40,),
-                    // onPressed: ,
-                  ),
-                ),
+                  width: 90,
+                  height: 90,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image:  AssetImage('images/hat.png'),
+                      //fit: BoxFit.cover, 
+                    )
+                  ),  
+                ), 
               ],
-            )
+            ),                     
           ],
         ),
       )

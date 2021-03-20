@@ -25,9 +25,9 @@ class _InicioState extends State<Inicio> {
         controller: PageController(initialPage: 1),
         scrollDirection: Axis.horizontal,
         children: [
-          Registro(),
-          Portada(),
           Login(),
+          Portada(),
+          Registro(),
         ],
       ),
     );
