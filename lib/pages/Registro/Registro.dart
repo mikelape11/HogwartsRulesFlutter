@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 
 class Registro extends StatelessWidget {
   const Registro({Key key}) : super(key: key);
@@ -94,7 +95,7 @@ class Registro extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container( //TECER CAMPO: EMAIL
+                    Container( //TERCER CAMPO: EMAIL
                       margin: EdgeInsets.only(top: 5),
                       padding: EdgeInsets.only(left: 40, right: 40),
                       child: Form(
@@ -191,11 +192,14 @@ class Registro extends StatelessWidget {
                       margin: EdgeInsets.only(top: 25),
                       child: RaisedButton(
                         color: Colors.teal[400],
-                        child: Text('Registrar', style: TextStyle(fontSize: 16, color: Colors.white54),),
+                        child: Text('REGISTRO', style: TextStyle(fontSize: 16, color: Colors.white54, fontWeight: FontWeight.bold),),
                         padding: EdgeInsets.only(left: 150, right: 150),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         onPressed: (){
                           print("kaixo");
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
                         },
                       )
                     ),

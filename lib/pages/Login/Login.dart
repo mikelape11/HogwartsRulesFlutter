@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 
 class Login extends StatelessWidget {
   const Login({Key key}) : super(key: key);
@@ -97,11 +98,14 @@ class Login extends StatelessWidget {
                       margin: EdgeInsets.only(top: 25),
                       child: RaisedButton(
                         color: Colors.yellow[900],
-                        child: Text('Login', style: TextStyle(fontSize: 16, color: Colors.white54),),
+                        child: Text('LOGIN', style: TextStyle(fontSize: 16, color: Colors.white54, fontWeight: FontWeight.bold),),
                         padding: EdgeInsets.only(left: 150, right: 150),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         onPressed: (){
                           print("kaixo");
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
                         },
                       )
                     ),
