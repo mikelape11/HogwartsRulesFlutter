@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,63 +39,66 @@ class _HomeState extends State<Home> {
         
         preferredSize: Size.fromHeight(4.0)),
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              // color: Colors.black87,
-              image: DecorationImage(
-                image:  AssetImage('images/Gryffindor/gryffindor.png'),
-                fit: BoxFit.fitWidth,  
-              ),
-            ),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                HomePortada(),
-                HomeSeleccion(),
-                HomeGryffindor(),
-              ],
-            ),   
-          ),
-        ],   
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      // body: Stack(
+      //   children: [
+      //     Container(
+      //       decoration: BoxDecoration(
+      //         // color: Colors.black87,
+      //         image: DecorationImage(
+      //           image:  AssetImage('images/Gryffindor/gryffindor.png'),
+      //           fit: BoxFit.fitWidth,  
+      //         ),
+      //       ),
+      //       width: MediaQuery.of(context).size.width,
+      //       height: MediaQuery.of(context).size.height,
+      //     ),
+      //     SingleChildScrollView(
+      //       scrollDirection: Axis.vertical,
+      //       child: Column(
+      //         children: [
+      //           HomePortada(),
+      //           HomeSeleccion(),
+      //           HomeGryffindor(),
+      //         ],
+      //       ),   
+      //     ),
+      //   ],   
+      // ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.orange, width: 2.0)),      
         ),
         child: BottomNavigationBar( //LAS OPCIONES DEL BOTTOMNAVIGATIONBAR
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shop),
-            label: 'SHOP',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'HOME',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'CHAT',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.orange,
-        onTap: _onItemTapped,
-        backgroundColor: HexColor('#401617'),
-      ),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shop),
+              label: 'SHOP',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'HOME',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: 'CHAT',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.orange,
+          onTap: _onItemTapped,
+          backgroundColor: HexColor('#401617'),
+        ),
       )
     );
   }
 
-  int _selectedIndex = 0;
+  
 
   List<Widget> _widgetOptions = <Widget>[
-    Container(child: Text('puta'),),
+    Container(child: Text('puta1'),),
     Stack(
       children: [
         Container(
@@ -107,6 +111,8 @@ class _HomeState extends State<Home> {
           ),
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
+          width: 440,
+          height: 610,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -120,7 +126,7 @@ class _HomeState extends State<Home> {
         ),
       ],   
     ),
-    Container(child: Text('puta'),),
+    Container(child: Text('puta3'),),
   ];
 
   void _onItemTapped(int index) {
