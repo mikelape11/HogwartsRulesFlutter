@@ -6,8 +6,8 @@ String password = "";
 String email = "";
 
 //COLORES DE LAS CASAS
-HexColor gryPrincipal = HexColor('#5c0000');
-HexColor grySecundario = HexColor('#fb7e00');
+HexColor gryPrincipal = HexColor('#401617');
+HexColor grySecundario = HexColor('#ff9800');
 HexColor slyPrincipal = HexColor('#09473e');
 HexColor slySecundario = HexColor('#b0b0b0');
 HexColor ravPrincipal = HexColor('#0e1a40');
