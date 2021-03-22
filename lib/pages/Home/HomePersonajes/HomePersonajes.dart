@@ -20,7 +20,7 @@ class HomePersonajes extends StatelessWidget {
                 ),
               )
             ),
-            SizedBox(height: 35,),
+            SizedBox(height: 25,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -118,10 +118,10 @@ class HomePersonajes extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 35,),
+            SizedBox(height: 15,),
             Container(
               color: Colors.white.withOpacity(0.05),
-              height: 100,
+              height: 150,
               width: MediaQuery.of(context).size.width/1.08,
               child: Center(
                 child: Container(
@@ -135,11 +135,13 @@ class HomePersonajes extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    border: Border(top: BorderSide(color: globals.grySecundario, width: 2.0)),      
+                    color: globals.slyPrincipal.withOpacity(0.7),
+                    border: Border.all(color: globals.slyPrincipal, width: 2.0),      
                   ),
                   child: RaisedButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     color: Colors.transparent,
-                    child: Text('Slytherin'),
+                    child: Text('Slytherin', style: TextStyle(color: Colors.white),),
                     onPressed: () {
                       
                     }
@@ -147,9 +149,14 @@ class HomePersonajes extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 Container(
+                  decoration: BoxDecoration(
+                    color: globals.ravPrincipal.withOpacity(0.7),
+                    border: Border.all(color: globals.ravPrincipal, width: 2.0),      
+                  ),
                   child: RaisedButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     color: Colors.transparent,
-                    child: Text('Ravenclaw'),
+                    child: Text('Ravenclaw', style: TextStyle(color: Colors.white),),
                     onPressed: () {
 
                     }
@@ -157,9 +164,14 @@ class HomePersonajes extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 Container(
+                  decoration: BoxDecoration(
+                    color: globals.hufPrincipal.withOpacity(0.7),
+                    border: Border.all(color: globals.hufPrincipal, width: 2.0),      
+                  ),
                   child: RaisedButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     color: Colors.transparent,
-                    child: Text('Hufflepuff'),
+                    child: Text('Hufflepuff', style: TextStyle(color: Colors.white),),
                     onPressed: () {
 
                     }

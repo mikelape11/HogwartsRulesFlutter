@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Home/HomeInfo/HomeInfo.dart';
 import 'package:hogwarts_rules/pages/Home/HomePersonajes/HomePersonajes.dart';
 import 'package:hogwarts_rules/pages/Home/HomePortada/HomePortada.dart';
 import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
@@ -121,6 +122,7 @@ class _HomeState extends State<Home> {
               HomePortada(),
               HomeSeleccion(),
               HomePersonajes(),
+              HomeInfo(),
             ],
           ),   
         ),

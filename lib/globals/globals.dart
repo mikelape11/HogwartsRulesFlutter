@@ -8,10 +8,13 @@ String email = "";
 //COLORES DE LAS CASAS
 HexColor gryPrincipal = HexColor('#401617');
 HexColor grySecundario = HexColor('#ff9800');
+
 HexColor slyPrincipal = HexColor('#09473e');
 HexColor slySecundario = HexColor('#b0b0b0');
+
 HexColor ravPrincipal = HexColor('#0e1a40');
 HexColor ravSecundario = HexColor('#946b2d');
+
 HexColor hufPrincipal = HexColor('#9c6c21');
 HexColor hufSecundario = HexColor('#372e29');
 
