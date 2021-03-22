@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
+import 'package:flip_card/flip_card.dart';
 
 class HomePersonajes extends StatelessWidget {
   const HomePersonajes({Key key}) : super(key: key);
@@ -38,19 +40,79 @@ class HomePersonajes extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
-                      width: MediaQuery.of(context).size.width/3.2,
-                      child: Center(
-                        child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('${globals.personajeGry3}'),                   
-                            )
+                    GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
+                        width: MediaQuery.of(context).size.width/3.2,
+                        child: Center(
+                          child: Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('${globals.personajeGry3}'),                   
+                              )
+                            ),
                           ),
                         ),
                       ),
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlertDialog(
+                              titlePadding: EdgeInsets.all(0.0),
+                              contentPadding: EdgeInsets.all(0.0),
+                              content: FlipCard(
+                                direction: FlipDirection.HORIZONTAL,
+                                speed: 1000,
+                                front: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.black87,
+                                        image: DecorationImage(
+                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          fit: BoxFit.fill,  
+                                        ),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage('${globals.personajeGry3}'),
+                                        ),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                  ],
+                                ),
+                                back: Container(
+                                  decoration: BoxDecoration(
+                                    // color: Colors.black87,
+                                    image: DecorationImage(
+                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      fit: BoxFit.fill,  
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),
+                                    child: Text(
+                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
+                                  ),
+                                  width: 302,
+                                  height: 431,
+                                ),
+                              ),          
+                            );
+                          }
+                        );
+                      },
                     ),
                   ],                 
                 ),
@@ -69,19 +131,79 @@ class HomePersonajes extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
-                      width: MediaQuery.of(context).size.width/3.2,
-                      child: Center(
-                        child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('${globals.personajeGry1}'),                   
-                            )
+                    GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
+                        width: MediaQuery.of(context).size.width/3.2,
+                        child: Center(
+                          child: Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('${globals.personajeGry1}'),                   
+                              )
+                            ),
                           ),
                         ),
                       ),
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlertDialog(
+                              titlePadding: EdgeInsets.all(0.0),
+                              contentPadding: EdgeInsets.all(0.0),
+                              content: FlipCard(
+                                direction: FlipDirection.HORIZONTAL,
+                                speed: 1000,
+                                front: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.black87,
+                                        image: DecorationImage(
+                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          fit: BoxFit.fill,  
+                                        ),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage('${globals.personajeGry1}'),
+                                        ),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                  ],
+                                ),
+                                back: Container(
+                                  decoration: BoxDecoration(
+                                    // color: Colors.black87,
+                                    image: DecorationImage(
+                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      fit: BoxFit.fill,  
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),
+                                    child: Text(
+                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
+                                  ),
+                                  width: 302,
+                                  height: 431,
+                                ),
+                              ),          
+                            );
+                          }
+                        );
+                      },
                     ),
                   ],                 
                 ),
@@ -100,19 +222,79 @@ class HomePersonajes extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
-                      width: MediaQuery.of(context).size.width/3.2,
-                      child: Center(
-                        child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('${globals.personajeGry2}'),                   
-                            )
+                    GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
+                        width: MediaQuery.of(context).size.width/3.2,
+                        child: Center(
+                          child: Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('${globals.personajeGry2}'),                   
+                              )
+                            ),
                           ),
                         ),
                       ),
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlertDialog(
+                              titlePadding: EdgeInsets.all(0.0),
+                              contentPadding: EdgeInsets.all(0.0),
+                              content: FlipCard(
+                                direction: FlipDirection.HORIZONTAL,
+                                speed: 1000,
+                                front: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.black87,
+                                        image: DecorationImage(
+                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          fit: BoxFit.fill,  
+                                        ),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage('${globals.personajeGry2}'),
+                                        ),
+                                      ),
+                                      width: 302,
+                                      height: 431,
+                                    ),
+                                  ],
+                                ),
+                                back: Container(
+                                  decoration: BoxDecoration(
+                                    // color: Colors.black87,
+                                    image: DecorationImage(
+                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      fit: BoxFit.fill,  
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),
+                                    child: Text(
+                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
+                                  ),
+                                  width: 302,
+                                  height: 431,
+                                ),
+                              ),          
+                            );
+                          }
+                        );
+                      },
                     ),
                   ],                 
                 ),

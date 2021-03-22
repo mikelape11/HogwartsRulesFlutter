@@ -13,7 +13,7 @@ class HomeInfo extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 30,),
             Container(
               child: Text(
                 'Peliculas / Libros', 
@@ -22,9 +22,9 @@ class HomeInfo extends StatelessWidget {
                 ),
               )
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 30,),
             HomePeliculas(),
-            SizedBox(height: 20,),
+            SizedBox(height: 30,),
             HomeLibros(),
           ]
         ),  

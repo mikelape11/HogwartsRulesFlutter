@@ -1,0 +1,76 @@
+void detalles(BuildContext context, String usuario, AsyncSnapshot snapshot) {
+    showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return CustomAlertDialog(
+        contentPadding: EdgeInsets.all(5),
+        content: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.cyan, width: 4),
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          ),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height / 2.6,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                ),
+                Container( //Respuesta1
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    'DETALLES',
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.cyan),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container( 
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: <Widget>[
+                          Text('Nombre', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('Puntuacion', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('Duracion', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('Aciertos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('Fallos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                      SizedBox(width: 35,),
+                      for(int i=0;i<snapshot.data.length;i++)
+                        if(snapshot.data[i].nombre == usuario)
+                      Column(
+                        children: <Widget>[
+                          Text('${usuario}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('${snapshot.data[i].puntos}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('${snapshot.data[i].tiempo}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('${snapshot.data[i].aciertos}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Divider(height: 10),
+                          Text('${snapshot.data[i].fallos}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    });
+  }
