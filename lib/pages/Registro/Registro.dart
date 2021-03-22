@@ -1,11 +1,12 @@
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/models/UsuarioModelo.dart';
+import 'package:hogwarts_rules/pages/Registro/RegistroAPI.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:http/http.dart' as http;
 import 'package:form_field_validator/form_field_validator.dart';
+
+import '../Home/Home.dart';
 
 class Registro extends StatefulWidget {
   const Registro({Key key}) : super(key: key);
@@ -13,32 +14,6 @@ class Registro extends StatefulWidget {
   @override
   _RegistroState createState() => _RegistroState();
 }
-
-//funcion que registra un usuario en la base de datos
-  Future<UsuarioModelo> registrarUsuario(String usuario, String password, String email) async{
-    var Url = "http://10.0.2.2:8081/register";
-    var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
-    body:jsonEncode(<String , String>{
-      "usuario" : usuario,
-      "password" : password,
-      "email": email
-    }));
-  }
-
-//funcion que devuelve los usuarios de la api
-    Future<List<UsuarioModelo>> getUsuarios() async {    
-      var data = await http.get('http://10.0.2.2:8081/todos');
-      var jsonData = json.decode(data.body);
-
-      List<UsuarioModelo> usuario = []; 
-      for (var e in jsonData) {
-        UsuarioModelo usuarios = new UsuarioModelo();
-        usuarios.usuario = e["usuario"];
-        usuarios.password = e["password"];
-        usuario.add(usuarios);
-      }
-      return usuario;
-    }
 
 class _RegistroState extends State<Registro> {
 
@@ -72,11 +47,11 @@ class _RegistroState extends State<Registro> {
     }
 
   //validaciones del email
-    String validarEmail(String value) {
-      if (value.isEmpty) {
+    String validarEmail(String value2) {
+      if (value2.isEmpty) {
         return "Rellena el campo";
-      } else if(value == _email){
-        return "El usuario ya existe";
+      } else if(value2 == _email){
+        return "El email ya existe";
       } else 
         return null;
     }
@@ -140,7 +115,7 @@ class _RegistroState extends State<Registro> {
                                 hintText: "Usuario",
                                 hintStyle: TextStyle(fontSize: 20, color: Colors.teal[400]),
                               ),
-                        ),
+                            ),
                           ),
                       ),
                       Container( //TECER CAMPO: EMAIL
@@ -152,8 +127,8 @@ class _RegistroState extends State<Registro> {
                             child: TextFormField(
                               controller: emailController,
                               validator: validarEmail,
-                              onSaved: (String value){
-                                _email= value;
+                              onSaved: (String value2){
+                                _email = value2;
                               },
                               style: TextStyle(color: Colors.teal[400], fontSize: 20),
                               decoration: InputDecoration(        
@@ -238,11 +213,11 @@ class _RegistroState extends State<Registro> {
                                 int cont = 0;
                                 for(int i=0; i<snapshot.data.length; i++){
                                   //print(snapshot.data[i].usuario);
-                                  if(snapshot.data[i].usuario == usuario){
+                                  if(snapshot.data[i].usuario == usuario || snapshot.data[i].email == email){
                                     _formKeysList[0].currentState.save();
-                                  }else if(snapshot.data[i].email == email){
-                                    _formKeysList[1].currentState.save();
-                                  
+                                      print("aaaaa");
+                                      _formKeysList[1].currentState.save();
+                                    
                                   }else{
                                     if (_formKeysList[0].currentState.validate() && _formKeysList[1].currentState.validate()) {
                                         cont ++; 
@@ -254,15 +229,15 @@ class _RegistroState extends State<Registro> {
                                   }
                                   if(cont == snapshot.data.length){
                                   UsuarioModelo usuarios = await registrarUsuario(usuario, password, email);
-                                  // usuarioController.text = '';
-                                  // emailController.text = '';
-                                  // passwordController.text = '';
+                                  usuarioController.text = '';
+                                  emailController.text = '';
+                                  passwordController.text = '';
                                   setState(() {
                                     usuario = usuarios as String;
                                   });
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //   // builder: (context) => MenuRuta(),
-                                  // ));  
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Home(),
+                                  ));  
                                 }
                                 }
                               }

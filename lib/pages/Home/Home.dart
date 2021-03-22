@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_color/flutter_color.dart';
-import 'package:hogwarts_rules/pages/Home/HomePersonajes/Gryffindor/HomeGryffindor.dart';
+import 'package:hogwarts_rules/pages/Home/HomePersonajes/HomePersonajes.dart';
 import 'package:hogwarts_rules/pages/Home/HomePortada/HomePortada.dart';
 import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
 import 'package:hogwarts_rules/pages/Portada/Inicio.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -19,11 +19,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Home', style: TextStyle(color: Colors.yellow[800]),),
-        backgroundColor: HexColor('#401617'),
+        title: Text('Home', style: TextStyle(color: globals.grySecundario),),
+        backgroundColor: globals.gryPrincipal,
+        centerTitle: true,
         actions: [        
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: Colors.orange, size: 25,),
+            icon: Icon(Icons.settings_outlined, color: globals.grySecundario, size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Inicio(),
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> {
         ],
         bottom: PreferredSize(
         child: Container(
-          color: Colors.orange,
+          color: globals.grySecundario,
           height: 2.0,
         ),
         
@@ -41,35 +42,10 @@ class _HomeState extends State<Home> {
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      // body: Stack(
-      //   children: [
-      //     Container(
-      //       decoration: BoxDecoration(
-      //         // color: Colors.black87,
-      //         image: DecorationImage(
-      //           image:  AssetImage('images/Gryffindor/gryffindor.png'),
-      //           fit: BoxFit.fitWidth,  
-      //         ),
-      //       ),
-      //       width: MediaQuery.of(context).size.width,
-      //       height: MediaQuery.of(context).size.height,
-      //     ),
-      //     SingleChildScrollView(
-      //       scrollDirection: Axis.vertical,
-      //       child: Column(
-      //         children: [
-      //           HomePortada(),
-      //           HomeSeleccion(),
-      //           HomeGryffindor(),
-      //         ],
-      //       ),   
-      //     ),
-      //   ],   
-      // ),
+      ),   
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: Colors.orange, width: 2.0)),      
+          border: Border(top: BorderSide(color: globals.grySecundario, width: 2.0)),      
         ),
         child: BottomNavigationBar( //LAS OPCIONES DEL BOTTOMNAVIGATIONBAR
           items: const <BottomNavigationBarItem>[
@@ -87,9 +63,9 @@ class _HomeState extends State<Home> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.orange,
+          selectedItemColor: globals.grySecundario,
           onTap: _onItemTapped,
-          backgroundColor: HexColor('#401617'),
+          backgroundColor: globals.gryPrincipal,
         ),
       )
     );
@@ -98,21 +74,45 @@ class _HomeState extends State<Home> {
   
 
   List<Widget> _widgetOptions = <Widget>[
-    Container(child: Text('puta1'),),
     Stack(
       children: [
         Container(
           decoration: BoxDecoration(
             // color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('images/Gryffindor/gryffindor.png'),
+              image:  AssetImage('${globals.fondoGry}'),
               fit: BoxFit.fitWidth,  
             ),
           ),
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
-          width: 440,
-          height: 610,
+          width: 450,
+          height: 620,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              
+            ],
+          ),   
+        ),
+      ],   
+    ),
+    Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            // color: Colors.black87,
+            image: DecorationImage(
+              image:  AssetImage('${globals.fondoGry}'),
+              fit: BoxFit.fitWidth,  
+            ),
+          ),
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          width: 450,
+          height: 620,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -120,14 +120,37 @@ class _HomeState extends State<Home> {
             children: [
               HomePortada(),
               HomeSeleccion(),
-              HomeGryffindor(),
+              HomePersonajes(),
             ],
           ),   
         ),
       ],   
     ),
-    Container(child: Text('puta3'),),
-  ];
+    Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            // color: Colors.black87,
+            image: DecorationImage(
+              image:  AssetImage('${globals.fondoGry}'),
+              fit: BoxFit.fitWidth,  
+            ),
+          ),
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          width: 450,
+          height: 620,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              
+            ],
+          ),   
+        ),
+      ],   
+    ),  ];
 
   void _onItemTapped(int index) {
     setState(() {

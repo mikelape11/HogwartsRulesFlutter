@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
-class HomeGryffindor extends StatelessWidget {
-  const HomeGryffindor({Key key}) : super(key: key);
+class HomePersonajes extends StatelessWidget {
+  const HomePersonajes({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class HomeGryffindor extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('images/Gryffindor/gryffindor2.png'),
+                          image:  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -45,7 +46,7 @@ class HomeGryffindor extends StatelessWidget {
                           height: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('images/Gryffindor/Gry3.png'),                   
+                              image: AssetImage('${globals.personajeGry3}'),                   
                             )
                           ),
                         ),
@@ -62,7 +63,7 @@ class HomeGryffindor extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('images/Gryffindor/gryffindor2.png'),
+                          image:  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -76,7 +77,7 @@ class HomeGryffindor extends StatelessWidget {
                           height: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('images/Gryffindor/Gry1.png'),                   
+                              image: AssetImage('${globals.personajeGry1}'),                   
                             )
                           ),
                         ),
@@ -93,7 +94,7 @@ class HomeGryffindor extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('images/Gryffindor/gryffindor2.png'),
+                          image:  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -107,7 +108,7 @@ class HomeGryffindor extends StatelessWidget {
                           height: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('images/Gryffindor/Gry2.png'),                   
+                              image: AssetImage('${globals.personajeGry2}'),                   
                             )
                           ),
                         ),

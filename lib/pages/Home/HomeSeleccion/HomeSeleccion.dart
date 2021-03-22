@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 class HomeSeleccion extends StatelessWidget {
   const HomeSeleccion({Key key}) : super(key: key);

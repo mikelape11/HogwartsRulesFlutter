@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 class HomePortada extends StatelessWidget {
   const HomePortada({Key key}) : super(key: key);
@@ -13,7 +14,7 @@ class HomePortada extends StatelessWidget {
             SizedBox(height: 80),
             Container(
               child: Text(
-                'Mikel', 
+                '${globals.usuario}', 
                 style: TextStyle(
                   fontFamily: 'BluuNext', fontSize: 70, color: Colors.white
                 ),
@@ -23,7 +24,7 @@ class HomePortada extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                  image: AssetImage('${globals.logoSly}'),                   
                 )
               ),
             ),

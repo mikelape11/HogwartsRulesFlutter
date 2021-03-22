@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Portada/Inicio.dart';
 
 void main() {
