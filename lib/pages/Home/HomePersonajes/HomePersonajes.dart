@@ -121,13 +121,51 @@ class HomePersonajes extends StatelessWidget {
             SizedBox(height: 35,),
             Container(
               color: Colors.white.withOpacity(0.05),
-              height: 150,
+              height: 100,
               width: MediaQuery.of(context).size.width/1.08,
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
                   child: Text('Muy buenas kaka ez asd fasdf a asdfa asdflasjf a a fs', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20),)),
               ),
+            ),
+            SizedBox(height: 25,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(top: BorderSide(color: globals.grySecundario, width: 2.0)),      
+                  ),
+                  child: RaisedButton(
+                    color: Colors.transparent,
+                    child: Text('Slytherin'),
+                    onPressed: () {
+                      
+                    }
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  child: RaisedButton(
+                    color: Colors.transparent,
+                    child: Text('Ravenclaw'),
+                    onPressed: () {
+
+                    }
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  child: RaisedButton(
+                    color: Colors.transparent,
+                    child: Text('Hufflepuff'),
+                    onPressed: () {
+
+                    }
+                  ),
+                ),
+              ],
             )
           ]
         ),

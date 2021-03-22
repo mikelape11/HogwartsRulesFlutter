@@ -223,15 +223,13 @@ class _RegistroState extends State<Registro> {
                                         cont ++; 
                                         globals.usuario = usuario;
                                         globals.email = email;
+                                        globals.password = password;
                                     } else {
                                       print("Not Validated");        
                                     }                
                                   }
                                   if(cont == snapshot.data.length){
                                   UsuarioModelo usuarios = await registrarUsuario(usuario, password, email);
-                                  usuarioController.text = '';
-                                  emailController.text = '';
-                                  passwordController.text = '';
                                   setState(() {
                                     usuario = usuarios as String;
                                   });
