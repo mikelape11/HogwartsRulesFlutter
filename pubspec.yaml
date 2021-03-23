@@ -33,6 +33,8 @@ dependencies:
   form_field_validator: ^1.0.1
   carousel_slider: ^1.3.0
   flip_card: ^0.4.4
+  smooth_page_indicator: any
+  audioplayers: ^0.15.1
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +56,7 @@ flutter:
     #FONDOS
     - images/LOGOS/Logo3.png
     - images/fondoAzul.png
+    - images/fondoNegro.png
     - images/Slytherin/slytherin.jpg
 
     #GRYFFINDOR
