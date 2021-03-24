@@ -41,7 +41,7 @@ class _TestState extends State<Test> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      height: 290,
+                      height: 270,
                       child: Center(child: Text("${i}", style: TextStyle(fontSize: 200, color: Colors.white70)))
                     ),
                     Container(
@@ -54,35 +54,67 @@ class _TestState extends State<Test> {
                       )
                     ),
                     SizedBox(height: 10,),
-                    for(var j=1; j<5; j++)
-                    Container(
-                      margin: EdgeInsets.only(bottom: 5),
-                      child: ButtonTheme(
-                        minWidth: MediaQuery.of(context).size.width/1.2,
-                        child: Center(
-                          child: RaisedButton(
-                            color: Colors.white38,
-                            child: Text("Respuesta${j}"),
-                            // shape: RoundedRectangleBorder(
-                            //   side: BorderSide(color: Colors.white, width: 2,)
-                            // ),
-                            onPressed: (){
-                              if(i==7){
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Home(),
-                                ));
-                              }else{
-                                _pageController.animateToPage(
-                                  i+1,
-                                  duration: Duration(milliseconds: 300),
-                                  curve: Curves.easeIn,
-                                ); 
-                              }
-                            },          
+                    if(i%2==0)
+                      for(var j=1; j<5; j++)
+                      Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        child: ButtonTheme(
+                          minWidth: MediaQuery.of(context).size.width/1.2,
+                          child: Center(
+                            child: RaisedButton(
+                              color: Colors.white38,
+                              child: Text("Respuesta${j}"),
+                              // shape: RoundedRectangleBorder(
+                              //   side: BorderSide(color: Colors.white, width: 2,)
+                              // ),
+                              onPressed: (){
+                                if(i==7){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Home(),
+                                  ));
+                                }else{
+                                  _pageController.animateToPage(
+                                    i+1,
+                                    duration: Duration(milliseconds: 300),
+                                    curve: Curves.easeIn,
+                                  ); 
+                                }
+                              },          
+                            )
                           )
-                        )
-                      ),
-                    ),
+                        ),
+                      )
+                    else
+                    GridView.count(
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      childAspectRatio: 1.4,
+                      children: [
+                        for(var x=0; x<4; x++)
+                        GestureDetector(
+                          child: Container(
+                            margin: EdgeInsets.all(2),
+                            height: 10,
+                            width: 50,
+                            color: Colors.white70,                           
+                          ),
+                          onTap: (){
+                            if(i==7){
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ));
+                            }else{
+                              _pageController.animateToPage(
+                                i+1,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeIn,
+                              ); 
+                            }
+                          },      
+                        ),               
+                      ],
+                    )
                   ]
                 ),
               ),

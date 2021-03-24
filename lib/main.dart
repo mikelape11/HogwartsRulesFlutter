@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Portada/Inicio.dart';
+import 'package:hogwarts_rules/pages/Test/PortadaTest.dart';
 import 'package:hogwarts_rules/pages/Test/Test.dart';
 
 import 'pages/Home/Home.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Test(),
+      home: PortadaTest(),
     );
   }
 }
