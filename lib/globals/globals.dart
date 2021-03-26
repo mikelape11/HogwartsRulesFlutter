@@ -7,10 +7,10 @@ String email = "";
 
 //COLORES LOGIN Y REGISTRO
 
-int color1 = 0xFF171717; //amarillo
-int color2 = 0xFFb37f1c; //negro
-int color3 = 0xFFb37f1c; //amarillo2 mas oscuro
-int color4 = 0xFF252525; //amarillo3 mas oscuro
+int color1 = 0xFF171717;
+int color2 = 0xFFb37f1c; 
+int color3 = 0xFFb37f1c; 
+int color4 = 0xFF252525; 
 
 //COLORES DE LAS CASAS
 HexColor gryPrincipal = HexColor('#401617');

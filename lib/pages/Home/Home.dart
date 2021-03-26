@@ -3,8 +3,10 @@ import 'package:hogwarts_rules/pages/Home/HomeInfo/HomeInfo.dart';
 import 'package:hogwarts_rules/pages/Home/HomePersonajes/HomePersonajes.dart';
 import 'package:hogwarts_rules/pages/Home/HomePortada/HomePortada.dart';
 import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
-import 'package:hogwarts_rules/pages/Portada/Inicio.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/pages/Portada/Login.dart';
+
+import '../Portada/Login.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -28,7 +30,7 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.settings_outlined, color: globals.grySecundario, size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Inicio(),
+                builder: (context) => Login(),
               ));
             }
           ),

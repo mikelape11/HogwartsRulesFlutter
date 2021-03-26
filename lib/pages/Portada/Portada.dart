@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Portada/Login.dart';
+import 'package:hogwarts_rules/pages/Portada/RegistroOption.dart';
+import 'package:hogwarts_rules/pages/Portada/loginOption.dart';
+import 'package:hogwarts_rules/pages/Portada/Registro.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
+import 'Login.dart';
+import 'loginOption.dart';
 class Portada extends StatefulWidget {
   Portada({Key key}) : super(key: key);
 
@@ -9,65 +16,97 @@ class Portada extends StatefulWidget {
 
 class _PortadaState extends State<Portada> {
 
+  bool login = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(globals.color2),
       body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image:  AssetImage('images/fondo_02.jpg'),
-              fit: BoxFit.cover, 
-            )
-          ),
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            GestureDetector(
+              onTap: (){
+                setState(() {
+                  login = true;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease,
+                height: login ? MediaQuery.of(context).size.height * 0.6 : MediaQuery.of(context).size.height * 0.4,
+                child: CustomPaint(
+                  painter: CurvePainter(login),
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: login ? 0 : 55),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                          child: login 
+                            ? Login()
+                            : LoginOption(),
+                        ),
+                      ),
+                    ),
+                  )
+                )
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                setState(() {
+                  login = false;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease,
+                height: login ? MediaQuery.of(context).size.height * 0.4 : MediaQuery.of(context).size.height * 0.6,
                 child: Container(
-                  height: MediaQuery.of(context).size.height/1.25,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image:  AssetImage('images/LOGOS/Logo3.png'),
-                      //fit: BoxFit.cover, 
-                    )
+                  color: Colors.transparent,
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16), 
+                        child: !login
+                          ? Registro()
+                          : RegistroOption(),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              Row(
-                children: [                 
-                  Container(
-                    margin: EdgeInsets.only(left: 30),
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/carta.png'),
-                        //fit: BoxFit.cover, 
-                      )
-                    ),   
-                  ),                                                 
-                  SizedBox(width: MediaQuery.of(context).size.width/2.1),        
-                  Container(
-                    width: 90,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image:  AssetImage('images/hat.png'),
-                        //fit: BoxFit.cover, 
-                      )
-                    ),  
-                  ), 
-                ],
-              ),                     
-            ],
-          ),
-        ),
-      )
+            ),
+          ]
+        )
+      ),
     );
   }
+}
+
+class CurvePainter extends CustomPainter{
+  bool outterCurve;
+  CurvePainter(this.outterCurve);
+
+  @override
+  void paint(Canvas canvas, Size size){
+    var paint = Paint();
+    paint.color = Color(globals.color1);
+    paint.style = PaintingStyle.fill;
+
+    Path path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height);
+    path.quadraticBezierTo(size.width * 0.5, outterCurve ? size.height + 110 : size.height - 110, size.width, size.height);
+    path.lineTo(size.width, 0);
+
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
