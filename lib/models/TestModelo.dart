@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:hogwarts_rules/models/PreguntasRespuestasModelo.dart';
+
 TestModelo TestModeloJson(String str)=> TestModelo.fromJson(json.decode(str));
 
 String TestModeloToJson(TestModelo data) => json.encode(data.toJson());
@@ -9,45 +11,27 @@ class TestModelo{
   String id;
   String numPregunta;
   String pregunta;
-  String numRespuesta;
-  String respuesta;
-  String imagen;
-  String puntos;
+  List<preguntasRespuestasModelo> respuestas;
 
-  TestModelo({this.id,this.numPregunta,this.pregunta,this.numRespuesta, this.respuesta, this.imagen, this.puntos});
+  TestModelo({this.id,this.numPregunta,this.pregunta,this.respuestas});
+  
+  factory TestModelo.fromJson(Map<String,dynamic> json){
+      var list = json['respuestas'] as List;
+      List<preguntasRespuestasModelo> lista = list.map((i) => preguntasRespuestasModelo.fromJson(i)).toList();
 
-  factory TestModelo.fromJson(Map<String,dynamic> json) => TestModelo(
+   return TestModelo(
     id: json["_id"],
     numPregunta: json["numPregunta"],
     pregunta: json["pregunta"],
-    numRespuesta: json["numRespuesta"],
-    respuesta: json["respuesta"],
-    imagen: json["imagen"],
-    puntos: json["puntos"],
+    respuestas: lista,
+  
   );
+
+  }
 
   Map<String,dynamic> toJson()=>{
     "_id": id,
     "numPregunta": numPregunta,
     "pregunta": pregunta,
-    "numRespuesta": numRespuesta,
-    "respuesta": respuesta,
-    "imagen": imagen,
-    "puntos": puntos,
   };
-
-  String get idTest => id;
-
-  String get numPreguntaTest => numPregunta;
-
-  String get preguntaTest => pregunta;
-
-  String get numRespuestaTest => numRespuesta;
-
-  String get respuestaTest => respuesta;
-
-  String get imagenTest => imagen;
-
-  String get puntosTest => puntos;
-
 }

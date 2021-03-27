@@ -86,7 +86,7 @@ class _HomeState extends State<Home2> {
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
           width: 450,
-          height: 620,
+          height: 720,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -111,7 +111,7 @@ class _HomeState extends State<Home2> {
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
           width: 450,
-          height: 620,
+          height: 720,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -137,7 +137,7 @@ class _HomeState extends State<Home2> {
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
           width: 450,
-          height: 620,
+          height: 720,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,

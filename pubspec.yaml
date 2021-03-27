@@ -66,6 +66,8 @@ flutter:
     - images/fondoNegro2.png
     - images/fondoNegro3.png
     - images/Slytherin/slytherin.jpg
+    - images/Nosotros/mik.png
+    - images/Nosotros/mel.png
 
     #GRYFFINDOR
     - images/Gryffindor/gryffindor.png
