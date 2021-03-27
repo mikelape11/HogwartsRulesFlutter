@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Test/PortadaTest.dart';
+import 'package:hogwarts_rules/pages/Test/TestAPI.dart';
 
 
 class Home2Portada extends StatefulWidget {
@@ -74,7 +75,10 @@ class _Home2PortadaState extends State<Home2Portada> with SingleTickerProviderSt
             SizedBox(
               height: 50,
             ),
-            Container(
+            FutureBuilder(
+              future: getTest(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return Container(
               width: 200,
               decoration: BoxDecoration(
                 color: Color(globals.color2).withOpacity(0.7),
@@ -86,11 +90,13 @@ class _Home2PortadaState extends State<Home2Portada> with SingleTickerProviderSt
                 child: Text('REALIZAR TEST', style: TextStyle(color: Colors.white, fontSize: 20),),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PortadaTest(),
+                    builder: (context) => PortadaTest(snapshot),
                   ));
                 }
               ),
-            ),
+            );
+              }
+            )
           ]
         ),
       )

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Test/Test.dart';
 
 class PortadaTest extends StatefulWidget {
-  const PortadaTest({Key key}) : super(key: key);
+  final AsyncSnapshot snapshot;
+
+  PortadaTest(this.snapshot);
 
   @override
   _PortadaTestState createState() => _PortadaTestState();
@@ -18,7 +20,7 @@ class _PortadaTestState extends State<PortadaTest> {
     super.initState();
 
     Timer(Duration(seconds: 12), () => Navigator.push(
-      context, MaterialPageRoute(builder: (context) => Test())
+      context, MaterialPageRoute(builder: (context) => Test(widget.snapshot))
     ));
   }
 

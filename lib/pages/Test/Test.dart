@@ -5,7 +5,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:hogwarts_rules/pages/Test/TestApi.dart';
 
 class Test extends StatefulWidget {
-  const Test({Key key}) : super(key: key);
+  final AsyncSnapshot snapshot;
+
+  Test(this.snapshot);
 
   @override
   _TestState createState() => _TestState();
@@ -55,13 +57,10 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
               controller: _pageController,
               scrollDirection: Axis.horizontal,
               children: [
+                for(var i=0; i<widget.snapshot.data.length; i++)
                 FadeTransition(
                   opacity: opacidad,
-                  child: FutureBuilder(
-                    future: getTest(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    for(var i=0; i<snapshot.data.length; i++)
-                    return Container(
+                   child: Container(
                     margin: EdgeInsets.only(top: 50),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,14 +73,14 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                           padding: EdgeInsets.all(20),
                           child: Center(
                             child: Text(
-                              "${snapshot.data[i].pregunta}", 
+                              "${widget.snapshot.data[i].pregunta}", 
                               style: TextStyle(color: Colors.white),
                             )
                           )
                         ),
                         SizedBox(height: 10,),
                         if(i%2==0)
-                          for(var j=0; j<snapshot.data[i].respuestas.length; j++)
+                          for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
                           Container(
                             margin: EdgeInsets.only(bottom: 5),
                             child: ButtonTheme(
@@ -89,7 +88,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                               child: Center(
                                 child: RaisedButton(
                                   color: Colors.white38,
-                                  child: Text("${snapshot.data[i].respuestas[j].respuesta}"),
+                                  child: Text("${widget.snapshot.data[i].respuestas[j].respuesta}"),
                                   // shape: RoundedRectangleBorder(
                                   //   side: BorderSide(color: Colors.white, width: 2,)
                                   // ),
@@ -143,9 +142,8 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                         )
                       ]
                     ),
-                  );
-                   }
-                ),
+                  ),
+                  
                 ),
                
               ],
