@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Portada/Login.dart';
 import 'package:hogwarts_rules/pages/Portada/RegistroOption.dart';
-import 'package:hogwarts_rules/pages/Portada/loginOption.dart';
+import 'package:hogwarts_rules/pages/Portada/LoginOption.dart';
 import 'package:hogwarts_rules/pages/Portada/Registro.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 import 'Login.dart';
-import 'loginOption.dart';
+import 'LoginOption.dart';
 class Portada extends StatefulWidget {
   Portada({Key key}) : super(key: key);
 
@@ -36,7 +36,7 @@ class _PortadaState extends State<Portada> {
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 curve: Curves.ease,
-                height: login ? MediaQuery.of(context).size.height * 0.6 : MediaQuery.of(context).size.height * 0.4,
+                height: login ? MediaQuery.of(context).size.height * 0.65 : MediaQuery.of(context).size.height * 0.35,
                 child: CustomPaint(
                   painter: CurvePainter(login),
                   child: Container(
@@ -64,7 +64,7 @@ class _PortadaState extends State<Portada> {
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 curve: Curves.ease,
-                height: login ? MediaQuery.of(context).size.height * 0.4 : MediaQuery.of(context).size.height * 0.6,
+                height: login ? MediaQuery.of(context).size.height * 0.35 : MediaQuery.of(context).size.height * 0.65,
                 child: Container(
                   color: Colors.transparent,
                   child: Center(

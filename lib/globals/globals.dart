@@ -36,6 +36,9 @@ String fondoGry = "images/Gryffindor/gryffindor.png";
 String fondoSly = "images/Slytherin/slytherin.png";
 String fondoRav = "images/Ravenclaw/ravenclaw.png";
 String fondoHuf = "images/Hufflepuff/hufflepuff.png";
+String fondoNegro = "images/fondoNegro.png";
+String fondoNegro2 = "images/fondoNegro2.png";
+String fondoNegro3 = "images/fondoNegro3.png";
 
 //FOTOS DE CADA PERSONAJE POR CASA
 String personajeGry1 = "images/Gryffindor/Gry1.png";

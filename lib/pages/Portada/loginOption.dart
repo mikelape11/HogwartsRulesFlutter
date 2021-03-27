@@ -10,6 +10,9 @@ class LoginOption extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+         SizedBox(
+          height: 16,
+        ),
         Text(
           "Ya tienes una cuenta?",
           style: TextStyle(

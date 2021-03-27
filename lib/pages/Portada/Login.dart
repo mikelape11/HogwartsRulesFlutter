@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Portada/LoginAPI.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
@@ -60,7 +61,7 @@ class _LoginState extends State<Login> {
           Text(
             "HOGWARTS RULES",
             style: TextStyle(
-              fontSize: 36,
+              fontSize: 32,
               color: Color(globals.color2),
               height: 1,
               fontWeight: FontWeight.bold,
@@ -154,7 +155,7 @@ class _LoginState extends State<Login> {
                   ),
                   onPressed: () {
                     setState(() {
-                        _passwordVisible = !_passwordVisible;
+                      _passwordVisible = !_passwordVisible;
                     });
                   },
                 ),
@@ -201,7 +202,7 @@ class _LoginState extends State<Login> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return RaisedButton(
                   shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(25)),
-                  color: Color(globals.color4),
+                  color: Color(globals.color1),
                   child: Text(
                     "LOGIN",
                     style: TextStyle(
@@ -221,7 +222,7 @@ class _LoginState extends State<Login> {
                         globals.usuario = usuario;
                         globals.password = password;
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Home(),
+                          builder: (context) => Home2(),
                         ));  
                     }else{
                       if(snapshot.data[i].usuario != usuario){

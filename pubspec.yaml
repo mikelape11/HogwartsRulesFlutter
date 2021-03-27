@@ -37,6 +37,7 @@ dependencies:
   audioplayers: ^0.15.1
   animated_text_kit: ^3.1.2
   flutter_icons: ^1.1.0
+  url_launcher: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,8 @@ flutter:
     - images/LOGOS/LogoPeque.png
     - images/fondoAzul.png
     - images/fondoNegro.png
+    - images/fondoNegro2.png
+    - images/fondoNegro3.png
     - images/Slytherin/slytherin.jpg
 
     #GRYFFINDOR

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Portada/RegistroAPI.dart';
 
 import '../../models/UsuarioModelo.dart';
@@ -71,7 +72,7 @@ class _RegistroState extends State<Registro> {
         Text(
           "HOGWARTS RULES",
           style: TextStyle(
-            fontSize: 36,
+            fontSize: 32,
             fontWeight: FontWeight.bold,
             color: Color(globals.color1),
             height: 1,
@@ -176,7 +177,7 @@ class _RegistroState extends State<Registro> {
                   ),
                   onPressed: () {
                     setState(() {
-                        _passwordVisible = !_passwordVisible;
+                      _passwordVisible = !_passwordVisible;
                     });
                   },
               ),
@@ -259,7 +260,7 @@ class _RegistroState extends State<Registro> {
                         usuario = usuarios as String;
                       });
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PortadaTest(),
+                        builder: (context) => Home2(),
                       ));  
                     }
                   }  
