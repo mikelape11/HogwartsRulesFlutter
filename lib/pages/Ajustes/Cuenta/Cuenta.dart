@@ -204,41 +204,27 @@ class _CuentaState extends State<Cuenta> {
             Container(
               child: CarouselSlider(
                 height: 100.0,
-                viewportFraction: 0.33,
+                viewportFraction: 0.25,
                 items: [
                   for(var i=1; i<8; i++)        
-                    GestureDetector(
-                      child: Container(
-                        margin: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          image: DecorationImage(
-                            image: AssetImage('images/Avatares/Avatar${i}.png'),
-                            fit: BoxFit.fitHeight,
-                          ),
+                  GestureDetector(
+                    child: Container(
+                      margin: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                        image: DecorationImage(
+                          image: AssetImage('images/Avatares/Avatar${i}.png'),
+                          fit: BoxFit.fitHeight,
                         ),
                       ),
-                      onTap: (){
-                        cambiarAvatar(i); 
-                      },
                     ),
+                    onTap: (){
+                      cambiarAvatar(i); 
+                    },
+                  ),
                 ],
               ),
-            ),
-            Container(
-                //margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/1.1),
-                padding: EdgeInsets.all(10),
-                child: Center(
-                  child: SmoothPageIndicator(
-                    controller: _pageController,
-                    count: 8,
-                    effect: WormEffect(
-                      dotColor: Colors.grey[900],
-                      activeDotColor: Colors.white
-                    ),
-                  )
-                ),
-              )
+            ),       
           ],
         ),
       ),
