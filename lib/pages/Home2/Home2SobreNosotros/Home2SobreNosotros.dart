@@ -13,7 +13,35 @@ class Home2SobreNosotros extends StatefulWidget {
 }
 
 class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
+  
+  //PAGINA WEB
   final url = 'https://flutter.dev';
+
+  //TWITTER
+  final twitterMel = "https://twitter.com/melcius16";
+  final twitterMik = "https://twitter.com/mikelcius11";
+  final twitterEne = "https://twitter.com/Denotze";
+  final twitterEnd = "https://twitter.com/EndikaHs13";
+
+  //INSTAGRAM
+  final instaMel = "https://www.instagram.com/melaniemigguel/";
+  final instaMik = "https://www.instagram.com/mikel_apezetxea/";
+  final instaEne = "https://www.instagram.com/enetzrodriguez/";
+  final instaEnd = "https://www.instagram.com/endibra90/";
+
+  //GMAIL
+  final gmailMel = "";
+  final gmailMik = "";
+  final gmailEne = "";
+  final gmailEnd = "";
+
+  //GITHUB
+  final githubMel = "https://github.com/melanie1998";
+  final githubMik = "https://github.com/mikelape11";
+  final githubEne = "https://github.com/enetz7";
+  final githubEnd = "https://github.com/Endibra90";
+
+
   void _launchURL() async =>
     await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   @override

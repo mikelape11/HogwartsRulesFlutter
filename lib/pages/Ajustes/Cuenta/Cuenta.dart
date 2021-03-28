@@ -50,182 +50,184 @@ class _CuentaState extends State<Cuenta> {
         ),
         preferredSize: Size.fromHeight(4.0)),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.black87,
-          image: DecorationImage(
-            image:  AssetImage('images/fondoNegro3.png'),
-            fit: BoxFit.fitWidth,  
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black87,
+            image: DecorationImage(
+              image:  AssetImage('images/fondoNegro3.png'),
+              fit: BoxFit.fitWidth,  
+            ),
           ),
-        ),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 30),
-            Container(
-              child: RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: 19, color: Colors.white
-                  ),
-                  children: [
-                    TextSpan(text: 'D', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
-                    TextSpan(text: 'atos', style: TextStyle(fontWeight: FontWeight.bold)),
-                  ] 
-                )               
-              )
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: TextFormField(
-                style: TextStyle(color: Color(globals.color2)),
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
-                  ),  
-                  contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
-                  hintText: "Usuario",
-                  hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                    child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 30),
+              Container(
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 19, color: Colors.white
+                    ),
+                    children: [
+                      TextSpan(text: 'D', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'atos', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ] 
+                  )               
+                )
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: TextFormField(
+                  style: TextStyle(color: Color(globals.color2)),
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                    ),  
+                    contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
+                    hintText: "Usuario",
+                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(top: 15), // add padding to adjust icon
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: TextFormField(
-                style: TextStyle(color: Color(globals.color2)),
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
-                  ),  
-                  contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
-                  hintText: "Email",
-                  hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                    child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: TextFormField(
-                style: TextStyle(color: Color(globals.color2)),
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
-                  ),  
-                  contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
-                  hintText: "Password",
-                  hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                    child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: TextFormField(
+                  style: TextStyle(color: Color(globals.color2)),
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                    ),  
+                    contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
+                    hintText: "Email",
+                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(top: 15), // add padding to adjust icon
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              child: RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: 19, color: Colors.white
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: TextFormField(
+                  style: TextStyle(color: Color(globals.color2)),
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                    ),  
+                    contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
+                    hintText: "Password",
+                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(top: 15), // add padding to adjust icon
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                    ),
                   ),
-                  children: [
-                    TextSpan(text: 'A', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
-                    TextSpan(text: 'vatar', style: TextStyle(fontWeight: FontWeight.bold)),
-                  ] 
-                )               
-              )
-            ),
-            Container(
-              height: 210,
-              child: Center(
-                child: Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 85.0, 
-                      backgroundColor: Color(globals.color2),            
-                      child: CircleAvatar(
-                        radius: 80.0,
-                        backgroundColor: Color(globals.color1),
-                        backgroundImage: AssetImage(avatar),   
-                        // backgroundImage: globals.existeAvatar
-                        // ? AssetImage("images/perfil.png") 
-                        // : FileImage(File(globals.avatar))
-                      )            
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 19, color: Colors.white
+                    ),
+                    children: [
+                      TextSpan(text: 'A', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'vatar', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ] 
+                  )               
+                )
+              ),
+              Container(
+                height: 210,
+                child: Center(
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 85.0, 
+                        backgroundColor: Color(globals.color2),            
+                        child: CircleAvatar(
+                          radius: 80.0,
+                          backgroundColor: Color(globals.color1),
+                          backgroundImage: AssetImage(avatar),   
+                          // backgroundImage: globals.existeAvatar
+                          // ? AssetImage("images/perfil.png") 
+                          // : FileImage(File(globals.avatar))
+                        )            
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 19, color: Colors.white
+                    ),
+                    children: [
+                      WidgetSpan(
+                        child: Container(
+                          padding: EdgeInsets.only(right: 50),
+                          child: Icon(Icons.arrow_back, size: 25, color: Color(globals.color2),)
+                        ),
+                      ),
+                      TextSpan(text: 'E', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'lige tu Avatar', style: TextStyle(fontWeight: FontWeight.bold)),
+                      WidgetSpan(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 50),
+                          child: Icon(Icons.arrow_forward, size: 25, color: Color(globals.color2),)
+                        ),
+                      ),
+                    ] 
+                  )               
+                )
+              ),
+              SizedBox(height: 15),
+              Container(
+                child: CarouselSlider(
+                  height: 100.0,
+                  viewportFraction: 0.25,
+                  items: [
+                    for(var i=1; i<8; i++)        
+                    GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          image: DecorationImage(
+                            image: AssetImage('images/Avatares/Avatar${i}.png'),
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      onTap: (){
+                        cambiarAvatar(i); 
+                      },
                     ),
                   ],
                 ),
-              ),
-            ),
-            Container(
-              child: RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: 19, color: Colors.white
-                  ),
-                  children: [
-                    WidgetSpan(
-                      child: Container(
-                        padding: EdgeInsets.only(right: 50),
-                        child: Icon(Icons.arrow_back, size: 25, color: Color(globals.color2),)
-                      ),
-                    ),
-                    TextSpan(text: 'E', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
-                    TextSpan(text: 'lige tu Avatar', style: TextStyle(fontWeight: FontWeight.bold)),
-                    WidgetSpan(
-                      child: Container(
-                        padding: EdgeInsets.only(left: 50),
-                        child: Icon(Icons.arrow_forward, size: 25, color: Color(globals.color2),)
-                      ),
-                    ),
-                  ] 
-                )               
-              )
-            ),
-            SizedBox(height: 15),
-            Container(
-              child: CarouselSlider(
-                height: 100.0,
-                viewportFraction: 0.25,
-                items: [
-                  for(var i=1; i<8; i++)        
-                  GestureDetector(
-                    child: Container(
-                      margin: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage('images/Avatares/Avatar${i}.png'),
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    ),
-                    onTap: (){
-                      cambiarAvatar(i); 
-                    },
-                  ),
-                ],
-              ),
-            ),       
-          ],
+              ),       
+            ],
+          ),
         ),
       ),
     );

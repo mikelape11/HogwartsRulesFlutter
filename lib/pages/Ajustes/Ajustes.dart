@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Cuenta/Cuenta.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Informacion/Informacion.dart';
+import 'package:hogwarts_rules/pages/Ajustes/Opinion/Opinion.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
@@ -92,7 +93,7 @@ class Ajustes extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: Colors.grey, size: 20,),
+                  Icon(Icons.text_snippet, color: Colors.grey, size: 20,),
                   SizedBox(width: 10),
                   Text('Test', style: TextStyle(fontSize: 20, color: Colors.grey),),
                 ],
@@ -109,9 +110,9 @@ class Ajustes extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.person_add, color: Color(globals.color2), size: 20,),
+                  Icon(Icons.person_add, color: Colors.grey, size: 20,),
                   SizedBox(width: 10),
-                  Text('Contactos', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                  Text('Contactos', style: TextStyle(fontSize: 20, color: Colors.grey),),
                 ],
               ),             
             ),
@@ -126,11 +127,35 @@ class Ajustes extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.person_remove_alt_1_sharp, color: Color(globals.color2), size: 20,),
+                  Icon(Icons.person_remove_alt_1_sharp, color: Colors.grey, size: 20,),
                   SizedBox(width: 10),
-                  Text('Contactos Bloqueados', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                  Text('Contactos Bloqueados', style: TextStyle(fontSize: 20, color: Colors.grey),),
                 ],
               ),             
+            ),
+            Divider(
+              height: 15,
+              color: Color(globals.color2),
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+            ),
+            GestureDetector(
+              child: Container(
+                height: 40,
+                child: Row(
+                  children: [
+                    Icon(Icons.star, color: Color(globals.color2), size: 20,),
+                    SizedBox(width: 10),
+                    Text('Danos Tu Opinión', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                  ],
+                ),             
+              ),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Opinion(),
+                ));
+              },
             ),
             Divider(
               height: 15,
