@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home2/Home2Portada/Home2Portada.dart';
@@ -20,6 +21,27 @@ class _HomeState extends State<Home2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 22.0, 
+                  backgroundColor: Color(globals.color2),            
+                  child: CircleAvatar(
+                    radius: 20.0,
+                    backgroundColor: Color(globals.color1),
+                    backgroundImage: AssetImage("images/LOGOS/LogoPeque.png"),
+                    // backgroundImage: globals.existeAvatar
+                    // ? AssetImage("images/perfil.png") 
+                    // : FileImage(File(globals.avatar))
+                  )            
+                ),
+              ],
+            )
+          ),
+        ),
         automaticallyImplyLeading: false,
         title: Text('Home', style: TextStyle(color: Color(globals.color2)),),
         backgroundColor: Color(globals.color1),
@@ -29,7 +51,7 @@ class _HomeState extends State<Home2> {
             icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Portada(),
+                builder: (context) => Ajustes(),
               ));
             }
           ),

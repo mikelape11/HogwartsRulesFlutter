@@ -71,7 +71,7 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
               height: 15
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.symmetric(horizontal: 60),
               child: Column(
                 children: [
                   Row(          
@@ -101,14 +101,6 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                       Container(
                         child: Icon(
                           Entypo.instagram,
-                          size: 22,
-                          color: Color(globals.color2),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Container(
-                        child: Icon(
-                          Entypo.facebook,
                           size: 22,
                           color: Color(globals.color2),
                         ),
@@ -168,14 +160,6 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                       SizedBox(width: 20),
                       Container(
                         child: Icon(
-                          Entypo.facebook,
-                          size: 22,
-                          color: Color(globals.color2),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Container(
-                        child: Icon(
                           Entypo.google_,
                           size: 22,
                           color: Color(globals.color2),
@@ -228,14 +212,6 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                       SizedBox(width: 20),
                       Container(
                         child: Icon(
-                          Entypo.facebook,
-                          size: 22,
-                          color: Color(globals.color2),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Container(
-                        child: Icon(
                           Entypo.google_,
                           size: 22,
                           color: Color(globals.color2),
@@ -281,14 +257,6 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                       Container(
                         child: Icon(
                           Entypo.instagram,
-                          size: 22,
-                          color: Color(globals.color2),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Container(
-                        child: Icon(
-                          Entypo.facebook,
                           size: 22,
                           color: Color(globals.color2),
                         ),

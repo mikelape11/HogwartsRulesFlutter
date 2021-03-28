@@ -69,6 +69,15 @@ flutter:
     - images/Nosotros/mik.png
     - images/Nosotros/mel.png
 
+    #AVATARES
+    - images/Avatares/Avatar1.png
+    - images/Avatares/Avatar2.png
+    - images/Avatares/Avatar3.png
+    - images/Avatares/Avatar4.png
+    - images/Avatares/Avatar5.png
+    - images/Avatares/Avatar6.png
+    - images/Avatares/Avatar7.png
+
     #GRYFFINDOR
     - images/Gryffindor/gryffindor.png
     - images/Gryffindor/gryffindor2.png
