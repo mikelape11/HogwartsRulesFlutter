@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
+
 
 preguntasRespuestasModelo preguntasRespuestasModeloJson(String str)=> preguntasRespuestasModelo.fromJson(json.decode(str));
 
@@ -10,18 +12,22 @@ class preguntasRespuestasModelo{
   String id;
   int numRespuesta;
   String respuesta;
-  String imagen;
-  int puntos;
+  List<imagenRespuestasModelo> imagen;
+  String puntos;
 
   preguntasRespuestasModelo({this.id,this.numRespuesta,this.respuesta,this.imagen,this.puntos});
 
   factory preguntasRespuestasModelo.fromJson(Map<String,dynamic> json){
+      var list = json['imagen'] as List;
+      List<imagenRespuestasModelo> lista = list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
+
    return preguntasRespuestasModelo(
     id: json["_id"],
     numRespuesta: json["numRespuesta"],
     respuesta: json["respuesta"],
-    imagen: json["imagen"],
-    puntos: json["puntos"]
+    imagen: lista,
+    puntos: json['puntos']
+  
   );
 
   }
@@ -30,7 +36,6 @@ class preguntasRespuestasModelo{
     "_id": id,
     "numRespuesta": numRespuesta,
     "respuesta": respuesta,
-    "imagen": imagen,
     "puntos": puntos,
   };
 

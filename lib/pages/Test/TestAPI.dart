@@ -15,7 +15,7 @@ class TestAPI extends StatefulWidget {
 
     Future<List<TestModelo>> getTest() async {    
       var data = await http.get('http://10.0.2.2:8080/getPreguntasRespuestas');
-      var jsonData = json.decode(data.body);
+      var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<TestModelo> preguntas = []; 
       for (var e in jsonData) {

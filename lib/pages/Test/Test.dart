@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:hogwarts_rules/pages/Test/TestApi.dart';
+
 
 class Test extends StatefulWidget {
   final AsyncSnapshot snapshot;
@@ -67,7 +66,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                       children: [
                         Container(
                           height: 270,
-                          child: Center(child: Text("${i}", style: TextStyle(fontSize: 200, color: Colors.white70)))
+                          child: Center(child: Text("${i+1}", style: TextStyle(fontSize: 200, color: Colors.white70)))
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -79,7 +78,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                           )
                         ),
                         SizedBox(height: 10,),
-                        if(i%2==0)
+                        if(i%2!=0)
                           for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
                           Container(
                             margin: EdgeInsets.only(bottom: 5),
@@ -116,14 +115,21 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                           shrinkWrap: true,
                           childAspectRatio: 1.4,
                           children: [
-                            for(var x=0; x<4; x++)
+                            for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
+                            for(var n=0; n<widget.snapshot.data[i].respuestas[j].imagen.length; n++)
                             GestureDetector(
                               child: Container(
-                                margin: EdgeInsets.all(2),
+                                margin: EdgeInsets.all(4),
                                 height: 10,
                                 width: 50,
-                                color: Colors.white70,                           
-                              ),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  //shape: BoxShape.circle, 
+                                ),                     
+                               ),
                               onTap: (){
                                 if(i==7){
                                   Navigator.of(context).push(MaterialPageRoute(
