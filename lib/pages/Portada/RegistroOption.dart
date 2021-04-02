@@ -15,7 +15,7 @@ class RegistroOption extends StatelessWidget {
             fontSize: 24,
             fontWeight: FontWeight.bold,
             height: 1,
-            color: Color(globals.color1),
+            color: Color(globals.color5),
           ),
         ),
         SizedBox(
@@ -24,13 +24,13 @@ class RegistroOption extends StatelessWidget {
         Container(
           height: 40,
           decoration: BoxDecoration(
-            color: Color(globals.color1),
+            color: Color(globals.color5),
             borderRadius: BorderRadius.all(
               Radius.circular(25),
             ),
             boxShadow: [
               BoxShadow(
-                color: Color(globals.color1).withOpacity(0.2),
+                color: Color(globals.color5).withOpacity(0.2),
                 spreadRadius: 3,
                 blurRadius: 4,
                 offset: Offset(0, 3),
@@ -43,7 +43,7 @@ class RegistroOption extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(globals.color2),
+                color: Color(globals.color6),
               ),
             ),
           ),

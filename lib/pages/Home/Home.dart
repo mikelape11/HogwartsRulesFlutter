@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 CircleAvatar(
                   radius: 22.0, 
-                  backgroundColor: Color(globals.color2),            
+                  backgroundColor: globals.grySecundario,            
                   child: CircleAvatar(
                     radius: 20.0,
                     backgroundColor: globals.gryPrincipal,

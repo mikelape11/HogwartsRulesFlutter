@@ -65,7 +65,7 @@ class _RegistroState extends State<Registro> {
           "Registrate con",
           style: TextStyle(
             fontSize: 16,
-            color: Color(globals.color1),
+            color: Color(globals.color5),
             height: 2,
           ),
         ),
@@ -74,7 +74,7 @@ class _RegistroState extends State<Registro> {
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Color(globals.color1),
+            color: Color(globals.color5),
             height: 1,
             letterSpacing: 2,
           ),
@@ -91,12 +91,12 @@ class _RegistroState extends State<Registro> {
             onSaved: (String value){
               _usuario = value;
             },
-            style: TextStyle(color: Color(globals.color1), fontWeight: FontWeight.bold),
+            style: TextStyle(color: Color(globals.color5), fontWeight: FontWeight.bold),
             decoration: InputDecoration(
               hintText: "Usuario",
               hintStyle: TextStyle(
                 fontSize: 16,
-                color: Color(globals.color4),
+                color: Color(globals.color8),
                 fontWeight: FontWeight.bold,
               ),
               border: OutlineInputBorder(
@@ -104,7 +104,7 @@ class _RegistroState extends State<Registro> {
                 borderSide: BorderSide(width: 0, style: BorderStyle.none),
               ),
               filled: true,
-              fillColor: Colors.yellow[700].withOpacity(0.5),
+              fillColor: Colors.grey[700].withOpacity(0.5),
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
             )
           ),
@@ -121,12 +121,12 @@ class _RegistroState extends State<Registro> {
             onSaved: (String value2){
               _email = value2;
             },
-            style: TextStyle(color: Color(globals.color1), fontWeight: FontWeight.bold),
+            style: TextStyle(color: Color(globals.color5), fontWeight: FontWeight.bold),
             decoration: InputDecoration(
               hintText: "Email",
               hintStyle: TextStyle(
                 fontSize: 16,
-                color: Color(globals.color4),
+                color: Color(globals.color8),
                 fontWeight: FontWeight.bold,
               ),
               border: OutlineInputBorder(
@@ -134,7 +134,7 @@ class _RegistroState extends State<Registro> {
                 borderSide: BorderSide(width: 0, style: BorderStyle.none),
               ),
               filled: true,
-              fillColor: Colors.yellow[700].withOpacity(0.5),
+              fillColor: Colors.grey[700].withOpacity(0.5),
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
             )
           ),
@@ -152,12 +152,12 @@ class _RegistroState extends State<Registro> {
               MinLengthValidator(8,errorText: "Tiene que tener como minimo 8 caracteres"),
               MaxLengthValidator(12,errorText: "Tiene que tener como maximo 12 caracteres"), 
             ]),
-            style: TextStyle(color: Color(globals.color1), fontWeight: FontWeight.bold),
+            style: TextStyle(color: Color(globals.color5), fontWeight: FontWeight.bold),
             decoration: InputDecoration(
               hintText: "Password",
               hintStyle: TextStyle(
                 fontSize: 16,
-                color: Color(globals.color4),
+                color: Color(globals.color8),
                 fontWeight: FontWeight.bold,
               ),
               border: OutlineInputBorder(
@@ -165,7 +165,7 @@ class _RegistroState extends State<Registro> {
                 borderSide: BorderSide(width: 0, style: BorderStyle.none),
               ),
               filled: true,
-              fillColor: Colors.yellow[700].withOpacity(0.5),
+              fillColor: Colors.grey[700].withOpacity(0.5),
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
               suffixIcon: IconButton(
                   icon: Icon(
@@ -173,7 +173,7 @@ class _RegistroState extends State<Registro> {
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
                     size: 25.0,
-                    color: Color(globals.color1),
+                    color: Color(globals.color5),
                   ),
                   onPressed: () {
                     setState(() {
@@ -190,13 +190,13 @@ class _RegistroState extends State<Registro> {
         Container(
           height: 40,
           decoration: BoxDecoration(
-            color: Color(globals.color1),
+            color: Color(globals.color5),
             borderRadius: BorderRadius.all(
               Radius.circular(25)
             ),
             boxShadow: [
               BoxShadow(
-                color: Color(globals.color1).withOpacity(0.5),
+                color: Color(globals.color5).withOpacity(0.5),
                 spreadRadius: 3,
                 blurRadius: 4,
                 offset: Offset(0,3),
@@ -206,13 +206,13 @@ class _RegistroState extends State<Registro> {
           child: Container(
             height: 40,
             decoration: BoxDecoration(
-              color: Color(globals.color1),
+              color: Color(globals.color5),
               borderRadius: BorderRadius.all(
                 Radius.circular(25)
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Color(globals.color1).withOpacity(0.2),
+                  color: Color(globals.color5).withOpacity(0.2),
                   spreadRadius: 3,
                   blurRadius: 4,
                   offset: Offset(0,3),
@@ -224,13 +224,13 @@ class _RegistroState extends State<Registro> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
               return RaisedButton(
                 shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(25)),
-                color: Color(globals.color2),
+                color: Color(globals.color6),
                 child: Text(
                   "REGISTRO",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color(globals.color1),
+                    color: Color(globals.color5),
                   ),
                 ),
                 onPressed: () async{
@@ -278,7 +278,7 @@ class _RegistroState extends State<Registro> {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 16,
-            color: Color(globals.color1),
+            color: Color(globals.color5),
             height: 1,
           )
         ),
@@ -291,7 +291,7 @@ class _RegistroState extends State<Registro> {
             Icon(
               Entypo.facebook_with_circle,
               size: 32,
-              color: Color(globals.color1),
+              color: Color(globals.color5),
             ),
             SizedBox(
               width: 16,
@@ -299,7 +299,7 @@ class _RegistroState extends State<Registro> {
             Icon(
               Entypo.twitter_with_circle,
               size: 32,
-              color: Color(globals.color1),
+              color: Color(globals.color5),
             ),
             SizedBox(
               width: 16,
@@ -307,7 +307,7 @@ class _RegistroState extends State<Registro> {
             Icon(
               Entypo.google__with_circle,
               size: 32,
-              color: Color(globals.color1),
+              color: Color(globals.color5),
             ),
           ],
         ),
