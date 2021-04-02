@@ -4,6 +4,11 @@ import 'package:flutter_color/flutter_color.dart';
 String usuario = "";
 String password = "";
 String email = "";
+String idEleccionCasa = "";
+int puntosGry = 0;
+int puntosSly = 0;
+int puntosHuff = 0;
+int puntosRav = 0;
 
 //COLORES LOGIN Y REGISTRO
 

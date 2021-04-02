@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/models/EleccionCasaModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
+
+import 'TestAPI.dart';
 
 
 class Test extends StatefulWidget {
@@ -34,21 +38,41 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
   }
 
   PageController _pageController = new PageController();
+  EleccionCasaModelo eleccion;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.black87,
-              image: DecorationImage(
-                image:  AssetImage('images/fondoNegro.png'),
-                fit: BoxFit.fitWidth,  
+          FutureBuilder(
+            future: geteleccionCasaTodos(),
+              builder: (BuildContext context, AsyncSnapshot snapshot2) {
+                if(!snapshot2.hasData){    
+                  return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                }else{ 
+                for(int i=0; i<snapshot2.data.length; i++){
+                  if(snapshot2.data[i].id_usuario == globals.usuario){
+                    globals.idEleccionCasa = snapshot2.data[i].id;
+                    globals.puntosGry = snapshot2.data[i].puntosGry;
+                    globals.puntosSly = snapshot2.data[i].puntosSly;
+                    globals.puntosHuff = snapshot2.data[i].puntosHuff;
+                    globals.puntosRav = snapshot2.data[i].puntosRav;
+                  }
+                }
+                                      }
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.black87,
+                image: DecorationImage(
+                  image:  AssetImage('images/fondoNegro.png'),
+                  fit: BoxFit.fitWidth,  
+                ),
               ),
-            ),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+            );
+            }
           ),
           
             PageView(
@@ -91,7 +115,56 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                   // shape: RoundedRectangleBorder(
                                   //   side: BorderSide(color: Colors.white, width: 2,)
                                   // ),
-                                  onPressed: (){
+                                  onPressed: () async{
+                                    if(widget.snapshot.data[i].respuestas[j].puntos == "a"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosGry = globals.puntosGry + 1;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "b"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosSly = globals.puntosSly + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "c"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosRav = globals.puntosRav + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "d"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosHuff = globals.puntosHuff + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }
                                     if(i==7){
                                       Navigator.of(context).push(MaterialPageRoute(
                                         builder: (context) => Home(),
@@ -130,7 +203,56 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                   //shape: BoxShape.circle, 
                                 ),                     
                                ),
-                              onTap: (){
+                              onTap: () async{
+                                if(widget.snapshot.data[i].respuestas[j].puntos == "a"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosGry = globals.puntosGry + 1;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "b"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosSly = globals.puntosSly + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "c"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosRav = globals.puntosRav + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosHuff = globals.puntosHuff;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "d"){
+                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                  nuevo.id = globals.idEleccionCasa;
+                                  nuevo.id_usuario = globals.usuario;
+                                  nuevo.puntosHuff = globals.puntosHuff + 1;
+                                  nuevo.puntosGry = globals.puntosGry;
+                                  nuevo.puntosRav = globals.puntosRav;
+                                  nuevo.puntosSly = globals.puntosSly;
+                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                  setState(() {
+                                    eleccion = puntos;
+                                  });  
+                                }
                                 if(i==7){
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => Home(),

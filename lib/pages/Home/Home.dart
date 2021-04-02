@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/HomeInfo/HomeInfo.dart';
@@ -18,7 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +80,10 @@ class _HomeState extends State<Home> {
               label: 'SHOP',
             ),
             BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.bolt_fill),
+              label: 'RULES',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'HOME',
             ),
@@ -86,11 +91,17 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.chat),
               label: 'CHAT',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.game_controller_solid),
+              label: 'GAMES',
+            ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: globals.grySecundario,
+          unselectedItemColor: globals.grySecundario.withAlpha(125),
           onTap: _onItemTapped,
           backgroundColor: globals.gryPrincipal,
+          type: BottomNavigationBarType.fixed,
         ),
       )
     );
@@ -99,6 +110,31 @@ class _HomeState extends State<Home> {
   
 
   List<Widget> _widgetOptions = <Widget>[
+    Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            // color: Colors.black87,
+            image: DecorationImage(
+              image:  AssetImage('${globals.fondoGry}'),
+              fit: BoxFit.fitWidth,  
+            ),
+          ),
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          width: 450,
+          height: 620,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              
+            ],
+          ),   
+        ),
+      ],   
+    ),
     Stack(
       children: [
         Container(
@@ -176,7 +212,33 @@ class _HomeState extends State<Home> {
           ),   
         ),
       ],   
-    ),  ];
+    ),
+    Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            // color: Colors.black87,
+            image: DecorationImage(
+              image:  AssetImage('${globals.fondoGry}'),
+              fit: BoxFit.fitWidth,  
+            ),
+          ),
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          width: 450,
+          height: 620,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              
+            ],
+          ),   
+        ),
+      ],   
+    ),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {

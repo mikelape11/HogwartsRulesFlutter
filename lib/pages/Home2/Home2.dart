@@ -16,7 +16,7 @@ class Home2 extends StatefulWidget {
 }
 
 class _HomeState extends State<Home2> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

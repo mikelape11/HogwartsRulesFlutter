@@ -9,7 +9,7 @@ String TestModeloToJson(TestModelo data) => json.encode(data.toJson());
 //modelo de usuario
 class TestModelo{
   String id;
-  String numPregunta;
+  int numPregunta;
   String pregunta;
   List<preguntasRespuestasModelo> respuestas;
 

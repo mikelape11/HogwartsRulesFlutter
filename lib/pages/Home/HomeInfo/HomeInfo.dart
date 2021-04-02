@@ -9,7 +9,7 @@ class HomeInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height/1.3,
+      height: MediaQuery.of(context).size.height/1.25,
       child: Center(
         child: Column(
           children: [

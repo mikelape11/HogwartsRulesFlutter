@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/EleccionCasaModelo.dart';
 import 'package:hogwarts_rules/pages/Test/PortadaTest.dart';
 import 'package:hogwarts_rules/pages/Test/TestAPI.dart';
 
@@ -12,6 +13,7 @@ class Home2Portada extends StatefulWidget {
 }
 
 class _Home2PortadaState extends State<Home2Portada> with SingleTickerProviderStateMixin{
+  EleccionCasaModelo eleccion;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,11 @@ class _Home2PortadaState extends State<Home2Portada> with SingleTickerProviderSt
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 color: Colors.transparent,
                 child: Text('REALIZAR TEST', style: TextStyle(color: Colors.white, fontSize: 20),),
-                onPressed: () {
+                onPressed: () async{
+                    EleccionCasaModelo puntos = await registrarEleccionCasa(globals.usuario, 0, 0,0,0);            
+                    setState(() {
+                      eleccion = puntos;
+                    });
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PortadaTest(snapshot),
                   ));
