@@ -52,11 +52,11 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
           ),
           
             PageView(
-              //physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: _pageController,
               scrollDirection: Axis.horizontal,
               children: [
-                for(var i=0; i<widget.snapshot.data.length; i++)
+              for(var i=0; i<widget.snapshot.data.length; i++)
                 FadeTransition(
                   opacity: opacidad,
                    child: Container(
@@ -115,7 +115,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                           shrinkWrap: true,
                           childAspectRatio: 1.4,
                           children: [
-                            for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
+                          for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
                             for(var n=0; n<widget.snapshot.data[i].respuestas[j].imagen.length; n++)
                             GestureDetector(
                               child: Container(
@@ -124,7 +124,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
+                                    image: widget.snapshot.data[i].respuestas[j].imagen[n].name == "" ?  AssetImage('images/LOGOS/Logo1.png') : AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
                                     fit: BoxFit.fill,
                                   ),
                                   //shape: BoxShape.circle, 
@@ -163,7 +163,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                 child: Center(
                   child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 8,
+                    count: widget.snapshot.data.length,
                     effect: WormEffect(
                       dotColor: Colors.grey[900],
                       activeDotColor: Colors.white
@@ -177,8 +177,6 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
           Container(
             height: 10,
           )   
-
-
         ]
       ),
     );

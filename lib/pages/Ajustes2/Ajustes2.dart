@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Cuenta/Cuenta.dart';
-import 'package:hogwarts_rules/pages/Ajustes/Informacion/Informacion.dart';
-import 'package:hogwarts_rules/pages/Ajustes/Opinion/Opinion.dart';
-import 'package:hogwarts_rules/pages/Home2/Home2.dart';
+import 'package:hogwarts_rules/pages/Ajustes2/Cuenta2/Cuenta2.dart';
+import 'package:hogwarts_rules/pages/Ajustes2/Informacion2/Informacion2.dart';
+import 'package:hogwarts_rules/pages/Ajustes2/Opinion2/Opinion2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 
-
-class Ajustes extends StatelessWidget {
-  @override
+class Ajustes2 extends StatelessWidget {
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Color(globals.color2), //change your color here
+          color: globals.grySecundario, //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Ajustes', style: TextStyle(color: Color(globals.color2)),),
-        backgroundColor: Color(globals.color1),
+        title: Text('Ajustes2', style: TextStyle(color: globals.grySecundario),),
+        backgroundColor: globals.gryPrincipal,
         centerTitle: true,
         
         bottom: PreferredSize(
         child: Container(
-          color: Color(globals.color2),
+          color: globals.grySecundario,
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -32,7 +30,7 @@ class Ajustes extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black87,
           image: DecorationImage(
-            image:  AssetImage('images/fondoNegro3.png'),
+            image:  AssetImage('images/Gryffindor/gryffindor.png'),
             fit: BoxFit.fitWidth,  
           ),
         ),
@@ -46,21 +44,21 @@ class Ajustes extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.person, color: Color(globals.color2), size: 20,),
+                    Icon(Icons.person, color: globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Cuenta', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                    Text('Cuenta', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
                   ],
                 ),             
               ),
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Cuenta(),
+                  builder: (context) => Cuenta2(),
                 ));
               },
             ),
             Divider(
               height: 15,
-              color: Color(globals.color2),
+              color: globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -70,45 +68,96 @@ class Ajustes extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: Color(globals.color2), size: 20,),
+                    Icon(Icons.info_outline, color: globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Información', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                    Text('Información', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
                   ],
                 ),             
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Informacion(),
+                  builder: (context) => Informacion2(),
                 ));
               },
             ),
             Divider(
               height: 15,
-              color: Color(globals.color2),
+              color: globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
-            ),                   
+            ),
+            Container(
+              height: 40,
+              child: Row(
+                children: [
+                  Icon(Icons.text_snippet, color: globals.grySecundario, size: 20,),
+                  SizedBox(width: 10),
+                  Text('Test', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                ],
+              ),             
+            ),
+            Divider(
+              height: 15,
+              color: globals.grySecundario,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+            ),
+            Container(
+              height: 40,
+              child: Row(
+                children: [
+                  Icon(Icons.person_add, color: globals.grySecundario, size: 20,),
+                  SizedBox(width: 10),
+                  Text('Contactos', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                ],
+              ),             
+            ),
+            Divider(
+              height: 15,
+              color: globals.grySecundario,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+            ),
+            Container(
+              height: 40,
+              child: Row(
+                children: [
+                  Icon(Icons.person_remove_alt_1_sharp, color: globals.grySecundario, size: 20,),
+                  SizedBox(width: 10),
+                  Text('Contactos Bloqueados', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                ],
+              ),             
+            ),
+            Divider(
+              height: 15,
+              color: globals.grySecundario,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+            ),
             GestureDetector(
               child: Container(
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: Color(globals.color2), size: 20,),
+                    Icon(Icons.star, color: globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Danos Tu Opinión', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                    Text('Danos Tu Opinión', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
                   ],
                 ),             
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Opinion(),
+                  builder: (context) => Opinion2(),
                 ));
               },
             ),
             Divider(
               height: 15,
-              color: Color(globals.color2),
+              color: globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -118,9 +167,9 @@ class Ajustes extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.delete_outline, color: Color(globals.color2), size: 20,),
+                    Icon(Icons.delete_outline, color: globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Desactivar Cuenta', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                    Text('Desactivar Cuenta', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -133,8 +182,8 @@ class Ajustes extends StatelessWidget {
                       contentPadding: EdgeInsets.all(0.0),
                       content: Container(
                         decoration: BoxDecoration(
-                          color: Color(globals.color1).withOpacity(0.9),
-                          border: Border.all(color: Color(globals.color2), width: 3)
+                          color: globals.gryPrincipal.withOpacity(0.9),
+                          border: Border.all(color: globals.grySecundario, width: 3)
                         ),
                         width: 350,
                         height: 200,
@@ -148,7 +197,7 @@ class Ajustes extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                child: Text("¿Estas seguro?", style: TextStyle(color: Color(globals.color2))),
+                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.grySecundario)),
                               ),
                               SizedBox(height: 10),
                               Container(
@@ -160,11 +209,11 @@ class Ajustes extends StatelessWidget {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: Color(globals.color4), width: 2.0),      
+                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: Color(globals.color1),
+                                      color: globals.gryPrincipal,
                                       child: Text('ELIMINAR', style: TextStyle(color: Colors.red),),
                                       onPressed: () {
                                         Navigator.of(context).push(MaterialPageRoute(
@@ -176,11 +225,11 @@ class Ajustes extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: Color(globals.color4), width: 2.0),      
+                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: Color(globals.color1),
+                                      color: globals.gryPrincipal,
                                       child: Text('CANCELAR', style: TextStyle(color: Colors.white),),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -200,7 +249,7 @@ class Ajustes extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: Color(globals.color2),
+              color: globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -210,9 +259,9 @@ class Ajustes extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.logout, color: Color(globals.color2), size: 20,),
+                    Icon(Icons.logout, color: globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Cerrar Sesión', style: TextStyle(fontSize: 20, color: Color(globals.color2)),),
+                    Text('Cerrar Sesión', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -225,8 +274,8 @@ class Ajustes extends StatelessWidget {
                       contentPadding: EdgeInsets.all(0.0),
                       content: Container(
                         decoration: BoxDecoration(
-                          color: Color(globals.color1).withOpacity(0.9),
-                          border: Border.all(color: Color(globals.color2), width: 3)
+                          color: globals.gryPrincipal.withOpacity(0.9),
+                          border: Border.all(color: globals.grySecundario, width: 3)
                         ),
                         width: 350,
                         height: 200,
@@ -240,7 +289,7 @@ class Ajustes extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                child: Text("¿Estas seguro?", style: TextStyle(color: Color(globals.color2))),
+                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.grySecundario)),
                               ),
                               SizedBox(height: 10),
                               Container(
@@ -252,11 +301,11 @@ class Ajustes extends StatelessWidget {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: Color(globals.color4), width: 2.0),      
+                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: Color(globals.color1),
+                                      color: globals.gryPrincipal,
                                       child: Text('CERRAR', style: TextStyle(color: Colors.red),),
                                       onPressed: () {
                                         Navigator.of(context).push(MaterialPageRoute(
@@ -268,11 +317,11 @@ class Ajustes extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: Color(globals.color4), width: 2.0),      
+                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: Color(globals.color1),
+                                      color: globals.gryPrincipal,
                                       child: Text('CANCELAR', style: TextStyle(color: Colors.white),),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -292,7 +341,7 @@ class Ajustes extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: Color(globals.color2),
+              color: globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,

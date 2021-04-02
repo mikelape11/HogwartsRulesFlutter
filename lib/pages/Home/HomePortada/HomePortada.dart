@@ -24,7 +24,7 @@ class HomePortada extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('${globals.logoSly}'),                   
+                  image: AssetImage('${globals.logoGry}'),                   
                 )
               ),
             ),

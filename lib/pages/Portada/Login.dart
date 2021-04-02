@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget> [
           SizedBox(
-            height: 24,
+            height: 40,
           ),
           Text(
             "Bienvenid@ a",
@@ -68,6 +68,7 @@ class _LoginState extends State<Login> {
               letterSpacing: 2,
             )
           ),
+          SizedBox(height: 5),
           Text(
             "Inicia Sesión para continuar",
             style: TextStyle(
@@ -127,7 +128,7 @@ class _LoginState extends State<Login> {
                   } else 
                     return null;
               },
-                onSaved: (String value){
+              onSaved: (String value){
                 _password = value;
               },
               style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
@@ -247,7 +248,7 @@ class _LoginState extends State<Login> {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: 25,
           ),
           Text(
             "HAS OLVIDADO LA CONTRASEÑA?",
@@ -260,17 +261,7 @@ class _LoginState extends State<Login> {
           ),
           SizedBox(
             height: 16,
-          ),
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              // color: Colors.black87,
-              image: DecorationImage(
-                image:  AssetImage('images/LOGOS/LogoPeque.png'),
-                //fit: BoxFit.cover, 
-              )
-            ),
-          )
+          ),       
         ]
       ),
     );

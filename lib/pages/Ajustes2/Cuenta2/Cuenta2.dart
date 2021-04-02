@@ -1,16 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class Cuenta extends StatefulWidget {
+class Cuenta2 extends StatefulWidget {
 
   @override
   _CuentaState createState() => _CuentaState();
 }
 
-class _CuentaState extends State<Cuenta> {
+class _CuentaState extends State<Cuenta2> {
 
   String avatar = "images/Avatares/Avatar1.png";
   int i;
@@ -27,25 +27,25 @@ class _CuentaState extends State<Cuenta> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Color(globals.color2), //change your color here
+          color: globals.grySecundario, //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Cuenta', style: TextStyle(color: Color(globals.color2)),),
-        backgroundColor: Color(globals.color1),
+        title: Text('Cuenta2', style: TextStyle(color: globals.grySecundario),),
+        backgroundColor: globals.gryPrincipal,
         centerTitle: true,
         actions: [        
           IconButton(
-            icon: Icon(Icons.done_outline_rounded, color: Color(globals.color2), size: 25,),
+            icon: Icon(Icons.done_outline_rounded, color: globals.grySecundario, size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
+                builder: (context) => Ajustes2(),
               ));
             }
           ),
         ],
         bottom: PreferredSize(
         child: Container(
-          color: Color(globals.color2),
+          color: globals.grySecundario,
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -55,7 +55,7 @@ class _CuentaState extends State<Cuenta> {
           decoration: BoxDecoration(
             color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('images/fondoNegro3.png'),
+              image:  AssetImage('images/Gryffindor/gryffindor.png'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -72,7 +72,7 @@ class _CuentaState extends State<Cuenta> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'D', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'D', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'atos', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -81,20 +81,20 @@ class _CuentaState extends State<Cuenta> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
-                  style: TextStyle(color: Color(globals.color2)),
+                  style: TextStyle(color: globals.grySecundario),
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 0.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                     hintText: "Usuario",
-                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
                     ),
                   ),
                 ),
@@ -102,20 +102,20 @@ class _CuentaState extends State<Cuenta> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
-                  style: TextStyle(color: Color(globals.color2)),
+                  style: TextStyle(color: globals.grySecundario),
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 0.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                     hintText: "Email",
-                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
                     ),
                   ),
                 ),
@@ -123,20 +123,20 @@ class _CuentaState extends State<Cuenta> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
-                  style: TextStyle(color: Color(globals.color2)),
+                  style: TextStyle(color: globals.grySecundario),
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 0.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                     hintText: "Password",
-                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
                     ),
                   ),
                 ),
@@ -149,7 +149,7 @@ class _CuentaState extends State<Cuenta> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'A', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'A', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'vatar', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -162,10 +162,10 @@ class _CuentaState extends State<Cuenta> {
                     children: [
                       CircleAvatar(
                         radius: 85.0, 
-                        backgroundColor: Color(globals.color2),            
+                        backgroundColor: globals.grySecundario,            
                         child: CircleAvatar(
                           radius: 80.0,
-                          backgroundColor: Color(globals.color1),
+                          backgroundColor: globals.gryPrincipal,
                           backgroundImage: AssetImage(avatar),   
                           // backgroundImage: globals.existeAvatar
                           // ? AssetImage("images/perfil.png") 
@@ -186,15 +186,15 @@ class _CuentaState extends State<Cuenta> {
                       WidgetSpan(
                         child: Container(
                           padding: EdgeInsets.only(right: 50),
-                          child: Icon(Icons.arrow_back, size: 25, color: Color(globals.color2),)
+                          child: Icon(Icons.arrow_back, size: 25, color: globals.grySecundario,)
                         ),
                       ),
-                      TextSpan(text: 'E', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'E', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'lige tu Avatar', style: TextStyle(fontWeight: FontWeight.bold)),
                       WidgetSpan(
                         child: Container(
                           padding: EdgeInsets.only(left: 50),
-                          child: Icon(Icons.arrow_forward, size: 25, color: Color(globals.color2),)
+                          child: Icon(Icons.arrow_forward, size: 25, color: globals.grySecundario,)
                         ),
                       ),
                     ] 

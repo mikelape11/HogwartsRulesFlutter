@@ -31,7 +31,7 @@ dependencies:
   flutter_color: any
   http: "^0.11.3+16"
   form_field_validator: ^1.0.1
-  carousel_slider: ^1.3.0
+  carousel_slider: ^3.0.0
   flip_card: ^0.4.4
   smooth_page_indicator: any
   audioplayers: ^0.15.1
@@ -137,6 +137,27 @@ flutter:
     - images/Libros/5.jpg
     - images/Libros/6.jpg
     - images/Libros/7.jpg
+
+    #IMAGENES RESPUSETAS TEST
+    - images/RespuestasTest/pregunta1respuesta1.jpg
+    - images/RespuestasTest/pregunta1respuesta2.jpeg
+    - images/RespuestasTest/pregunta1respuesta3.jpeg
+    - images/RespuestasTest/pregunta1respuesta4.jpeg
+
+    - images/RespuestasTest/pregunta3respuesta1.jpeg
+    - images/RespuestasTest/pregunta3respuesta2.jpeg
+    - images/RespuestasTest/pregunta3respuesta3.jpeg
+    - images/RespuestasTest/pregunta3respuesta4.jpg
+
+    - images/RespuestasTest/pregunta5respuesta1.jpg
+    - images/RespuestasTest/pregunta5respuesta2.jpg
+    - images/RespuestasTest/pregunta5respuesta3.jpg
+    - images/RespuestasTest/pregunta5respuesta4.jpg
+
+    - images/RespuestasTest/pregunta7respuesta1.jpg
+    - images/RespuestasTest/pregunta7respuesta2.jpg
+    - images/RespuestasTest/pregunta7respuesta3.jpg
+    - images/RespuestasTest/pregunta7respuesta4.jpg
 
   #   - images/a_dot_ham.jpeg
 

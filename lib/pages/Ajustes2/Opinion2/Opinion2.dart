@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Opinion extends StatefulWidget {
+class Opinion2 extends StatefulWidget {
 
   @override
   _OpinionState createState() => _OpinionState();
 }
 
-class _OpinionState extends State<Opinion> {
+class _OpinionState extends State<Opinion2> {
   
   double _rating;
   double _initialRating = 2.0;
@@ -23,15 +23,15 @@ class _OpinionState extends State<Opinion> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Color(globals.color2), //change your color here
+          color: globals.grySecundario, //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Opinion', style: TextStyle(color: Color(globals.color2)),),
-        backgroundColor: Color(globals.color1),
+        title: Text('Opinion', style: TextStyle(color: globals.grySecundario),),
+        backgroundColor: globals.gryPrincipal,
         centerTitle: true,
         bottom: PreferredSize(
         child: Container(
-          color: Color(globals.color2),
+          color: globals.grySecundario,
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -41,7 +41,7 @@ class _OpinionState extends State<Opinion> {
           decoration: BoxDecoration(
             color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('images/fondoNegro3.png'),
+              image:  AssetImage('images/Gryffindor/gryffindor.png'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -58,7 +58,7 @@ class _OpinionState extends State<Opinion> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'D', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'D', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'atos', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -68,20 +68,20 @@ class _OpinionState extends State<Opinion> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
                   readOnly: true,
-                  style: TextStyle(color: Color(globals.color2)),
+                  style: TextStyle(color: globals.grySecundario),
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 0.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                     hintText: "Usuario",
-                    hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
+                    hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
+                      child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
                     ),
                   ),
                 ),
@@ -94,7 +94,7 @@ class _OpinionState extends State<Opinion> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'O', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'O', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'pinión', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -103,19 +103,19 @@ class _OpinionState extends State<Opinion> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
-                  cursorColor: Color(globals.color2),
+                  cursorColor: globals.grySecundario,
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 0.5),
                     ),
                     focusedBorder: UnderlineInputBorder(                  
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      borderSide: BorderSide(color: globals.grySecundario, width: 2.0),
                     ), 
                     labelText: 'Escribe Aquí',
-                    labelStyle: TextStyle(color: Color(globals.color2), fontSize: 18, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(color: globals.grySecundario, fontSize: 18, fontWeight: FontWeight.bold),
                     fillColor: Colors.red,
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2))
+                      borderSide: BorderSide(color: globals.grySecundario)
                     ),
                   ),
                   style: TextStyle(color: Colors.white70, fontSize: 16),
@@ -131,7 +131,7 @@ class _OpinionState extends State<Opinion> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'P', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'P', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'untuación', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -144,13 +144,13 @@ class _OpinionState extends State<Opinion> {
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
-                  unratedColor: Color(globals.color2).withOpacity(0.3),
+                  unratedColor: globals.grySecundario.withOpacity(0.3),
                   itemCount: 5,
                   itemSize: 40.0,
                   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
                   itemBuilder: (context, _) => Icon(
                     Icons.star,
-                    color: Color(globals.color2),
+                    color: globals.grySecundario,
                   ),
                   onRatingUpdate: (rating) {
                     setState(() {
@@ -163,7 +163,7 @@ class _OpinionState extends State<Opinion> {
               SizedBox(height: 40),
               Divider(
                 height: 15,
-                color: Color(globals.color2),
+                color: globals.grySecundario,
                 thickness: 2,
                 indent: 20,
                 endIndent: 20,
@@ -177,11 +177,11 @@ class _OpinionState extends State<Opinion> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: '¡M', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 50)),
+                      TextSpan(text: '¡M', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 50)),
                       TextSpan(text: 'uchas ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
-                      TextSpan(text: 'G', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 50)),
+                      TextSpan(text: 'G', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 50)),
                       TextSpan(text: 'racias', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
-                      TextSpan(text: '!', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 50)),
+                      TextSpan(text: '!', style: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 50)),
                     ] 
                   )               
                 )
