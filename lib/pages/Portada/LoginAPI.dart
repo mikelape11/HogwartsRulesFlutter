@@ -18,8 +18,13 @@ class LoginAPI extends StatefulWidget {
       List<UsuarioModelo> usuario = []; 
       for (var e in jsonData) {
         UsuarioModelo usuarios = new UsuarioModelo();
+        usuarios.id = e["_id"];
         usuarios.usuario = e["usuario"];
         usuarios.password = e["password"];
+        usuarios.email = e["email"];
+        usuarios.casaHogwarts = e["casaHogwarts"];
+        usuarios.avatar = e["avatar"];
+        usuarios.rol = e["rol"];
         usuario.add(usuarios);
       }
       return usuario;

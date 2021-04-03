@@ -5,7 +5,10 @@ import 'package:hogwarts_rules/pages/Ajustes/Informacion/Informacion.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Opinion/Opinion.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
+import 'package:hogwarts_rules/pages/Test/TestAPI.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
+
+import 'Cuenta/CuentaAPI.dart';
 
 
 class Ajustes extends StatelessWidget {
@@ -166,7 +169,9 @@ class Ajustes extends StatelessWidget {
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       color: Color(globals.color1),
                                       child: Text('ELIMINAR', style: TextStyle(color: Colors.red),),
-                                      onPressed: () {
+                                      onPressed: () async{
+                                        deleteCuenta(globals.usuario);
+                                        deleteDatosTest(globals.usuario);
                                         Navigator.of(context).push(MaterialPageRoute(
                                           builder: (context) => Portada(),
                                         ));

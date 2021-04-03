@@ -255,7 +255,7 @@ class _RegistroState extends State<Registro> {
                       }                
                     }
                     if(cont == snapshot.data.length){
-                      UsuarioModelo usuarios = await registrarUsuario(usuario, password, email);
+                      UsuarioModelo usuarios = await registrarUsuario(usuario, password, email, 0);
                       setState(() {
                         usuario = usuarios as String;
                       });

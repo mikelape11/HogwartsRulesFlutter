@@ -219,14 +219,22 @@ class _LoginState extends State<Login> {
                   for(int i=0; i<snapshot.data.length; i++){
                     if (_formKeysList[1].currentState.validate()) { 
                     }
-                    if(snapshot.data[i].usuario == usuario && snapshot.data[i].password == password){
+                    if(snapshot.data[i].usuario == usuario && snapshot.data[i].password == password && snapshot.data[i].rol == 0){
                         globals.usuario = usuario;
                         globals.password = password;
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Home2(),
-                        ));  
+                        globals.email = snapshot.data[i].email;
+                        if(snapshot.data[i].casaHogwarts == ""){
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Home2(),
+                          )); 
+                        }else{
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Home(),
+                          )); 
+                        }
+                         
                     }else{
-                      if(snapshot.data[i].usuario != usuario){
+                      if(snapshot.data[i].usuario != usuario || snapshot.data[i].rol != 0){
                           cont ++; 
                       }
                       if(cont == snapshot.data.length){

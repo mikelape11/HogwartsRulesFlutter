@@ -1,6 +1,7 @@
 import 'package:flutter_color/flutter_color.dart';
 
 //DATOS USUARIO
+String idUsuario = "";
 String usuario = "";
 String password = "";
 String email = "";

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/models/EleccionCasaModelo.dart';
+import 'package:hogwarts_rules/models/UsuarioModelo.dart';
 import 'package:http/http.dart' as http;
 import 'package:hogwarts_rules/models/PreguntasRespuestasModelo.dart';
 
@@ -38,7 +39,7 @@ class TestAPI extends StatefulWidget {
       for (var e in jsonData) {
         EleccionCasaModelo eleccion = new EleccionCasaModelo();
         eleccion.id = e['_id'];
-        eleccion.id_usuario = e['id_usuario'];
+        eleccion.idUsuario = e['idUsuario'];
         eleccion.puntosGry = e['puntosGry'];
         eleccion.puntosSly = e['puntosSly'];
         eleccion.puntosHuff = e['puntosHuff'];
@@ -47,9 +48,6 @@ class TestAPI extends StatefulWidget {
 
     }
     return puntos;
-
-
-
      }
 
     
@@ -60,11 +58,11 @@ class TestAPI extends StatefulWidget {
   }
 
 
-  Future<EleccionCasaModelo> registrarEleccionCasa(String id_usuario, int puntosGry, int puntosSly, int puntosHuff, int puntosRav) async{
+  Future<EleccionCasaModelo> registrarEleccionCasa(String idUsuario, int puntosGry, int puntosSly, int puntosHuff, int puntosRav) async{
     var Url = "http://10.0.2.2:8080/registrarEleccionCasa";
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , String>{
-      "id_usuario" : id_usuario,
+      "idUsuario" : idUsuario,
       "puntosGry" : puntosGry.toString(),
       "puntosSly": puntosSly.toString(),
       "puntosHuff": puntosHuff.toString(),
@@ -72,6 +70,22 @@ class TestAPI extends StatefulWidget {
 
 
     }));
+  }
+
+  Future<http.Response> deleteDatosTest(String idUsuario) async {
+    final http.Response response = await http.delete(
+      "http://10.0.2.2:8080/eliminarDatosPorNombre/${idUsuario}",
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    return response;
+  }
+
+  Future<UsuarioModelo> actualiziarCasaHogwarts(UsuarioModelo usuario) async{
+    var Url = "http://10.0.2.2:8080/actualiziarCasaHogwarts";
+    var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body: jsonEncode(usuario));
   }
 
 

@@ -8,18 +8,18 @@ String EleccionCasaModeloToJson(EleccionCasaModelo data) => json.encode(data.toJ
 //modelo de usuario
 class EleccionCasaModelo{
   String id;
-  String id_usuario;
+  String idUsuario;
   int puntosGry;
   int puntosSly;
   int puntosRav;
   int puntosHuff;
 
-  EleccionCasaModelo({this.id,this.id_usuario,this.puntosGry,this.puntosSly,this.puntosRav,this.puntosHuff});
+  EleccionCasaModelo({this.id,this.idUsuario,this.puntosGry,this.puntosSly,this.puntosRav,this.puntosHuff});
   
   factory EleccionCasaModelo.fromJson(Map<String,dynamic> json){
    return EleccionCasaModelo(
     id: json["_id"],
-    id_usuario: json["id_usuario"],
+    idUsuario: json["idUsuario"],
     puntosGry: json["puntosGry"],
     puntosSly: json['puntosSly'],
     puntosRav: json['puntosRav'],
@@ -31,7 +31,7 @@ class EleccionCasaModelo{
 
   Map<String,dynamic> toJson()=>{
     "_id": id,
-    "id_usuario": id_usuario,
+    "idUsuario": idUsuario,
     "puntosGry": puntosGry,
     "puntosSly": puntosSly,
     "puntosRav": puntosRav,
