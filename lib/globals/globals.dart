@@ -12,15 +12,15 @@ int puntosRav = 0;
 
 //COLORES LOGIN Y REGISTRO
 
-int color1 = 0xFF171717;
-int color2 = 0xFFb37f1c; 
-int color3 = 0xFFb37f1c; 
-int color4 = 0xFF252525; 
+// int color1 = 0xFF171717;
+// int color2 = 0xFFb37f1c; 
+// int color3 = 0xFFb37f1c; 
+// int color4 = 0xFF252525; 
 
-int color5 = 0xFF171717;
-int color6 = 0xFFDDDDDD; 
-int color7 = 0xFFAAAAAA; 
-int color8 = 0xFF252525;
+int color1 = 0xFF171717;
+int color2 = 0xFFDDDDDD; 
+int color3 = 0xFFAAAAAA; 
+int color4 = 0xFF252525; 
 
 //COLORES DE LAS CASAS
 HexColor gryPrincipal = HexColor('#401617');

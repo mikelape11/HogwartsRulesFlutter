@@ -60,7 +60,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                     globals.puntosRav = snapshot2.data[i].puntosRav;
                   }
                 }
-                                      }
+              }
             return Container(
               decoration: BoxDecoration(
                 color: Colors.black87,
@@ -97,7 +97,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                           child: Center(
                             child: Text(
                               "${widget.snapshot.data[i].pregunta}", 
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white, fontSize: 22),
                             )
                           )
                         ),

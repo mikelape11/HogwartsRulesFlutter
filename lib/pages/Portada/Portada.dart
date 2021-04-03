@@ -21,7 +21,7 @@ class _PortadaState extends State<Portada> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(globals.color6),
+      backgroundColor: Color(globals.color2),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -94,7 +94,7 @@ class CurvePainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size){
     var paint = Paint();
-    paint.color = Color(globals.color5);
+    paint.color = Color(globals.color1);
     paint.style = PaintingStyle.fill;
 
     Path path = Path();

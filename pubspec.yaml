@@ -159,6 +159,12 @@ flutter:
     - images/RespuestasTest/pregunta7respuesta3.jpg
     - images/RespuestasTest/pregunta7respuesta4.jpg
 
+    #VARITAS
+    - images/Varitas/varita1.png
+    - images/Varitas/varita2.png
+    - images/Varitas/varita3.png
+    - images/Varitas/varita4.png
+    - images/Varitas/varita5.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

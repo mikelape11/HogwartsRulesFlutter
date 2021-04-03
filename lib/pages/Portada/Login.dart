@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
             "Bienvenid@ a",
             style: TextStyle(
               fontSize: 16,
-              color: Color(globals.color6),
+              color: Color(globals.color2),
               height: 2,
             )
           ),
@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
             "HOGWARTS RULES",
             style: TextStyle(
               fontSize: 32,
-              color: Color(globals.color6),
+              color: Color(globals.color2),
               height: 1,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
@@ -73,7 +73,7 @@ class _LoginState extends State<Login> {
             "Inicia Sesión para continuar",
             style: TextStyle(
               fontSize: 16,
-              color: Color(globals.color6),
+              color: Color(globals.color2),
               height: 1,
             )
           ),
@@ -89,12 +89,12 @@ class _LoginState extends State<Login> {
               onSaved: (String value){
                 _usuario = value;
               },
-              style: TextStyle(color: Color(globals.color6), fontWeight: FontWeight.bold),
+              style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
               decoration: InputDecoration(
                 hintText: "Usuario",
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: Color(globals.color7),
+                  color: Color(globals.color3),
                   fontWeight: FontWeight.bold,
                 ),
                 border: OutlineInputBorder(
@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                 ),
                 filled: true,
-                fillColor: Color(globals.color8),
+                fillColor: Color(globals.color4),
                 contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
               )
             ),
@@ -131,12 +131,12 @@ class _LoginState extends State<Login> {
               onSaved: (String value){
                 _password = value;
               },
-              style: TextStyle(color: Color(globals.color6), fontWeight: FontWeight.bold),
+              style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
               decoration: InputDecoration(
                 hintText: "Password",
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: Color(globals.color7),
+                  color: Color(globals.color3),
                   fontWeight: FontWeight.bold,
                 ),
                 border: OutlineInputBorder(
@@ -144,7 +144,7 @@ class _LoginState extends State<Login> {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                 ),
                 filled: true,
-                fillColor: Color(globals.color8),
+                fillColor: Color(globals.color4),
                 contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                 suffixIcon: IconButton(
                   icon: Icon(
@@ -152,7 +152,7 @@ class _LoginState extends State<Login> {
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
                     size: 25.0,
-                    color: Color(globals.color6),
+                    color: Color(globals.color2),
                   ),
                   onPressed: () {
                     setState(() {
@@ -169,13 +169,13 @@ class _LoginState extends State<Login> {
           Container(
             height: 40,
             decoration: BoxDecoration(
-              color: Color(globals.color5),
+              color: Color(globals.color1),
               borderRadius: BorderRadius.all(
                 Radius.circular(25)
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Color(globals.color6).withOpacity(0.2),
+                  color: Color(globals.color2).withOpacity(0.2),
                   spreadRadius: 2,
                   blurRadius: 2,
                   offset: Offset(0,2),
@@ -185,13 +185,13 @@ class _LoginState extends State<Login> {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                color: Color(globals.color6),
+                color: Color(globals.color2),
                 borderRadius: BorderRadius.all(
                   Radius.circular(25)
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(globals.color6).withOpacity(0.2),
+                    color: Color(globals.color2).withOpacity(0.2),
                     spreadRadius: 3,
                     blurRadius: 4,
                     offset: Offset(0,3),
@@ -203,13 +203,13 @@ class _LoginState extends State<Login> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return RaisedButton(
                   shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(25)),
-                  color: Color(globals.color5),
+                  color: Color(globals.color1),
                   child: Text(
                     "LOGIN",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color(globals.color6),
+                      color: Color(globals.color2),
                     ),
                   ),
                   onPressed: () async{
@@ -255,7 +255,7 @@ class _LoginState extends State<Login> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              color: Color(globals.color6),
+              color: Color(globals.color2),
               height: 1,
             ),
           ),

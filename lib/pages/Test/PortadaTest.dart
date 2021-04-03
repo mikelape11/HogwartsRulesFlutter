@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Test/Test.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
+
 
 class PortadaTest extends StatefulWidget {
   final AsyncSnapshot snapshot;
@@ -48,7 +50,7 @@ class _PortadaTestState extends State<PortadaTest> {
                     print("Tap Event");
                   },
                 text: [
-                  "Bienvenido Mikel,",
+                  "Bienvenido "+globals.usuario+",",
                   "Antes de nada deberás de realizar un breve test",
                   "Para que podamos saber a que casa perteneces",
                   "¡Mucha suerte!",

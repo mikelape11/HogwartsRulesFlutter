@@ -4,6 +4,7 @@ import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home2/Home2Portada/Home2Portada.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2SobreNosotros/Home2SobreNosotros.dart';
+import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 
 import '../Portada/Login.dart';
@@ -87,6 +88,7 @@ class _HomeState extends State<Home2> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Color(globals.color2),
+          unselectedItemColor: Colors.grey[700],
           onTap: _onItemTapped,
           backgroundColor: Color(globals.color1),
         ),
@@ -114,7 +116,7 @@ class _HomeState extends State<Home2> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              Text("shop")
+              Tienda2(),
             ],
           ),   
         ),
