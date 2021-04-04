@@ -1,7 +1,10 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Home/Home.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/DetallesTienda.dart';
 
 import '../../../globals/globals.dart';
 
@@ -27,7 +30,7 @@ class Tienda extends StatelessWidget {
                 // shadowColor: Colors.black,
                 elevation: 15,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 color: globals.gryPrincipal,
                 child: Container(
@@ -37,7 +40,7 @@ class Tienda extends StatelessWidget {
                     clipper: BackgroundClipper(),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         color: globals.grySecundario.withAlpha(150),
                       ),
                       height: 180,
@@ -63,12 +66,12 @@ class Tienda extends StatelessWidget {
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width/2.5,
-                          child: Center(child: Text("NOMBRE OBJETO", style: TextStyle(color: Colors.white70, fontSize: 25), textAlign: TextAlign.center,)),
+                          child: Center(child: Text("NOMBRE OBJETO", style: TextStyle(color: Colors.white70, fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
                         ),
                         SizedBox(height: 25,),
                         Container(
                           width: MediaQuery.of(context).size.width/2.5,
-                          child: Center(child: Text("20 €", style: TextStyle(color: Colors.white70, fontSize: 30),)),
+                          child: Center(child: Text("20 €", style: TextStyle(color: Colors.white70, fontSize: 30, fontWeight: FontWeight.bold),)),
                         ),
                       ],
                     ),
@@ -97,6 +100,7 @@ class Tienda extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 child: Column(
@@ -106,7 +110,6 @@ class Tienda extends StatelessWidget {
                         border: Border(
                           bottom: BorderSide(width: 2, color: globals.grySecundario),
                         ),
-                        
                       ),
                       child: FlatButton(
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -139,7 +142,7 @@ class Tienda extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(                    
                         border: Border(
-                          bottom: BorderSide(width: 2, color: globals.slyPrincipal),
+                          bottom: BorderSide(width: 2, color: globals.slySecundario),
                         ),
                       ),
                       child: FlatButton(
@@ -147,7 +150,7 @@ class Tienda extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
                         ),                    
-                        color: globals.gryPrincipal,
+                        color: globals.slyPrincipal,
                         child: Text("SLY", style: TextStyle(color: Colors.white70),),
                         onPressed: (){},
                       ),
@@ -156,7 +159,7 @@ class Tienda extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(                    
                         border: Border(
-                          bottom: BorderSide(width: 2, color: globals.ravPrincipal),
+                          bottom: BorderSide(width: 2, color: globals.ravSecundario),
                         ),
                       ),
                       child: FlatButton(
@@ -164,7 +167,7 @@ class Tienda extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
                         ),                    
-                        color: globals.gryPrincipal,
+                        color: globals.ravPrincipal,
                         child: Text("RAV", style: TextStyle(color: Colors.white70),),
                         onPressed: (){},
                       ),
@@ -173,7 +176,7 @@ class Tienda extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(                    
                         border: Border(
-                          bottom: BorderSide(width: 2, color: globals.hufPrincipal),
+                          bottom: BorderSide(width: 2, color: globals.hufSecundario),
                         ),
                       ),
                       child: FlatButton(
@@ -181,7 +184,7 @@ class Tienda extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
                         ),                    
-                        color: globals.gryPrincipal,
+                        color: globals.hufPrincipal,
                         child: Text("HUF", style: TextStyle(color: Colors.white70),),
                         onPressed: (){},
                       ),
@@ -223,7 +226,424 @@ class Tienda extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(),
+              SizedBox(width: 10,),
+              Container(
+                width: MediaQuery.of(context).size.width/1.6,
+                height: MediaQuery.of(context).size.height/2.34,
+                child: DraggableScrollableSheet(
+                  initialChildSize: 1,
+                  builder: (context, scrollControler){
+                    return GridView.count(
+                      primary: false,  
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      children: [                       
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),                              
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Varitas/varita1.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Jersey.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Jersey2.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Funko.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Bufanda.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Libro.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Taza.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                        FlipCard(
+                          direction: FlipDirection.HORIZONTAL,
+                          speed: 1000,
+                          front: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/Tienda/Niki.png'),
+                                  fit: BoxFit.fitWidth,  
+                                ),
+                              ),
+                            ),
+                          ), 
+                          back: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: globals.gryPrincipal,
+                              border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                ),
+                                Container(
+                                  child: RaisedButton(                       
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    color: Colors.transparent,
+                                    child: Text('Comprar', style: TextStyle(color: globals.grySecundario),),
+                                    onPressed: () async{
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => DetallesTienda(),
+                                      ));
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ),
+                      ],
+                    );
+                  }
+                ),
+              ),
             ],
           )
         ),

@@ -6,6 +6,7 @@ import 'package:hogwarts_rules/pages/Home/HomePersonajes/HomePersonajes.dart';
 import 'package:hogwarts_rules/pages/Home/HomePortada/HomePortada.dart';
 import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/pages/Home/Tienda/DetallesTienda.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/Tienda.dart';
 import 'package:hogwarts_rules/pages/Portada/Login.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
@@ -21,6 +22,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 2;
+  int tienda = 0;
+  int tienda2 = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,8 +110,6 @@ class _HomeState extends State<Home> {
       )
     );
   }
-
-  
 
   List<Widget> _widgetOptions = <Widget>[
     Stack(

@@ -23,7 +23,6 @@ class Ajustes extends StatelessWidget {
         title: Text('Ajustes', style: TextStyle(color: Color(globals.color2)),),
         backgroundColor: Color(globals.color1),
         centerTitle: true,
-        
         bottom: PreferredSize(
         child: Container(
           color: Color(globals.color2),

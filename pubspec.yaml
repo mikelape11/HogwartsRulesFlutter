@@ -40,7 +40,8 @@ dependencies:
   url_launcher: ^5.0.0
   flutter_rating_bar: ^3.0.0
   dart_random_choice: ^0.0.2
-
+  
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -166,6 +167,15 @@ flutter:
     - images/Varitas/varita3.png
     - images/Varitas/varita4.png
     - images/Varitas/varita5.png
+
+    #TIENDA
+    - images/Tienda/Jersey.png
+    - images/Tienda/Bufanda.png
+    - images/Tienda/Funko.png
+    - images/Tienda/Jersey2.png
+    - images/Tienda/Libro.png
+    - images/Tienda/Niki.png
+    - images/Tienda/Taza.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
