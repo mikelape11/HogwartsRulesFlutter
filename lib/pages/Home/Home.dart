@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             // color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('${globals.fondoGry}'),
+              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             // color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('${globals.fondoGry}'),
+              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             // color: Colors.black87,
             image: DecorationImage(
-              image:  AssetImage('${globals.fondoGry}'),
+              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
               fit: BoxFit.fitWidth,  
             ),
           ),
