@@ -110,7 +110,7 @@ class CarritoTienda extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  color: globals.gryPrincipal,
+                  color: globals.gryPrincipal.withRed(80),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,

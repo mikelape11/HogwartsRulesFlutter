@@ -220,7 +220,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                         }); 
                                       }
                                       Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => Home(),
+                                        builder: (context) => Home(0),
                                       ));
                                     }else{
                                       _pageController.animateToPage(
@@ -308,7 +308,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                 }
                                 if(i==7){
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Home(),
+                                    builder: (context) => Home(0),
                                   ));
                                 }else{
                                   _pageController.animateToPage(

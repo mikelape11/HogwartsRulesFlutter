@@ -14,7 +14,9 @@ import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import '../Portada/Login.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  int index;
+  
+  Home(this.index);
 
   @override
   _HomeState createState() => _HomeState();
@@ -71,7 +73,7 @@ class _HomeState extends State<Home> {
         preferredSize: Size.fromHeight(4.0)),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(widget.index != 2 ? widget.index : _selectedIndex),
       ),   
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -100,7 +102,7 @@ class _HomeState extends State<Home> {
               label: 'GAMES',
             ),
           ],
-          currentIndex: _selectedIndex,
+          currentIndex: widget.index != 2 ? widget.index : _selectedIndex,
           selectedItemColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
           unselectedItemColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario .withAlpha(125),
           onTap: _onItemTapped,
@@ -245,6 +247,7 @@ class _HomeState extends State<Home> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      widget.index = index;
     });
   }
 }

@@ -195,7 +195,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.grySecundario, fontSize: 18),),
                             onPressed: () async{
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Home(),
+                                builder: (context) => Home(0),
                               ));
                             }
                           ),
