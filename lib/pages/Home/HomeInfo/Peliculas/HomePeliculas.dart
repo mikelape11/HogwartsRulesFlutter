@@ -70,7 +70,7 @@ class HomePeliculas extends StatelessWidget {
                                 child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white),),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => InfoPeliculas(),
+                                    builder: (context) => InfoPeliculas(i),
                                   ));
                                 }
                               ),

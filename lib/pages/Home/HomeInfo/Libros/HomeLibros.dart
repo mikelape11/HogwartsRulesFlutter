@@ -70,7 +70,7 @@ class HomeLibros extends StatelessWidget {
                                 child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white),),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => InfoLibros(),
+                                    builder: (context) => InfoLibros(i),
                                   ));
                                 }
                               ),

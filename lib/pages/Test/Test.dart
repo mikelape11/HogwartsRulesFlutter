@@ -171,11 +171,23 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                     if(i==7){
                                       var result = [globals.puntosGry,globals.puntosSly,globals.puntosRav,globals.puntosHuff].reduce(max);
                                       //var el = randomChoice(result);
-                                      if(result == globals.puntosGry){
+                                      if(result == globals.puntosGry && result == globals.puntosSly && result == globals.puntosRav && result == globals.puntosHuff){
+                                        var lista = ["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"];
+                                        var el = randomChoice(lista);
+                                        UsuarioModelo nuevo = new UsuarioModelo();
+                                        nuevo.usuario = globals.usuario;
+                                        nuevo.casaHogwarts = el;
+                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                        globals.casaHogwarts = el;
+                                        setState(() {
+                                          usuario = usu;
+                                        }); 
+                                      }else if(result == globals.puntosGry){
                                         UsuarioModelo nuevo = new UsuarioModelo();
                                         nuevo.usuario = globals.usuario;
                                         nuevo.casaHogwarts = "Gryffindor";
                                         UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                        globals.casaHogwarts = "Gryffindor";
                                         setState(() {
                                           usuario = usu;
                                         }); 
@@ -184,6 +196,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                         nuevo.usuario = globals.usuario;
                                         nuevo.casaHogwarts = "Slytherin";
                                         UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                        globals.casaHogwarts = "Slytherin";
                                         setState(() {
                                           usuario = usu;
                                         }); 
@@ -192,6 +205,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                         nuevo.usuario = globals.usuario;
                                         nuevo.casaHogwarts = "Ravenclaw";
                                         UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                        globals.casaHogwarts = "Ravenclaw";
                                         setState(() {
                                           usuario = usu;
                                         }); 
@@ -200,16 +214,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                         nuevo.usuario = globals.usuario;
                                         nuevo.casaHogwarts = "Hufflepuff";
                                         UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }else if(result == globals.puntosGry && result == globals.puntosSly && result == globals.puntosRav && result == globals.puntosHuff){
-                                        var lista = ["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"];
-                                        var el = randomChoice(lista);
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = el;
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                        globals.casaHogwarts = "Hufflepuff";
                                         setState(() {
                                           usuario = usu;
                                         }); 

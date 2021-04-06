@@ -83,6 +83,7 @@ flutter:
 
     #GRYFFINDOR
     - images/Gryffindor/gryffindor.png
+    - images/Gryffindor/gryffindor.jpg
     - images/Gryffindor/gryffindor2.png
     - images/Gryffindor/Gry1.png
     - images/Gryffindor/Gry2.png
@@ -91,6 +92,7 @@ flutter:
 
     #SLYTHERIN
     - images/Slytherin/slytherin.png
+    - images/Slytherin/slytherin.jpg
     - images/Slytherin/slytherin2.png
     - images/Slytherin/Sly1.png
     - images/Slytherin/Sly2.png
@@ -98,6 +100,7 @@ flutter:
     - images/Slytherin/LogoSly.png
 
     #RAVENCLAW
+    - images/Ravenclaw/ravenclaw.jpg
     - images/Ravenclaw/ravenclaw.png
     - images/Ravenclaw/ravenclaw2.png
     - images/Ravenclaw/Rav1.png
@@ -108,6 +111,7 @@ flutter:
     #HUFFLEPUFF
     - images/Hufflepuff/hufflepuff.png
     - images/Hufflepuff/hufflepuff.png
+    - images/Hufflepuff/hufflepuff2.png
     - images/Hufflepuff/Huf1.png
     - images/Hufflepuff/Huf2.png
     - images/Hufflepuff/Huf3.png

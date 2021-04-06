@@ -34,7 +34,7 @@ class HomePersonajes extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -49,7 +49,7 @@ class HomePersonajes extends StatelessWidget {
                             height: 200,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('${globals.personajeGry3}'),                   
+                                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry3}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly3}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav3}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf3}') :  AssetImage('${globals.personajeGry3}'),                   
                               )
                             ),
                           ),
@@ -71,7 +71,7 @@ class HomePersonajes extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         // color: Colors.black87,
                                         image: DecorationImage(
-                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                           fit: BoxFit.fill,  
                                         ),
                                         borderRadius: BorderRadius.circular(12.0),
@@ -82,7 +82,7 @@ class HomePersonajes extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage('${globals.personajeGry3}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry3}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly3}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav3}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf3}') :  AssetImage('${globals.personajeGry3}'),
                                         ),
                                       ),
                                       width: 302,
@@ -94,7 +94,7 @@ class HomePersonajes extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     // color: Colors.black87,
                                     image: DecorationImage(
-                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                       fit: BoxFit.fill,  
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),
@@ -102,7 +102,7 @@ class HomePersonajes extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.all(20),
                                     child: Text(
-                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      globals.casaHogwarts == "Gryffindor" ? globals.infoPersonajeGry3 : globals.casaHogwarts == "Slytherin" ? globals.infoPersonajeSly3 : globals.casaHogwarts == "Ravenclaw" ? globals.infoPersonajeRav3 : globals.casaHogwarts == "Hufflepuff" ? globals.infoPersonajeHuf3 : "",
                                       style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
                                   ),
                                   width: 302,
@@ -125,7 +125,7 @@ class HomePersonajes extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -140,7 +140,7 @@ class HomePersonajes extends StatelessWidget {
                             height: 200,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('${globals.personajeGry1}'),                   
+                                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry1}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly1}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav1}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf1}') :  AssetImage('${globals.personajeGry1}'),                   
                               )
                             ),
                           ),
@@ -162,7 +162,7 @@ class HomePersonajes extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         // color: Colors.black87,
                                         image: DecorationImage(
-                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                           fit: BoxFit.fill,  
                                         ),
                                         borderRadius: BorderRadius.circular(12.0),
@@ -173,7 +173,7 @@ class HomePersonajes extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage('${globals.personajeGry1}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry1}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly1}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav1}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf1}') :  AssetImage('${globals.personajeGry1}'),
                                         ),
                                       ),
                                       width: 302,
@@ -185,7 +185,7 @@ class HomePersonajes extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     // color: Colors.black87,
                                     image: DecorationImage(
-                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                       fit: BoxFit.fill,  
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),
@@ -193,7 +193,7 @@ class HomePersonajes extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.all(20),
                                     child: Text(
-                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      globals.casaHogwarts == "Gryffindor" ? globals.infoPersonajeGry1 : globals.casaHogwarts == "Slytherin" ? globals.infoPersonajeSly1 : globals.casaHogwarts == "Ravenclaw" ? globals.infoPersonajeRav1 : globals.casaHogwarts == "Hufflepuff" ? globals.infoPersonajeHuf1 : "",
                                       style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
                                   ),
                                   width: 302,
@@ -216,7 +216,7 @@ class HomePersonajes extends StatelessWidget {
                       decoration: BoxDecoration(
                         // color: Colors.black87,
                         image: DecorationImage(
-                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                           fit: BoxFit.fill,  
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -231,7 +231,7 @@ class HomePersonajes extends StatelessWidget {
                             height: 200,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('${globals.personajeGry2}'),                   
+                                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry2}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly2}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav2}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf2}') :  AssetImage('${globals.personajeGry2}'),                   
                               )
                             ),
                           ),
@@ -253,7 +253,7 @@ class HomePersonajes extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         // color: Colors.black87,
                                         image: DecorationImage(
-                                          image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                           fit: BoxFit.fill,  
                                         ),
                                         borderRadius: BorderRadius.circular(12.0),
@@ -264,7 +264,7 @@ class HomePersonajes extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage('${globals.personajeGry2}'),
+                                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.personajeGry2}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.personajeSly2}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.personajeRav2}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.personajeHuf2}') :  AssetImage('${globals.personajeGry2}'),
                                         ),
                                       ),
                                       width: 302,
@@ -276,7 +276,7 @@ class HomePersonajes extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     // color: Colors.black87,
                                     image: DecorationImage(
-                                      image:  AssetImage('${globals.fondoPersonajeGry}'),
+                                      image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoPersonajeGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoPersonajeSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoPersonajeRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoPersonajeHuf}') :  AssetImage('${globals.fondoPersonajeGry}'),
                                       fit: BoxFit.fill,  
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),
@@ -284,7 +284,7 @@ class HomePersonajes extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.all(20),
                                     child: Text(
-                                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis, ante aliquam placerat parturient elementum fermentum vestibulum tincidunt penatibus, at vulputate augue nibh sagittis nullam ut inceptos conubia. Enim class himenaeos magna vehicula senectus condimentum gravida habitasse, odio pellentesque dui tincidunt blandit primis ornare, natoque facilisis rhoncus elementum fermentum velit diam.",
+                                      globals.casaHogwarts == "Gryffindor" ? globals.infoPersonajeGry2 : globals.casaHogwarts == "Slytherin" ? globals.infoPersonajeSly2 : globals.casaHogwarts == "Ravenclaw" ? globals.infoPersonajeRav2 : globals.casaHogwarts == "Hufflepuff" ? globals.infoPersonajeHuf2 : "",
                                       style: TextStyle(fontFamily: 'BluuNext', fontSize: 15, color: Colors.white),),
                                   ),
                                   width: 302,
