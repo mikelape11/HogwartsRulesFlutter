@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 
 class CarritoTienda extends StatelessWidget {
   const CarritoTienda({Key key}) : super(key: key);
@@ -51,7 +52,7 @@ class CarritoTienda extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  color: globals.gryPrincipal,
+                  color: globals.gryPrincipal.withRed(80),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -110,7 +111,7 @@ class CarritoTienda extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  color: globals.gryPrincipal,
+                  color: globals.gryPrincipal.withRed(80),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -162,6 +163,24 @@ class CarritoTienda extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 10,),
+              Container(    
+                margin: EdgeInsets.symmetric(horizontal: 15),                     
+                child: RaisedButton(   
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),  
+                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  color: globals.gryPrincipal.withRed(100),
+                  child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.grySecundario, fontSize: 18),),
+                  onPressed: () async{
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Home(0),
+                    ));
+                  }
+                ),
+              ),  
             ],          
           ),
         ),

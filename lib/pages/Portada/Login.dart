@@ -228,8 +228,9 @@ class _LoginState extends State<Login> {
                             builder: (context) => Home2(),
                           )); 
                         }else{
+                          globals.casaHogwarts = snapshot.data[i].casaHogwarts;
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Home(),
+                            builder: (context) => Home(2),
                           )); 
                         }
                          

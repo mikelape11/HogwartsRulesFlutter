@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
-import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home2/Home2Portada/Home2Portada.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2SobreNosotros/Home2SobreNosotros.dart';

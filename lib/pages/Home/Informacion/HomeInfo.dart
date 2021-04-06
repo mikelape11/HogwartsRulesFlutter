@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/pages/Home/HomeInfo/Libros/HomeLibros.dart';
-import 'package:hogwarts_rules/pages/Home/HomeInfo/Peliculas/HomePeliculas.dart';
+import 'package:hogwarts_rules/pages/Home/Informacion/Libros/HomeLibros.dart';
+import 'package:hogwarts_rules/pages/Home/Informacion/Peliculas/HomePeliculas.dart';
 
 
 class HomeInfo extends StatelessWidget {

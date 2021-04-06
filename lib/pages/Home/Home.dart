@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
-import 'package:hogwarts_rules/pages/Home/HomeInfo/HomeInfo.dart';
-import 'package:hogwarts_rules/pages/Home/HomePersonajes/HomePersonajes.dart';
-import 'package:hogwarts_rules/pages/Home/HomePortada/HomePortada.dart';
-import 'package:hogwarts_rules/pages/Home/HomeSeleccion/HomeSeleccion.dart';
+import 'package:hogwarts_rules/pages/Home/Informacion/HomeGeneral.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Tienda/DetallesTienda.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/Tienda.dart';
-import 'package:hogwarts_rules/pages/Portada/Login.dart';
-import 'package:hogwarts_rules/pages/Portada/Portada.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaGeneral.dart';
+
 
 import '../Portada/Login.dart';
+import 'Informacion/HomeSeleccion.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  int index;
+  Home(this.index);
 
   @override
   _HomeState createState() => _HomeState();
@@ -27,55 +25,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Center(
-          child: Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Stack(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 22.0, 
-                  backgroundColor: globals.grySecundario,            
-                  child: CircleAvatar(
-                    radius: 20.0,
-                    backgroundColor: globals.gryPrincipal,
-                    backgroundImage: AssetImage("images/LOGOS/LogoPeque.png"),
-                    // backgroundImage: globals.existeAvatar
-                    // ? AssetImage("images/perfil.png") 
-                    // : FileImage(File(globals.avatar))
-                  )            
-                ),
-              ],
-            )
-          ),
-        ),
-        title: Text('Home', style: TextStyle(color: globals.grySecundario),),
-        backgroundColor: globals.gryPrincipal,
-        centerTitle: true,
-        actions: [        
-          IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: globals.grySecundario, size: 25,),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
-              ));
-            }
-          ),
-        ],
-        bottom: PreferredSize(
-        child: Container(
-          color: globals.grySecundario,
-          height: 2.0,
-        ),
-        
-        preferredSize: Size.fromHeight(4.0)),
-      ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(widget.index != 2 ? widget.index : _selectedIndex),
       ),   
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: globals.grySecundario, width: 2.0)),      
+          border: Border(top: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , width: 2.0)),      
         ),
         child: BottomNavigationBar( //LAS OPCIONES DEL BOTTOMNAVIGATIONBAR
           items: const <BottomNavigationBarItem>[
@@ -100,11 +55,11 @@ class _HomeState extends State<Home> {
               label: 'GAMES',
             ),
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: globals.grySecundario,
-          unselectedItemColor: globals.grySecundario.withAlpha(125),
+          currentIndex: widget.index != 2 ? widget.index : _selectedIndex,
+          selectedItemColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+          unselectedItemColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario .withAlpha(125),
           onTap: _onItemTapped,
-          backgroundColor: globals.gryPrincipal,
+          backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
           type: BottomNavigationBarType.fixed,
         ),
       )
@@ -112,31 +67,7 @@ class _HomeState extends State<Home> {
   }
 
   List<Widget> _widgetOptions = <Widget>[
-    Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image:  AssetImage('${globals.fondoGry}'),
-              fit: BoxFit.fitWidth,  
-            ),
-          ),
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          width: 450,
-          height: 620,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Tienda(),
-            ],
-          ),   
-        ),
-      ],   
-    ),
+    TiendaGeneral(),
     Stack(
       children: [
         Container(
@@ -162,34 +93,7 @@ class _HomeState extends State<Home> {
         ),
       ],   
     ),
-    Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image:  AssetImage('${globals.fondoGry}'),
-              fit: BoxFit.fitWidth,  
-            ),
-          ),
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          width: 450,
-          height: 620,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              HomePortada(),
-              HomeSeleccion(),
-              HomePersonajes(),
-              HomeInfo(),
-            ],
-          ),   
-        ),
-      ],   
-    ),
+    HomeGeneral(),
     Stack(
       children: [
         Container(
@@ -245,6 +149,7 @@ class _HomeState extends State<Home> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      widget.index = index;
     });
   }
 }

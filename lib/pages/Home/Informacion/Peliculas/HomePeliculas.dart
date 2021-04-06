@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:hogwarts_rules/pages/Home/HomeInfo/Libros/InfoLibros.dart';
+import 'package:hogwarts_rules/pages/Home/Informacion/Peliculas/InfoPeliculas.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
+class HomePeliculas extends StatelessWidget {
+  const HomePeliculas
+  ({Key key}) : super(key: key);
 
-class HomeLibros extends StatelessWidget {
-  const HomeLibros
-({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-     return ListView(
+    return ListView(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       children: <Widget> [
@@ -24,39 +24,39 @@ class HomeLibros extends StatelessWidget {
             enableInfiniteScroll: true,
             autoPlayAnimationDuration: Duration(milliseconds: 800),
             viewportFraction: 0.33,
-          ),      
+          ),       
           items: [
-            for(var i=1; i<8; i++)        
+            for(var i=1; i<9; i++)
               GestureDetector(
                 child: Container(
                   margin: EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     image: DecorationImage(
-                      image: AssetImage('images/Libros/${i}.jpg'),
+                      image: AssetImage('images/Peliculas/${i}.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return CustomAlertDialog(               
+                      return CustomAlertDialog(
                         titlePadding: EdgeInsets.all(0.0),
                         contentPadding: EdgeInsets.all(0.0),
                         content: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [                         
+                          children: [
                             Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('images/Libros/${i}.jpg'),
-                                  fit: BoxFit.cover
+                                  image: AssetImage('images/Peliculas/${i}.jpg'),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              width: 304,
-                              height: 488,
+                              width: 302,
+                              height: 431,
                             ),
                             SizedBox(height: 20,),
                             Container(
@@ -70,12 +70,12 @@ class HomeLibros extends StatelessWidget {
                                 child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white),),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => InfoLibros(),
+                                    builder: (context) => InfoPeliculas(i),
                                   ));
                                 }
                               ),
-                            ),                          
-                          ], 
+                            ),
+                          ],                        
                         ),
                       );
                     }

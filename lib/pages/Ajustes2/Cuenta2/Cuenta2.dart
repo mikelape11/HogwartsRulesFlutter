@@ -75,7 +75,7 @@ class _CuentaState extends State<Cuenta2> {
             future: getUsuarios(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
             return IconButton(
-              icon: Icon(Icons.done_outline_rounded, color: Color(globals.color2), size: 25,),
+              icon: Icon(Icons.done_outline_rounded, color: globals.grySecundario, size: 25,),
               onPressed: () async{
                 String usuario = usuarioController.text;
                 String email = emailController.text;
@@ -279,7 +279,7 @@ class _CuentaState extends State<Cuenta2> {
                       hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
+                        child: Icon(Icons.email_outlined, size: 20.0, color: globals.grySecundario,),
                       ),
                     ),
                   ),
@@ -310,7 +310,7 @@ class _CuentaState extends State<Cuenta2> {
                       hintStyle: TextStyle(color: globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.grySecundario,),
+                        child: Icon(Icons.lock_outline, size: 20.0, color: globals.grySecundario,),
                       ),
                     ),
                   ),
