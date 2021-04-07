@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
+import 'package:hogwarts_rules/pages/Home/Chat/ChatGeneral.dart';
+import 'package:hogwarts_rules/pages/Home/Games/GamesGeneral.dart';
 import 'package:hogwarts_rules/pages/Home/Informacion/HomeGeneral.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Home/Tienda/DetallesTienda.dart';
+import 'package:hogwarts_rules/pages/Home/Rules/RulesGeneral.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaGeneral.dart';
 
 
@@ -68,82 +71,10 @@ class _HomeState extends State<Home> {
 
   List<Widget> _widgetOptions = <Widget>[
     TiendaGeneral(),
-    Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
-              fit: BoxFit.fitWidth,  
-            ),
-          ),
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          width: 450,
-          height: 620,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              
-            ],
-          ),   
-        ),
-      ],   
-    ),
+    RulesGeneral(),
     HomeGeneral(),
-    Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
-              fit: BoxFit.fitWidth,  
-            ),
-          ),
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          width: 450,
-          height: 620,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              
-            ],
-          ),   
-        ),
-      ],   
-    ),
-    Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            // color: Colors.black87,
-            image: DecorationImage(
-              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
-              fit: BoxFit.fitWidth,  
-            ),
-          ),
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          width: 450,
-          height: 620,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              
-            ],
-          ),   
-        ),
-      ],   
-    ),
+    ChatGeneral(),
+    GamesGeneral(),
   ];
 
   void _onItemTapped(int index) {

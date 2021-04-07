@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/Tienda.dart';
 
-
-class TiendaGeneral extends StatelessWidget {
-  const TiendaGeneral({Key key}) : super(key: key);
+class RulesGeneral extends StatelessWidget {
+  const RulesGeneral({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +30,10 @@ class TiendaGeneral extends StatelessWidget {
             )
           ),
         ),
-        title: Text('Home', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+        title: Text('Rules', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
         backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
         actions: [   
-          IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.favorite_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , size: 25,),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
-              ));
-            }
-          ),
-          IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.shopping_cart_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , size: 25,),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CarritoTienda(),
-              ));
-            }
-          ),     
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
             icon: Icon(Icons.settings_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , size: 25,),
             onPressed: () {
@@ -89,7 +70,6 @@ class TiendaGeneral extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Tienda(),
               ],
             ),   
           ),

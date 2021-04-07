@@ -4,7 +4,7 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/DetallesTienda.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
 
 import '../../../globals/globals.dart';
 

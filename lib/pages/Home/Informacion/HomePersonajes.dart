@@ -308,7 +308,7 @@ class HomePersonajes extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
-                  child: Text('Muy buenas kaka ez asd fasdf a asdfa asdflasjf a a fs', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20),)),
+                  child: Text( globals.casaHogwarts == "Gryffindor" ? globals.infoGry : globals.casaHogwarts == "Slytherin" ? globals.infoSly : globals.casaHogwarts == "Ravenclaw" ? globals.infoRav : globals.casaHogwarts == "Hufflepuff" ? globals.infoHuf : "", style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 15),)),
               ),
             ),
             SizedBox(height: 25,),

@@ -14,16 +14,16 @@ class Ajustes2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.grySecundario, //change your color here
+          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Ajustes2', style: TextStyle(color: globals.grySecundario),),
-        backgroundColor: globals.gryPrincipal,
+        title: Text('Ajustes', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
         
         bottom: PreferredSize(
         child: Container(
-          color: globals.grySecundario,
+          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -32,7 +32,7 @@ class Ajustes2 extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black87,
           image: DecorationImage(
-            image:  AssetImage('images/Gryffindor/gryffindor.png'),
+            image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
             fit: BoxFit.fitWidth,  
           ),
         ),
@@ -46,9 +46,9 @@ class Ajustes2 extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.person, color: globals.grySecundario, size: 20,),
+                    Icon(Icons.person, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Cuenta', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                    Text('Cuenta', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -60,7 +60,7 @@ class Ajustes2 extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -70,9 +70,9 @@ class Ajustes2 extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: globals.grySecundario, size: 20,),
+                    Icon(Icons.info_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Información', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                    Text('Información', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -84,7 +84,7 @@ class Ajustes2 extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -93,15 +93,15 @@ class Ajustes2 extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.text_snippet, color: globals.grySecundario, size: 20,),
+                  Icon(Icons.text_snippet, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                   SizedBox(width: 10),
-                  Text('Test', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                  Text('Repetir Test', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                 ],
               ),             
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -110,15 +110,15 @@ class Ajustes2 extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.person_add, color: globals.grySecundario, size: 20,),
+                  Icon(Icons.person_add, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                   SizedBox(width: 10),
-                  Text('Contactos', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                  Text('Contactos', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                 ],
               ),             
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -127,15 +127,15 @@ class Ajustes2 extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  Icon(Icons.person_remove_alt_1_sharp, color: globals.grySecundario, size: 20,),
+                  Icon(Icons.person_remove_alt_1_sharp, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                   SizedBox(width: 10),
-                  Text('Contactos Bloqueados', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                  Text('Contactos Bloqueados', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                 ],
               ),             
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -145,9 +145,9 @@ class Ajustes2 extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: globals.grySecundario, size: 20,),
+                    Icon(Icons.star, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Danos Tu Opinión', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                    Text('Danos Tu Opinión', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -159,7 +159,7 @@ class Ajustes2 extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -169,9 +169,9 @@ class Ajustes2 extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.delete_outline, color: globals.grySecundario, size: 20,),
+                    Icon(Icons.delete_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Desactivar Cuenta', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                    Text('Desactivar Cuenta', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -184,8 +184,8 @@ class Ajustes2 extends StatelessWidget {
                       contentPadding: EdgeInsets.all(0.0),
                       content: Container(
                         decoration: BoxDecoration(
-                          color: globals.gryPrincipal.withOpacity(0.9),
-                          border: Border.all(color: globals.grySecundario, width: 3)
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
+                          border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 3)
                         ),
                         width: 350,
                         height: 200,
@@ -199,7 +199,7 @@ class Ajustes2 extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.grySecundario)),
+                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
                               ),
                               SizedBox(height: 10),
                               Container(
@@ -211,11 +211,11 @@ class Ajustes2 extends StatelessWidget {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
+                                      border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: globals.gryPrincipal,
+                                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('ELIMINAR', style: TextStyle(color: Colors.red),),
                                       onPressed: () {
                                         deleteCuenta(globals.usuario);
@@ -229,11 +229,11 @@ class Ajustes2 extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
+                                      border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: globals.gryPrincipal,
+                                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('CANCELAR', style: TextStyle(color: Colors.white),),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -253,7 +253,7 @@ class Ajustes2 extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,
@@ -263,9 +263,9 @@ class Ajustes2 extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    Icon(Icons.logout, color: globals.grySecundario, size: 20,),
+                    Icon(Icons.logout, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
                     SizedBox(width: 10),
-                    Text('Cerrar Sesión', style: TextStyle(fontSize: 20, color: globals.grySecundario),),
+                    Text('Cerrar Sesión', style: TextStyle(fontSize: 20, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                   ],
                 ),             
               ),
@@ -278,8 +278,8 @@ class Ajustes2 extends StatelessWidget {
                       contentPadding: EdgeInsets.all(0.0),
                       content: Container(
                         decoration: BoxDecoration(
-                          color: globals.gryPrincipal.withOpacity(0.9),
-                          border: Border.all(color: globals.grySecundario, width: 3)
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
+                          border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 3)
                         ),
                         width: 350,
                         height: 200,
@@ -293,7 +293,7 @@ class Ajustes2 extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.grySecundario)),
+                                child: Text("¿Estas seguro?", style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
                               ),
                               SizedBox(height: 10),
                               Container(
@@ -305,11 +305,11 @@ class Ajustes2 extends StatelessWidget {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
+                                      border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: globals.gryPrincipal,
+                                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('CERRAR', style: TextStyle(color: Colors.red),),
                                       onPressed: () {
                                         Navigator.of(context).push(MaterialPageRoute(
@@ -321,11 +321,11 @@ class Ajustes2 extends StatelessWidget {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: globals.grySecundario.withOpacity(0.6), width: 2.0),      
+                                      border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0.6), width: 2.0),      
                                     ),
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                      color: globals.gryPrincipal,
+                                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('CANCELAR', style: TextStyle(color: Colors.white),),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -345,7 +345,7 @@ class Ajustes2 extends StatelessWidget {
             ),
             Divider(
               height: 15,
-              color: globals.grySecundario,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               thickness: 1,
               indent: 0,
               endIndent: 0,

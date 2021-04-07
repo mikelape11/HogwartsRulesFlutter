@@ -83,6 +83,7 @@ class _InfoPeliculasState extends State<InfoPeliculas> {
                           child: Text("Titulo ", style: TextStyle(fontFamily: 'BluuNext', color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario :  "",fontSize: 24, ),)
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width/2.2,
                           child: Text(widget.numPelicula == 1 ? "Harry Potter y la piedra filosofal" : widget.numPelicula == 2 ? "Harry Potter y la camara de los secretos" : widget.numPelicula == 3 ? "Harry Potter y el prisionero de Azkaban" : widget.numPelicula == 4 ? "Harry Potter y el caliz de fuego" : widget.numPelicula == 5 ? "Harry Potter y la Orden del Fenix" : widget.numPelicula == 6 ? "Harry Potter y el misterio del principe" : widget.numPelicula == 7 ? "Harry Potter y las Reliquias de la muerte Parte 1" : widget.numPelicula == 8 ? "Harry Potter y las Reliquias de la muerte Parte 2" : "", style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold))
                         ),
                         SizedBox(height: 10,),

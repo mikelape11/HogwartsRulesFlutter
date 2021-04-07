@@ -81,6 +81,7 @@ class _InfoLibrosState extends State<InfoLibros> {
                           child: Text("Titulo ", style: TextStyle(fontFamily: 'BluuNext', color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario :  "", fontSize: 24),)
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width/2.2,
                           child: Text(widget.numLibro == 1 ? "Harry Potter y la piedra filosofal" : widget.numLibro == 2 ? "Harry Potter y la camara de los secretos" : widget.numLibro == 3 ? "Harry Potter y el prisionero de Azkaban" : widget.numLibro == 4 ? "Harry Potter y el caliz de fuego" : widget.numLibro == 5 ? "Harry Potter y la Orden del Fenix" : widget.numLibro == 6 ? "Harry Potter y el misterio del principe" : widget.numLibro == 7 ? "Harry Potter y las Reliquias de la muerte" : "", style: TextStyle(color: Colors.white, fontSize: 13))
                         ),
                         SizedBox(height: 10,),

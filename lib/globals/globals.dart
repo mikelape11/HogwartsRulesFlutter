@@ -75,6 +75,13 @@ String fondoPersonajeSly = "images/Slytherin/slytherin2.png";
 String fondoPersonajeRav = "images/Ravenclaw/ravenclaw2.png";
 String fondoPersonajeHuf = "images/Hufflepuff/hufflepuff2.png";
 
+//INFO DE CADA CASA
+String infoGry = "Características: coraje y valentía. Un buen miembro de Gryffindor tiene gran osadía, temple y caballerosidad. Son capaces de todo por defender en lo que creen y nunca se dan por vencidos. También son capaces de romper las reglas si es necesario y les encantan los retos, cuanto más difíciles, mejor.";
+String infoSly = "Cualidades. Los Slytherin tienden a ser líderes ambiciosos, astutos y fuertes, orientados a los logros. ... Según Albus Dumbledore, las cualidades que Salazar valoraba en los estudiantes que había elegido incluían inteligencia, ingenio, determinación y 'un cierto desdén por las reglas'.";
+String infoRav = "Ravenclaw es una de las cuatro casas en las que se dividen los estudiantes del Colegio Hogwarts de Magia y Hechicería en el universo de los libros y películas de Harry Potter. Esta casa fue fundada por Rowena Ravenclaw y solo son escogidas personas inteligentes, creativas y sabias.";
+String infoHuf = "Hufflepuff es la más inclusiva de las cuatro casas; el trabajo duro, la paciencia, la amistad y la honestidad son sumamente necesarias para ser miembros. Su animal emblemático es el tejón y sus colores son el amarillo y negro. Hufflepuff responde en gran medida a los elementos de la tierra.";
+
+
 
 //INFO PERSONAJES DE CADA CASA 
 String infoPersonajeGry1 = "Harry James Potter, es el personaje principal de la serie de libros creada por la autora JK Rowling. Su historia se desarrolla en la Escuela Hogwarts de Magia y Hechicería, junto a sus mejores amigos, Ron Weasley y Hermione Granger. Su característica física más intrigante, es una cicatriz con forma de relámpago en su frente, la cual obtuvo cuando el Mago Oscuro Lord Voldemort intentó asesinarlo cuando sólo era un bebé de 1 año de edad, mediante la maldición asesina, Avada Kedavra. Voldemort asesinó a los padres de Harry y destruyó su hogar la noche del 31 de Octubre de 1981. Harry es famoso dentro del mundo mágico, por ser la única persona que ha sobrevivido al Avada Kedavra, causando la caída de Lord Voldemort.";

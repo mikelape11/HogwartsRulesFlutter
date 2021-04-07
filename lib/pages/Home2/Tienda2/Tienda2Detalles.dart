@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/CarritoTienda.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/TiendaGeneral.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 
-class DetallesTienda extends StatefulWidget {
-  const DetallesTienda({Key key}) : super(key: key);
+class Tienda2Detalles extends StatefulWidget {
+  const Tienda2Detalles({Key key}) : super(key: key);
 
   @override
   _DetallesTiendaState createState() => _DetallesTiendaState();
 }
 
-class _DetallesTiendaState extends State<DetallesTienda> {
+class _DetallesTiendaState extends State<Tienda2Detalles> {
   int cantidad = 0;
   int precio = 0;
   bool fav = false;
@@ -30,14 +29,14 @@ class _DetallesTiendaState extends State<DetallesTienda> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.grySecundario//change your color here
+          color: Color(globals.color2)//change your color here
         ),
-        title: Text('Home', style: TextStyle(color: globals.grySecundario),),
-        backgroundColor: globals.gryPrincipal,
+        title: Text('Home', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.favorite_outline, color: globals.grySecundario, size: 25,),
+            icon: Icon(Icons.favorite_outline, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Ajustes2(),
@@ -45,7 +44,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
             }
           ),
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.shopping_cart_outlined, color: globals.grySecundario, size: 25,),
+            icon: Icon(Icons.shopping_cart_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => CarritoTienda(),
@@ -53,7 +52,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
             }
           ),  
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: globals.grySecundario, size: 25,),
+            icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Ajustes2(),
@@ -63,7 +62,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
         ],
         bottom: PreferredSize(
         child: Container(
-          color: globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -71,7 +70,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image:  AssetImage('images/Gryffindor/gryffindor.png'),
+            image: AssetImage('${globals.fondoNegro3}'),
             fit: BoxFit.fitWidth,  
           ),
         ),
@@ -82,8 +81,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
             Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                //color: globals.gryPrincipal,
-                border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                //color: Color(globals.color1),,
+                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
               ),                              
               child: Container(
                 decoration: BoxDecoration(
@@ -99,8 +98,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: globals.gryPrincipal,
-                //border: Border(bottom: BorderSide(width: 2.0, color: globals.grySecundario)),
+                color: Color(globals.color1),
+                //border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
               ),
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -108,7 +107,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                 children: [
                   SizedBox(height: 30,),
                   Container(
-                    child: Text("JERSEY HARRY POTTER", style: TextStyle(color: globals.grySecundario, fontSize: 25))
+                    child: Text("JERSEY HARRY POTTER", style: TextStyle(color: Color(globals.color2), fontSize: 25))
                   ),
                   SizedBox(height: 20,),
                   Container(
@@ -125,7 +124,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             SizedBox(width: 40),
                             Container(
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.remove_circle_outline, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   setState(() {
                                     if(cantidad > 0)
@@ -139,7 +138,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             ),
                             Container(
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.add_circle_outline, color: globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.add_circle_outline, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   setState(() {
                                     cantidad++;                              
@@ -169,10 +168,10 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                               borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             ),                         
                             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Colors.transparent,
+                            color: Color(globals.color4),
                             child: IconButton(
                               icon: _iconoFav(), 
-                              disabledColor: globals.grySecundario,
+                              disabledColor: Color(globals.color2),
                               iconSize: 30,),
                               onPressed: () async{
                                 setState(() {
@@ -192,8 +191,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             ),  
                             padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
                             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Colors.transparent,
-                            child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.grySecundario, fontSize: 18),),
+                            color: Color(globals.color4),
+                            child: Text('AÑADIR AL CARRITO', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
                             onPressed: () async{
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Home(0),
@@ -204,7 +203,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 80,)          
+                  SizedBox(height: 84)          
                 ],
               ),
             ),

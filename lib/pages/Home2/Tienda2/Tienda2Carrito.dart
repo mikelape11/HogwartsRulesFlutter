@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 
-class CarritoTienda extends StatelessWidget {
-  const CarritoTienda({Key key}) : super(key: key);
+class Tienda2Carrito extends StatelessWidget {
+  const Tienda2Carrito({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.grySecundario//change your color here
+          color: Color(globals.color2)
         ),
-        title: Text('Carrito', style: TextStyle(color: globals.grySecundario),),
-        backgroundColor: globals.gryPrincipal,
+        title: Text('Carrito', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: globals.grySecundario, size: 25,),
+            icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               // Navigator.of(context).push(MaterialPageRoute(
               //   builder: (context) => Ajustes2(),
@@ -27,7 +27,7 @@ class CarritoTienda extends StatelessWidget {
         ],
         bottom: PreferredSize(
         child: Container(
-          color: globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -36,7 +36,7 @@ class CarritoTienda extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image:  AssetImage('images/Gryffindor/gryffindor.png'),
+              image:  AssetImage('${globals.fondoNegro3}'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -52,7 +52,7 @@ class CarritoTienda extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  color: globals.gryPrincipal.withRed(80),
+                  color: Color(globals.color1),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -93,7 +93,7 @@ class CarritoTienda extends StatelessWidget {
                         ),
                         Container(
                           child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                            icon: Icon(Icons.remove_circle_outline, color: globals.grySecundario, size: 25,),
+                            icon: Icon(Icons.remove_circle_outline, color: Color(globals.color2), size: 25,),
                             onPressed: () {
                               
                             }
@@ -111,7 +111,7 @@ class CarritoTienda extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  color: globals.gryPrincipal.withRed(80),
+                  color: Color(globals.color1),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -152,7 +152,7 @@ class CarritoTienda extends StatelessWidget {
                         ),
                         Container(
                           child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                            icon: Icon(Icons.remove_circle_outline, color: globals.grySecundario, size: 25,),
+                            icon: Icon(Icons.remove_circle_outline, color: Color(globals.color2), size: 25,),
                             onPressed: () {
                               
                             }
@@ -172,8 +172,8 @@ class CarritoTienda extends StatelessWidget {
                   ),  
                   padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  color: globals.gryPrincipal.withRed(100),
-                  child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.grySecundario, fontSize: 18),),
+                  color: Color(globals.color1),
+                  child: Text('TERMINAR COMPRA', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
                   onPressed: () async{
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Home(0),

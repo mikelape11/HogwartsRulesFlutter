@@ -240,20 +240,20 @@ class _RegistroState extends State<Registro> {
                   int cont = 0;
                   for(int i=0; i<snapshot.data.length; i++){
                     //print(snapshot.data[i].usuario);
-                    if(snapshot.data[i].usuario == usuario || snapshot.data[i].email == email){
+                    if(snapshot.data[i].usuario == usuario){
                       _formKeysList[0].currentState.save();
-                        _formKeysList[1].currentState.save();
-                      
-                    }else{
-                      if (_formKeysList[0].currentState.validate() && _formKeysList[1].currentState.validate()) {
-                          cont ++; 
-                          globals.usuario = usuario;
-                          globals.email = email;
-                          globals.password = password;
-                      } else {
-                        print("Not Validated");        
-                      }                
                     }
+                    if(snapshot.data[i].email == email){
+                          _formKeysList[1].currentState.save();
+                    }
+                    if (_formKeysList[0].currentState.validate() && _formKeysList[1].currentState.validate()) {
+                        cont ++; 
+                        globals.usuario = usuario;
+                        globals.email = email;
+                        globals.password = password;
+                    } else {
+                      print("Not Validated");        
+                    }                            
                     if(cont == snapshot.data.length){
                       UsuarioModelo usuarios = await registrarUsuario(usuario, password, email, 0);
                       setState(() {

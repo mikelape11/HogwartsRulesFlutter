@@ -343,7 +343,8 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                     ),
                     children: [
                       TextSpan(text: 'V' , style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
-                      TextSpan(text: 'isita nuestra web: www.hogwartsrules.com'),
+                      TextSpan(text: 'isita nuestra web: '),
+                      TextSpan(text: 'www.hogwartsrules.com', style: TextStyle(decoration: TextDecoration.underline)),
                     ],
                   ),
                 ),
