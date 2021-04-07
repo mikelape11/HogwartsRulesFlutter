@@ -16,7 +16,7 @@ class HomeInfo extends StatelessWidget {
             SizedBox(height: 30,),
             Container(
               child: Text(
-                'Peliculas / Libros', 
+                'Peliculas / Librosa', 
                 style: TextStyle(
                   fontFamily: 'BluuNext', fontSize: 45, color: Colors.white
                 ),

@@ -25,7 +25,7 @@ int color3 = 0xFFAAAAAA;
 int color4 = 0xFF252525; 
 
 //COLORES DE LAS CASAS
-HexColor gryPrincipal = HexColor('#401617');
+HexColor gryPrincipal = HexColor('#551617');
 HexColor grySecundario = HexColor('#ff9800');
 
 HexColor slyPrincipal = HexColor('#09473e');
