@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
+import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Carrito.dart';
 
 class Tienda2Detalles extends StatefulWidget {
   const Tienda2Detalles({Key key}) : super(key: key);
@@ -47,7 +47,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
             icon: Icon(Icons.shopping_cart_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CarritoTienda(),
+                builder: (context) => Tienda2Carrito(),
               ));
             }
           ),  

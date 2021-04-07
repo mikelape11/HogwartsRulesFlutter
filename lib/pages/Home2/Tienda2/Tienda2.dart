@@ -275,7 +275,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -325,7 +325,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -375,7 +375,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -425,7 +425,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -475,7 +475,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -525,7 +525,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -575,7 +575,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -625,7 +625,7 @@ class Tienda2 extends StatelessWidget {
                                 Container(
                                   child: RaisedButton(                       
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
+                                    color: Color(globals.color4),
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
