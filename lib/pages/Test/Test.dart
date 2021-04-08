@@ -308,7 +308,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                 }
                                 if(i==7){
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Home(0),
+                                    builder: (context) => Home(2),
                                   ));
                                 }else{
                                   _pageController.animateToPage(
