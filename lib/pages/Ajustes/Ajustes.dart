@@ -289,7 +289,7 @@ class Ajustes extends StatelessWidget {
                             children: [
                               SizedBox(height: 15),
                               Container(
-                                child: Icon(Icons.logout, color: Colors.red, size: 40,),
+                                child: Icon(Icons.logout, color: Colors.red[900], size: 40,),
                               ),
                               SizedBox(height: 10),
                               Container(
@@ -310,7 +310,7 @@ class Ajustes extends StatelessWidget {
                                     child: RaisedButton(                       
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                      child: Text('CERRAR', style: TextStyle(color: Colors.red),),
+                                      child: Text('CERRAR', style: TextStyle(color: Colors.red[900]),),
                                       onPressed: () {
                                         Navigator.of(context).push(MaterialPageRoute(
                                           builder: (context) => Portada(),
