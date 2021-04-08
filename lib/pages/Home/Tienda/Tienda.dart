@@ -1,8 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
 

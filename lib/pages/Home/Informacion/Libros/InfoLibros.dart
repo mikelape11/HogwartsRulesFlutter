@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
-
+import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 
 class InfoLibros extends StatefulWidget {
    final int numLibro;
@@ -27,7 +26,7 @@ class _InfoLibrosState extends State<InfoLibros> {
             icon: Icon(Icons.settings_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario :  "", size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
+                builder: (context) => Ajustes(),
               ));
             }
           ),

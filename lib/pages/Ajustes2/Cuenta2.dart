@@ -2,18 +2,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/UsuarioModelo.dart';
-import 'package:hogwarts_rules/pages/Ajustes/Cuenta/CuentaAPI.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Portada/LoginAPI.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class Cuenta2 extends StatefulWidget {
+import 'CuentaAPI.dart';
+
+
+class Cuenta extends StatefulWidget {
 
   @override
   _CuentaState createState() => _CuentaState();
 }
 
-class _CuentaState extends State<Cuenta2> {
+class _CuentaState extends State<Cuenta> {
 
   String avatar = "images/Avatares/Avatar1.png";
   int i;
@@ -34,7 +36,7 @@ class _CuentaState extends State<Cuenta2> {
     });
   }
 
-   //validaciones del usuario
+    //validaciones del usuario
     String validarUsuario(String value) {
       if (value.isEmpty) {
         return "Rellena el campo";
@@ -58,24 +60,25 @@ class _CuentaState extends State<Cuenta2> {
         return null;
     }
 
+
   @override
   Widget build(BuildContext context) {
     PageController _pageController = new PageController();
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, //change your color here
+          color: Color(globals.color2), //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Cuenta', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        title: Text('Cuenta', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
-       actions: [        
+        actions: [        
           FutureBuilder(
             future: getUsuarios(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
             return IconButton(
-              icon: Icon(Icons.done_outline_rounded, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+              icon: Icon(Icons.done_outline_rounded, color: Color(globals.color2), size: 25,),
               onPressed: () async{
                 String usuario = usuarioController.text;
                 String email = emailController.text;
@@ -192,7 +195,7 @@ class _CuentaState extends State<Cuenta2> {
         ],
         bottom: PreferredSize(
         child: Container(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -202,7 +205,7 @@ class _CuentaState extends State<Cuenta2> {
           decoration: BoxDecoration(
             color: Colors.black87,
             image: DecorationImage(
-              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
+              image:  AssetImage('images/fondoNegro3.png'),
               fit: BoxFit.fitWidth,  
             ),
           ),
@@ -219,7 +222,7 @@ class _CuentaState extends State<Cuenta2> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'D', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'D', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'atos', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -236,20 +239,20 @@ class _CuentaState extends State<Cuenta2> {
                     onSaved: (String value){
                       _usuario = value;
                     },
-                    style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    style: TextStyle(color: Color(globals.color2)),
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                       ),  
                       contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                       hintText: "Usuario",
-                      hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
+                      hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,),
+                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
                       ),
                     ),
                   ),
@@ -266,20 +269,20 @@ class _CuentaState extends State<Cuenta2> {
                     onSaved: (String value2){
                       _email = value2;
                     },
-                    style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    style: TextStyle(color: Color(globals.color2)),
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                       ),  
                       contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                       hintText: "Email",
-                      hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
+                      hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                        child: Icon(Icons.email_outlined, size: 20.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,),
+                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
                       ),
                     ),
                   ),
@@ -289,28 +292,28 @@ class _CuentaState extends State<Cuenta2> {
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: Form(
                   autovalidate: true,
-                  key: _formKeysList[2],
+                   key: _formKeysList[2],
                   child: TextFormField(
-                     controller: passwordController,
+                    controller: passwordController,
                      validator: MultiValidator([
                       RequiredValidator(errorText: "Rellena el campo"),
                       MinLengthValidator(8,errorText: "Tiene que tener como minimo 8 caracteres"),
                       MaxLengthValidator(12,errorText: "Tiene que tener como maximo 12 caracteres"), 
                     ]),
-                    style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    style: TextStyle(color: Color(globals.color2)),
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                        borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                       ),  
                       contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
                       hintText: "Password",
-                      hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
+                      hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(top: 15), // add padding to adjust icon
-                        child: Icon(Icons.lock_outline, size: 20.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,),
+                        child: Icon(Icons.account_circle_outlined, size: 20.0, color: Color(globals.color2),),
                       ),
                     ),
                   ),
@@ -324,7 +327,7 @@ class _CuentaState extends State<Cuenta2> {
                       fontSize: 19, color: Colors.white
                     ),
                     children: [
-                      TextSpan(text: 'A', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'A', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'vatar', style: TextStyle(fontWeight: FontWeight.bold)),
                     ] 
                   )               
@@ -337,10 +340,10 @@ class _CuentaState extends State<Cuenta2> {
                     children: [
                       CircleAvatar(
                         radius: 85.0, 
-                        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,            
+                        backgroundColor: Color(globals.color2),            
                         child: CircleAvatar(
                           radius: 80.0,
-                          backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          backgroundColor: Color(globals.color1),
                           backgroundImage: AssetImage(avatar),   
                           // backgroundImage: globals.existeAvatar
                           // ? AssetImage("images/perfil.png") 
@@ -361,15 +364,15 @@ class _CuentaState extends State<Cuenta2> {
                       WidgetSpan(
                         child: Container(
                           padding: EdgeInsets.only(right: 50),
-                          child: Icon(Icons.arrow_back, size: 25, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,)
+                          child: Icon(Icons.arrow_back, size: 25, color: Color(globals.color2),)
                         ),
                       ),
-                      TextSpan(text: 'E', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextSpan(text: 'E', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                       TextSpan(text: 'lige tu Avatar', style: TextStyle(fontWeight: FontWeight.bold)),
                       WidgetSpan(
                         child: Container(
                           padding: EdgeInsets.only(left: 50),
-                          child: Icon(Icons.arrow_forward, size: 25, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,)
+                          child: Icon(Icons.arrow_forward, size: 25, color: Color(globals.color2),)
                         ),
                       ),
                     ] 

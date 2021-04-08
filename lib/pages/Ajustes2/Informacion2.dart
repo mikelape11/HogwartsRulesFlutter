@@ -7,15 +7,15 @@ class Informacion2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, //change your color here
+          color: Color(globals.color2), //change your color here
         ),
         //automaticallyImplyLeading: false,
-        title: Text('Informacion', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        title: Text('Informacion', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
         bottom: PreferredSize(
         child: Container(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -24,7 +24,7 @@ class Informacion2 extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black87,
           image: DecorationImage(
-            image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
+            image:  AssetImage('images/fondoNegro3.png'),
             fit: BoxFit.fitWidth,  
           ),
         ),
@@ -52,9 +52,9 @@ class Informacion2 extends StatelessWidget {
                         fontSize: 17, color: Colors.white
                       ),
                       children: [
-                        TextSpan(text: 'H', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                        TextSpan(text: 'H', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                         TextSpan(text: 'ogwarts '),
-                        TextSpan(text: 'R', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                        TextSpan(text: 'R', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                         TextSpan(text: 'ules es una aplicación que sirve para saber todas las noticias sobre las películas y libros de Harry Potter, aparte de, tener un test el cual podrás saber a qué casa perteneces, junto con más servicios como un chat, juegos... etc.'),
                       ],
                     ),
@@ -65,7 +65,7 @@ class Informacion2 extends StatelessWidget {
                 ),
                 Divider(
                   height: 15,
-                  color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                  color: Color(globals.color2),
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,         
@@ -81,7 +81,7 @@ class Informacion2 extends StatelessWidget {
                         fontSize: 19, color: Colors.white
                       ),
                       children: [
-                        TextSpan(text: 'E', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 25)),
+                        TextSpan(text: 'E', style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 25)),
                         TextSpan(text: 'n este apartado podrás realizar una compra de nuestros productos, pero si eres fan de Harry Potter no esperes para pulsar el boton de realizar el test!'),
                       ] 
                     )               

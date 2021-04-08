@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/Chat/ChatGeneral.dart';
 import 'package:hogwarts_rules/pages/Home/Games/GamesGeneral.dart';
 import 'package:hogwarts_rules/pages/Home/Informacion/HomeGeneral.dart';

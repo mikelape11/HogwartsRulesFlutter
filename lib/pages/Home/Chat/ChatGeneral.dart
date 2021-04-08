@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
+import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 
 class ChatGeneral extends StatelessWidget {
   const ChatGeneral({Key key}) : super(key: key);
@@ -38,7 +38,7 @@ class ChatGeneral extends StatelessWidget {
             icon: Icon(Icons.settings_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
+                builder: (context) => Ajustes(),
               ));
             }
           ),

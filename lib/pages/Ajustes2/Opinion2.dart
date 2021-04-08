@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Opinion extends StatefulWidget {
+class Opinion2 extends StatefulWidget {
 
   @override
   _OpinionState createState() => _OpinionState();
 }
 
-class _OpinionState extends State<Opinion> {
+class _OpinionState extends State<Opinion2> {
   
   double _rating;
   double _initialRating = 2.0;

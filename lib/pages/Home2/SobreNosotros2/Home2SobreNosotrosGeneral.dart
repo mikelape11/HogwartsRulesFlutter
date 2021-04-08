@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home2/Informacion2/Home2Portada.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2.dart';
 
@@ -43,7 +43,7 @@ class Home2SobreNosotrosGeneral extends StatelessWidget {
             icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
+                builder: (context) => Ajustes2(),
               ));
             }
           ),
