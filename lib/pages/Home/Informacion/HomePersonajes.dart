@@ -314,51 +314,21 @@ class HomePersonajes extends StatelessWidget {
             SizedBox(height: 25,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: [                             
                 Container(
                   decoration: BoxDecoration(
-                    color: globals.slyPrincipal.withOpacity(0.7),
-                    border: Border.all(color: globals.slyPrincipal, width: 2.0),      
+                    color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0),
+                    border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal, width: 2.0),      
                   ),
                   child: RaisedButton(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     color: Colors.transparent,
-                    child: Text('Slytherin', style: TextStyle(color: Colors.white),),
-                    onPressed: () {
-                      
-                    }
-                  ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: globals.ravPrincipal.withOpacity(0.7),
-                    border: Border.all(color: globals.ravPrincipal, width: 2.0),      
-                  ),
-                  child: RaisedButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    color: Colors.transparent,
-                    child: Text('Ravenclaw', style: TextStyle(color: Colors.white),),
+                    child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white, fontSize: 16),),
                     onPressed: () {
 
                     }
                   ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: globals.hufPrincipal.withOpacity(0.7),
-                    border: Border.all(color: globals.hufPrincipal, width: 2.0),      
-                  ),
-                  child: RaisedButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    color: Colors.transparent,
-                    child: Text('Hufflepuff', style: TextStyle(color: Colors.white),),
-                    onPressed: () {
-
-                    }
-                  ),
-                ),
+                ),                       
               ],
             )
           ]

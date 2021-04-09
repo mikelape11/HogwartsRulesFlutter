@@ -61,8 +61,8 @@ class HomePeliculas extends StatelessWidget {
                             SizedBox(height: 20,),
                             Container(
                               decoration: BoxDecoration(
-                                color: globals.grySecundario.withOpacity(0.7),
-                                border: Border.all(color: globals.grySecundario, width: 2.0),      
+                                color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario.withOpacity(0.7) : globals.casaHogwarts == "Slytherin" ? globals.slySecundario.withOpacity(0.7) : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario.withOpacity(0.7) : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0),
+                                border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),      
                               ),
                               child: RaisedButton(
                                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
