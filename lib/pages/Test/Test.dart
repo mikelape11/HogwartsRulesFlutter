@@ -119,116 +119,116 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                   //   side: BorderSide(color: Colors.white, width: 2,)
                                   // ),
                                   onPressed: () async{
-                                    if(widget.snapshot.data[i].respuestas[j].puntos == "a"){
-                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
-                                  nuevo.id = globals.idEleccionCasa;
-                                  nuevo.idUsuario = globals.usuario;
-                                  nuevo.puntosGry = globals.puntosGry + 1;
-                                  nuevo.puntosSly = globals.puntosSly;
-                                  nuevo.puntosHuff = globals.puntosHuff;
-                                  nuevo.puntosRav = globals.puntosRav;
-                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
-                                  setState(() {
-                                    eleccion = puntos;
-                                  });  
-                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "b"){
-                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
-                                  nuevo.id = globals.idEleccionCasa;
-                                  nuevo.idUsuario = globals.usuario;
-                                  nuevo.puntosSly = globals.puntosSly + 1;
-                                  nuevo.puntosGry = globals.puntosGry;
-                                  nuevo.puntosHuff = globals.puntosHuff;
-                                  nuevo.puntosRav = globals.puntosRav;
-                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
-                                  setState(() {
-                                    eleccion = puntos;
-                                  });  
-                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "c"){
-                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
-                                  nuevo.id = globals.idEleccionCasa;
-                                  nuevo.idUsuario = globals.usuario;
-                                  nuevo.puntosRav = globals.puntosRav + 1;
-                                  nuevo.puntosGry = globals.puntosGry;
-                                  nuevo.puntosHuff = globals.puntosHuff;
-                                  nuevo.puntosSly = globals.puntosSly;
-                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
-                                  setState(() {
-                                    eleccion = puntos;
-                                  });  
-                                }else if(widget.snapshot.data[i].respuestas[j].puntos == "d"){
-                                  EleccionCasaModelo nuevo = new EleccionCasaModelo();
-                                  nuevo.id = globals.idEleccionCasa;
-                                  nuevo.idUsuario = globals.usuario;
-                                  nuevo.puntosHuff = globals.puntosHuff + 1;
-                                  nuevo.puntosGry = globals.puntosGry;
-                                  nuevo.puntosRav = globals.puntosRav;
-                                  nuevo.puntosSly = globals.puntosSly;
-                                  EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
-                                  setState(() {
-                                    eleccion = puntos;
-                                  });  
-                                }
-                                    if(i==7){
-                                      var result = [globals.puntosGry,globals.puntosSly,globals.puntosRav,globals.puntosHuff].reduce(max);
-                                      //var el = randomChoice(result);
-                                      if(result == globals.puntosGry && result == globals.puntosSly && result == globals.puntosRav && result == globals.puntosHuff){
-                                        var lista = ["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"];
-                                        var el = randomChoice(lista);
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = el;
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        globals.casaHogwarts = el;
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }else if(result == globals.puntosGry){
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = "Gryffindor";
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        globals.casaHogwarts = "Gryffindor";
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }else if(result == globals.puntosSly){
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = "Slytherin";
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        globals.casaHogwarts = "Slytherin";
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }else if(result == globals.puntosRav){
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = "Ravenclaw";
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        globals.casaHogwarts = "Ravenclaw";
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }else if(result == globals.puntosHuff){
-                                        UsuarioModelo nuevo = new UsuarioModelo();
-                                        nuevo.usuario = globals.usuario;
-                                        nuevo.casaHogwarts = "Hufflepuff";
-                                        UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
-                                        globals.casaHogwarts = "Hufflepuff";
-                                        setState(() {
-                                          usuario = usu;
-                                        }); 
-                                      }
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => Home(0),
-                                      ));
-                                    }else{
-                                      _pageController.animateToPage(
-                                        i+1,
-                                        duration: Duration(milliseconds: 300),
-                                        curve: Curves.easeIn,
-                                      ); 
+                                  if(widget.snapshot.data[i].respuestas[j].puntos == "a"){
+                                    EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                    nuevo.id = globals.idEleccionCasa;
+                                    nuevo.idUsuario = globals.usuario;
+                                    nuevo.puntosGry = globals.puntosGry + 1;
+                                    nuevo.puntosSly = globals.puntosSly;
+                                    nuevo.puntosHuff = globals.puntosHuff;
+                                    nuevo.puntosRav = globals.puntosRav;
+                                    EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                    setState(() {
+                                      eleccion = puntos;
+                                    });  
+                                  }else if(widget.snapshot.data[i].respuestas[j].puntos == "b"){
+                                    EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                    nuevo.id = globals.idEleccionCasa;
+                                    nuevo.idUsuario = globals.usuario;
+                                    nuevo.puntosSly = globals.puntosSly + 1;
+                                    nuevo.puntosGry = globals.puntosGry;
+                                    nuevo.puntosHuff = globals.puntosHuff;
+                                    nuevo.puntosRav = globals.puntosRav;
+                                    EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                    setState(() {
+                                      eleccion = puntos;
+                                    });  
+                                  }else if(widget.snapshot.data[i].respuestas[j].puntos == "c"){
+                                    EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                    nuevo.id = globals.idEleccionCasa;
+                                    nuevo.idUsuario = globals.usuario;
+                                    nuevo.puntosRav = globals.puntosRav + 1;
+                                    nuevo.puntosGry = globals.puntosGry;
+                                    nuevo.puntosHuff = globals.puntosHuff;
+                                    nuevo.puntosSly = globals.puntosSly;
+                                    EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                    setState(() {
+                                      eleccion = puntos;
+                                    });  
+                                  }else if(widget.snapshot.data[i].respuestas[j].puntos == "d"){
+                                    EleccionCasaModelo nuevo = new EleccionCasaModelo();
+                                    nuevo.id = globals.idEleccionCasa;
+                                    nuevo.idUsuario = globals.usuario;
+                                    nuevo.puntosHuff = globals.puntosHuff + 1;
+                                    nuevo.puntosGry = globals.puntosGry;
+                                    nuevo.puntosRav = globals.puntosRav;
+                                    nuevo.puntosSly = globals.puntosSly;
+                                    EleccionCasaModelo puntos = await actualizarPuntos(nuevo);   
+                                    setState(() {
+                                      eleccion = puntos;
+                                    });  
+                                  }
+                                  if(i==widget.snapshot.data.length-1){
+                                    var result = [globals.puntosGry,globals.puntosSly,globals.puntosRav,globals.puntosHuff].reduce(max);
+                                    //var el = randomChoice(result);
+                                    if(result == globals.puntosGry && result == globals.puntosSly && result == globals.puntosRav && result == globals.puntosHuff){
+                                      var lista = ["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"];
+                                      var el = randomChoice(lista);
+                                      UsuarioModelo nuevo = new UsuarioModelo();
+                                      nuevo.usuario = globals.usuario;
+                                      nuevo.casaHogwarts = el;
+                                      UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                      globals.casaHogwarts = el;
+                                      setState(() {
+                                        usuario = usu;
+                                      }); 
+                                    }else if(result == globals.puntosGry){
+                                      UsuarioModelo nuevo = new UsuarioModelo();
+                                      nuevo.usuario = globals.usuario;
+                                      nuevo.casaHogwarts = "Gryffindor";
+                                      UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                      globals.casaHogwarts = "Gryffindor";
+                                      setState(() {
+                                        usuario = usu;
+                                      }); 
+                                    }else if(result == globals.puntosSly){
+                                      UsuarioModelo nuevo = new UsuarioModelo();
+                                      nuevo.usuario = globals.usuario;
+                                      nuevo.casaHogwarts = "Slytherin";
+                                      UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                      globals.casaHogwarts = "Slytherin";
+                                      setState(() {
+                                        usuario = usu;
+                                      }); 
+                                    }else if(result == globals.puntosRav){
+                                      UsuarioModelo nuevo = new UsuarioModelo();
+                                      nuevo.usuario = globals.usuario;
+                                      nuevo.casaHogwarts = "Ravenclaw";
+                                      UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                      globals.casaHogwarts = "Ravenclaw";
+                                      setState(() {
+                                        usuario = usu;
+                                      }); 
+                                    }else if(result == globals.puntosHuff){
+                                      UsuarioModelo nuevo = new UsuarioModelo();
+                                      nuevo.usuario = globals.usuario;
+                                      nuevo.casaHogwarts = "Hufflepuff";
+                                      UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                      globals.casaHogwarts = "Hufflepuff";
+                                      setState(() {
+                                        usuario = usu;
+                                      }); 
                                     }
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Home(2),
+                                    ));
+                                  }else{
+                                    _pageController.animateToPage(
+                                      i+1,
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.easeIn,
+                                    ); 
+                                  }
                                   },          
                                 )
                               )
@@ -306,7 +306,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                     eleccion = puntos;
                                   });  
                                 }
-                                if(i==7){
+                                if(i==widget.snapshot.data.length-1){
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => Home(2),
                                   ));

@@ -51,6 +51,11 @@ String fondoHuf = "images/Hufflepuff/hufflepuff1.png";
 String fondoNegro = "images/fondoNegro.png";
 String fondoNegro2 = "images/fondoNegro2.png";
 String fondoNegro3 = "images/fondoNegro3.png";
+String fondoTestGry = "images/TestVaritaPatronus/gryffindor.jpg";
+String fondoTestSly = "images/TestVaritaPatronus/slytherin.jpg";
+String fondoTestRav = "images/TestVaritaPatronus/ravenclaw.jpg";
+String fondoTestHuf = "images/TestVaritaPatronus/hufflepuff.jpg";
+
 
 //FOTOS DE CADA PERSONAJE POR CASA
 String personajeGry1 = "images/Gryffindor/Gry1.png";

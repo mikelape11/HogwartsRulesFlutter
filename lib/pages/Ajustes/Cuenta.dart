@@ -63,14 +63,28 @@ class _CuentaState extends State<Cuenta2> {
     PageController _pageController = new PageController();
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, //change your color here
+        leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Ajustes(),
+                    ));
+                  }
+                ),
+              ],
+            )
+          ),
         ),
         //automaticallyImplyLeading: false,
         title: Text('Cuenta', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
         backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
-       actions: [        
+        actions: [        
           FutureBuilder(
             future: getUsuarios(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {

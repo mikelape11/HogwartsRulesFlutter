@@ -165,6 +165,12 @@ flutter:
     - images/RespuestasTest/pregunta7respuesta3.jpg
     - images/RespuestasTest/pregunta7respuesta4.jpg
 
+    #IMAGENES TEST VARITA PATRONUS
+    - images/TestVaritaPatronus/gryffindor.jpg
+    - images/TestVaritaPatronus/slytherin.jpg
+    - images/TestVaritaPatronus/ravenclaw.jpg
+    - images/TestVaritaPatronus/hufflepuff.jpg
+    
     #VARITAS
     - images/Varitas/varita1.png
     - images/Varitas/varita2.png

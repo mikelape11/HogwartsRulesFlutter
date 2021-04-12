@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/pages/Home/Informacion/TestPatronus/TestPatronus.dart';
+import 'package:hogwarts_rules/pages/Home/Informacion/TestVarita/TestVarita.dart';
 
 class HomeSeleccion extends StatelessWidget {
   const HomeSeleccion({Key key}) : super(key: key);
@@ -24,36 +26,50 @@ class HomeSeleccion extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  color: Colors.white.withOpacity(0.05),
-                  height: 300,
-                  width: MediaQuery.of(context).size.width/2.2,
-                  child: Center(
-                    child: Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/Gryffindor/LogoGry.png'),                   
-                        )
+                GestureDetector(
+                  child: Container(
+                    color: Colors.white.withOpacity(0.05),
+                    height: 300,
+                    width: MediaQuery.of(context).size.width/2.2,
+                    child: Center(
+                      child: Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                          )
+                        ),
                       ),
                     ),
                   ),
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TestVarita(),
+                    ));
+                  },
                 ),
                 SizedBox(width: 6),
-                Container(
-                  color: Colors.white.withOpacity(0.05),
-                  height: 300,
-                  width: MediaQuery.of(context).size.width/2.2,
-                  child: Center(
-                    child: Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/Gryffindor/LogoGry.png'),                   
-                        )
+                GestureDetector(
+                  child: Container(
+                    color: Colors.white.withOpacity(0.05),
+                    height: 300,
+                    width: MediaQuery.of(context).size.width/2.2,
+                    child: Center(
+                      child: Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                          )
+                        ),
                       ),
                     ),
                   ),
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TestPatronus(),
+                    ));
+                  },
                 ),
               ],
             ),

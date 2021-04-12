@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hogwarts_rules/models/OpinionModelo.dart';
+import 'package:hogwarts_rules/pages/Ajustes/OpinionAPI.dart';
+import 'package:hogwarts_rules/pages/Ajustes/OpinionesInfo.dart';
+
+import 'Ajustes.dart';
 
 class Opinion extends StatefulWidget {
 
@@ -11,7 +16,11 @@ class Opinion extends StatefulWidget {
 class _OpinionState extends State<Opinion> {
   
   double _rating;
-  double _initialRating = 2.0;
+  double _initialRating = 3;
+  TextEditingController valoracionController = TextEditingController();
+  TextEditingController puntosController = TextEditingController();
+  OpinionModelo opinion;
+
   @override
   void initState() { 
     super.initState();
@@ -22,13 +31,42 @@ class _OpinionState extends State<Opinion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, //change your color here
+        leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Ajustes(),
+                    ));
+                  }
+                ),
+              ],
+            )
+          ),
         ),
         //automaticallyImplyLeading: false,
         title: Text('Opinion', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
         backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.done_outline_rounded, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+              onPressed: () async{
+                String valoracion = valoracionController.text;
+                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, "images/LOGOS/LogoPeque.png");
+                setState(() {
+                  opinion = opiniones;
+                });
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Ajustes(),
+                ));
+              }
+          ), 
+        ],
         bottom: PreferredSize(
         child: Container(
           color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
@@ -77,7 +115,7 @@ class _OpinionState extends State<Opinion> {
                       borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
-                    hintText: "Usuario",
+                    hintText: globals.usuario,
                     hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
@@ -102,25 +140,28 @@ class _OpinionState extends State<Opinion> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
-                  cursorColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                  decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                child: Form(
+                  child: TextField(
+                    controller: valoracionController,
+                    cursorColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                      ),
+                      focusedBorder: UnderlineInputBorder(                  
+                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                      ), 
+                      labelText: 'Escribe Aquí',
+                      labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18, fontWeight: FontWeight.bold),
+                      fillColor: Colors.red,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)
+                      ),
                     ),
-                    focusedBorder: UnderlineInputBorder(                  
-                      borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
-                    ), 
-                    labelText: 'Escribe Aquí',
-                    labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18, fontWeight: FontWeight.bold),
-                    fillColor: Colors.red,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
                   ),
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 5,
                 ),
               ),
               SizedBox(height: 30),
@@ -186,6 +227,28 @@ class _OpinionState extends State<Opinion> {
                   )               
                 )
               ),
+              SizedBox(height: 20,),
+              FutureBuilder(
+                future: getOpiniones(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario.withOpacity(0.7) : globals.casaHogwarts == "Slytherin" ? globals.slySecundario.withOpacity(0.7) : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario.withOpacity(0.7) : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario.withOpacity(0),
+                    border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),      
+                  ),
+                  child: RaisedButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    color: Colors.transparent,
+                    child: Text('VER OPINIONES', style: TextStyle(color: Colors.white),),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OpinionesInfo(snapshot),
+                      ));
+                    }
+                  ),
+                );
+                }
+              ), 
             ],
           ),
         ),
