@@ -28,7 +28,7 @@ class OpinionAPI extends StatefulWidget {
   }
 
   Future<List<OpinionModelo>> getOpiniones() async {    
-      var data = await http.get('http://10.0.2.2:8080/opiniones');
+      var data = await http.get('http://10.0.2.2:8080/getOpinionesOrdenadas');
       var jsonData = json.decode(data.body);
 
       

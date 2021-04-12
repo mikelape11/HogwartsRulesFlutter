@@ -3,6 +3,9 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Informacion/TestPatronus/TestPatronus.dart';
 import 'package:hogwarts_rules/pages/Home/Informacion/TestVarita/TestVarita.dart';
 
+import 'TestPatronus/TestPatronusAPI.dart';
+import 'TestVarita/TestVaritaAPI.dart';
+
 class HomeSeleccion extends StatelessWidget {
   const HomeSeleccion({Key key}) : super(key: key);
 
@@ -26,50 +29,62 @@ class HomeSeleccion extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  child: Container(
-                    color: Colors.white.withOpacity(0.05),
-                    height: 300,
-                    width: MediaQuery.of(context).size.width/2.2,
-                    child: Center(
-                      child: Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('images/Gryffindor/LogoGry.png'),                   
-                          )
+                  FutureBuilder(
+                    future: getTestVarita(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return GestureDetector(
+                        child: Container(
+                          color: Colors.white.withOpacity(0.05),
+                          height: 300,
+                          width: MediaQuery.of(context).size.width/2.2,
+                          child: Center(
+                            child: Container(
+                              height: 200,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                                )
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                      
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TestVarita(snapshot),
+                          ));
+                        },
+                      );
+                    },
                   ),
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => TestVarita(),
-                    ));
-                  },
-                ),
+                
                 SizedBox(width: 6),
-                GestureDetector(
-                  child: Container(
-                    color: Colors.white.withOpacity(0.05),
-                    height: 300,
-                    width: MediaQuery.of(context).size.width/2.2,
-                    child: Center(
-                      child: Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('images/Gryffindor/LogoGry.png'),                   
-                          )
+                FutureBuilder(
+                  future: getTestPatronus(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return GestureDetector(
+                    child: Container(
+                      color: Colors.white.withOpacity(0.05),
+                      height: 300,
+                      width: MediaQuery.of(context).size.width/2.2,
+                      child: Center(
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                            )
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => TestPatronus(),
-                    ));
-                  },
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TestPatronus(snapshot),
+                      ));
+                    },
+                  );
+                  }
                 ),
               ],
             ),

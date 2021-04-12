@@ -24,7 +24,7 @@ class HomePortada extends StatelessWidget {
                 height: 250,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.logoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.logoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.logoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.logoHuf}') :  AssetImage(globals.casaHogwarts),                
+                    image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.logoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.logoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.logoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.logoHuf}') : AssetImage(globals.casaHogwarts),                
                   )
                 ),
               ),

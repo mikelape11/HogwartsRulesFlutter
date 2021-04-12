@@ -1,9 +1,19 @@
+import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../models/UsuarioModelo.dart';
+import '../../../../models/UsuarioModelo.dart';
+import '../../../Test/TestAPI.dart';
+import 'TestVaritaAPI.dart';
+
 class TestVarita extends StatefulWidget {
+  final AsyncSnapshot snapshot;
+
+  TestVarita(this.snapshot);
+
   @override
   _TestVaritaState createState() => _TestVaritaState();
 }
@@ -30,7 +40,7 @@ class _TestVaritaState extends State<TestVarita> with SingleTickerProviderStateM
   }
 
   PageController _pageController = new PageController();
-
+  UsuarioModelo usuario;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +64,7 @@ class _TestVaritaState extends State<TestVarita> with SingleTickerProviderStateM
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             children: [
-            for(var i=0; i<5; i++)
+            for(var i=0; i<widget.snapshot.data.length; i++)
               FadeTransition(
                 opacity: opacidad,
                 child: Container(
@@ -65,10 +75,10 @@ class _TestVaritaState extends State<TestVarita> with SingleTickerProviderStateM
                     children: [                            
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(child: Text("Pregunta 1", style: TextStyle(color: Colors.white, fontSize: 30),)),
+                        child: Center(child: Text("${widget.snapshot.data[i].pregunta}", style: TextStyle(color: Colors.white, fontSize: 30),)),
                       ),
                       SizedBox(height: 50,),
-                      for(var j=0; j<2; j++)
+                      for(var j=0; j<widget.snapshot.data[i].respuestas.length; j++)
                       GestureDetector(
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10),
@@ -80,13 +90,24 @@ class _TestVaritaState extends State<TestVarita> with SingleTickerProviderStateM
                           height: 50,
                           width: MediaQuery.of(context).size.width/1.2,
                           child: Center(
-                            child: Text("Respuesta1", style: TextStyle(color: Colors.white, fontSize: 20),),
+                            child: Text("${widget.snapshot.data[i].respuestas[j].respuesta}", style: TextStyle(color: Colors.white, fontSize: 20),),
                           ),
                         ),
                         onTap: () async{
-                          if(i==5){                            
+                          if(i==widget.snapshot.data.length-1){         
+                            //var lista = ["Águila pescadora","Ardilla Gris","Búho marrón","Busardo","Gavilan","Lobo Irlandes"];                   
+                            var lista = ["varita1","varita2","varita3","varita4","varita5"];   
+                            var el = randomChoice(lista);
+                            UsuarioModelo nuevo = new UsuarioModelo();
+                            nuevo.usuario = globals.usuario;
+                            nuevo.varita = el;
+                            UsuarioModelo usu = await actualiziarVarita(nuevo); 
+                            globals.varita = el;
+                            setState(() {
+                              usuario = usu;
+                            }); 
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Home(0),
+                              builder: (context) => Home(2),
                             ));
                           }else{
                             _pageController.animateToPage(

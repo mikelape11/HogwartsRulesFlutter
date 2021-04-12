@@ -178,6 +178,14 @@ flutter:
     - images/Varitas/varita4.png
     - images/Varitas/varita5.png
 
+    #PATRONUS
+    - images/Patronus/Águila pescadora.png
+    - images/Patronus/Ardilla Gris.png
+    - images/Patronus/Búho marrón.png
+    - images/Patronus/Busardo.png
+    - images/Patronus/Gavilan.png
+    - images/Patronus/Lobo Irlandes.png
+
     #TIENDA
     - images/Tienda/Jersey.png
     - images/Tienda/Bufanda.png

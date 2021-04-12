@@ -11,11 +11,13 @@ class UsuarioModelo{
   String password;
   String email;
   String casaHogwarts;
+  String varita;
+  String patronus;
   String avatar;
   int rol;
 
 
-  UsuarioModelo({this.id,this.usuario,this.password,this.email,this.casaHogwarts,this.avatar,this.rol});
+  UsuarioModelo({this.id,this.usuario,this.password,this.email,this.casaHogwarts,this.varita,this.patronus,this.avatar,this.rol});
 
   factory UsuarioModelo.fromJson(Map<String,dynamic> json) => UsuarioModelo(
     id: json["_id"],
@@ -23,6 +25,8 @@ class UsuarioModelo{
     password: json["password"],
     email: json["email"],
     casaHogwarts: json["casaHogwarts"],
+    varita: json["varita"],
+    patronus: json["patronus"],
     avatar: json["avatar"],
     rol: json["rol"]
   );
@@ -33,6 +37,8 @@ class UsuarioModelo{
     "password": password,
     "email": email,
     "casaHogwarts": casaHogwarts,
+    "varita": varita,
+    "patronus": patronus,
     "avatar": avatar,
     "rol": rol,
   };
@@ -46,6 +52,10 @@ class UsuarioModelo{
   String get emailUsuario => email;
 
   String get casaHogwartsUsuario => casaHogwarts;
+
+  String get varitaUsuario => varita;
+
+  String get patronusUsuario => patronus;
 
   String get avatarUsuario => avatar;
 
