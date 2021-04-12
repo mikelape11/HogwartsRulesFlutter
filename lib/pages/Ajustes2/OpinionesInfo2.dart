@@ -101,22 +101,23 @@ class _OpinionesInfo2State extends State<OpinionesInfo2> {
                                   fit: BoxFit.fitHeight,  
                                 ),
                               ),
-                              //color: Colors.red,
                               height: 70,
                               width: MediaQuery.of(context).size.width/4,
                             ),
                             Container(
                               child: Text("${widget.snapshot.data[i].usuario}", style: TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),),
                             ),
+                            SizedBox(height: 5,),
                             Container(
+                               margin: EdgeInsets.only(bottom: 10),
                               child: RatingBar.builder(
                                 initialRating: widget.snapshot.data[i].puntuacion,
                                 direction: Axis.horizontal,
                                 allowHalfRating: true,
                                 unratedColor: Color(globals.color4),
                                 itemCount: 5,
-                                itemSize: 15.0,
-                                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                itemSize: 12.0,
+                                itemPadding: EdgeInsets.symmetric(horizontal: 0),
                                 itemBuilder: (context, _) => Icon(
                                   Icons.star,
                                   color: Color(globals.color2),
@@ -124,8 +125,7 @@ class _OpinionesInfo2State extends State<OpinionesInfo2> {
                               ),
                             ),
                             ],
-                          ),
-                           
+                          ),                         
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                             width: MediaQuery.of(context).size.width/1.5,
@@ -134,22 +134,20 @@ class _OpinionesInfo2State extends State<OpinionesInfo2> {
                               children: [
                                 Container(
                                   child: Text("${widget.snapshot.data[i].valoracion}", style: TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),),
-                                ),
-                              
+                                ),                             
                               ],
                             ),
                           ),
-                           ],
-                        
+                        ],                       
                       ),                    
                     ),
-                ),
+                  ),
                 ),   
               ],          
             ),
           )
         ] 
-        ),
+      ),
     );
   }
 }

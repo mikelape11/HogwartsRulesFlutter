@@ -4,7 +4,8 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/OpinionModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Ajustes/OpinionAPI.dart';
-import 'package:hogwarts_rules/pages/Home/Home.dart';
+
+
 
 class OpinionesInfo extends StatefulWidget {
   final AsyncSnapshot snapshot;
