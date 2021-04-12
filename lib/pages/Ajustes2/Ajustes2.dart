@@ -3,7 +3,6 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes2/Cuenta2.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Informacion2.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Opinion2.dart';
-import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import 'package:hogwarts_rules/pages/Test/TestAPI.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';

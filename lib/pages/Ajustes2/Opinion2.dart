@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hogwarts_rules/pages/Ajustes/OpinionAPI.dart';
+import 'package:hogwarts_rules/models/OpinionModelo.dart';
+import 'package:hogwarts_rules/pages/Ajustes/OpinionesInfo.dart';
+
+import 'Ajustes2.dart';
+import 'OpinionesInfo2.dart';
 
 class Opinion2 extends StatefulWidget {
 
@@ -12,6 +18,8 @@ class _OpinionState extends State<Opinion2> {
   
   double _rating;
   double _initialRating = 2.0;
+  TextEditingController valoracionController = TextEditingController();
+  OpinionModelo opinion;
   @override
   void initState() { 
     super.initState();
@@ -29,6 +37,21 @@ class _OpinionState extends State<Opinion2> {
         title: Text('Opinion', style: TextStyle(color: Color(globals.color2)),),
         backgroundColor: Color(globals.color1),
         centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.done_outline_rounded, color: Color(globals.color2), size: 25,),
+              onPressed: () async{
+                String valoracion = valoracionController.text;
+                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, "images/LOGOS/LogoPeque.png");
+                setState(() {
+                  opinion = opiniones;
+                });
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Ajustes2(),
+                ));
+              }
+          ), 
+        ],
         bottom: PreferredSize(
         child: Container(
           color: Color(globals.color2),
@@ -77,7 +100,7 @@ class _OpinionState extends State<Opinion2> {
                       borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                     ),  
                     contentPadding: EdgeInsets.only(top: 22), // add padding to adjust text
-                    hintText: "Usuario",
+                    hintText: globals.usuario,
                     hintStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold, fontSize: 17),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(top: 15), // add padding to adjust icon
@@ -102,25 +125,28 @@ class _OpinionState extends State<Opinion2> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
-                  cursorColor: Color(globals.color2),
-                  decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                child: Form(
+                  child: TextField(
+                    controller: valoracionController,
+                    cursorColor: Color(globals.color2),
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
+                      ),
+                      focusedBorder: UnderlineInputBorder(                  
+                        borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
+                      ), 
+                      labelText: 'Escribe Aquí',
+                      labelStyle: TextStyle(color: Color(globals.color2), fontSize: 18, fontWeight: FontWeight.bold),
+                      fillColor: Colors.red,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(globals.color2))
+                      ),
                     ),
-                    focusedBorder: UnderlineInputBorder(                  
-                      borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
-                    ), 
-                    labelText: 'Escribe Aquí',
-                    labelStyle: TextStyle(color: Color(globals.color2), fontSize: 18, fontWeight: FontWeight.bold),
-                    fillColor: Colors.red,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(globals.color2))
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
                   ),
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 5,
                 ),
               ),
               SizedBox(height: 30),
@@ -186,6 +212,28 @@ class _OpinionState extends State<Opinion2> {
                   )               
                 )
               ),
+              SizedBox(height: 20,),
+              FutureBuilder(
+                future: getOpiniones(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Color(globals.color1),
+                    border: Border.all(color: Color(globals.color2), width: 2.0),      
+                  ),
+                  child: RaisedButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    color: Colors.transparent,
+                    child: Text('VER OPINIONES', style: TextStyle(color: Colors.white),),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OpinionesInfo2(snapshot),
+                      ));
+                    }
+                  ),
+                );
+                }
+              ), 
             ],
           ),
         ),

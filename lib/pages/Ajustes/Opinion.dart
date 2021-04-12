@@ -18,7 +18,6 @@ class _OpinionState extends State<Opinion> {
   double _rating;
   double _initialRating = 3;
   TextEditingController valoracionController = TextEditingController();
-  TextEditingController puntosController = TextEditingController();
   OpinionModelo opinion;
 
   @override

@@ -154,7 +154,7 @@ class _AjustesState extends State<Ajustes> {
                               ),
                               SizedBox(height: 10),
                               Container(
-                                child: Text("Si repites el test, tu casa de Hogwarts puede que se cambie", style: TextStyle(color: Colors.white70)),
+                                child: Center(child: Text("Tu casa de Hogwarts puede que se cambie", style: TextStyle(color: Colors.white70))),
                               ),
                               SizedBox(height: 10),
                               Row(
@@ -173,17 +173,15 @@ class _AjustesState extends State<Ajustes> {
                                         child: Text('REPETIR', style: TextStyle(color: Colors.red),),
                                         onPressed: () async{
                                           deleteDatosTest(globals.usuario);
-                                          EleccionCasaModelo puntos = await registrarEleccionCasa(globals.usuario, 0, 0,0,0);            
-                                          setState(() {
-                                            eleccion = puntos;
-                                          });
                                           UsuarioModelo nuevo = new UsuarioModelo();
                                           nuevo.usuario = globals.usuario;
                                           nuevo.casaHogwarts = "";
                                           UsuarioModelo usu = await actualiziarCasaHogwarts(nuevo); 
+                                          EleccionCasaModelo puntos = await registrarEleccionCasa(globals.usuario, 0, 0,0,0);            
                                           setState(() {
+                                            eleccion = puntos;
                                             usuario = usu;
-                                          }); 
+                                          });
                                           Navigator.of(context).push(MaterialPageRoute(
                                             builder: (context) => Test(snapshot),
                                           ));
