@@ -302,34 +302,29 @@ class HomePersonajes extends StatelessWidget {
             ),
             SizedBox(height: 15,),
             Container(
-              color: Colors.white.withOpacity(0.05),
-              height: 150,
+              //color: Colors.white.withOpacity(0.05),
+              height: 170,
               width: MediaQuery.of(context).size.width/1.08,
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
-                  child: Text( globals.casaHogwarts == "Gryffindor" ? globals.infoGry : globals.casaHogwarts == "Slytherin" ? globals.infoSly : globals.casaHogwarts == "Ravenclaw" ? globals.infoRav : globals.casaHogwarts == "Hufflepuff" ? globals.infoHuf : "", style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 15),)),
+                  child: Text( globals.casaHogwarts == "Gryffindor" ? globals.infoGry : globals.casaHogwarts == "Slytherin" ? globals.infoSly : globals.casaHogwarts == "Ravenclaw" ? globals.infoRav : globals.casaHogwarts == "Hufflepuff" ? globals.infoHuf : "", style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 17),)),
               ),
             ),
-            SizedBox(height: 25,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [                             
-                Container(
-                  decoration: BoxDecoration(
-                    color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0),
-                    border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal, width: 2.0),      
-                  ),
-                  child: RaisedButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    color: Colors.transparent,
-                    child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white, fontSize: 16),),
-                    onPressed: () {
+            SizedBox(height: 10,),
+            Container(
+              decoration: BoxDecoration(
+                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal.withOpacity(0.7) : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0),
+                border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal, width: 2.0),      
+              ),
+              child: RaisedButton(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                color: Colors.transparent,
+                child: Text('VER MÁS INFORMACIÓN', style: TextStyle(color: Colors.white, fontSize: 16),),
+                onPressed: () {
 
-                    }
-                  ),
-                ),                       
-              ],
+                }
+              ),
             )
           ]
         ),

@@ -36,10 +36,10 @@ class HomeSeleccion extends StatelessWidget {
                         child: Container(
                           //color: Colors.white.withOpacity(0.05),
                           decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/TestVaritaPatronus/gryffindor1.jpg'),  
-                                )
-                              ),
+                            image: DecorationImage(
+                              image:  AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
+                            )
+                          ),
                           height: 300,
                           width: MediaQuery.of(context).size.width/2.2,
                           child: Center(
@@ -70,17 +70,22 @@ class HomeSeleccion extends StatelessWidget {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                   return GestureDetector(
                     child: Container(
-                      color: Colors.white.withOpacity(0.05),
+                      //color: Colors.white.withOpacity(0.05),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image:  AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
+                        )
+                      ),
                       height: 300,
                       width: MediaQuery.of(context).size.width/2.2,
                       child: Center(
                         child: Container(
                           height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: globals.patronus == "" ? AssetImage('images/Gryffindor/LogoGry.png') : AssetImage('images/Varitas/${globals.patronus}.png'),                   
-                            )
-                          ),
+                          // decoration: BoxDecoration(
+                          //   image: DecorationImage(
+                          //     image: globals.patronus == "" ? AssetImage('images/Gryffindor/LogoGry.png') : AssetImage('images/Varitas/${globals.patronus}.png'),                   
+                          //   )
+                          // ),
                         ),
                       ),
                     ),
@@ -99,7 +104,7 @@ class HomeSeleccion extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Container(
-              color: Colors.white.withOpacity(0.05),
+              //color: Colors.white.withOpacity(0.05),
               height: 150,
               width: MediaQuery.of(context).size.width/1.08,
               child: Center(

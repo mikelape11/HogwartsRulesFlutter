@@ -67,16 +67,13 @@ class GamesGeneral extends StatelessWidget {
             width: 450,
             height: 620,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                children: [
-                  Games(),
-                ],
-              ),
-            ),   
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Games(),
+              ],
+            ),
           ),
         ],   
       ),
