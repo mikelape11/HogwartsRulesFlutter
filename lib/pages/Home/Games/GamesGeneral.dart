@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Home/Games/Games.dart';
 
 class GamesGeneral extends StatelessWidget {
   const GamesGeneral({Key key}) : super(key: key);
@@ -68,9 +69,13 @@ class GamesGeneral extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-              ],
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: [
+                  Games(),
+                ],
+              ),
             ),   
           ),
         ],   

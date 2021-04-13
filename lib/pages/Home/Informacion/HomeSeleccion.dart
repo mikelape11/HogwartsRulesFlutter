@@ -34,7 +34,12 @@ class HomeSeleccion extends StatelessWidget {
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       return GestureDetector(
                         child: Container(
-                          color: Colors.white.withOpacity(0.05),
+                          //color: Colors.white.withOpacity(0.05),
+                          decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:  AssetImage('images/TestVaritaPatronus/gryffindor1.jpg'),  
+                                )
+                              ),
                           height: 300,
                           width: MediaQuery.of(context).size.width/2.2,
                           child: Center(
@@ -100,7 +105,7 @@ class HomeSeleccion extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
-                  child: Text(globals.varita == "" && globals.patronus == "" ? '¡Haz estos breves test para ver cual es tu varita y tu patronus!' : globals.varita == "" && globals.patronus != "" ? '¡Haz estos breves test para ver cual es tu varita!' : '¡Haz estos breves test para ver cual es tu patronus!', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
+                  child: Text(globals.varita == "" && globals.patronus == "" ? '¡Haz estos breves test para ver cual es tu varita y tu patronus!' : globals.varita == "" && globals.patronus != "" ? '¡Haz este breve test para ver cual es tu varita!' : '¡Haz este breve test para ver cual es tu patronus!', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
               ),
             )
           ]

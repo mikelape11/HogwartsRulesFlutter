@@ -167,6 +167,7 @@ flutter:
 
     #IMAGENES TEST VARITA PATRONUS
     - images/TestVaritaPatronus/gryffindor.jpg
+    - images/TestVaritaPatronus/gryffindor1.jpg
     - images/TestVaritaPatronus/slytherin.jpg
     - images/TestVaritaPatronus/ravenclaw.jpg
     - images/TestVaritaPatronus/hufflepuff.jpg
