@@ -172,6 +172,7 @@ flutter:
     - images/TestVaritaPatronus/hufflepuff.jpg
     
     #VARITAS
+    - images/Varitas/ElegirVarita.png
     - images/Varitas/varita1.png
     - images/Varitas/varita2.png
     - images/Varitas/varita3.png

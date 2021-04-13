@@ -66,8 +66,22 @@ class _CuentaState extends State<Cuenta> {
     PageController _pageController = new PageController();
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Color(globals.color2), //change your color here
+        leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                  icon: Icon(Icons.arrow_back, color: Color(globals.color2), size: 25,),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Ajustes2(),
+                    ));
+                  }
+                ),
+              ],
+            )
+          ),
         ),
         //automaticallyImplyLeading: false,
         title: Text('Cuenta', style: TextStyle(color: Color(globals.color2)),),

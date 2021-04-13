@@ -23,6 +23,8 @@ class LoginAPI extends StatefulWidget {
         usuarios.password = e["password"];
         usuarios.email = e["email"];
         usuarios.casaHogwarts = e["casaHogwarts"];
+        usuarios.varita = e["varita"];
+        usuarios.patronus = e["patronus"];
         usuarios.avatar = e["avatar"];
         usuarios.rol = e["rol"];
         usuario.add(usuarios);

@@ -42,17 +42,18 @@ class HomeSeleccion extends StatelessWidget {
                               height: 200,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                                  image: globals.varita == "" ? AssetImage('images/Varitas/ElegirVarita.png') : AssetImage('images/Varitas/${globals.varita}.png'),                   
                                 )
                               ),
                             ),
                           ),
                         ),
-                      
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => TestVarita(snapshot),
-                          ));
+                          if(globals.varita == ""){
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TestVarita(snapshot),
+                            ));
+                          } 
                         },
                       );
                     },
@@ -72,16 +73,19 @@ class HomeSeleccion extends StatelessWidget {
                           height: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('images/Gryffindor/LogoGry.png'),                   
+                              image: globals.patronus == "" ? AssetImage('images/Gryffindor/LogoGry.png') : AssetImage('images/Varitas/${globals.patronus}.png'),                   
                             )
                           ),
                         ),
                       ),
                     ),
                     onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TestPatronus(snapshot),
-                      ));
+                       if(globals.patronus == ""){
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TestPatronus(snapshot),
+                          ));
+                       }
+                      
                     },
                   );
                   }
@@ -96,7 +100,7 @@ class HomeSeleccion extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
-                  child: Text('¡Haz estos breves test para ver cual es tu varita y tu patronus!', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
+                  child: Text(globals.varita == "" && globals.patronus == "" ? '¡Haz estos breves test para ver cual es tu varita y tu patronus!' : globals.varita == "" && globals.patronus != "" ? '¡Haz estos breves test para ver cual es tu varita!' : '¡Haz estos breves test para ver cual es tu patronus!', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
               ),
             )
           ]

@@ -6,6 +6,7 @@ import 'package:hogwarts_rules/pages/Ajustes2/Opinion2.dart';
 import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import 'package:hogwarts_rules/pages/Test/TestAPI.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
+import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 
 import 'CuentaAPI.dart';
 
@@ -15,8 +16,22 @@ class Ajustes2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Color(globals.color2), //change your color here
+        leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                  icon: Icon(Icons.arrow_back, color: Color(globals.color2), size: 25,),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Home2(),
+                    ));
+                  }
+                ),
+              ],
+            )
+          ),
         ),
         //automaticallyImplyLeading: false,
         title: Text('Ajustes', style: TextStyle(color: Color(globals.color2)),),
