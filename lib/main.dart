@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaPagar.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2.dart';
 import 'package:hogwarts_rules/pages/Home2/Informacion2/Home2Portada.dart';
 import 'package:hogwarts_rules/pages/Test/PortadaTest.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Portada(),
+      home: TiendaPagar(),
     );
   }
 }

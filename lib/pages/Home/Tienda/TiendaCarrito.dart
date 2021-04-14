@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaPagar.dart';
 
 class CarritoTienda extends StatelessWidget {
   const CarritoTienda({Key key}) : super(key: key);
@@ -181,7 +182,7 @@ class CarritoTienda extends StatelessWidget {
                     child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                     onPressed: () async{
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Home(0),
+                        builder: (context) => TiendaPagar(),
                       ));
                     }
                   ),

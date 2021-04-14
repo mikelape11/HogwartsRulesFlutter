@@ -40,7 +40,7 @@ dependencies:
   url_launcher: ^5.0.0
   flutter_rating_bar: ^3.0.0
   dart_random_choice: ^0.0.2
-  
+  flutter_credit_card: ^0.1.4
   
 dev_dependencies:
   flutter_test:
