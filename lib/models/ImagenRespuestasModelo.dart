@@ -8,13 +8,15 @@ String imagenRespuestasModeloToJson(imagenRespuestasModelo data) => json.encode(
 //modelo de preguntasRespuestas
 class imagenRespuestasModelo{
   String name;
+  String thumbUrl;
 
-  imagenRespuestasModelo({this.name});
+  imagenRespuestasModelo({this.name,this.thumbUrl});
 
   factory imagenRespuestasModelo.fromJson(Map<String,dynamic> json){
    return imagenRespuestasModelo(
 
     name: json["name"],
+    thumbUrl: json["thumbUrl"],
 
   );
 
@@ -22,6 +24,7 @@ class imagenRespuestasModelo{
 
   Map<String,dynamic> toJson()=>{
     "name": name,
+    "thumbUrl": thumbUrl,
 
   };
 

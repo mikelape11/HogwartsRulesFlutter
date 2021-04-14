@@ -7,7 +7,9 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'dart:math';
 import 'TestAPI.dart';
 import 'package:dart_random_choice/dart_random_choice.dart';
-
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 
 class Test extends StatefulWidget {
   final AsyncSnapshot snapshot;
@@ -17,6 +19,8 @@ class Test extends StatefulWidget {
   @override
   _TestState createState() => _TestState();
 }
+// Create an instance variable
+Image image;
 
 class _TestState extends State<Test> with SingleTickerProviderStateMixin {
 
@@ -25,6 +29,15 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    // final UriData data = Uri.parse(widget.snapshot.data[0].respuestas[0].imagen[0].thumbUrl).data;
+    // print(data.isBase64);  // Should print true
+    // print(data.contentAsBytes()); 
+    // final UriData data = Uri.parse(widget.snapshot.data[0].respuestas[0].imagen[0].thumbUrl).data;
+    // print(data.isBase64);  
+    // print(data.contentAsBytes());  
+    // String uri = widget.snapshot.data[0].respuestas[0].imagen[0].thumbUrl;
+    // Codec<String, String> stringToBase64 = utf8.fuse(base64);
+    // Uint8List _bytes = base64Decode(uri.split(',').last);
 
     controller = new AnimationController ( vsync: this, duration: Duration(milliseconds: 2000));
     opacidad = new Tween(begin: 0.0, end: 1.0).animate(controller);
@@ -250,6 +263,7 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
+                                    //image: MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)) == null ? AssetImage(widget.snapshot.data[i].respuestas[j].imagen[n].name) : MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)),
                                     image: widget.snapshot.data[i].respuestas[j].imagen[n].name == "" ?  AssetImage('images/LOGOS/Logo1.png') : AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
                                     fit: BoxFit.fill,
                                   ),
