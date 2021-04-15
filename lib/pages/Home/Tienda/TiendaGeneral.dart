@@ -3,6 +3,7 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/Tienda.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaFavoritos.dart';
 
 
 class TiendaGeneral extends StatelessWidget {
@@ -41,7 +42,7 @@ class TiendaGeneral extends StatelessWidget {
             icon: Icon(Icons.favorite_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
+                builder: (context) => TiendaFavoritos(),
               ));
             }
           ),
