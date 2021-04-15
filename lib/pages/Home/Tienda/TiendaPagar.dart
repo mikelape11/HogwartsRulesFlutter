@@ -77,6 +77,9 @@ class _TiendaPagarState extends State<TiendaPagar> {
                       child: Column(
                         children: [
                           CreditCardForm(
+                            numberValidationMessage: "Por favor introduzca un numero valido",
+                            cvvValidationMessage: "Por favor introduzca un CVV valido",
+                            dateValidationMessage: "Por favor introduzca una fecha valida",
                             textColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,                      
                             formKey: formKey,
                             onCreditCardModelChange: onCreditCardModelChange,

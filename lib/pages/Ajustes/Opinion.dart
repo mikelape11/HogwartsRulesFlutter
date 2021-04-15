@@ -57,7 +57,8 @@ class _OpinionState extends State<Opinion> {
               icon: Icon(Icons.done_outline_rounded, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
               onPressed: () async{
                 String valoracion = valoracionController.text;
-                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, "images/LOGOS/LogoPeque.png");
+                String avatar = globals.avatarElegido != "images/Avatares/Avatar7.png" ?  globals.avatarElegido : globals.avatarDefecto;
+                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, avatar);
                 setState(() {
                   opinion = opiniones;
                 });

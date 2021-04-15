@@ -62,20 +62,35 @@ class TiendaFavoritos extends StatelessWidget {
                       FlipCard(
                         direction: FlipDirection.HORIZONTAL,
                         speed: 1000,
-                        front: Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                          ),                              
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:  AssetImage('images/Varitas/varita1.png'),
-                                fit: BoxFit.fitWidth,  
+                        front: Stack(
+                          children: [                          
+                            Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                              ),                              
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:  AssetImage('images/Varitas/varita1.png'),
+                                    fit: BoxFit.fitWidth,  
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Container(
+                              alignment: Alignment.topRight,
+                              child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                                icon: Icon(Icons.favorite, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => TiendaFavoritos(),
+                                  ));
+                                }
+                              ),
+                            ),
+                          ],
                         ), 
                         back: Container(
                           padding: EdgeInsets.all(8),

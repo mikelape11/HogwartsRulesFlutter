@@ -17,7 +17,7 @@ class Cuenta extends StatefulWidget {
 
 class _CuentaState extends State<Cuenta> {
 
-  String avatar = "images/Avatares/Avatar1.png";
+  String avatar = globals.avatarElegido != "images/Avatares/Avatar7.png" ?  globals.avatarElegido : globals.avatarDefecto;
   int i;
   String _usuario;
   String _email;
@@ -99,7 +99,33 @@ class _CuentaState extends State<Cuenta> {
                 String password = passwordController.text;
                 int contador = 0;
                 int contador2 = 0;
-                for(int i=0; i<snapshot.data.length; i++){ //recorre los usuarios
+                for(int k=0; k<snapshot.data.length; k++){
+                  if(avatar != globals.avatarDefecto || avatar != globals.avatarElegido){
+                      globals.idUsuario = snapshot.data[k].id;
+                      globals.usuario = usuarioController.text;
+                      globals.email = emailController.text;
+                      globals.password = passwordController.text;
+                      UsuarioModelo usu = new UsuarioModelo();
+                      usu.id = globals.idUsuario;
+                      usu.usuario = usuarioController.text;
+                      usu.email = emailController.text;
+                      usu.casaHogwarts = globals.casaHogwarts;
+                      usu.varita = globals.varita;
+                      usu.patronus = globals.patronus;
+                      usu.password = passwordController.text;
+                      usu.rol = 0;
+                      usu.avatar = avatar;
+                      UsuarioModelo usuarios = await actualizarUsuario(usu);
+                      setState(() {
+                        usuario = usuarios as String;
+                      });
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Ajustes2(),
+                      ));
+                      break;
+                  }
+                }
+                for(int i=0; i<snapshot.data.length; i++){
                   if(globals.usuario == snapshot.data[i].usuario && globals.password == snapshot.data[i].password){
                     if(usuario == snapshot.data[i].usuario && email == snapshot.data[i].email && password == snapshot.data[i].password){            
                       Navigator.of(context).push(MaterialPageRoute(

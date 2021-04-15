@@ -56,7 +56,8 @@ class _OpinionState extends State<Opinion2> {
               icon: Icon(Icons.done_outline_rounded, color: Color(globals.color2), size: 25,),
               onPressed: () async{
                 String valoracion = valoracionController.text;
-                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, "images/LOGOS/LogoPeque.png");
+                String avatar = globals.avatarElegido != "images/Avatares/Avatar7.png" ? globals.avatarElegido : globals.avatarDefecto;
+                OpinionModelo opiniones = await registrarOpinion(globals.usuario, valoracion, _rating, avatar);
                 setState(() {
                   opinion = opiniones;
                 });

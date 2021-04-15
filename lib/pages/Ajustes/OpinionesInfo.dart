@@ -97,7 +97,7 @@ class _OpinionesInfoState extends State<OpinionesInfo> {
                               Container(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image:  AssetImage('${widget.snapshot.data[i].avatar}'),
+                                    image: AssetImage('${widget.snapshot.data[i].avatar}'),
                                     fit: BoxFit.fitHeight,  
                                   ),
                                 ),
