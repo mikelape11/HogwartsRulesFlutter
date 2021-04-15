@@ -25,7 +25,7 @@ class HomeGeneral extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 20.0,
                     backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                    backgroundImage: AssetImage("images/LOGOS/LogoPeque.png"),
+                    backgroundImage: globals.avatarElegido != "images/Avatares/Avatar7.png" ?  AssetImage(globals.avatarElegido) : AssetImage(globals.avatarDefecto),
                     // backgroundImage: globals.existeAvatar
                     // ? AssetImage("images/perfil.png") 
                     // : FileImage(File(globals.avatar))

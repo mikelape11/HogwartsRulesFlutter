@@ -15,7 +15,7 @@ class Cuenta2 extends StatefulWidget {
 
 class _CuentaState extends State<Cuenta2> {
 
-  String avatar = "images/Avatares/Avatar1.png";
+  String avatar = globals.avatarElegido != "images/Avatares/Avatar7.png" ?  globals.avatarElegido : globals.avatarDefecto;
   int i;
   String _usuario;
   String _email;
@@ -31,6 +31,7 @@ class _CuentaState extends State<Cuenta2> {
   void cambiarAvatar(i){
     setState(() {
       avatar = "images/Avatares/Avatar${i}.png";
+      globals.avatarElegido = avatar;
     });
   }
 
@@ -116,9 +117,12 @@ class _CuentaState extends State<Cuenta2> {
                         usu.id = globals.idUsuario;
                         usu.usuario = usuarioController.text;
                         usu.email = emailController.text;
+                        usu.casaHogwarts = globals.casaHogwarts;
+                        usu.varita = globals.varita;
+                        usu.patronus = globals.patronus;
                         usu.password = passwordController.text;
                         usu.rol = 0;
-                        usu.avatar = "";
+                        usu.avatar = avatar;
                         UsuarioModelo usuarios = await actualizarUsuario(usu);
                         setState(() {
                           usuario = usuarios as String;
@@ -148,9 +152,12 @@ class _CuentaState extends State<Cuenta2> {
                                 usu.id = globals.idUsuario;
                                 usu.usuario = usuarioController.text;
                                 usu.email = emailController.text;
+                                usu.casaHogwarts = globals.casaHogwarts;
+                                usu.varita = globals.varita;
+                                usu.patronus = globals.patronus;
                                 usu.password = passwordController.text;
                                 usu.rol = 0;
-                                usu.avatar = "";
+                                usu.avatar = avatar;
                                 UsuarioModelo usuarios = await actualizarUsuario(usu);
                                 setState(() {
                                   usuario = usuarios as String;
@@ -181,9 +188,12 @@ class _CuentaState extends State<Cuenta2> {
                               usu.id = globals.idUsuario;
                               usu.usuario = usuarioController.text;
                               usu.email = emailController.text;
+                              usu.casaHogwarts = globals.casaHogwarts;
+                              usu.varita = globals.varita;
+                              usu.patronus = globals.patronus;
                               usu.password = passwordController.text;
                               usu.rol = 0;
-                              usu.avatar = "";
+                              usu.avatar = avatar;
                               UsuarioModelo usuarios = await actualizarUsuario(usu);
                               setState(() {
                                 usuario = usuarios as String;
@@ -330,7 +340,7 @@ class _CuentaState extends State<Cuenta2> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               Container(
                 child: RichText(
                   text: TextSpan(

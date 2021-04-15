@@ -13,6 +13,8 @@ int puntosGry = 0;
 int puntosSly = 0;
 int puntosHuff = 0;
 int puntosRav = 0;
+String avatarDefecto = "images/Avatares/Avatar7.png";
+String avatarElegido = "";
 
 //COLORES LOGIN Y REGISTRO
 

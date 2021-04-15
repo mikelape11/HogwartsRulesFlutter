@@ -231,6 +231,7 @@ class _LoginState extends State<Login> {
                           globals.casaHogwarts = snapshot.data[i].casaHogwarts;
                           globals.varita = snapshot.data[i].varita;
                           globals.patronus = snapshot.data[i].patronus;
+                          globals.avatarElegido = snapshot.data[i].avatar;
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Home(2),
                           )); 

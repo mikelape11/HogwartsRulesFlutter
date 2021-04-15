@@ -255,7 +255,7 @@ class _RegistroState extends State<Registro> {
                       print("Not Validated");        
                     }                            
                     if(cont == snapshot.data.length){
-                      UsuarioModelo usuarios = await registrarUsuario(usuario, password, email, 0);
+                      UsuarioModelo usuarios = await registrarUsuario(usuario, password, email, 0, "images/Avatares/Avatar7.png");
                       setState(() {
                         usuario = usuarios as String;
                       });
