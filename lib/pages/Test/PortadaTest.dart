@@ -21,7 +21,7 @@ class _PortadaTestState extends State<PortadaTest> {
   void initState() {
     super.initState();
 
-    Timer(Duration(seconds: 0), () => Navigator.push(
+    Timer(Duration(seconds: 12), () => Navigator.push(
       context, MaterialPageRoute(builder: (context) => Test(widget.snapshot))
     ));
   }

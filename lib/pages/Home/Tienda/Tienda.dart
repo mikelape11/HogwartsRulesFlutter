@@ -3,14 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
+import 'package:dart_random_choice/dart_random_choice.dart';
+import 'dart:convert';
+import 'package:hogwarts_rules/models/ProductosModelo.dart';
 
-import '../../../globals/globals.dart';
-
-
-
-class Tienda extends StatelessWidget {
+class Tienda extends StatefulWidget {
   const Tienda({Key key}) : super(key: key);
 
+  @override
+  _TiendaState createState() => _TiendaState();
+}
+
+var listaId= [];
+var eleccionId;
+var eleccionNombre;
+var eleccionPrecio;
+var eleccionFoto;
+
+List<ProductosModelo>listaProductos = [];
+
+class _TiendaState extends State<Tienda> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,40 +65,63 @@ class Tienda extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 180,
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width/2.5,
-                          child: Center(child: Text("NOMBRE OBJETO", style: TextStyle(color: Colors.white70, fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
+            FutureBuilder(
+              future: getProductos(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                 if(!snapshot.hasData){    
+                    return Center(child: Text(""));
+                }else{ 
+                  for(int i=0; i<snapshot.data.length; i++){
+                    listaId.add(snapshot.data[i].id);
+                  }
+                  eleccionId = randomChoice(listaId);
+                  for(int i=0; i<snapshot.data.length; i++){
+                    if(eleccionId == snapshot.data[i].id){
+                      eleccionNombre = snapshot.data[i].nombre;
+                      eleccionPrecio= snapshot.data[i].precio;
+                      for(int k=0; k<snapshot.data[i].foto.length; k++){
+                        eleccionFoto = snapshot.data[i].foto[k].thumbUrl.split(',').last;
+                      }
+                    }
+                   
+                  }
+                }
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  height: 180,
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width/2.5,
+                              child: Center(child: Text("$eleccionNombre", style: TextStyle(color: Colors.white70, fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
+                            ),
+                            SizedBox(height: 25,),
+                            Container(
+                              width: MediaQuery.of(context).size.width/2.5,
+                              child: Center(child: Text("$eleccionPrecio €", style: TextStyle(color: Colors.white70, fontSize: 30, fontWeight: FontWeight.bold),)),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 25,),
-                        Container(
-                          width: MediaQuery.of(context).size.width/2.5,
-                          child: Center(child: Text("20 €", style: TextStyle(color: Colors.white70, fontSize: 30, fontWeight: FontWeight.bold),)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Varitas/varita1.png'),
-                        fit: BoxFit.fitWidth,  
                       ),
-                    ),
-                    width: 150,
-                    height: 150,
-                  ),
-                ],
-              )
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: MemoryImage(base64Decode(eleccionFoto)),
+                            fit: BoxFit.fitWidth,  
+                          ),
+                        ),
+                        width: 150,
+                        height: 150,
+                      ),
+                    ],
+                  )
+                );
+              }
             ),
           ] 
         ),
@@ -103,123 +139,263 @@ class Tienda extends StatelessWidget {
               Container(
                 child: Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductos(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("GENERAL", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("GENERAL", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                              listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosCasa("Gryffindor"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("GRY", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("GRY", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                              listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosCasa("Slytherin"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("SLY", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("SLY", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                             listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosCasa("Ravenclaw"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("RAV", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("RAV", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                            listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosCasa("Hufflepuff"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("HUF", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("HUF", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                            listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosTipo("Ropa"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("ROPA", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("ROPA", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                            listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      decoration: BoxDecoration(                    
-                        border: Border(
-                          bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                    FutureBuilder(
+                      future: getProductosTipo("Objeto"),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Container(
+                        decoration: BoxDecoration(                    
+                          border: Border(
+                            bottom: BorderSide(width: 2, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                          ),
                         ),
-                      ),
-                      child: FlatButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                        ),                    
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        child: Text("OBJETOS", style: TextStyle(color: Colors.white70),),
-                        onPressed: (){},
-                      ),
+                        child: FlatButton(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                          ),                    
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                          child: Text("OBJETOS", style: TextStyle(color: Colors.white70),),
+                          onPressed: (){
+                            listaProductos = [];
+                              for(int i=0; i<snapshot.data.length; i++){
+                                  ProductosModelo nuevo = new ProductosModelo();
+                                  nuevo.id = snapshot.data[i].id;
+                                  nuevo.nombre = snapshot.data[i].nombre;
+                                  nuevo.cantidad = snapshot.data[i].cantidad;
+                                  nuevo.precio = snapshot.data[i].precio;
+                                  nuevo.casa = snapshot.data[i].casa;
+                                  nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.foto = snapshot.data[i].foto;
+                                  setState(() {
+                                     listaProductos.add(nuevo);
+                                  });
+                              }
+                          },
+                        ),
+                      );
+                      }
                     ),
                   ],
                 ),
@@ -236,7 +412,9 @@ class Tienda extends StatelessWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      children: [                       
+                      children: [  
+                        for(int n=0; n<listaProductos.length;n++)   
+                          for(int k=0; k<listaProductos[n].foto.length;k++)   
                         FlipCard(
                           direction: FlipDirection.HORIZONTAL,
                           speed: 1000,
@@ -249,7 +427,7 @@ class Tienda extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image:  AssetImage('images/Varitas/varita1.png'),
+                                  image: MemoryImage(base64Decode(listaProductos[n].foto[k].thumbUrl.split(',').last)),
                                   fit: BoxFit.fitWidth,  
                                 ),
                               ),
@@ -266,60 +444,10 @@ class Tienda extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
+                                  child: Text("${listaProductos[n].nombre}", style: TextStyle(color: Colors.white70),),
                                 ),
                                 Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Jersey.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
+                                  child: Text("${listaProductos[n].precio} €", style: TextStyle(color: Colors.white70),),
                                 ),
                                 Container(
                                   child: RaisedButton(                       
@@ -328,307 +456,7 @@ class Tienda extends StatelessWidget {
                                     child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Jersey2.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Funko.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Bufanda.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Libro.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Taza.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
-                                      ));
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ),
-                        FlipCard(
-                          direction: FlipDirection.HORIZONTAL,
-                          speed: 1000,
-                          front: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:  AssetImage('images/Tienda/Niki.png'),
-                                  fit: BoxFit.fitWidth,  
-                                ),
-                              ),
-                            ),
-                          ), 
-                          back: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  child: Text("VARITA HP", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: Text("30 €", style: TextStyle(color: Colors.white70),),
-                                ),
-                                Container(
-                                  child: RaisedButton(                       
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    color: Colors.transparent,
-                                    child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-                                    onPressed: () async{
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(),
+                                        builder: (context) => DetallesTienda(listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].foto[k].thumbUrl.split(',').last),
                                       ));
                                     }
                                   ),
@@ -647,7 +475,7 @@ class Tienda extends StatelessWidget {
         ),
       ],
     );
-  }
+}
 }
 
 class CardPainter extends CustomPainter {

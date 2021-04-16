@@ -1,11 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/models/EleccionCasaModelo.dart';
 import 'package:hogwarts_rules/models/OpinionModelo.dart';
-import 'package:hogwarts_rules/models/UsuarioModelo.dart';
 import 'package:http/http.dart' as http;
-import 'package:hogwarts_rules/models/PreguntasRespuestasModelo.dart';
 
 import '../../models/TestModelo.dart';
 

@@ -128,9 +128,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -191,9 +191,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -254,9 +254,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -317,9 +317,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -380,9 +380,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -443,9 +443,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -506,9 +506,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),
@@ -569,9 +569,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                   color: Colors.transparent,
                                   child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                   onPressed: () async{
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetallesTienda(),
-                                    ));
+                                     // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => DetallesTienda(),
+                                    // ));
                                   }
                                 ),
                               ),

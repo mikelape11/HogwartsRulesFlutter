@@ -4,18 +4,35 @@ import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaFavoritos.dart';
+import 'dart:convert';
 
 class DetallesTienda extends StatefulWidget {
-  const DetallesTienda({Key key}) : super(key: key);
+  final String nombre;
+  final int precio;
+  final int cantidad;
+  final String thumbUrl;
+
+  DetallesTienda(this.nombre,this.precio,this.cantidad,this.thumbUrl);
 
   @override
   _DetallesTiendaState createState() => _DetallesTiendaState();
 }
 
+
 class _DetallesTiendaState extends State<DetallesTienda> {
-  int cantidad = 0;
+  int precio2;
+  int precio3;
+
+  @override
+  void initState() {
+    precio2 = widget.precio;
+    precio3 = widget.precio;
+  }
+
+  int cantidad = 1;
   int precio = 0;
   bool fav = false;
+ 
 
   Icon _iconoFav(){ //CAMBIO EL ICONO DEPENDIENDO DEL TEMA
     if(fav == false) {
@@ -88,7 +105,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image:  AssetImage('images/Tienda/Jersey.png'),
+                    image: MemoryImage(base64Decode(widget.thumbUrl)),
                     fit: BoxFit.fitHeight,  
                   ),
                 ),
@@ -108,7 +125,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                 children: [
                   SizedBox(height: 30,),
                   Container(
-                    child: Text("JERSEY HARRY POTTER", style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 25))
+                    child: Text("${widget.nombre}", style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 25))
                   ),
                   SizedBox(height: 20,),
                   Container(
@@ -128,8 +145,9 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                 icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
                                 onPressed: () {
                                   setState(() {
-                                    if(cantidad > 0)
-                                      cantidad--;                                 
+                                    if(cantidad > 1)
+                                      cantidad--;  
+                                      precio3 = precio2*cantidad;                               
                                   });
                                 }
                               ),
@@ -142,7 +160,10 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                 icon: Icon(Icons.add_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
                                 onPressed: () {
                                   setState(() {
-                                    cantidad++;                              
+                                    if(cantidad < widget.cantidad){
+                                      cantidad++; 
+                                      precio3 = precio2*cantidad;
+                                    }                              
                                   });
                                 }
                               ),
@@ -152,7 +173,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                       ),
                       Spacer(),
                       Container(
-                        child: Text("${precio} €", style: TextStyle(color: Colors.white70,fontSize: 25))
+                        child: Text("${precio3} €", style: TextStyle(color: Colors.white70,fontSize: 25))
                       ),
                       SizedBox(width: 90,)
                     ],

@@ -13,11 +13,10 @@ class ProductosModelo{
   int precio;
   String casa;
   String tipo;
-  double peso;
 	List<imagenRespuestasModelo> foto;
 
 
-  ProductosModelo({this.id,this.nombre,this.cantidad,this.precio,this.casa,this.tipo,this.peso,this.foto});
+  ProductosModelo({this.id,this.nombre,this.cantidad,this.precio,this.casa,this.tipo,this.foto});
 
   factory ProductosModelo.fromJson(Map<String,dynamic> json){
       var list = json['foto'] as List;
@@ -30,7 +29,6 @@ class ProductosModelo{
     precio: json['precio'],
     casa: json['casa'],
     tipo: json['tipo'],
-    peso: json['peso'],
     foto: lista,
   
   );
@@ -44,8 +42,19 @@ Map<String,dynamic> toJson()=>{
     "precio": precio,
     "casa": casa,
     "tipo": tipo,
-    "peso": peso,
   };
+
+  String get idUsuario => id;
+
+  String get usuarioUsuario => nombre;
+
+  int get cantidadUsuario => cantidad;
+
+  int get precioUsuario => precio;
+
+  String get casaUsuario => casa;
+
+  String get tipoUsuario => tipo;
 
 
 }

@@ -5,6 +5,7 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/main.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:stream_chat/stream_chat.dart';
+import 'dart:math' as math;
 
 ConseguirCliente() async {
   final client = StreamChatClient(
@@ -53,99 +54,52 @@ class ChatGeneral extends StatelessWidget {
       appBar: AppBar(
         leading: Center(
           child: Container(
-              margin: EdgeInsets.only(left: 10),
-              child: Stack(
-                children: <Widget>[
-                  CircleAvatar(
-                      radius: 22.0,
-                      backgroundColor: globals.casaHogwarts == "Gryffindor"
-                          ? globals.grySecundario
-                          : globals.casaHogwarts == "Slytherin"
-                              ? globals.slySecundario
-                              : globals.casaHogwarts == "Ravenclaw"
-                                  ? globals.ravSecundario
-                                  : globals.casaHogwarts == "Hufflepuff"
-                                      ? globals.hufSecundario
-                                      : globals.grySecundario,
-                      child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: globals.casaHogwarts == "Gryffindor"
-                            ? globals.gryPrincipal
-                            : globals.casaHogwarts == "Slytherin"
-                                ? globals.slyPrincipal
-                                : globals.casaHogwarts == "Ravenclaw"
-                                    ? globals.ravPrincipal
-                                    : globals.casaHogwarts == "Hufflepuff"
-                                        ? globals.hufPrincipal
-                                        : globals.gryPrincipal,
-                        backgroundImage:
-                            AssetImage("images/LOGOS/LogoPeque.png"),
-                        // backgroundImage: globals.existeAvatar
-                        // ? AssetImage("images/perfil.png")
-                        // : FileImage(File(globals.avatar))
-                      )),
-                ],
-              )),
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 22.0,
+                  backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                  child: CircleAvatar(
+                    radius: 20.0,
+                    backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                    backgroundImage:
+                        AssetImage("images/LOGOS/LogoPeque.png"),
+                    // backgroundImage: globals.existeAvatar
+                    // ? AssetImage("images/perfil.png")
+                    // : FileImage(File(globals.avatar))
+                  )
+                ),
+              ],
+            )
+          ),
         ),
-        title: Text(
-          'Chat',
-          style: TextStyle(
-              color: globals.casaHogwarts == "Gryffindor"
-                  ? globals.grySecundario
-                  : globals.casaHogwarts == "Slytherin"
-                      ? globals.slySecundario
-                      : globals.casaHogwarts == "Ravenclaw"
-                          ? globals.ravSecundario
-                          : globals.casaHogwarts == "Hufflepuff"
-                              ? globals.hufSecundario
-                              : globals.grySecundario),
+        title: Text('Chat', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
         ),
-        backgroundColor: globals.casaHogwarts == "Gryffindor"
-            ? globals.gryPrincipal
-            : globals.casaHogwarts == "Slytherin"
-                ? globals.slyPrincipal
-                : globals.casaHogwarts == "Ravenclaw"
-                    ? globals.ravPrincipal
-                    : globals.casaHogwarts == "Hufflepuff"
-                        ? globals.hufPrincipal
-                        : globals.gryPrincipal,
+        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
         actions: [
           IconButton(
-              //ICONO PARA IR AL PERFIL DE USUARIO
-              icon: Icon(
-                Icons.settings_outlined,
-                color: globals.casaHogwarts == "Gryffindor"
-                    ? globals.grySecundario
-                    : globals.casaHogwarts == "Slytherin"
-                        ? globals.slySecundario
-                        : globals.casaHogwarts == "Ravenclaw"
-                            ? globals.ravSecundario
-                            : globals.casaHogwarts == "Hufflepuff"
-                                ? globals.hufSecundario
-                                : globals.grySecundario,
-                size: 25,
-              ),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Ajustes(),
-                ));
-              }),
+            //ICONO PARA IR AL PERFIL DE USUARIO
+            icon: Icon(
+              Icons.settings_outlined,
+              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Ajustes(),
+              ));
+            }
+          ),
         ],
         bottom: PreferredSize(
-            child: Container(
-              color: globals.casaHogwarts == "Gryffindor"
-                  ? globals.grySecundario
-                  : globals.casaHogwarts == "Slytherin"
-                      ? globals.slySecundario
-                      : globals.casaHogwarts == "Ravenclaw"
-                          ? globals.ravSecundario
-                          : globals.casaHogwarts == "Hufflepuff"
-                              ? globals.hufSecundario
-                              : globals.grySecundario,
-              height: 2.0,
-            ),
-            preferredSize: Size.fromHeight(4.0)),
+          child: Container(
+            color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+            height: 2.0,
+          ),
+          preferredSize: Size.fromHeight(4.0)
+        ),
       ),
       body: Stack(
         children: [
@@ -153,31 +107,24 @@ class ChatGeneral extends StatelessWidget {
             decoration: BoxDecoration(
               // color: Colors.black87,
               image: DecorationImage(
-                image: globals.casaHogwarts == "Gryffindor"
-                    ? AssetImage('${globals.fondoGry}')
-                    : globals.casaHogwarts == "Slytherin"
-                        ? AssetImage('${globals.fondoSly}')
-                        : globals.casaHogwarts == "Ravenclaw"
-                            ? AssetImage('${globals.fondoRav}')
-                            : globals.casaHogwarts == "Hufflepuff"
-                                ? AssetImage('${globals.fondoHuf}')
-                                : AssetImage('${globals.fondoGry}'),
+                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') : AssetImage('${globals.fondoGry}'),
                 fit: BoxFit.fitWidth,
               ),
             ),
-            // width: MediaQuery.of(context).size.width,
-            // height: MediaQuery.of(context).size.height,
-            width: 450,
-            height: 620,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            // width: 450,
+            // height: 620,
           ),
           FutureBuilder<dynamic>(
-              future: ConseguirCliente(), // async work
-              builder: (BuildContext context, snapshot) {
-                if (snapshot.hasData) {
-                  return HomeScreen(channel: snapshot.data as Channel);
-                } else
-                  return CircularProgressIndicator();
-              })
+            future: ConseguirCliente(), // async work
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasData) {
+                return HomeScreen(channel: snapshot.data as Channel);
+              } else
+                return CircularProgressIndicator();
+            }
+          )
         ],
       ),
     );
@@ -199,10 +146,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: StreamBuilder<ChannelState>(
         stream: messages,
-        builder: (
-          BuildContext context,
-          AsyncSnapshot<ChannelState> snapshot,
-        ) {
+        builder: (BuildContext context, AsyncSnapshot<ChannelState> snapshot,) {
           if (snapshot.hasData && snapshot.data != null) {
             return MessageView(
               messages: snapshot.data.messages.reversed.toList(),
@@ -288,13 +232,13 @@ class _MessageViewState extends State<MessageView> {
               final item = _messages[index];
               if (item.user.id == widget.channel.client.uid) {
                 //MIS MENSAJES ---------------------------------------------------------
-                return Align(
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child:
-                        Text(item.text, style: TextStyle(color: Colors.white)),
-                  ),
+                  child: Container(
+                    color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Text(item.text, style: TextStyle(color: Colors.white, fontSize: 17))),
                 );
               } else {
                 //LOS MENSAJES DE LOS DEMAS ---------------------------------------------------------
@@ -303,32 +247,61 @@ class _MessageViewState extends State<MessageView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
-                        Text(item.text, style: TextStyle(color: Colors.white)),
+                      Text(item.text, style: TextStyle(color: Colors.white)
+                    ),
                   ),
                 );
               }
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        SizedBox(height: 5,),
+        Container(
+          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+          padding: EdgeInsets.all(8.0),
           child: Row(
             children: [
               Expanded(
                 child: TextField(
+                  style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),
                   controller: _controller,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Enter your message',
+                    //fillColor: Colors.white,
+                    hintText: 'Mensaje',
+                    hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 18),
+                    border: InputBorder.none,
                   ),
                 ),
               ),
-              Material(
+              Container(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: Transform.rotate(
+                    angle: -45 * math.pi / 180,
+                    child: Icon(
+                      Icons.attach_file,
+                      color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                      size: 32,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              Material(                     
                 type: MaterialType.circle,
-                color: Colors.blue,
+                color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                 clipBehavior: Clip.hardEdge,
-                child: InkWell(
+                child: InkWell(              
+                  child: Container(                
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Icon(        
+                        Icons.send,
+                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                      ),
+                    ),
+                  ),
                   onTap: () async {
                     // We can send a new message by calling `sendMessage` on
                     // the current channel. After sending a message, the
@@ -342,15 +315,6 @@ class _MessageViewState extends State<MessageView> {
                       _updateList();
                     }
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
               )
             ],
