@@ -263,8 +263,8 @@ class _TestState extends State<Test> with SingleTickerProviderStateMixin {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    //image: MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)) == null ? AssetImage(widget.snapshot.data[i].respuestas[j].imagen[n].name) : MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)),
-                                    image: widget.snapshot.data[i].respuestas[j].imagen[n].name == "" ?  AssetImage('images/LOGOS/Logo1.png') : AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
+                                    image: MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)) == null ? AssetImage(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl) : MemoryImage(base64Decode(widget.snapshot.data[i].respuestas[j].imagen[n].thumbUrl.split(',').last)),
+                                    //image: widget.snapshot.data[i].respuestas[j].imagen[n].name == "" ?  AssetImage('images/LOGOS/Logo1.png') : AssetImage('${widget.snapshot.data[i].respuestas[j].imagen[n].name}'),
                                     fit: BoxFit.fill,
                                   ),
                                   //shape: BoxShape.circle, 

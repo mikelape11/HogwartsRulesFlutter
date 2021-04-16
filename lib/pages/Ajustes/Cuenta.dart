@@ -98,7 +98,8 @@ class _CuentaState extends State<Cuenta2> {
                 int contador = 0;
                 int contador2 = 0;
                 for(int k=0; k<snapshot.data.length; k++){
-                  if(avatar != globals.avatarDefecto || avatar != globals.avatarElegido){
+                  if(usuario == snapshot.data[k].usuario){
+                    if(avatar != snapshot.data[k].avatar){
                       globals.idUsuario = snapshot.data[k].id;
                       globals.usuario = usuarioController.text;
                       globals.email = emailController.text;
@@ -121,7 +122,32 @@ class _CuentaState extends State<Cuenta2> {
                         builder: (context) => Ajustes(),
                       ));
                       break;
+                    }else{
+                      globals.idUsuario = snapshot.data[k].id;
+                      globals.usuario = usuarioController.text;
+                      globals.email = emailController.text;
+                      globals.password = passwordController.text;
+                      UsuarioModelo usu = new UsuarioModelo();
+                      usu.id = globals.idUsuario;
+                      usu.usuario = usuarioController.text;
+                      usu.email = emailController.text;
+                      usu.casaHogwarts = globals.casaHogwarts;
+                      usu.varita = globals.varita;
+                      usu.patronus = globals.patronus;
+                      usu.password = passwordController.text;
+                      usu.rol = 0;
+                      usu.avatar = avatar;
+                      UsuarioModelo usuarios = await actualizarUsuario(usu);
+                      setState(() {
+                        usuario = usuarios as String;
+                      });
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Ajustes(),
+                      ));
+                      break;
+                    }
                   }
+                  
                 }
               
                 for(int i=0; i<snapshot.data.length; i++){ //recorre los usuarios

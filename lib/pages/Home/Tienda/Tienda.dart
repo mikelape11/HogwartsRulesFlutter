@@ -77,7 +77,7 @@ class Tienda extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image:  AssetImage('images/Varitas/varita1.png'),
+                        image: AssetImage('images/Varitas/varita1.png'),
                         fit: BoxFit.fitWidth,  
                       ),
                     ),

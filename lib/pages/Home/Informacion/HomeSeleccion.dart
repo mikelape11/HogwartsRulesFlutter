@@ -37,7 +37,7 @@ class HomeSeleccion extends StatelessWidget {
                           //color: Colors.white.withOpacity(0.05),
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image:  AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
+                              image: globals.casaHogwarts == "Gryffindor" ? AssetImage('images/TestVaritaPatronus/gryffindor.jpg') : globals.casaHogwarts == "Slytherin" ? AssetImage('images/TestVaritaPatronus/slytherin.jpg') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('images/TestVaritaPatronus/ravenclaw.jpg') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('images/TestVaritaPatronus/hufflepuff.jpg') : AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
                             )
                           ),
                           height: 300,
@@ -73,7 +73,7 @@ class HomeSeleccion extends StatelessWidget {
                       //color: Colors.white.withOpacity(0.05),
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image:  AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
+                          image: globals.casaHogwarts == "Gryffindor" ? AssetImage('images/TestVaritaPatronus/gryffindor.jpg') : globals.casaHogwarts == "Slytherin" ? AssetImage('images/TestVaritaPatronus/slytherin.jpg') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('images/TestVaritaPatronus/ravenclaw.jpg') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('images/TestVaritaPatronus/hufflepuff.jpg') : AssetImage('images/TestVaritaPatronus/ravenclaw.jpg'),  
                         )
                       ),
                       height: 300,

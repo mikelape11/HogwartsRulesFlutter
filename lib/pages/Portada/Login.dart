@@ -223,6 +223,7 @@ class _LoginState extends State<Login> {
                         globals.usuario = usuario;
                         globals.password = password;
                         globals.email = snapshot.data[i].email;
+                        globals.avatarElegido = snapshot.data[i].avatar;
                         if(snapshot.data[i].casaHogwarts == ""){
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Home2(),
