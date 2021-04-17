@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
-
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 
-class TiendaPagar extends StatefulWidget {
+import '../../Ajustes2/Ajustes2.dart';
+
+class Tienda2Pagar extends StatefulWidget {
+  const Tienda2Pagar({Key key}) : super(key: key);
+
   @override
-  _TiendaPagarState createState() => _TiendaPagarState();
+  _Tienda2PagarState createState() => _Tienda2PagarState();
 }
 
-class _TiendaPagarState extends State<TiendaPagar> {
+class _Tienda2PagarState extends State<Tienda2Pagar> {
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
@@ -24,24 +27,24 @@ class _TiendaPagarState extends State<TiendaPagar> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario//change your color here
+          color: Color(globals.color2)
         ),
-        title: Text('Realizar Compra', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        title: Text('Favoritos', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+            icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
+                builder: (context) => Ajustes2(),
               ));
             }
           ),
         ],
         bottom: PreferredSize(
         child: Container(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -51,7 +54,7 @@ class _TiendaPagarState extends State<TiendaPagar> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
+                image:  AssetImage('${globals.fondoNegro3}'),
                 fit: BoxFit.fitWidth,  
               ),
             ),
@@ -185,7 +188,7 @@ class _TiendaPagarState extends State<TiendaPagar> {
               ),
             )              
           ),
-        ],                         
+        ],        
       ),
     );
   }

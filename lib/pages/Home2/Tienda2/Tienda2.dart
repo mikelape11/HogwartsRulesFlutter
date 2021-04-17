@@ -40,7 +40,6 @@ class Tienda2 extends StatelessWidget {
                         color: Color(globals.color2).withAlpha(150),
                       ),
                       height: 180,
-                      
                     ),
                   ),
                   // child: CustomPaint(

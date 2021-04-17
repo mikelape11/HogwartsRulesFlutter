@@ -4,6 +4,7 @@ import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home2/Informacion2/Home2Portada.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Carrito.dart';
+import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Favoritos.dart';
 
 class Tienda2General extends StatelessWidget {
   const Tienda2General({Key key}) : super(key: key);
@@ -42,7 +43,7 @@ class Tienda2General extends StatelessWidget {
             icon: Icon(Icons.favorite_outline, color: Color(globals.color2) , size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
+                builder: (context) => Tienda2Favoritos(),
               ));
             }
           ),

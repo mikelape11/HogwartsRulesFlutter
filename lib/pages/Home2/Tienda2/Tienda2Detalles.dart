@@ -3,6 +3,8 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Carrito.dart';
+import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Favoritos.dart';
+import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Pagar.dart';
 
 class Tienda2Detalles extends StatefulWidget {
   const Tienda2Detalles({Key key}) : super(key: key);
@@ -39,7 +41,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
             icon: Icon(Icons.favorite_outline, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes2(),
+                builder: (context) => Tienda2Favoritos(),
               ));
             }
           ),
@@ -195,7 +197,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                             child: Text('AÑADIR AL CARRITO', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
                             onPressed: () async{
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Home(0),
+                                builder: (context) => Tienda2Pagar(),
                               ));
                             }
                           ),

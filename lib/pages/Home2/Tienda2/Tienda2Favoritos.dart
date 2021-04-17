@@ -1,40 +1,50 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 
+import '../../Ajustes2/Ajustes2.dart';
 
-class TiendaFavoritos extends StatefulWidget {
+class Tienda2Favoritos extends StatefulWidget {
+  const Tienda2Favoritos({Key key}) : super(key: key);
+
   @override
-  _TiendaFavoritosState createState() => _TiendaFavoritosState();
+  _Tienda2FavoritosState createState() => _Tienda2FavoritosState();
 }
 
-class _TiendaFavoritosState extends State<TiendaFavoritos> {
+class _Tienda2FavoritosState extends State<Tienda2Favoritos> {
+  bool fav = false;
 
+  Icon _iconoFav(){ //CAMBIO EL ICONO DEPENDIENDO DEL TEMA
+    if(fav == false) {
+      return Icon(Icons.favorite_outline);
+    } else {
+      return Icon(Icons.favorite);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario//change your color here
+          color: Color(globals.color2)
         ),
-        title: Text('Favoritos', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
-        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        title: Text('Favoritos', style: TextStyle(color: Color(globals.color2)),),
+        backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      
           IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(Icons.settings_outlined, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+            icon: Icon(Icons.settings_outlined, color: Color(globals.color2), size: 25,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
+                builder: (context) => Ajustes2(),
               ));
             }
           ),
         ],
         bottom: PreferredSize(
         child: Container(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+          color: Color(globals.color2),
           height: 2.0,
         ),
         preferredSize: Size.fromHeight(4.0)),
@@ -44,7 +54,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') :  AssetImage('${globals.fondoGry}'),
+                image:  AssetImage('${globals.fondoNegro3}'),
                 fit: BoxFit.fitWidth,  
               ),
             ),
@@ -73,8 +83,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -88,7 +98,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: _iconoFav(), 
+                                color: Color(globals.color2),                            
                                 onPressed: () {
                                   
                                 }
@@ -99,8 +110,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,8 +126,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                     // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -136,8 +147,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -151,7 +162,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -162,8 +173,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -178,8 +189,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -199,8 +210,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -214,7 +225,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -225,8 +236,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -241,8 +252,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -262,8 +273,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -277,7 +288,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -288,8 +299,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -304,8 +315,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -325,8 +336,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -340,7 +351,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -351,8 +362,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -367,8 +378,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -388,8 +399,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -403,7 +414,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -414,8 +425,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -430,8 +441,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -451,8 +462,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -466,7 +477,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -477,8 +488,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -493,8 +504,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -514,8 +525,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                                border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                                color: Color(globals.color1),
+                                border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                               ),                              
                               child: Container(
                                 decoration: BoxDecoration(
@@ -529,7 +540,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                                icon: Icon(Icons.remove_circle_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                                icon: Icon(Icons.favorite, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   
                                 }
@@ -540,8 +551,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         back: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
+                            color: Color(globals.color1),
+                            border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -556,8 +567,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                               Container(
                                 child: RaisedButton(                       
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  color: Colors.transparent,
-                                  child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
+                                  color: Color(globals.color4),
+                                  child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                   onPressed: () async{
                                      // Navigator.of(context).push(MaterialPageRoute(
                                     //   builder: (context) => DetallesTienda(),
@@ -575,7 +586,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
               ),
             ),
           )
-        ],                         
+        ],        
       ),
     );
   }
