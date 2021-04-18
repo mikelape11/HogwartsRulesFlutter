@@ -41,6 +41,7 @@ dependencies:
   flutter_rating_bar: ^3.0.0
   dart_random_choice: ^0.0.2
   flutter_credit_card: ^0.1.4
+  stream_chat_persistence: ^1.5.1
   
 dev_dependencies:
   flutter_test:

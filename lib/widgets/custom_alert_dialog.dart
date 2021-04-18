@@ -262,7 +262,7 @@ class CustomAlertDialog extends StatelessWidget {
     }
 
     if (actions != null) {
-      children.add(new ButtonTheme.bar(
+      children.add(new ButtonTheme(
         child: new ButtonBar(
           children: actions,
         ),

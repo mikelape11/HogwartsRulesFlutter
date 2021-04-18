@@ -5,34 +5,44 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/main.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:stream_chat/stream_chat.dart';
+import 'package:stream_chat_persistence/stream_chat_persistence.dart';
 import 'dart:math' as math;
 
 ConseguirCliente() async {
-  final client = StreamChatClient(
-    'b67pax5b2wdq',
+  final client = StreamChatClient('b67pax5b2wdq');
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  /// Set the chatPersistenceClient for offline support
+  client.chatPersistenceClient = StreamChatPersistenceClient(
     logLevel: Level.INFO,
+    connectionMode: ConnectionMode.background,
   );
 
   /// Set the current user. In a production scenario, this should be done using
   /// a backend to generate a user token using our server SDK.
   /// Please see the following for more information:
   /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
-  await client.connectUser(
-    User(
-      id: 'cool-shadow-7',
-      extraData: {
-        'image':
-            'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
-      },
-    ),
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiY29vbC1zaGFkb3ctNyJ9.gkOlCRb1qgy4joHPaxFwPOdXcGvSPvp6QY0S4mpRkVo',
-  );
+  ///
+
+  // await client.connectUser(
+  //   User(
+  //     id: 'Enetz',
+  //     extraData: {
+  //       'image':
+  //           'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
+  //     },
+  //   ),
+  //   client.devToken("Enetz"),
+  // );
+  //
+  await client.connectGuestUser(User(id: 'Enetz'));
 
   /// Creates a channel using the type `messaging` and `godevs`.
   /// Channels are containers for holding messages between different members. To
   /// learn more about channels and some of our predefined types, checkout our
   /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
-  final channel = client.channel('messaging', id: 'godevs');
+  final channel = client.channel('messaging', id: globals.casaHogwarts);
 
   /// `.watch()` is used to create and listen to the channel for updates. If the
   /// channel already exists, it will simply listen for new events.
@@ -54,52 +64,99 @@ class ChatGeneral extends StatelessWidget {
       appBar: AppBar(
         leading: Center(
           child: Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Stack(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 22.0,
-                  backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                  child: CircleAvatar(
-                    radius: 20.0,
-                    backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                    backgroundImage:
-                        AssetImage("images/LOGOS/LogoPeque.png"),
-                    // backgroundImage: globals.existeAvatar
-                    // ? AssetImage("images/perfil.png")
-                    // : FileImage(File(globals.avatar))
-                  )
-                ),
-              ],
-            )
-          ),
+              margin: EdgeInsets.only(left: 10),
+              child: Stack(
+                children: <Widget>[
+                  CircleAvatar(
+                      radius: 22.0,
+                      backgroundColor: globals.casaHogwarts == "Gryffindor"
+                          ? globals.grySecundario
+                          : globals.casaHogwarts == "Slytherin"
+                              ? globals.slySecundario
+                              : globals.casaHogwarts == "Ravenclaw"
+                                  ? globals.ravSecundario
+                                  : globals.casaHogwarts == "Hufflepuff"
+                                      ? globals.hufSecundario
+                                      : globals.grySecundario,
+                      child: CircleAvatar(
+                        radius: 20.0,
+                        backgroundColor: globals.casaHogwarts == "Gryffindor"
+                            ? globals.gryPrincipal
+                            : globals.casaHogwarts == "Slytherin"
+                                ? globals.slyPrincipal
+                                : globals.casaHogwarts == "Ravenclaw"
+                                    ? globals.ravPrincipal
+                                    : globals.casaHogwarts == "Hufflepuff"
+                                        ? globals.hufPrincipal
+                                        : globals.gryPrincipal,
+                        backgroundImage:
+                            AssetImage("images/LOGOS/LogoPeque.png"),
+                        // backgroundImage: globals.existeAvatar
+                        // ? AssetImage("images/perfil.png")
+                        // : FileImage(File(globals.avatar))
+                      )),
+                ],
+              )),
         ),
-        title: Text('Chat', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+        title: Text(
+          'Chat',
+          style: TextStyle(
+              color: globals.casaHogwarts == "Gryffindor"
+                  ? globals.grySecundario
+                  : globals.casaHogwarts == "Slytherin"
+                      ? globals.slySecundario
+                      : globals.casaHogwarts == "Ravenclaw"
+                          ? globals.ravSecundario
+                          : globals.casaHogwarts == "Hufflepuff"
+                              ? globals.hufSecundario
+                              : globals.grySecundario),
         ),
-        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        backgroundColor: globals.casaHogwarts == "Gryffindor"
+            ? globals.gryPrincipal
+            : globals.casaHogwarts == "Slytherin"
+                ? globals.slyPrincipal
+                : globals.casaHogwarts == "Ravenclaw"
+                    ? globals.ravPrincipal
+                    : globals.casaHogwarts == "Hufflepuff"
+                        ? globals.hufPrincipal
+                        : globals.gryPrincipal,
         centerTitle: true,
         actions: [
           IconButton(
-            //ICONO PARA IR AL PERFIL DE USUARIO
-            icon: Icon(
-              Icons.settings_outlined,
-              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-              size: 25,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Ajustes(),
-              ));
-            }
-          ),
+              //ICONO PARA IR AL PERFIL DE USUARIO
+              icon: Icon(
+                Icons.settings_outlined,
+                color: globals.casaHogwarts == "Gryffindor"
+                    ? globals.grySecundario
+                    : globals.casaHogwarts == "Slytherin"
+                        ? globals.slySecundario
+                        : globals.casaHogwarts == "Ravenclaw"
+                            ? globals.ravSecundario
+                            : globals.casaHogwarts == "Hufflepuff"
+                                ? globals.hufSecundario
+                                : globals.grySecundario,
+                size: 25,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Ajustes(),
+                ));
+              }),
         ],
         bottom: PreferredSize(
-          child: Container(
-            color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-            height: 2.0,
-          ),
-          preferredSize: Size.fromHeight(4.0)
-        ),
+            child: Container(
+              color: globals.casaHogwarts == "Gryffindor"
+                  ? globals.grySecundario
+                  : globals.casaHogwarts == "Slytherin"
+                      ? globals.slySecundario
+                      : globals.casaHogwarts == "Ravenclaw"
+                          ? globals.ravSecundario
+                          : globals.casaHogwarts == "Hufflepuff"
+                              ? globals.hufSecundario
+                              : globals.grySecundario,
+              height: 2.0,
+            ),
+            preferredSize: Size.fromHeight(4.0)),
       ),
       body: Stack(
         children: [
@@ -107,7 +164,15 @@ class ChatGeneral extends StatelessWidget {
             decoration: BoxDecoration(
               // color: Colors.black87,
               image: DecorationImage(
-                image: globals.casaHogwarts == "Gryffindor" ? AssetImage('${globals.fondoGry}') : globals.casaHogwarts == "Slytherin" ? AssetImage('${globals.fondoSly}') : globals.casaHogwarts == "Ravenclaw" ? AssetImage('${globals.fondoRav}') : globals.casaHogwarts == "Hufflepuff" ? AssetImage('${globals.fondoHuf}') : AssetImage('${globals.fondoGry}'),
+                image: globals.casaHogwarts == "Gryffindor"
+                    ? AssetImage('${globals.fondoGry}')
+                    : globals.casaHogwarts == "Slytherin"
+                        ? AssetImage('${globals.fondoSly}')
+                        : globals.casaHogwarts == "Ravenclaw"
+                            ? AssetImage('${globals.fondoRav}')
+                            : globals.casaHogwarts == "Hufflepuff"
+                                ? AssetImage('${globals.fondoHuf}')
+                                : AssetImage('${globals.fondoGry}'),
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -117,19 +182,35 @@ class ChatGeneral extends StatelessWidget {
             // height: 620,
           ),
           FutureBuilder<dynamic>(
-            future: ConseguirCliente(), // async work
-            builder: (BuildContext context, snapshot) {
-              if (snapshot.hasData) {
-                return HomeScreen(channel: snapshot.data as Channel);
-              } else
-                return Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                    valueColor: AlwaysStoppedAnimation<Color>(globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal),
-                  ),
-                );
-            }
-          )
+              future: ConseguirCliente(), // async work
+              builder: (BuildContext context, snapshot) {
+                if (snapshot.hasData) {
+                  return HomeScreen(channel: snapshot.data as Channel);
+                } else
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: globals.casaHogwarts == "Gryffindor"
+                          ? globals.grySecundario
+                          : globals.casaHogwarts == "Slytherin"
+                              ? globals.slySecundario
+                              : globals.casaHogwarts == "Ravenclaw"
+                                  ? globals.ravSecundario
+                                  : globals.casaHogwarts == "Hufflepuff"
+                                      ? globals.hufSecundario
+                                      : globals.grySecundario,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          globals.casaHogwarts == "Gryffindor"
+                              ? globals.gryPrincipal
+                              : globals.casaHogwarts == "Slytherin"
+                                  ? globals.slyPrincipal
+                                  : globals.casaHogwarts == "Ravenclaw"
+                                      ? globals.ravPrincipal
+                                      : globals.casaHogwarts == "Hufflepuff"
+                                          ? globals.hufPrincipal
+                                          : globals.gryPrincipal),
+                    ),
+                  );
+              })
         ],
       ),
     );
@@ -151,7 +232,10 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: StreamBuilder<ChannelState>(
         stream: messages,
-        builder: (BuildContext context, AsyncSnapshot<ChannelState> snapshot,) {
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<ChannelState> snapshot,
+        ) {
           if (snapshot.hasData && snapshot.data != null) {
             return MessageView(
               messages: snapshot.data.messages.reversed.toList(),
@@ -225,7 +309,7 @@ class _MessageViewState extends State<MessageView> {
   }
 
   DateTime now = new DateTime.now();
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -245,56 +329,126 @@ class _MessageViewState extends State<MessageView> {
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
                       child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                        ),
-                        margin: EdgeInsets.only(left: 40),
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Text(item.text, style: TextStyle(color: Colors.white, fontSize: 17))
-                      ),
-                        //Text('${now.hour}:${now.minute}')
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: globals.casaHogwarts == "Gryffindor"
+                                ? globals.gryPrincipal
+                                : globals.casaHogwarts == "Slytherin"
+                                    ? globals.slyPrincipal
+                                    : globals.casaHogwarts == "Ravenclaw"
+                                        ? globals.ravPrincipal
+                                        : globals.casaHogwarts == "Hufflepuff"
+                                            ? globals.hufPrincipal
+                                            : globals.gryPrincipal,
+                          ),
+                          margin: EdgeInsets.only(left: 40),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Text(item.text,
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17))),
+                      //Text('${now.hour}:${now.minute}')
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
                       child: Container(
-                        child: Text('${now.hour}:${now.minute}', style: TextStyle(color: Colors.white),)
-                      ),
-
+                          child: Text(
+                        '${now.hour}:${now.minute}',
+                        style: TextStyle(color: Colors.white),
+                      )),
                     ),
                   ],
                 );
               } else {
                 //LOS MENSAJES DE LOS DEMAS ---------------------------------------------------------
-                return Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child:
-                      Text(item.text, style: TextStyle(color: Colors.white)
+                return Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: globals.casaHogwarts == "Gryffindor"
+                                ? globals.gryPrincipal
+                                : globals.casaHogwarts == "Slytherin"
+                                    ? globals.slyPrincipal
+                                    : globals.casaHogwarts == "Ravenclaw"
+                                        ? globals.ravPrincipal
+                                        : globals.casaHogwarts == "Hufflepuff"
+                                            ? globals.hufPrincipal
+                                            : globals.gryPrincipal,
+                          ),
+                          margin: EdgeInsets.only(right: 40),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Text(item.text,
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17))),
+                      //Text('${now.hour}:${now.minute}')
                     ),
-                  ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          child: Text(
+                        '${now.hour}:${now.minute}',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  ],
                 );
               }
             },
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         Container(
-          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+          color: globals.casaHogwarts == "Gryffindor"
+              ? globals.gryPrincipal
+              : globals.casaHogwarts == "Slytherin"
+                  ? globals.slyPrincipal
+                  : globals.casaHogwarts == "Ravenclaw"
+                      ? globals.ravPrincipal
+                      : globals.casaHogwarts == "Hufflepuff"
+                          ? globals.hufPrincipal
+                          : globals.gryPrincipal,
           padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0),
           child: Row(
             children: [
               Expanded(
                 child: TextField(
-                  style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),
+                  style: TextStyle(
+                      color: globals.casaHogwarts == "Gryffindor"
+                          ? globals.grySecundario
+                          : globals.casaHogwarts == "Slytherin"
+                              ? globals.slySecundario
+                              : globals.casaHogwarts == "Ravenclaw"
+                                  ? globals.ravSecundario
+                                  : globals.casaHogwarts == "Hufflepuff"
+                                      ? globals.hufSecundario
+                                      : globals.grySecundario,
+                      fontSize: 18),
                   controller: _controller,
                   decoration: InputDecoration(
                     filled: true,
                     //fillColor: Colors.white,
                     hintText: 'Mensaje',
-                    hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold, fontSize: 18),
+                    hintStyle: TextStyle(
+                        color: globals.casaHogwarts == "Gryffindor"
+                            ? globals.grySecundario
+                            : globals.casaHogwarts == "Slytherin"
+                                ? globals.slySecundario
+                                : globals.casaHogwarts == "Ravenclaw"
+                                    ? globals.ravSecundario
+                                    : globals.casaHogwarts == "Hufflepuff"
+                                        ? globals.hufSecundario
+                                        : globals.grySecundario,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                     border: InputBorder.none,
                   ),
                 ),
@@ -307,26 +461,50 @@ class _MessageViewState extends State<MessageView> {
                     child: IconButton(
                       icon: Icon(
                         Icons.attach_file,
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                        color: globals.casaHogwarts == "Gryffindor"
+                            ? globals.grySecundario
+                            : globals.casaHogwarts == "Slytherin"
+                                ? globals.slySecundario
+                                : globals.casaHogwarts == "Ravenclaw"
+                                    ? globals.ravSecundario
+                                    : globals.casaHogwarts == "Hufflepuff"
+                                        ? globals.hufSecundario
+                                        : globals.grySecundario,
                         size: 32,
                       ),
-                      onPressed: (){},
+                      onPressed: () {},
                     ),
                   ),
                 ),
               ),
               SizedBox(width: 5),
-              Material(                     
+              Material(
                 type: MaterialType.circle,
-                color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                color: globals.casaHogwarts == "Gryffindor"
+                    ? globals.grySecundario
+                    : globals.casaHogwarts == "Slytherin"
+                        ? globals.slySecundario
+                        : globals.casaHogwarts == "Ravenclaw"
+                            ? globals.ravSecundario
+                            : globals.casaHogwarts == "Hufflepuff"
+                                ? globals.hufSecundario
+                                : globals.grySecundario,
                 clipBehavior: Clip.hardEdge,
-                child: InkWell(              
-                  child: Container(                
+                child: InkWell(
+                  child: Container(
                     padding: EdgeInsets.all(8.0),
                     child: Center(
-                      child: Icon(        
+                      child: Icon(
                         Icons.send,
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                        color: globals.casaHogwarts == "Gryffindor"
+                            ? globals.gryPrincipal
+                            : globals.casaHogwarts == "Slytherin"
+                                ? globals.slyPrincipal
+                                : globals.casaHogwarts == "Ravenclaw"
+                                    ? globals.ravPrincipal
+                                    : globals.casaHogwarts == "Hufflepuff"
+                                        ? globals.hufPrincipal
+                                        : globals.gryPrincipal,
                       ),
                     ),
                   ),
