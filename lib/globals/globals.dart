@@ -1,8 +1,11 @@
 import 'package:flutter_color/flutter_color.dart';
+import 'package:stream_chat/stream_chat.dart';
 
 //DATOS USUARIO
 String idUsuario = "";
 String usuario = "";
+bool conexion = false;
+StreamChatClient cliente;
 String password = "";
 String email = "";
 String casaHogwarts = "";

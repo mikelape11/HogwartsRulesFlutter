@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/pages/Home2/Home2.dart';
+import 'package:hogwarts_rules/pages/Portada/CambiarContrasena.dart';
 import 'package:hogwarts_rules/pages/Portada/LoginAPI.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
@@ -13,7 +14,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
-  String _usuario;
+    String _usuario;
     String _password;
     TextEditingController firstController = TextEditingController();
     TextEditingController secondController = TextEditingController();
@@ -263,14 +264,21 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: 25,
           ),
-          Text(
-            "HAS OLVIDADO LA CONTRASEÑA?",
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Color(globals.color2),
-              height: 1,
+          GestureDetector(
+            child: Text(
+              "HAS OLVIDADO LA CONTRASEÑA?",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Color(globals.color2),
+                height: 1,
+              ),
             ),
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CambiarContrasena(),
+              )); 
+            },
           ),
           SizedBox(
             height: 16,

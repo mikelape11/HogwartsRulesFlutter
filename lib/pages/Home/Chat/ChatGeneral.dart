@@ -8,47 +8,57 @@ import 'package:stream_chat/stream_chat.dart';
 import 'package:stream_chat_persistence/stream_chat_persistence.dart';
 import 'dart:math' as math;
 
+Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
-  final client = StreamChatClient('b67pax5b2wdq');
+  if (!globals.conexion) {
+    globals.cliente = StreamChatClient('mnfxmhsn3j5t');
+//b67pax5b2wdq
+    WidgetsFlutterBinding.ensureInitialized();
 
-  WidgetsFlutterBinding.ensureInitialized();
+    /// Set the chatPersistenceClient for offline support
+    globals.cliente.chatPersistenceClient = StreamChatPersistenceClient(
+      logLevel: Level.INFO,
+      connectionMode: ConnectionMode.background,
+    );
 
-  /// Set the chatPersistenceClient for offline support
-  client.chatPersistenceClient = StreamChatPersistenceClient(
-    logLevel: Level.INFO,
-    connectionMode: ConnectionMode.background,
-  );
+    /// Set the current user. In a production scenario, this should be done using
+    /// a backend to generate a user token using our server SDK.
+    /// Please see the following for more information:
+    /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
+    ///
+    
+    await globals.cliente.connectUser(
+      User(
+        id: globals.usuario,
+        extraData: {
+          'image':
+              'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
+        },
+      ),
+      globals.cliente.devToken(globals.usuario),
+    );
 
-  /// Set the current user. In a production scenario, this should be done using
-  /// a backend to generate a user token using our server SDK.
-  /// Please see the following for more information:
-  /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
-  ///
+    //await client.connectGuestUser(User(id: 'Enetz'));
 
-  // await client.connectUser(
-  //   User(
-  //     id: 'Enetz',
-  //     extraData: {
-  //       'image':
-  //           'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
-  //     },
-  //   ),
-  //   client.devToken("Enetz"),
-  // );
-  //
-  await client.connectGuestUser(User(id: 'Enetz'));
+    //await client.connectUserWithProvider(User(id: 'Enetz'));
+    //
+    //await client.connectUser(User(id: 'Enetz'), "z7dychbrkgg9dhvpf28cy66kabr5m5nr5m26t8ptt3ggv6r2nsejxkr6ytqjf2xw");
 
-  /// Creates a channel using the type `messaging` and `godevs`.
-  /// Channels are containers for holding messages between different members. To
-  /// learn more about channels and some of our predefined types, checkout our
-  /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
-  final channel = client.channel('messaging', id: globals.casaHogwarts);
+    /// Creates a channel using the type `messaging` and `godevs`.
+    /// Channels are containers for holding messages between different members. To
+    /// learn more about channels and some of our predefined types, checkout our
+    /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
+    channel = globals.cliente.channel('messaging', id: globals.casaHogwarts);
 
-  /// `.watch()` is used to create and listen to the channel for updates. If the
-  /// channel already exists, it will simply listen for new events.
-  await channel.watch();
+    /// `.watch()` is used to create and listen to the channel for updates. If the
+    /// channel already exists, it will simply listen for new events.
+    await channel.watch();
 
-  return channel;
+    globals.conexion = true;
+    return channel;
+  } else {
+    return channel;
+  }
 }
 
 /// Example using Stream's Low Level Dart client.
@@ -325,6 +335,9 @@ class _MessageViewState extends State<MessageView> {
                 //MIS MENSAJES ---------------------------------------------------------
                 return Column(
                   children: [
+                    // Container(
+                    //   child: Text(item.user.id),
+                    // ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
@@ -364,6 +377,9 @@ class _MessageViewState extends State<MessageView> {
                 //LOS MENSAJES DE LOS DEMAS ---------------------------------------------------------
                 return Column(
                   children: [
+                    Container(
+                      child: Text(item.user.id),
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerLeft,
