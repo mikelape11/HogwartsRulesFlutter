@@ -5,8 +5,11 @@ import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:http/http.dart' as http;
 import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
 
+import '../../../models/CarritoModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
+import '../../../models/FavoritosModelo.dart';
+import '../../../models/ProductosModelo.dart';
 
 class TiendaAPI extends StatefulWidget {
   const TiendaAPI({Key key}) : super(key: key);
@@ -78,15 +81,13 @@ Future<List<ProductosModelo>> getProductos() async {
       return productos;
     }
 
-
-
     //DETALLES
-    Future<FavoritosModelo> registrarFavorito(String idUsuario, List<ProductosModelo> productos) async{
+    Future<FavoritosModelo> registrarFavorito(String idUsuario, String idProducto) async{
     var Url = "http://10.0.2.2:8080/addFavorito";
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "idUsuario" : idUsuario,
-      "productos" : productos,
+      "idProducto" : idProducto,
     }));
   }
 
@@ -95,6 +96,53 @@ Future<List<ProductosModelo>> getProductos() async {
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(fav));
   }
+
+    Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
+    var Url = "http://10.0.2.2:8080/addCarrito";
+    var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body:jsonEncode(<String , dynamic>{
+      "idUsuario" : idUsuario,
+      "productos" : productos,
+    }));
+  }
+
+  //FAVORITOS
+  Future<List<FavoritosModelo>> getFavoritos(String idUsuario) async {    
+      var data = await http.get('http://10.0.2.2:8080/todosFavoritos/$idUsuario');
+      var jsonData = json.decode(data.body);
+
+      List<FavoritosModelo> favoritos = []; 
+      for (var e in jsonData) {
+        FavoritosModelo favorito = new FavoritosModelo();
+        favorito.id = e["_id"];
+        favorito.idUsuario = e["idUsuario"];
+        favorito.idProducto =  e["idProducto"];
+
+        favoritos.add(favorito);
+      }
+      return favoritos;
+    }
+
+    Future<List<ProductosModelo>> getProductosFavoritos(String idProducto) async {    
+      var data = await http.get('http://10.0.2.2:8080/productosFavoritos/$idProducto');
+      var jsonData = json.decode(data.body);
+
+      List<ProductosModelo> productos = [];      
+      for (var e in jsonData) {
+        ProductosModelo producto = new ProductosModelo();
+        producto.id = e["_id"];
+        producto.nombre = e["nombre"];
+        producto.cantidad = e["cantidad"];
+        producto.precio = e["precio"];
+        producto.casa = e["casa"];
+        producto.tipo = e["tipo"];
+        var list = e['foto'] as List;
+        producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
+
+        productos.add(producto);
+      }
+      return productos;
+    }
 
 
 class _TiendaAPIState extends State<TiendaAPI> {

@@ -8,16 +8,15 @@ import 'package:stream_chat/stream_chat.dart';
 import 'package:stream_chat_persistence/stream_chat_persistence.dart';
 import 'dart:math' as math;
 
-var conexionHecha = false;
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
-  if (!conexionHecha) {
-    final client = StreamChatClient('mnfxmhsn3j5t');
+  if (!globals.conexion) {
+    globals.cliente = StreamChatClient('mnfxmhsn3j5t');
 //b67pax5b2wdq
     WidgetsFlutterBinding.ensureInitialized();
 
     /// Set the chatPersistenceClient for offline support
-    client.chatPersistenceClient = StreamChatPersistenceClient(
+    globals.cliente.chatPersistenceClient = StreamChatPersistenceClient(
       logLevel: Level.INFO,
       connectionMode: ConnectionMode.background,
     );
@@ -27,8 +26,8 @@ ConseguirCliente() async {
     /// Please see the following for more information:
     /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
     ///
-
-    await client.connectUser(
+    
+    await globals.cliente.connectUser(
       User(
         id: globals.usuario,
         extraData: {
@@ -36,7 +35,7 @@ ConseguirCliente() async {
               'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
         },
       ),
-      client.devToken(globals.usuario),
+      globals.cliente.devToken(globals.usuario),
     );
 
     //await client.connectGuestUser(User(id: 'Enetz'));
@@ -49,13 +48,13 @@ ConseguirCliente() async {
     /// Channels are containers for holding messages between different members. To
     /// learn more about channels and some of our predefined types, checkout our
     /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
-    channel = client.channel('messaging', id: globals.casaHogwarts);
+    channel = globals.cliente.channel('messaging', id: globals.casaHogwarts);
 
     /// `.watch()` is used to create and listen to the channel for updates. If the
     /// channel already exists, it will simply listen for new events.
     await channel.watch();
 
-    conexionHecha = true;
+    globals.conexion = true;
     return channel;
   } else {
     return channel;
@@ -336,9 +335,9 @@ class _MessageViewState extends State<MessageView> {
                 //MIS MENSAJES ---------------------------------------------------------
                 return Column(
                   children: [
-                    Container(
-                      child: Text(item.user.id),
-                    ),
+                    // Container(
+                    //   child: Text(item.user.id),
+                    // ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
@@ -378,9 +377,10 @@ class _MessageViewState extends State<MessageView> {
                 //LOS MENSAJES DE LOS DEMAS ---------------------------------------------------------
                 return Column(
                   children: [
-                    Container(
-                      child: Text(item.user.id),
-                    ),
+                    // Container(
+                    //   alignment: Alignment.centerLeft,
+                    //   child: Text(item.user.id, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                    // ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerLeft,
@@ -400,9 +400,27 @@ class _MessageViewState extends State<MessageView> {
                           margin: EdgeInsets.only(right: 40),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          child: Text(item.text,
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 17))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(item.user.id, style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
+                                  ? globals.grySecundario
+                                  : globals.casaHogwarts == "Slytherin"
+                                      ? globals.slySecundario
+                                      : globals.casaHogwarts == "Ravenclaw"
+                                          ? globals.ravSecundario
+                                          : globals.casaHogwarts == "Hufflepuff"
+                                              ? globals.hufSecundario
+                                              : globals.grySecundario,  fontWeight: FontWeight.bold, fontSize: 17), textAlign: TextAlign.left,),
+                              ),
+                              SizedBox(height: 5,),
+                              Container(
+                                child: Text(item.text, style: TextStyle(color: Colors.white, fontSize: 17,), textAlign: TextAlign.start,),
+                              ),
+                            ],
+                          )),
                       //Text('${now.hour}:${now.minute}')
                     ),
                     Container(

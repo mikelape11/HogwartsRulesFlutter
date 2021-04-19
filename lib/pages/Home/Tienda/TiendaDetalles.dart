@@ -6,6 +6,8 @@ import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaFavoritos.dart';
 import 'dart:convert';
 
+import '../../../models/CarritoModelo.dart';
+import '../../../models/CarritoModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/ImagenRespuestasModelo.dart';
@@ -35,6 +37,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
   int precio2;
   int precio3;
   FavoritosModelo favorito;
+  CarritoModelo carrito1;
    int cont = 0;
   @override
   void initState() {
@@ -211,24 +214,14 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                               onPressed: () async{
                                 ProductosModelo producto = new ProductosModelo();
                                 FavoritosModelo favs = new FavoritosModelo();
-                               
                                 cont++; 
                                 setState(() {
                                   if(fav == false)
-                                    fav = true;    
-                                                                 
+                                    fav = true;                                    
                                 });
                                  if(fav == true && cont == 1){
-                                    List<ProductosModelo> productos = [];
-                                    producto.id = widget.id;
-                                    producto.nombre = widget.nombre;
-                                    producto.cantidad = widget.cantidad;
-                                    producto.precio = widget.precio;
-                                    producto.casa = widget.casa;
-                                    producto.tipo = widget.tipo;
-                                    producto.foto = widget.foto;
-                                    productos.add(producto);                         
-                                    favs = await registrarFavorito(globals.idUsuario, productos);
+                                    List<ProductosModelo> productos = []; 
+                                    favs = await registrarFavorito(globals.usuario, widget.id);
                                     setState(() {
                                       favorito = favs;
                                     });
@@ -248,6 +241,22 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             color: Colors.transparent,
                             child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                             onPressed: () async{
+                              ProductosModelo producto = new ProductosModelo();
+                              CarritoModelo carrito = new CarritoModelo();
+
+                              List<ProductosModelo> productos = [];
+                              producto.id = widget.id;
+                              producto.nombre = widget.nombre;
+                              producto.cantidad = widget.cantidad;
+                              producto.precio = widget.precio;
+                              producto.casa = widget.casa;
+                              producto.tipo = widget.tipo;
+                              producto.foto = widget.foto;
+                              productos.add(producto);                         
+                              carrito = await registrarCarrito(globals.usuario, productos);
+                              setState(() {
+                                carrito1 = carrito;
+                              });                    
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Home(0),
                               ));

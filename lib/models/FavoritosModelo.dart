@@ -9,19 +9,18 @@ String FavoritosModeloToJson(FavoritosModelo data) => json.encode(data.toJson())
 class FavoritosModelo{
   String id;
 	String idUsuario;
-	List<ProductosModelo> productos;
+	String idProducto;
 
 
-  FavoritosModelo({this.id,this.idUsuario,this.productos});
+  FavoritosModelo({this.id,this.idUsuario,this.idProducto});
 
    factory FavoritosModelo.fromJson(Map<String,dynamic> json){
-      var list = json['productos'] as List;
-      List<ProductosModelo> lista = list.map((i) => ProductosModelo.fromJson(i)).toList();
+     
 
    return FavoritosModelo(
     id: json["_id"],
     idUsuario: json["idUsuario"],
-    productos: lista,
+    idProducto: json["idProducto"],
   
   
   );
@@ -31,7 +30,7 @@ class FavoritosModelo{
   Map<String,dynamic> toJson()=>{
     "_id": id,
     "idUsuario": idUsuario,
-    "productos":  productos.toList(), 
+    "idProducto": idProducto, 
   };
 
 
