@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+
+import 'Rules.dart';
 
 class RulesGeneral extends StatelessWidget {
   const RulesGeneral({Key key}) : super(key: key);
@@ -61,19 +64,32 @@ class RulesGeneral extends StatelessWidget {
                 fit: BoxFit.fitWidth,  
               ),
             ),
-            // width: MediaQuery.of(context).size.width,
-            // height: MediaQuery.of(context).size.height,
-            width: 450,
-            height: 620,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            // width: 450,
+            // height: 620,
           ),
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
+                Rules(),
               ],
             ),   
           ),
         ],   
+      ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 30,
+        child: Icon(CupertinoIcons.bolt_fill, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,),
+        backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          side: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 3.0)
+        ),
+        onPressed: (){
+          
+        },
       ),
     );
   }

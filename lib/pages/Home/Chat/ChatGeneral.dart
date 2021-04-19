@@ -339,9 +339,6 @@ class _MessageViewState extends State<MessageView> {
                     //   child: Text(item.user.id),
                     // ),
                     Container(
-                      child: Text(item.user.id),
-                    ),
-                    Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
                       child: Container(

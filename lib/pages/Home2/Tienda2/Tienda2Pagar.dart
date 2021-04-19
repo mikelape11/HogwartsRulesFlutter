@@ -171,7 +171,7 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
                                 ),
                               ),
                             ),
-                            color: Color(globals.color1),
+                            color: Color(globals.color4),
                             onPressed: () {
                               if (formKey.currentState.validate()) {
 
