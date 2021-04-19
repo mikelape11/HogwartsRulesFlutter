@@ -64,9 +64,10 @@ class Rules extends StatelessWidget {
                       ), 
                       SizedBox(height: 20,),            
                       Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                         width: MediaQuery.of(context).size.width/1.5,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               child: Row(
