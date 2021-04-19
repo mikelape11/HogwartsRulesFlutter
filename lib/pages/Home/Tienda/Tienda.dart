@@ -7,6 +7,8 @@ import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
 import 'package:dart_random_choice/dart_random_choice.dart';
 import 'dart:convert';
 import 'package:hogwarts_rules/models/ProductosModelo.dart';
+import 'package:http/http.dart' as http;
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
 
 class Tienda extends StatefulWidget {
   const Tienda({Key key}) : super(key: key);
@@ -23,7 +25,38 @@ var eleccionFoto;
 
 List<ProductosModelo>listaProductos = [];
 
+
 class _TiendaState extends State<Tienda> {
+  
+  @override
+  void initState() { 
+    super.initState();
+    devolverDatos();
+  }
+
+  Future<List<ProductosModelo>> devolverDatos() async{
+    var data = await http.get('http://10.0.2.2:8080/todosProductos');
+      var jsonData = json.decode(data.body);
+
+      for (var e in jsonData) {
+        ProductosModelo producto = new ProductosModelo();
+        producto.id = e["_id"];
+        producto.nombre = e["nombre"];
+        producto.cantidad = e["cantidad"];
+        producto.precio = e["precio"];
+        producto.casa = e["casa"];
+        producto.tipo = e["tipo"];
+        var list = e['foto'] as List;
+        producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
+
+        setState(() {
+          listaProductos.add(producto);
+
+        });
+      }
+      //return listaProductos;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

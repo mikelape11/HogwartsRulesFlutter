@@ -3,6 +3,7 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Home/Home.dart';
 
 import '../../Ajustes2/Ajustes2.dart';
+import 'Tienda2Pagar.dart';
 
 class Tienda2Carrito extends StatelessWidget {
   const Tienda2Carrito({Key key}) : super(key: key);
@@ -182,7 +183,7 @@ class Tienda2Carrito extends StatelessWidget {
                     child: Text('TERMINAR COMPRA', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
                     onPressed: () async{
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Home(0),
+                        builder: (context) => Tienda2Pagar(),
                       ));
                     }
                   ),

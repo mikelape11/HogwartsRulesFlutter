@@ -66,7 +66,7 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
               child: Column(
                 children: <Widget>[
                   CreditCardWidget(
-                    cardBgColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                    cardBgColor: Color(globals.color1),
                     cardNumber: cardNumber,
                     expiryDate: expiryDate,
                     cardHolderName: cardHolderName,
@@ -83,7 +83,7 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
                             numberValidationMessage: "Por favor introduzca un numero valido",
                             cvvValidationMessage: "Por favor introduzca un CVV valido",
                             dateValidationMessage: "Por favor introduzca una fecha valida",
-                            textColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,                      
+                            textColor: Color(globals.color2),                      
                             formKey: formKey,
                             onCreditCardModelChange: onCreditCardModelChange,
                             obscureCvv: true,
@@ -91,68 +91,68 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
                             cardNumberDecoration: InputDecoration(
                               border: OutlineInputBorder(),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                               ),
                               labelText: 'Numero de Tarjeta',
-                              labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold),
+                              labelStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                               hintText: 'XXXX XXXX XXXX XXXX',
-                              hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                              hintStyle: TextStyle(color: Color(globals.color2)),
                             ),
                             expiryDateDecoration: InputDecoration(
                               border: OutlineInputBorder(),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                               ),
                               labelText: 'Valida Hasta',
-                              labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold),
+                              labelStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                               hintText: 'XX/XX',
-                              hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                              hintStyle: TextStyle(color: Color(globals.color2)),
                             ),
                             cvvCodeDecoration: InputDecoration(
                               border: OutlineInputBorder(),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                               ),
                               labelText: 'CVV',
-                              labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold),
+                              labelStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                               hintText: 'XXX',
-                              hintStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                              hintStyle: TextStyle(color: Color(globals.color2)),
                             ),
                             cardHolderDecoration: InputDecoration(
                               border: OutlineInputBorder(),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                                borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                               ),
                               labelText: 'Nombre',
-                              labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold),
+                              labelStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                             ),
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 16),
                             child: TextFormField(
-                              style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
+                              style: TextStyle(color: Color(globals.color2)),
                               decoration: InputDecoration(                         
                                 border: OutlineInputBorder(),
                                 enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 0.5),
+                                  borderSide: BorderSide(color: Color(globals.color2), width: 0.5),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2.0),
+                                  borderSide: BorderSide(color: Color(globals.color2), width: 2.0),
                                 ),                           
                                 labelText: 'Dirección',
-                                labelStyle: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontWeight: FontWeight.bold),
+                                labelStyle: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                               ),
                             ),                       
                           ),
@@ -171,7 +171,7 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
                                 ),
                               ),
                             ),
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                            color: Color(globals.color1),
                             onPressed: () {
                               if (formKey.currentState.validate()) {
 
