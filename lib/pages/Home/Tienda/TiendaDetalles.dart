@@ -6,13 +6,25 @@ import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaFavoritos.dart';
 import 'dart:convert';
 
+import '../../../models/FavoritosModelo.dart';
+import '../../../models/FavoritosModelo.dart';
+import '../../../models/ImagenRespuestasModelo.dart';
+import '../../../models/ProductosModelo.dart';
+import '../../../models/ProductosModelo.dart';
+import 'Tienda.dart';
+import 'TiendaAPI.dart';
+
 class DetallesTienda extends StatefulWidget {
+  final String id;
   final String nombre;
   final int precio;
   final int cantidad;
+  final String casa;
+  final String tipo;
+  final List<imagenRespuestasModelo> foto;
   final String thumbUrl;
 
-  DetallesTienda(this.nombre,this.precio,this.cantidad,this.thumbUrl);
+  DetallesTienda(this.id,this.nombre,this.precio,this.cantidad,this.casa,this.tipo,this.foto,this.thumbUrl);
 
   @override
   _DetallesTiendaState createState() => _DetallesTiendaState();
@@ -22,7 +34,8 @@ class DetallesTienda extends StatefulWidget {
 class _DetallesTiendaState extends State<DetallesTienda> {
   int precio2;
   int precio3;
-
+  FavoritosModelo favorito;
+   int cont = 0;
   @override
   void initState() {
     precio2 = widget.precio;
@@ -196,12 +209,31 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                               disabledColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                               iconSize: 30,),
                               onPressed: () async{
+                                ProductosModelo producto = new ProductosModelo();
+                                FavoritosModelo favs = new FavoritosModelo();
+                               
+                                cont++; 
                                 setState(() {
                                   if(fav == false)
-                                    fav = true;
-                                  else
-                                    fav = false;
+                                    fav = true;    
+                                                                 
                                 });
+                                 if(fav == true && cont == 1){
+                                    List<ProductosModelo> productos = [];
+                                    producto.id = widget.id;
+                                    producto.nombre = widget.nombre;
+                                    producto.cantidad = widget.cantidad;
+                                    producto.precio = widget.precio;
+                                    producto.casa = widget.casa;
+                                    producto.tipo = widget.tipo;
+                                    producto.foto = widget.foto;
+                                    productos.add(producto);                         
+                                    favs = await registrarFavorito(globals.idUsuario, productos);
+                                    setState(() {
+                                      favorito = favs;
+                                    });
+                                 }
+                                 
                               }
                           ),
                         ),

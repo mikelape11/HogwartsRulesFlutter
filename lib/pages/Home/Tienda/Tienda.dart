@@ -489,7 +489,7 @@ class _TiendaState extends State<Tienda> {
                                     child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].foto[k].thumbUrl.split(',').last),
+                                        builder: (context) => DetallesTienda(listaProductos[n].id, listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].casa, listaProductos[n].tipo, listaProductos[n].foto, listaProductos[n].foto[k].thumbUrl.split(',').last),
                                       ));
                                     }
                                   ),

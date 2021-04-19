@@ -31,6 +31,7 @@ class FavoritosModelo{
   Map<String,dynamic> toJson()=>{
     "_id": id,
     "idUsuario": idUsuario,
+    "productos":  productos.toList(), 
   };
 
 
