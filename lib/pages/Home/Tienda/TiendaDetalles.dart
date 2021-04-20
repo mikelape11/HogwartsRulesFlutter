@@ -11,6 +11,7 @@ import '../../../models/CarritoModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/ImagenRespuestasModelo.dart';
+import '../../../models/ImagenRespuestasModelo.dart';
 import '../../../models/ProductosModelo.dart';
 import '../../../models/ProductosModelo.dart';
 import 'Tienda.dart';
@@ -195,76 +196,109 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                     ],
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(                      
-                          width: 80,
-                          child: RaisedButton(  
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            ),                         
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Colors.transparent,
-                            child: IconButton(
-                              icon: _iconoFav(), 
-                              disabledColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                              iconSize: 30,),
+                  FutureBuilder(
+                    future: getFavoritos(globals.usuario),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if(!snapshot.hasData){    
+                      return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                    }
+                    for(int i=0; i<snapshot.data.length;i++){
+                      for(int j=0; j<snapshot.data[i].productos.length; j++){
+                        if(snapshot.data[i].productos[j].id == widget.id){
+                          fav = true;         
+                        }
+                      }
+                    }
+                    return Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(                      
+                            width: 80,
+                            child: RaisedButton(  
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),                         
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              color: Colors.transparent,
+                              child: IconButton(
+                                icon: _iconoFav(), 
+                                disabledColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                                iconSize: 30,),
+                                onPressed: () async{
+                                  if(fav == true){
+                                      cont = 1;
+                                  }
+                                  ProductosModelo producto = new ProductosModelo();
+                                  FavoritosModelo favs = new FavoritosModelo();
+                                  cont++; 
+                                  setState(() {
+                                    if(fav == false)
+                                      fav = true;                                    
+                                  });
+                                   for(int i=0; i<snapshot.data.length;i++){
+                                      if(snapshot.data[i].usuario == usuario){
+                                        
+                                      }else{
+                                        if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = widget.cantidad;
+                                          prod.precio = widget.precio;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          productos.add(prod);
+                                          favs = await registrarFavorito(globals.usuario, productos);
+                                          setState(() {
+                                            favorito = favs;
+                                          });
+                                        }
+                                      }
+                                    }
+                                   
+                                   
+                                }
+                            ),
+                          ),
+                          SizedBox(width: 10,),
+                          Container(                         
+                            child: RaisedButton(   
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),  
+                              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              color: Colors.transparent,
+                              child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                               onPressed: () async{
                                 ProductosModelo producto = new ProductosModelo();
-                                FavoritosModelo favs = new FavoritosModelo();
-                                cont++; 
+                                CarritoModelo carrito = new CarritoModelo();
+                                List<ProductosModelo> productos = [];
+                                producto.id = widget.id;
+                                producto.nombre = widget.nombre;
+                                producto.cantidad = widget.cantidad;
+                                producto.precio = widget.precio;
+                                producto.casa = widget.casa;
+                                producto.tipo = widget.tipo;
+                                producto.foto = widget.foto;
+                                productos.add(producto);                         
+                                carrito = await registrarCarrito(globals.usuario, productos);
                                 setState(() {
-                                  if(fav == false)
-                                    fav = true;                                    
-                                });
-                                 if(fav == true && cont == 1){
-                                    List<ProductosModelo> productos = []; 
-                                    favs = await registrarFavorito(globals.usuario, widget.id);
-                                    setState(() {
-                                      favorito = favs;
-                                    });
-                                 }
-                                 
+                                  carrito1 = carrito;
+                                });                    
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Home(0),
+                                ));
                               }
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Container(                         
-                          child: RaisedButton(   
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            ),  
-                            padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Colors.transparent,
-                            child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
-                            onPressed: () async{
-                              ProductosModelo producto = new ProductosModelo();
-                              CarritoModelo carrito = new CarritoModelo();
-
-                              List<ProductosModelo> productos = [];
-                              producto.id = widget.id;
-                              producto.nombre = widget.nombre;
-                              producto.cantidad = widget.cantidad;
-                              producto.precio = widget.precio;
-                              producto.casa = widget.casa;
-                              producto.tipo = widget.tipo;
-                              producto.foto = widget.foto;
-                              productos.add(producto);                         
-                              carrito = await registrarCarrito(globals.usuario, productos);
-                              setState(() {
-                                carrito1 = carrito;
-                              });                    
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Home(0),
-                              ));
-                            }
-                          ),
-                        ),                        
-                      ],
-                    ),
+                            ),
+                          ),                        
+                        ],
+                      ),
+                    );
+                    }
                   ),
                   SizedBox(height: 80,)          
                 ],

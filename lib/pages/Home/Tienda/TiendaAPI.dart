@@ -10,6 +10,8 @@ import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/ProductosModelo.dart';
+import '../../../models/ProductosModelo.dart';
+import '../../../models/ProductosModelo.dart';
 
 class TiendaAPI extends StatefulWidget {
   const TiendaAPI({Key key}) : super(key: key);
@@ -82,19 +84,22 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
     //DETALLES
-    Future<FavoritosModelo> registrarFavorito(String idUsuario, String idProducto) async{
+    Future<FavoritosModelo> registrarFavorito(String idUsuario, List<ProductosModelo> productos) async{
     var Url = "http://10.0.2.2:8080/addFavorito";
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "idUsuario" : idUsuario,
-      "idProducto" : idProducto,
+      "productos" : productos,
     }));
-  }
+    }
 
-  Future<FavoritosModelo> deleteFavoritos(FavoritosModelo fav) async{
-    var Url = "http://10.0.2.2:8080/eliminarProductoFav";
-    var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
-    body: jsonEncode(fav));
+  Future<FavoritosModelo> deleteFavoritos(String usuario, String id) async{
+    final http.Response response = await http.delete(
+    Uri.parse('http://10.0.2.2:8080/eliminarProductoFav/{usuario}/{id}'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
   }
 
     Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
@@ -116,33 +121,33 @@ Future<List<ProductosModelo>> getProductos() async {
         FavoritosModelo favorito = new FavoritosModelo();
         favorito.id = e["_id"];
         favorito.idUsuario = e["idUsuario"];
-        favorito.idProducto =  e["idProducto"];
-
+        var list = e['productos'] as List;
+        favorito.productos =  list.map((i) => ProductosModelo.fromJson(i)).toList();
         favoritos.add(favorito);
       }
       return favoritos;
     }
 
-    Future<List<ProductosModelo>> getProductosFavoritos(String idProducto) async {    
-      var data = await http.get('http://10.0.2.2:8080/productosFavoritos/$idProducto');
-      var jsonData = json.decode(data.body);
+    // Future<List<ProductosModelo>> getProductosFavoritos(String idProducto) async {    
+    //   var data = await http.get('http://10.0.2.2:8080/productosFavoritos/$idProducto');
+    //   var jsonData = json.decode(data.body);
 
-      List<ProductosModelo> productos = [];      
-      for (var e in jsonData) {
-        ProductosModelo producto = new ProductosModelo();
-        producto.id = e["_id"];
-        producto.nombre = e["nombre"];
-        producto.cantidad = e["cantidad"];
-        producto.precio = e["precio"];
-        producto.casa = e["casa"];
-        producto.tipo = e["tipo"];
-        var list = e['foto'] as List;
-        producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
+    //   List<ProductosModelo> productos = [];      
+    //   for (var e in jsonData) {
+    //     ProductosModelo producto = new ProductosModelo();
+    //     producto.id = e["_id"];
+    //     producto.nombre = e["nombre"];
+    //     producto.cantidad = e["cantidad"];
+    //     producto.precio = e["precio"];
+    //     producto.casa = e["casa"];
+    //     producto.tipo = e["tipo"];
+    //     var list = e['foto'] as List;
+    //     producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
 
-        productos.add(producto);
-      }
-      return productos;
-    }
+    //     productos.add(producto);
+    //   }
+    //   return productos;
+    // }
 
 
 class _TiendaAPIState extends State<TiendaAPI> {

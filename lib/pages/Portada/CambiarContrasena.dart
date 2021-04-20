@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
+import '../../models/UsuarioModelo.dart';
+import '../Ajustes2/CuentaAPI.dart';
 import 'LoginAPI.dart';
 import 'Portada.dart';
 
@@ -24,17 +26,14 @@ class _CambiarContrasenaState extends State<CambiarContrasena> {
   ];
   bool _passwordVisible = false;
   bool _comprobar = false;
+  UsuarioModelo usuario;
 
   //validaciones de usuario
   String validarUsuario(String value) {
     if (value.isEmpty) {
       return "Rellena el campo";
-    } else if (value.length < 5) {
-      return "Tiene que tener como minimo 5 caracteres";
-    } else if (value.length > 10) {
-      return "Tiene que tener como maximo 10 caracteres";
     } else if(value == _usuario){
-      return "El usuario no existe";
+      return "El usuario/email no existe";
     } else 
       return null;
   } 
@@ -83,7 +82,7 @@ class _CambiarContrasenaState extends State<CambiarContrasena> {
                       },
                       style: TextStyle(color: Color(globals.color2), fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
-                        hintText: "Usuario o Email",
+                        hintText: "Usuario",
                         hintStyle: TextStyle(
                           fontSize: 16,
                           color: Color(globals.color3),
@@ -208,13 +207,52 @@ class _CambiarContrasenaState extends State<CambiarContrasena> {
                           ),
                         ),
                         onPressed: () async{
-                          if(_comprobar == true)                         
-                            Navigator.of(context).push(MaterialPageRoute(
+                          String usuarioEmail = firstController.text;
+                          String password = secondController.text;
+                          int cont = 0;
+                          for(int i=0; i<snapshot.data.length; i++){
+                              if(snapshot.data[i].usuario == usuarioEmail){
+                                setState(() {
+                                  _comprobar = true;
+                                });
+                              }else{
+                                if(snapshot.data[i].usuario != usuarioEmail){
+                                  cont ++; 
+                                }
+                                if(cont == snapshot.data.length){
+                                  if (_formKeysList[0].currentState.validate()) { 
+                                    _formKeysList[0].currentState.save();
+                                  }
+                                }
+                              }
+                          }  
+                          if(_comprobar == true)  {
+                            if (_formKeysList[1].currentState.validate()) { 
+                              _formKeysList[1].currentState.save();
+                            } 
+                            UsuarioModelo usu = new UsuarioModelo();
+                            for(int i=0; i<snapshot.data.length; i++){
+                              if(snapshot.data[i].usuario == usuarioEmail){
+                                usu.id = snapshot.data[i].id;
+                                usu.usuario = firstController.text;
+                                usu.email = snapshot.data[i].email;
+                                usu.casaHogwarts = snapshot.data[i].casaHogwarts;
+                                usu.varita = snapshot.data[i].varita;
+                                usu.patronus = snapshot.data[i].patronus;
+                                usu.password = secondController.text;
+                                usu.rol = 0;
+                                usu.avatar = snapshot.data[i].avatar;
+                              } 
+                            }
+                            UsuarioModelo usuarios = await actualizarUsuario(usu);
+                              Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Portada(),
-                            ));                             
-                          setState(() {
-                            _comprobar = true;
-                          });
+                            ));
+                            setState(() {
+                              usuario = usuarios;
+                            });
+                            _password = "";
+                          }                      
                         },
                       );
                     }

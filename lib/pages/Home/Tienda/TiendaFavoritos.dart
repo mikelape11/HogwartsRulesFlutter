@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
@@ -5,6 +7,7 @@ import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
+import 'TiendaAPI.dart';
 import 'TiendaAPI.dart';
 class TiendaFavoritos extends StatefulWidget {
   @override
@@ -114,12 +117,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
             child: FutureBuilder(
               future: getFavoritos(globals.usuario),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-              for(int i=0; i<snapshot.data.length; i++){
-                if(snapshot.data[i].idUsuario == globals.usuario){
-                  getProductosFavoritos(snapshot.data[i].idProducto);
-                }
+              if(!snapshot.hasData){    
+                return Center(child: CircularProgressIndicator(strokeWidth: 2));
               }
-              
               return Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 width: MediaQuery.of(context).size.width / 1.1,
@@ -134,6 +134,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                         mainAxisSpacing: 10,
                         children: [
                           for (var i = 0; i < snapshot.data.length; i++)
+                            for(var k=0; k<snapshot.data[i].productos.length;k++)
+                              for(var j=0; j<snapshot.data[i].productos[k].foto.length;j++)
                             Visibility(
                               visible: _isVisible,
                               child: FlipCard(
@@ -179,8 +181,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
-                                              image: AssetImage(
-                                                  'images/Varitas/varita1.png'),
+                                              image: MemoryImage(base64Decode(snapshot.data[i].productos[k].foto[k].thumbUrl.split(',').last)),
                                               fit: BoxFit.fitWidth,
                                             ),
                                           ),
@@ -210,8 +211,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                               size: 25,
                                             ),
                                             onPressed: () {
+                                              deleteFavoritos(globals.usuario, snapshot.data[i].productos[k].id);
                                               setState(() {
-                                                this._isVisible = false;
+                                                // this._isVisible = false;
                                               });
                                             }),
                                       ),
@@ -256,13 +258,13 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                       children: [
                                         Container(
                                           child: Text(
-                                            "VARITA HP",
+                                            "${snapshot.data[i].productos[k].nombre}",
                                             style: TextStyle(color: Colors.white70),
                                           ),
                                         ),
                                         Container(
                                           child: Text(
-                                            "30 €",
+                                            "${snapshot.data[i].productos[k].precio} €",
                                             style: TextStyle(color: Colors.white70),
                                           ),
                                         ),

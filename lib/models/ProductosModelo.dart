@@ -35,14 +35,29 @@ class ProductosModelo{
 
   }
 
-Map<String,dynamic> toJson()=>{
-    "_id": id,
+    Map toJson() {
+    List<Map> fotos =
+        this.foto != null ? this.foto.map((i) => i.toJson()).toList() : null;
+
+    return {
+      "_id": id,
     "nombre": nombre,
     "cantidad": cantidad,
     "precio": precio,
     "casa": casa,
     "tipo": tipo,
-  };
+    "foto": fotos,
+    };
+  }
+
+// Map<String,dynamic> toJson()=>{
+//     "_id": id,
+//     "nombre": nombre,
+//     "cantidad": cantidad,
+//     "precio": precio,
+//     "casa": casa,
+//     "tipo": tipo,
+//   };
 
   String get idUsuario => id;
 
