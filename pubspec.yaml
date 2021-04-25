@@ -42,6 +42,7 @@ dependencies:
   dart_random_choice: ^0.0.2
   flutter_credit_card: ^0.1.4
   stream_chat_persistence: ^1.5.1
+  file_picker: ^2.1.7
   
 dev_dependencies:
   flutter_test:

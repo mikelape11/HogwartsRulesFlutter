@@ -1,12 +1,15 @@
-import 'dart:developer';
-
+import 'dart:convert';
+import 'dart:ui';
+import 'package:http/http.dart' as http;
+import 'dart:io' as Io;
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/main.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:stream_chat/stream_chat.dart';
 import 'package:stream_chat_persistence/stream_chat_persistence.dart';
 import 'dart:math' as math;
+//import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
@@ -26,7 +29,7 @@ ConseguirCliente() async {
     /// Please see the following for more information:
     /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
     ///
-    
+
     await globals.cliente.connectUser(
       User(
         id: globals.usuario,
@@ -59,6 +62,17 @@ ConseguirCliente() async {
   } else {
     return channel;
   }
+}
+
+void anadirFoto(file) {
+  // var attachment = Attachment();
+  // final imageUrl = file;
+  // attachment = attachment.copyWith(
+  //   type: 'image',
+  //   imageUrl: imageUrl,
+  // );
+  // final message = Message(attachments: [attachment]);
+  // globals.cliente.sendMessage(message, globals.casaHogwarts, 'messaging');
 }
 
 /// Example using Stream's Low Level Dart client.
@@ -290,20 +304,26 @@ class MessageView extends StatefulWidget {
 }
 
 class _MessageViewState extends State<MessageView> {
+  List<Attachment> _imagenes;
   TextEditingController _controller;
   ScrollController _scrollController;
+  AttachmentFile _file;
 
   List<Message> get _messages => widget.messages;
 
   @override
   void initState() {
     super.initState();
+    _file = AttachmentFile();
+    _imagenes = List<Attachment>();
     _controller = TextEditingController();
     _scrollController = ScrollController();
   }
 
   @override
   void dispose() {
+    _imagenes = List<Attachment>();
+    _file = AttachmentFile();
     _controller.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -338,6 +358,14 @@ class _MessageViewState extends State<MessageView> {
                     // Container(
                     //   child: Text(item.user.id),
                     // ),
+                    //
+                    if (item.attachments.isNotEmpty)
+                      Image.network(
+                        item.attachments.first.imageUrl,
+                        height: 400,
+                        width: 500,
+                        alignment: Alignment.bottomRight,
+                      ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
@@ -381,6 +409,12 @@ class _MessageViewState extends State<MessageView> {
                     //   alignment: Alignment.centerLeft,
                     //   child: Text(item.user.id, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                     // ),
+                    if (item.attachments.isNotEmpty)
+                      Image.network(
+                        item.attachments.first.imageUrl,
+                        height: 10,
+                        width: 10,
+                      ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerLeft,
@@ -405,19 +439,38 @@ class _MessageViewState extends State<MessageView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                child: Text(item.user.id, style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
-                                  ? globals.grySecundario
-                                  : globals.casaHogwarts == "Slytherin"
-                                      ? globals.slySecundario
-                                      : globals.casaHogwarts == "Ravenclaw"
-                                          ? globals.ravSecundario
-                                          : globals.casaHogwarts == "Hufflepuff"
-                                              ? globals.hufSecundario
-                                              : globals.grySecundario,  fontWeight: FontWeight.bold, fontSize: 17), textAlign: TextAlign.left,),
+                                child: Text(
+                                  item.user.id,
+                                  style: TextStyle(
+                                      color: globals.casaHogwarts ==
+                                              "Gryffindor"
+                                          ? globals.grySecundario
+                                          : globals.casaHogwarts == "Slytherin"
+                                              ? globals.slySecundario
+                                              : globals.casaHogwarts ==
+                                                      "Ravenclaw"
+                                                  ? globals.ravSecundario
+                                                  : globals.casaHogwarts ==
+                                                          "Hufflepuff"
+                                                      ? globals.hufSecundario
+                                                      : globals.grySecundario,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                  textAlign: TextAlign.left,
+                                ),
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Container(
-                                child: Text(item.text, style: TextStyle(color: Colors.white, fontSize: 17,), textAlign: TextAlign.start,),
+                                child: Text(
+                                  item.text,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
                               ),
                             ],
                           )),
@@ -470,6 +523,7 @@ class _MessageViewState extends State<MessageView> {
                   controller: _controller,
                   decoration: InputDecoration(
                     filled: true,
+
                     //fillColor: Colors.white,
                     hintText: 'Mensaje',
                     hintStyle: TextStyle(
@@ -507,7 +561,21 @@ class _MessageViewState extends State<MessageView> {
                                         : globals.grySecundario,
                         size: 32,
                       ),
-                      onPressed: () {},
+                      onPressed: () async {
+                        FilePickerResult result =
+                            await FilePicker.platform.pickFiles();
+                        PlatformFile file = result.files.first;
+                        var imageByte = Io.File(file.path).readAsBytesSync();
+                        result.paths.forEach((path) => {
+                              _imagenes.add(Attachment(
+                                  type: 'image',
+                                  file: AttachmentFile(
+                                      bytes: imageByte,
+                                      path: path,
+                                      name: result.files.first.name,
+                                      size: result.files.first.size)))
+                            });
+                      },
                     ),
                   ),
                 ),
@@ -549,9 +617,20 @@ class _MessageViewState extends State<MessageView> {
                     // TextField is cleared and the list view is scrolled
                     // to show the new item.
                     if (_controller.value.text.isNotEmpty) {
-                      await widget.channel.sendMessage(
-                        Message(text: _controller.value.text),
-                      );
+                      await widget.channel.sendMessage(Message(
+                        text: _controller.value.text,
+                        attachments: _imagenes,
+                        createdAt: DateTime.now(),
+                        updatedAt: DateTime.now(),
+                      ));
+                      _imagenes.clear();
+                      _controller.clear();
+                      _updateList();
+                    } else if (_imagenes.isNotEmpty) {
+                      await widget.channel.sendMessage(Message(
+                        attachments: _imagenes,
+                      ));
+                      _imagenes.clear();
                       _controller.clear();
                       _updateList();
                     }

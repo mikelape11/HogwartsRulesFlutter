@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Home/Rules/CrearRule.dart';
 
 import 'Rules.dart';
 
@@ -88,7 +89,9 @@ class RulesGeneral extends StatelessWidget {
           side: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 3.0)
         ),
         onPressed: (){
-          
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => CrearRule(),
+          ));
         },
       ),
     );
