@@ -181,7 +181,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
-                                              image: MemoryImage(base64Decode(snapshot.data[i].productos[k].foto[k].thumbUrl.split(',').last)),
+                                              image: MemoryImage(base64Decode(snapshot.data[i].productos[k].foto[j].thumbUrl.split(',').last)),
                                               fit: BoxFit.fitWidth,
                                             ),
                                           ),
@@ -211,7 +211,8 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                               size: 25,
                                             ),
                                             onPressed: () {
-                                              deleteFavoritos(globals.usuario, snapshot.data[i].productos[k].id);
+                                              print(snapshot.data[i].id);
+                                              deleteFavoritos(snapshot.data[i].id, snapshot.data[i].productos);
                                               setState(() {
                                                 // this._isVisible = false;
                                               });

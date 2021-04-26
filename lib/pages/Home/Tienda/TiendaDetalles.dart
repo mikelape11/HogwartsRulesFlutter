@@ -228,19 +228,16 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                 onPressed: () async{
                                   if(fav == true){
                                       cont = 1;
+                                  }else{
+                                    cont++; 
                                   }
-                                  ProductosModelo producto = new ProductosModelo();
                                   FavoritosModelo favs = new FavoritosModelo();
-                                  cont++; 
                                   setState(() {
                                     if(fav == false)
                                       fav = true;                                    
                                   });
-                                   for(int i=0; i<snapshot.data.length;i++){
-                                      if(snapshot.data[i].usuario == usuario){
-                                        
-                                      }else{
-                                        if(fav == true && cont == 1){
+                                  if(snapshot.data.length == 0){
+                                     if(fav == true && cont == 1){
                                           List<ProductosModelo> productos = [];
                                           ProductosModelo prod = new ProductosModelo();
                                           prod.id = widget.id;
@@ -255,11 +252,66 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           setState(() {
                                             favorito = favs;
                                           });
+                                      }
+                                      
+                                  }else{
+                                     for(int i=0; i<snapshot.data.length;i++){
+                                      if(snapshot.data[i].idUsuario == globals.usuario){
+                                        if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          FavoritosModelo fav = new FavoritosModelo();
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = widget.cantidad;
+                                          prod.precio = widget.precio;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          for(int n=0; n<snapshot.data[i].productos.length;n++){
+                                            ProductosModelo prod2 = new ProductosModelo();
+                                            print(snapshot.data[i].productos[n].nombre);
+                                            prod2.id = snapshot.data[i].productos[n].id;
+                                            prod2.nombre = snapshot.data[i].productos[n].nombre;
+                                            prod2.cantidad = snapshot.data[i].productos[n].cantidad;
+                                            prod2.precio = snapshot.data[i].productos[n].precio;
+                                            prod2.casa = snapshot.data[i].productos[n].casa;
+                                            prod2.tipo = snapshot.data[i].productos[n].tipo;
+                                            prod2.foto = snapshot.data[i].productos[n].foto;
+                                            productos.add(prod2);
+                                          } 
+
+                                          productos.add(prod);
+
+                                          fav.id = snapshot.data[i].id;
+                                          fav.idUsuario = globals.usuario;
+                                          fav.productos = productos;
+                                          favs = await actualizarFavoritos(fav);
+                                          setState(() {
+                                            favorito = fav;
+                                          });
+                                        }
+                                      }else{
+                                        if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = widget.cantidad;
+                                          prod.precio = widget.precio;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          productos.add(snapshot.data[i].productos);
+                                          productos.add(prod);
+                                          favs = await registrarFavorito(globals.usuario, productos);
+                                          setState(() {
+                                            favorito = favs;
+                                          });
                                         }
                                       }
                                     }
-                                   
-                                   
+                                  }
                                 }
                             ),
                           ),

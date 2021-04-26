@@ -93,13 +93,20 @@ Future<List<ProductosModelo>> getProductos() async {
     }));
     }
 
-  Future<FavoritosModelo> deleteFavoritos(String usuario, String id) async{
-    final http.Response response = await http.delete(
-    Uri.parse('http://10.0.2.2:8080/eliminarProductoFav/{usuario}/{id}'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  );
+  Future<FavoritosModelo> actualizarFavoritos(FavoritosModelo favoritos) async{
+    var Url = "http://10.0.2.2:8080/actualizarFavoritos";
+    var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body: jsonEncode(favoritos));
+  }
+
+  Future<FavoritosModelo> deleteFavoritos(String id, List<ProductosModelo> prod) async{
+   var Url =     Uri.parse('http://10.0.2.2:8080/eliminarProductoFav');
+     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body:jsonEncode(<String , dynamic>{
+      "_id" : id,
+      "productos" : prod,
+    }));
+    
   }
 
     Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{

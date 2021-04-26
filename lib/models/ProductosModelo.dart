@@ -40,7 +40,7 @@ class ProductosModelo{
         this.foto != null ? this.foto.map((i) => i.toJson()).toList() : null;
 
     return {
-      "_id": id,
+    "_id": id,
     "nombre": nombre,
     "cantidad": cantidad,
     "precio": precio,
