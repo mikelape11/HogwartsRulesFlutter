@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'pages/Home/Rules/ComentariosRule.dart';
 import 'pages/Portada/Portada.dart';
 
 void main() {

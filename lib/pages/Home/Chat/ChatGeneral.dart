@@ -10,6 +10,8 @@ import 'package:stream_chat_persistence/stream_chat_persistence.dart';
 import 'dart:math' as math;
 //import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
+
 
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
@@ -62,17 +64,6 @@ ConseguirCliente() async {
   } else {
     return channel;
   }
-}
-
-void anadirFoto(file) {
-  // var attachment = Attachment();
-  // final imageUrl = file;
-  // attachment = attachment.copyWith(
-  //   type: 'image',
-  //   imageUrl: imageUrl,
-  // );
-  // final message = Message(attachments: [attachment]);
-  // globals.cliente.sendMessage(message, globals.casaHogwarts, 'messaging');
 }
 
 /// Example using Stream's Low Level Dart client.
@@ -359,17 +350,12 @@ class _MessageViewState extends State<MessageView> {
                     //   child: Text(item.user.id),
                     // ),
                     //
-                    if (item.attachments.isNotEmpty)
-                      Image.network(
-                        item.attachments.first.imageUrl,
-                        height: 400,
-                        width: 500,
-                        alignment: Alignment.bottomRight,
-                      ),
+                    //
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                      alignment: Alignment.centerRight,
-                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                        alignment: Alignment.centerRight,
+                        child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             color: globals.casaHogwarts == "Gryffindor"
@@ -385,11 +371,52 @@ class _MessageViewState extends State<MessageView> {
                           margin: EdgeInsets.only(left: 40),
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          child: Text(item.text,
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 17))),
-                      //Text('${now.hour}:${now.minute}')
-                    ),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                if (item.attachments.isNotEmpty &&
+                                    item.attachments.last.imageUrl != null)
+                                  GestureDetector(
+                                    child: Container(
+                                      child: Image.network(
+                                        item.attachments.last.imageUrl,
+                                        height: 200,
+                                        width: 150,
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return CustomAlertDialog(
+                                            titlePadding: EdgeInsets.all(0.0),
+                                            contentPadding: EdgeInsets.all(0.0),
+                                            content: Container(
+                                              margin: EdgeInsets.symmetric(vertical: 10),
+                                              child: Image.network(
+                                                item.attachments.last.imageUrl,
+                                                // height: 200,
+                                                // width: 150,
+                                              ),
+                                              width: 302,
+                                              height: 431,
+                                            ),
+                                          );                                                                
+                                        }
+                                      );
+                                    },
+                                  ),
+                                if (item.text != null)
+                                  Text(item.text,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17)),
+                              ]),
+                        )
+
+                        //Text('${now.hour}:${now.minute}')
+                        ),
+
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerRight,
@@ -409,12 +436,7 @@ class _MessageViewState extends State<MessageView> {
                     //   alignment: Alignment.centerLeft,
                     //   child: Text(item.user.id, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                     // ),
-                    if (item.attachments.isNotEmpty)
-                      Image.network(
-                        item.attachments.first.imageUrl,
-                        height: 10,
-                        width: 10,
-                      ),
+
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                       alignment: Alignment.centerLeft,
@@ -462,16 +484,49 @@ class _MessageViewState extends State<MessageView> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Container(
-                                child: Text(
-                                  item.text,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
+                              if (item.attachments.isNotEmpty &&
+                                  item.attachments.last.imageUrl != null)
+                                GestureDetector(
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(vertical: 10),
+                                      child: Image.network(
+                                        item.attachments.last.imageUrl,
+                                        height: 200,
+                                        width: 150,
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return CustomAlertDialog(
+                                            titlePadding: EdgeInsets.all(0.0),
+                                            contentPadding: EdgeInsets.all(0.0),
+                                            content: Container(
+                                              child: Image.network(
+                                                item.attachments.last.imageUrl,
+                                                // height: 200,
+                                                // width: 150,
+                                              ),
+                                              width: 302,
+                                              height: 431,
+                                            ),
+                                          );                                                                
+                                        }
+                                      );
+                                    },
                                   ),
-                                  textAlign: TextAlign.start,
+                              if (item.text != null)
+                                Container(
+                                  child: Text(
+                                    item.text,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                  ),
                                 ),
-                              ),
                             ],
                           )),
                       //Text('${now.hour}:${now.minute}')

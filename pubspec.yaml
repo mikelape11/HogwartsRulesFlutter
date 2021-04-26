@@ -73,6 +73,10 @@ flutter:
     - images/Slytherin/slytherin.jpg
     - images/Nosotros/mik.png
     - images/Nosotros/mel.png
+    - images/admin.png
+    - images/guesswho.png
+    - images/snitch.png
+    - images/interrogacion.png
 
     #AVATARES
     - images/Avatares/Avatar1.png

@@ -335,8 +335,10 @@ class _AjustesState extends State<Ajustes> {
                                       color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('ELIMINAR', style: TextStyle(color: Colors.red),),
                                       onPressed: () {
-                                        globals.conexion = false;
-                                        globals.cliente.disconnect();
+                                        if(globals.conexion != false){
+                                          globals.conexion = false;
+                                          globals.cliente.disconnect();
+                                        }
                                         deleteCuenta(globals.usuario);
                                         deleteDatosTest(globals.usuario);
                                         Navigator.of(context).push(MaterialPageRoute(
@@ -431,8 +433,10 @@ class _AjustesState extends State<Ajustes> {
                                       color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                       child: Text('CERRAR', style: TextStyle(color: Colors.red[900]),),
                                       onPressed: () {
-                                        globals.conexion = false;
-                                        globals.cliente.disconnect();
+                                        if(globals.conexion != false){
+                                          globals.cliente.disconnect();
+                                          globals.conexion = false;
+                                        }
                                         Navigator.of(context).push(MaterialPageRoute(
                                           builder: (context) => Portada(),
                                         ));
