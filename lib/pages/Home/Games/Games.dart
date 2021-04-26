@@ -188,7 +188,7 @@ class Games extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [    
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin: EdgeInsets.only(left: 20),
                       height: 170,
                       width: MediaQuery.of(context).size.width/2.2,
                       child: Center(child: Text('PROXIMAMENTE', style: TextStyle(fontSize: 22, color: Colors.white70, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
