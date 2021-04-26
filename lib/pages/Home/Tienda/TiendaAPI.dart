@@ -109,14 +109,6 @@ Future<List<ProductosModelo>> getProductos() async {
     
   }
 
-    Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
-    var Url = "http://10.0.2.2:8080/addCarrito";
-    var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
-    body:jsonEncode(<String , dynamic>{
-      "idUsuario" : idUsuario,
-      "productos" : productos,
-    }));
-  }
 
   //FAVORITOS
   Future<List<FavoritosModelo>> getFavoritos(String idUsuario) async {    
@@ -135,26 +127,47 @@ Future<List<ProductosModelo>> getProductos() async {
       return favoritos;
     }
 
-    // Future<List<ProductosModelo>> getProductosFavoritos(String idProducto) async {    
-    //   var data = await http.get('http://10.0.2.2:8080/productosFavoritos/$idProducto');
-    //   var jsonData = json.decode(data.body);
+    //CARRITO
+    Future<List<CarritoModelo>> getCarrito(String idUsuario) async {    
+      var data = await http.get('http://10.0.2.2:8080/todosCarrito/$idUsuario');
+      var jsonData = json.decode(data.body);
 
-    //   List<ProductosModelo> productos = [];      
-    //   for (var e in jsonData) {
-    //     ProductosModelo producto = new ProductosModelo();
-    //     producto.id = e["_id"];
-    //     producto.nombre = e["nombre"];
-    //     producto.cantidad = e["cantidad"];
-    //     producto.precio = e["precio"];
-    //     producto.casa = e["casa"];
-    //     producto.tipo = e["tipo"];
-    //     var list = e['foto'] as List;
-    //     producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
+      List<CarritoModelo> carrito = []; 
+      for (var e in jsonData) {
+        CarritoModelo carr = new CarritoModelo();
+        carr.id = e["_id"];
+        carr.idUsuario = e["idUsuario"];
+        var list = e['productos'] as List;
+        carr.productos =  list.map((i) => ProductosModelo.fromJson(i)).toList();
+        carrito.add(carr);
+      }
+      return carrito;
+    }
+    Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
+    var Url = "http://10.0.2.2:8080/addCarrito";
+    var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body:jsonEncode(<String , dynamic>{
+      "idUsuario" : idUsuario,
+      "productos" : productos,
+    }));
+    }
 
-    //     productos.add(producto);
-    //   }
-    //   return productos;
-    // }
+    Future<CarritoModelo> actualizarCarrito(CarritoModelo favoritos) async{
+    var Url = "http://10.0.2.2:8080/actualizarCarrito";
+    var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body: jsonEncode(favoritos));
+  }
+
+  Future<CarritoModelo> deleteCarrito(String id, List<ProductosModelo> prod) async{
+    var Url =     Uri.parse('http://10.0.2.2:8080/eliminarCarrito');
+    var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body:jsonEncode(<String , dynamic>{
+      "_id" : id,
+      "productos" : prod,
+    }));
+    
+  }
+
 
 
 class _TiendaAPIState extends State<TiendaAPI> {

@@ -49,7 +49,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
   int cantidad = 1;
   int precio = 0;
   bool fav = false;
- 
+  CarritoModelo carrito;
 
   Icon _iconoFav(){ //CAMBIO EL ICONO DEPENDIENDO DEL TEMA
     if(fav == false) {
@@ -242,8 +242,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           ProductosModelo prod = new ProductosModelo();
                                           prod.id = widget.id;
                                           prod.nombre = widget.nombre;
-                                          prod.cantidad = widget.cantidad;
-                                          prod.precio = widget.precio;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
                                           prod.foto = widget.foto;
@@ -263,8 +263,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           ProductosModelo prod = new ProductosModelo();
                                           prod.id = widget.id;
                                           prod.nombre = widget.nombre;
-                                          prod.cantidad = widget.cantidad;
-                                          prod.precio = widget.precio;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
                                           prod.foto = widget.foto;
@@ -282,7 +282,6 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           } 
 
                                           productos.add(prod);
-
                                           fav.id = snapshot.data[i].id;
                                           fav.idUsuario = globals.usuario;
                                           fav.productos = productos;
@@ -297,8 +296,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           ProductosModelo prod = new ProductosModelo();
                                           prod.id = widget.id;
                                           prod.nombre = widget.nombre;
-                                          prod.cantidad = widget.cantidad;
-                                          prod.precio = widget.precio;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
                                           prod.foto = widget.foto;
@@ -316,36 +315,81 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                             ),
                           ),
                           SizedBox(width: 10,),
-                          Container(                         
-                            child: RaisedButton(   
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                              ),  
-                              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
-                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              color: Colors.transparent,
-                              child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
-                              onPressed: () async{
-                                ProductosModelo producto = new ProductosModelo();
-                                CarritoModelo carrito = new CarritoModelo();
-                                List<ProductosModelo> productos = [];
-                                producto.id = widget.id;
-                                producto.nombre = widget.nombre;
-                                producto.cantidad = widget.cantidad;
-                                producto.precio = widget.precio;
-                                producto.casa = widget.casa;
-                                producto.tipo = widget.tipo;
-                                producto.foto = widget.foto;
-                                productos.add(producto);                         
-                                carrito = await registrarCarrito(globals.usuario, productos);
-                                setState(() {
-                                  carrito1 = carrito;
-                                });                    
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Home(0),
-                                ));
-                              }
-                            ),
+                          FutureBuilder(
+                            future: getCarrito(globals.usuario),
+                            builder: (BuildContext context, AsyncSnapshot snapshot2) {
+                            if(!snapshot2.hasData){    
+                              return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                            }
+                            return Container(                         
+                              child: RaisedButton(   
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                ),  
+                                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                color: Colors.transparent,
+                                child: Text('AÑADIR AL CARRITO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
+                                onPressed: () async{
+                                  CarritoModelo carrs = new CarritoModelo();
+                                    if(snapshot2.data.length == 0){
+                                        ProductosModelo producto = new ProductosModelo();
+                                        List<ProductosModelo> productos = [];
+                                        producto.id = widget.id;
+                                        producto.nombre = widget.nombre;
+                                        producto.cantidad = cantidad;
+                                        producto.precio = precio3;
+                                        producto.casa = widget.casa;
+                                        producto.tipo = widget.tipo;
+                                        producto.foto = widget.foto;
+                                        productos.add(producto);                         
+                                        carrs = await registrarCarrito(globals.usuario, productos);
+                                        setState(() {
+                                          carrito1 = carrs;
+                                        });             
+                                    }else{
+                                      for(int i=0; i<snapshot2.data.length;i++){
+                                        if(snapshot2.data[i].idUsuario == globals.usuario){
+                                          List<ProductosModelo> productos = [];
+                                          CarritoModelo carr = new CarritoModelo();
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          for(int n=0; n<snapshot2.data[i].productos.length;n++){
+                                            ProductosModelo prod2 = new ProductosModelo();
+                                            prod2.id = snapshot2.data[i].productos[n].id;
+                                            prod2.nombre = snapshot2.data[i].productos[n].nombre;
+                                            prod2.cantidad = snapshot2.data[i].productos[n].cantidad;
+                                            prod2.precio = snapshot2.data[i].productos[n].precio;
+                                            prod2.casa = snapshot2.data[i].productos[n].casa;
+                                            prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                            prod2.foto = snapshot2.data[i].productos[n].foto;
+                                            productos.add(prod2);
+                                          } 
+
+                                          productos.add(prod);
+                                          carr.id = snapshot2.data[i].id;
+                                          carr.idUsuario = globals.usuario;
+                                          carr.productos = productos;
+                                          carrs = await actualizarCarrito(carr);
+                                          setState(() {
+                                            carrito = carr;
+                                          });   
+                                        }
+                                      }
+                                    }
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => CarritoTienda(),
+                                      ));
+                                }
+                              ),
+                            );
+                            }
                           ),                        
                         ],
                       ),

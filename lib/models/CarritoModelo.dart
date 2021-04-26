@@ -26,10 +26,16 @@ class CarritoModelo{
 
   }
 
-  Map<String,dynamic> toJson()=>{
+  Map toJson() {
+    List<Map> prods =
+        this.productos != null ? this.productos.map((i) => i.toJson()).toList() : null;
+    
+    return {
     "_id": id,
     "idUsuario": idUsuario,
+    "productos": prods,
   };
+  }
 
 
 }

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
-import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
+import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 import 'TiendaAPI.dart';
-import 'TiendaAPI.dart';
+
 class TiendaFavoritos extends StatefulWidget {
   @override
   _TiendaFavoritosState createState() => _TiendaFavoritosState();
@@ -23,6 +23,23 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         leading: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Stack(
+              children: <Widget>[
+                IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
+                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Home(0),
+                    ));
+                  }
+                ),
+              ],
+            )
+          ),
+        ),
         iconTheme: IconThemeData(
             color: globals.casaHogwarts == "Gryffindor"
                 ? globals.grySecundario
