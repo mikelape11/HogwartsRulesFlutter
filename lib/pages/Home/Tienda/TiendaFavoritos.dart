@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaDetalles.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
@@ -210,11 +211,12 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                                                   .grySecundario,
                                               size: 25,
                                             ),
-                                            onPressed: () {
-                                              print(snapshot.data[i].id);
-                                              deleteFavoritos(snapshot.data[i].id, snapshot.data[i].productos);
+                                            onPressed: () async{
+                                              List<ProductosModelo> prods = new List<ProductosModelo>();
+                                              prods.add(snapshot.data[i].productos[k]);
+                                              await deleteFavoritos(snapshot.data[i].id, prods);
                                               setState(() {
-                                                // this._isVisible = false;
+                                                
                                               });
                                             }),
                                       ),
