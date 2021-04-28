@@ -1,22 +1,51 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/CarritoModelo.dart';
+import 'package:hogwarts_rules/models/FavoritosModelo.dart';
+import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes2/Ajustes2.dart';
 import 'package:hogwarts_rules/pages/Home/Home.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Carrito.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Favoritos.dart';
 import 'package:hogwarts_rules/pages/Home2/Tienda2/Tienda2Pagar.dart';
+import '../../../models/ImagenRespuestasModelo.dart';
 
 class Tienda2Detalles extends StatefulWidget {
-  const Tienda2Detalles({Key key}) : super(key: key);
+  final String id;
+  final String nombre;
+  final int precio;
+  final int cantidad;
+  final String casa;
+  final String tipo;
+  final List<imagenRespuestasModelo> foto;
+  final String thumbUrl;
+
+  Tienda2Detalles(this.id,this.nombre,this.precio,this.cantidad,this.casa,this.tipo,this.foto,this.thumbUrl);
 
   @override
   _DetallesTiendaState createState() => _DetallesTiendaState();
 }
 
 class _DetallesTiendaState extends State<Tienda2Detalles> {
-  int cantidad = 0;
+  int precio2;
+  int precio3;
+  FavoritosModelo favorito;
+  CarritoModelo carrito1;
+   int cont = 0;
+  @override
+  void initState() {
+    precio2 = widget.precio;
+    precio3 = widget.precio;
+  }
+
+  int cantidad = 1;
   int precio = 0;
   bool fav = false;
+  CarritoModelo carrito;
+
 
   Icon _iconoFav(){ //CAMBIO EL ICONO DEPENDIENDO DEL TEMA
     if(fav == false) {
@@ -89,7 +118,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image:  AssetImage('images/Tienda/Jersey.png'),
+                    image: MemoryImage(base64Decode(widget.thumbUrl)),
                     fit: BoxFit.fitHeight,  
                   ),
                 ),
@@ -109,7 +138,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                 children: [
                   SizedBox(height: 30,),
                   Container(
-                    child: Text("JERSEY HARRY POTTER", style: TextStyle(color: Color(globals.color2), fontSize: 25))
+                    child: Text("${widget.nombre}", style: TextStyle(color: Color(globals.color2), fontSize: 25))
                   ),
                   SizedBox(height: 20,),
                   Container(
@@ -129,8 +158,9 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                                 icon: Icon(Icons.remove_circle_outline, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   setState(() {
-                                    if(cantidad > 0)
-                                      cantidad--;                                 
+                                    if(cantidad > 1)
+                                      cantidad--;  
+                                      precio3 = precio2*cantidad;                               
                                   });
                                 }
                               ),
@@ -143,7 +173,10 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                                 icon: Icon(Icons.add_circle_outline, color: Color(globals.color2), size: 25,),
                                 onPressed: () {
                                   setState(() {
-                                    cantidad++;                              
+                                   if(cantidad < widget.cantidad){
+                                      cantidad++; 
+                                      precio3 = precio2*cantidad;
+                                    }                              
                                   });
                                 }
                               ),
@@ -153,57 +186,211 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                       ),
                       Spacer(),
                       Container(
-                        child: Text("${precio} €", style: TextStyle(color: Colors.white70,fontSize: 25))
+                        child: Text("${precio3} €", style: TextStyle(color: Colors.white70,fontSize: 25))
                       ),
                       SizedBox(width: 90,)
                     ],
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(                      
-                          width: 80,
-                          child: RaisedButton(  
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            ),                         
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Color(globals.color4),
-                            child: IconButton(
-                              icon: _iconoFav(), 
-                              disabledColor: Color(globals.color2),
-                              iconSize: 30,),
-                              onPressed: () async{
-                                setState(() {
-                                  if(fav == false)
-                                    fav = true;
-                                  else
-                                    fav = false;
-                                });
-                              }
+                  FutureBuilder(
+                    future: getFavoritos(globals.usuario),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if(!snapshot.hasData){    
+                      return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                    }
+                    for(int i=0; i<snapshot.data.length;i++){
+                      for(int j=0; j<snapshot.data[i].productos.length; j++){
+                        if(snapshot.data[i].productos[j].id == widget.id){
+                          fav = true;         
+                        }
+                      }
+                    }
+                    return Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(                      
+                            width: 80,
+                            child: RaisedButton(  
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),                         
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              color: Color(globals.color4),
+                              child: IconButton(
+                                icon: _iconoFav(), 
+                                disabledColor: Color(globals.color2),
+                                iconSize: 30,),
+                                onPressed: () async{
+                                  if(fav == true){
+                                      cont = 1;
+                                  }else{
+                                    cont++; 
+                                  }
+                                  FavoritosModelo favs = new FavoritosModelo();
+                                  setState(() {
+                                    if(fav == false)
+                                      fav = true;                                    
+                                  });
+                                  if(snapshot.data.length == 0){
+                                     if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          productos.add(prod);
+                                          favs = await registrarFavorito(globals.usuario, productos);
+                                          setState(() {
+                                            favorito = favs;
+                                          });
+                                      }
+                                      
+                                  }else{
+                                     for(int i=0; i<snapshot.data.length;i++){
+                                      if(snapshot.data[i].idUsuario == globals.usuario){
+                                        if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          FavoritosModelo fav = new FavoritosModelo();
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          for(int n=0; n<snapshot.data[i].productos.length;n++){
+                                            ProductosModelo prod2 = new ProductosModelo();
+                                            print(snapshot.data[i].productos[n].nombre);
+                                            prod2.id = snapshot.data[i].productos[n].id;
+                                            prod2.nombre = snapshot.data[i].productos[n].nombre;
+                                            prod2.cantidad = snapshot.data[i].productos[n].cantidad;
+                                            prod2.precio = snapshot.data[i].productos[n].precio;
+                                            prod2.casa = snapshot.data[i].productos[n].casa;
+                                            prod2.tipo = snapshot.data[i].productos[n].tipo;
+                                            prod2.foto = snapshot.data[i].productos[n].foto;
+                                            productos.add(prod2);
+                                          } 
+
+                                          productos.add(prod);
+                                          fav.id = snapshot.data[i].id;
+                                          fav.idUsuario = globals.usuario;
+                                          fav.productos = productos;
+                                          favs = await actualizarFavoritos(fav);
+                                          setState(() {
+                                            favorito = fav;
+                                          });
+                                        }
+                                      }else{
+                                        if(fav == true && cont == 1){
+                                          List<ProductosModelo> productos = [];
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          productos.add(snapshot.data[i].productos);
+                                          productos.add(prod);
+                                          favs = await registrarFavorito(globals.usuario, productos);
+                                          setState(() {
+                                            favorito = favs;
+                                          });
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 10,),
-                        Container(                         
-                          child: RaisedButton(   
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            ),  
-                            padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            color: Color(globals.color4),
-                            child: Text('AÑADIR AL CARRITO', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
-                            onPressed: () async{
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Tienda2Pagar(),
-                              ));
+                          SizedBox(width: 10,),
+                          FutureBuilder(
+                            future: getCarrito(globals.usuario),
+                            builder: (BuildContext context, AsyncSnapshot snapshot2) {
+                            if(!snapshot2.hasData){    
+                              return Center(child: CircularProgressIndicator(strokeWidth: 2));
                             }
-                          ),
-                        ),                        
-                      ],
-                    ),
+                            return Container(                         
+                              child: RaisedButton(   
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                ),  
+                                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                color: Color(globals.color4),
+                                child: Text('AÑADIR AL CARRITO', style: TextStyle(color: Color(globals.color2), fontSize: 18),),
+                                onPressed: () async{
+                                  CarritoModelo carrs = new CarritoModelo();
+                                    if(snapshot2.data.length == 0){
+                                        ProductosModelo producto = new ProductosModelo();
+                                        List<ProductosModelo> productos = [];
+                                        producto.id = widget.id;
+                                        producto.nombre = widget.nombre;
+                                        producto.cantidad = cantidad;
+                                        producto.precio = precio3;
+                                        producto.casa = widget.casa;
+                                        producto.tipo = widget.tipo;
+                                        producto.foto = widget.foto;
+                                        productos.add(producto);                         
+                                        carrs = await registrarCarrito(globals.usuario, productos);
+                                        setState(() {
+                                          carrito1 = carrs;
+                                        });             
+                                    }else{
+                                      for(int i=0; i<snapshot2.data.length;i++){
+                                        if(snapshot2.data[i].idUsuario == globals.usuario){
+                                          List<ProductosModelo> productos = [];
+                                          CarritoModelo carr = new CarritoModelo();
+                                          ProductosModelo prod = new ProductosModelo();
+                                          prod.id = widget.id;
+                                          prod.nombre = widget.nombre;
+                                          prod.cantidad = cantidad;
+                                          prod.precio = precio3;
+                                          prod.casa = widget.casa;
+                                          prod.tipo = widget.tipo;
+                                          prod.foto = widget.foto;
+                                          for(int n=0; n<snapshot2.data[i].productos.length;n++){
+                                            ProductosModelo prod2 = new ProductosModelo();
+                                            prod2.id = snapshot2.data[i].productos[n].id;
+                                            prod2.nombre = snapshot2.data[i].productos[n].nombre;
+                                            prod2.cantidad = snapshot2.data[i].productos[n].cantidad;
+                                            prod2.precio = snapshot2.data[i].productos[n].precio;
+                                            prod2.casa = snapshot2.data[i].productos[n].casa;
+                                            prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                            prod2.foto = snapshot2.data[i].productos[n].foto;
+                                            productos.add(prod2);
+                                          } 
+
+                                          productos.add(prod);
+                                          carr.id = snapshot2.data[i].id;
+                                          carr.idUsuario = globals.usuario;
+                                          carr.productos = productos;
+                                          carrs = await actualizarCarrito(carr);
+                                          setState(() {
+                                            carrito = carr;
+                                          });   
+                                        }
+                                      }
+                                    }
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => Tienda2Carrito(),
+                                      ));
+                                }
+                              ),
+                            );
+                            }
+                          ),                        
+                        ],
+                      ),
+                    );
+                    }
                   ),
                   SizedBox(height: 84)          
                 ],

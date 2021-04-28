@@ -121,7 +121,7 @@ class _CarritoTiendaState extends State<CarritoTienda> {
                                   ),
                                   SizedBox(height: 15,),
                                   Container(
-                                    child: Text("${snapshot.data[i].productos[k].precio}", style: TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),),
+                                    child: Text("${snapshot.data[i].productos[k].precio} €", style: TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),),
                                   ),
                                 ],
                               ),

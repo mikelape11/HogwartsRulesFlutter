@@ -80,6 +80,9 @@ class _Home2PortadaState extends State<Home2Portada> with SingleTickerProviderSt
             FutureBuilder(
               future: getTest(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if(!snapshot.hasData){    
+                return Center(child: CircularProgressIndicator(strokeWidth: 2));
+              }
             return Container(
               width: 200,
               decoration: BoxDecoration(

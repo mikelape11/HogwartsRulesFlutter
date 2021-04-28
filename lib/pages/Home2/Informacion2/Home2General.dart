@@ -21,7 +21,7 @@ class Home2General extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 20.0,
                     backgroundColor: Color(globals.color1),
-                    backgroundImage: globals.avatarElegido != "images/Avatares/Avatar7.png" ?  AssetImage(globals.avatarElegido) : AssetImage(globals.avatarDefecto),
+                    backgroundImage: globals.avatarElegido == "" ?  AssetImage(globals.avatarDefecto) : AssetImage(globals.avatarElegido),
                     // backgroundImage: globals.existeAvatar
                     // ? AssetImage("images/perfil.png") 
                     // : FileImage(File(globals.avatar))

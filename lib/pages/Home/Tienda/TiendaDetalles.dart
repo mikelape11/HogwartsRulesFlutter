@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
-import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaCarrito.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaFavoritos.dart';
 import 'dart:convert';
 
 import '../../../models/CarritoModelo.dart';
-import '../../../models/CarritoModelo.dart';
-import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/ImagenRespuestasModelo.dart';
-import '../../../models/ImagenRespuestasModelo.dart';
 import '../../../models/ProductosModelo.dart';
-import '../../../models/ProductosModelo.dart';
-import 'Tienda.dart';
 import 'TiendaAPI.dart';
 
 class DetallesTienda extends StatefulWidget {

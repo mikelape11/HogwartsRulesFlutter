@@ -9,6 +9,7 @@ import 'package:hogwarts_rules/pages/Home/Home.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 import 'TiendaAPI.dart';
+import 'TiendaDetalles.dart';
 
 class TiendaFavoritos extends StatefulWidget {
   @override
@@ -314,9 +315,9 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                                                         .grySecundario),
                                               ),
                                               onPressed: () async {
-                                                // Navigator.of(context).push(MaterialPageRoute(
-                                                //   builder: (context) => DetallesTienda(),
-                                                // ));
+                                                Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (context) => DetallesTienda(snapshot.data[i].productos[k].id,snapshot.data[i].productos[k].nombre,snapshot.data[i].productos[k].precio,snapshot.data[i].productos[k].cantidad,snapshot.data[i].productos[k].casa,snapshot.data[i].productos[k].tipo,snapshot.data[i].productos[k].foto, snapshot.data[i].productos[k].foto[j].thumbUrl.split(',').last),
+                                                ));
                                               }),
                                         ),
                                       ],
