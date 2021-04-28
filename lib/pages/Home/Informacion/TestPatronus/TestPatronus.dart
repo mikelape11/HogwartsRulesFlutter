@@ -58,7 +58,7 @@ class _TestPatronusState extends State<TestPatronus> with SingleTickerProviderSt
             // height: 620,
           ), 
           PageView(
-            //physics: NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             children: [
@@ -106,9 +106,6 @@ class _TestPatronusState extends State<TestPatronus> with SingleTickerProviderSt
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Home(2),
                             ));                 
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Home(0),
-                            ));
                           }else{
                             _pageController.animateToPage(
                               i+1,

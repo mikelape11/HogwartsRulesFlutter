@@ -81,16 +81,16 @@ class HomeSeleccion extends StatelessWidget {
                       child: Center(
                         child: Container(
                           height: 200,
-                          // decoration: BoxDecoration(
-                          //   image: DecorationImage(
-                          //     image: globals.patronus == "" ? AssetImage('images/Gryffindor/LogoGry.png') : AssetImage('images/Varitas/${globals.patronus}.png'),                   
-                          //   )
-                          // ),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: globals.patronus == " " ? AssetImage('images/Patronus/ElegirPatronus.png') : AssetImage('images/Patronus/${globals.patronus}.png'),                   
+                            )
+                          ),
                         ),
                       ),
                     ),
                     onTap: (){
-                       if(globals.patronus == ""){
+                       if(globals.patronus == " "){
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => TestPatronus(snapshot),
                           ));
