@@ -23,7 +23,7 @@ class Rules extends StatelessWidget {
               children: [     
                 Container(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         decoration: BoxDecoration(
