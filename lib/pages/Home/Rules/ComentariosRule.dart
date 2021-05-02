@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/ComentariosModelo.dart';
+import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
+
+import 'RulesAPI.dart';
 
 
-class ComentariosRule extends StatelessWidget {
+class ComentariosRule extends StatefulWidget {
+  String id;
+  String usuario;
+  String avatar;
+  String rule;
+  int comentariosLength;
+  List<RulesFavoritosModelo> favoritos;
+  List<ComentariosModelo> comentarios;
+
+  ComentariosRule(this.id,this.usuario,this.avatar,this.rule,this.comentariosLength,this.favoritos,this.comentarios);
+
+  @override
+  _ComentariosRuleState createState() => _ComentariosRuleState();
+}
+
+class _ComentariosRuleState extends State<ComentariosRule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +72,7 @@ class ComentariosRule extends StatelessWidget {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 //image: AssetImage('${widget.snapshot.data[i].avatar}'),
-                                image: AssetImage("images/LOGOS/LogoPeque.png"),
+                                image: AssetImage(widget.avatar),
                                 fit: BoxFit.fitHeight,  
                               ),
                             ),
@@ -69,7 +88,7 @@ class ComentariosRule extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            child: Text('Mikel', style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
+                            child: Text('${widget.usuario}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
                               ? globals.grySecundario
                               : globals.casaHogwarts == "Slytherin"
                                   ? globals.slySecundario
@@ -83,7 +102,7 @@ class ComentariosRule extends StatelessWidget {
                             margin: EdgeInsets.only(right: 10),
                             width: 280,
                             child: Text(
-                              'Lorem ipsum dolor sit amet consectetur adipiscing elit varius odio suspendisse aliquet himenaeos, massa rutrum tempus platea parturient consequat quam porta hac curabitur. Lobortis praesent tincidunt elementum venenatis laoreet turpis cras sociis dictumst',
+                              '${widget.rule}',
                               style: TextStyle(color: Colors.white70),
                             ),
                           ), 
@@ -103,38 +122,35 @@ class ComentariosRule extends StatelessWidget {
                                       ),
                                       SizedBox(width: 10,),
                                       Container(
-                                        child: Text('1', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
+                                        child: Text('${widget.comentariosLength}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(right: 30),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        child: Icon(Icons.loop, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
-                                      ),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        child: Text('1', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(right: 30),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        child: Icon(Icons.favorite_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
-                                      ),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        child: Text('1', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
-                                      ),
-                                    ],
-                                  ),
+
+                                FutureBuilder(
+                                  future: getRules(),
+                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                    if(!snapshot.hasData)  
+                                      return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                                    else
+                                  return Container(
+                                    margin: EdgeInsets.only(right: 30),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: Icon(Icons.favorite_outline, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20,),
+                                        ),
+                                        SizedBox(width: 10,),
+                                        for(int i=0; i<snapshot.data.length;i++)
+                                          if(snapshot.data[i].id == widget.id)
+                                        Container(
+                                          child: Text('${snapshot.data[i].favoritos.length}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                  }
                                 ),
                               ],
                             ),
@@ -162,7 +178,7 @@ class ComentariosRule extends StatelessWidget {
                     return SingleChildScrollView(
                       child: Column(
                         children: [
-                          for(var i=0; i<4; i++)
+                          for(int i=0;i<widget.comentarios.length;i++)
                           Container(
                             padding: EdgeInsets.symmetric(vertical: 20),
                             decoration: BoxDecoration(
@@ -180,7 +196,7 @@ class ComentariosRule extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             //image: AssetImage('${widget.snapshot.data[i].avatar}'),
-                                            image: AssetImage("images/LOGOS/LogoPeque.png"),
+                                            image: AssetImage(widget.comentarios[i].avatar),
                                             fit: BoxFit.fitHeight,  
                                           ),
                                         ),
@@ -196,7 +212,7 @@ class ComentariosRule extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        child: Text('Mikel', style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
+                                        child: Text('${widget.comentarios[i].usuario}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
                                           ? globals.grySecundario
                                           : globals.casaHogwarts == "Slytherin"
                                               ? globals.slySecundario
@@ -210,7 +226,7 @@ class ComentariosRule extends StatelessWidget {
                                         margin: EdgeInsets.only(right: 10),
                                         width: 280,
                                         child: Text(
-                                          'Lorem ipsum dolor sit amet consectetur adipiscing elit varius odio suspendisse aliquet himenaeos, massa rutrum tempus platea parturient consequat quam porta hac curabitur. Lobortis praesent tincidunt elementum venenatis laoreet turpis cras sociis dictumst',
+                                          '${widget.comentarios[i].comentario}',
                                           style: TextStyle(color: Colors.white70),
                                         ),
                                       ),                                                            

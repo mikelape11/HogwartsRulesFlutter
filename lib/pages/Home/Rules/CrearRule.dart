@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/ComentariosModelo.dart';
+import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
+import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Home/Rules/RulesAPI.dart';
+import 'package:hogwarts_rules/pages/Home/Rules/RulesGeneral.dart';
+
+import '../Home.dart';
+import 'Rules.dart';
 
 class CrearRule extends StatefulWidget {
 
@@ -22,6 +30,9 @@ class _CrearRuleState extends State<CrearRule> {
     super.dispose();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
+
+  TextEditingController comentarioController = TextEditingController();
+  RulesModelo rule;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +72,7 @@ class _CrearRuleState extends State<CrearRule> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Form(
                   child: TextField(
+                    controller: comentarioController,
                     cursorColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -108,9 +120,65 @@ class _CrearRuleState extends State<CrearRule> {
                       width: 80,
                       height: 80,
                     ),
+                    
                   ],
                 ),
-              ),  
+              ), 
+              SizedBox(height: 20,),       
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Container(    
+                    margin: EdgeInsets.symmetric(horizontal: 15),                     
+                    child: RaisedButton(   
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),  
+                      padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withRed(100),
+                      child: Text('CANCELAR', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
+                      onPressed: () async{
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Rules(),
+                        ));
+                      }
+                    ),
+                  ),
+                  Container(    
+                    margin: EdgeInsets.symmetric(horizontal: 15),                     
+                    child: RaisedButton(   
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),  
+                      padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withRed(100),
+                      child: Text('PUBLICAR', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
+                      onPressed: () async{
+                        RulesModelo rules;
+                        // ComentariosModelo comentario;
+                        // comentario.usuario = "";
+                        // comentario.comentario = "";
+                        List<ComentariosModelo> coments = [];
+                        //coments.add(comentario);
+                        String avatar = globals.avatarElegido == "" ?  globals.avatarDefecto : globals.avatarElegido;
+                        RulesFavoritosModelo rulesFavs = new RulesFavoritosModelo();
+                        List<RulesFavoritosModelo> lista = [];
+                        // rulesFavs.usuario = globals.usuario;
+                        // lista.add(rulesFavs);
+                        rules = await registrarRule(globals.usuario,avatar, 0, comentarioController.text, "", coments, lista);
+                        setState(() {
+                          rule = rules;
+                        });
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Home(1),
+                        ));
+                      }
+                    ),
+                  ),
+                ] 
+              ), 
             ],
           ),   
           

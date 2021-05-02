@@ -218,7 +218,8 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                               child: IconButton(
                                 icon: _iconoFav(), 
                                 disabledColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                                iconSize: 30,),
+                                iconSize: 30,
+                              ),
                                 onPressed: () async{
                                   if(fav == true){
                                       cont = 1;
