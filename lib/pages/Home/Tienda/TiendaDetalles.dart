@@ -345,42 +345,81 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                     }else{
                                       for(int i=0; i<snapshot2.data.length;i++){
                                         if(snapshot2.data[i].idUsuario == globals.usuario){
-                                          List<ProductosModelo> productos = [];
-                                          CarritoModelo carr = new CarritoModelo();
-                                          ProductosModelo prod = new ProductosModelo();
-                                          prod.id = widget.id;
-                                          prod.nombre = widget.nombre;
-                                          prod.cantidad = cantidad;
-                                          prod.precio = precio3;
-                                          prod.casa = widget.casa;
-                                          prod.tipo = widget.tipo;
-                                          prod.foto = widget.foto;
-                                          for(int n=0; n<snapshot2.data[i].productos.length;n++){
-                                            ProductosModelo prod2 = new ProductosModelo();
-                                            prod2.id = snapshot2.data[i].productos[n].id;
-                                            prod2.nombre = snapshot2.data[i].productos[n].nombre;
-                                            prod2.cantidad = snapshot2.data[i].productos[n].cantidad;
-                                            prod2.precio = snapshot2.data[i].productos[n].precio;
-                                            prod2.casa = snapshot2.data[i].productos[n].casa;
-                                            prod2.tipo = snapshot2.data[i].productos[n].tipo;
-                                            prod2.foto = snapshot2.data[i].productos[n].foto;
-                                            productos.add(prod2);
-                                          } 
+                                          for(int j=0;j<snapshot2.data[i].productos.length;j++){
+                                            if(snapshot2.data[i].productos[j].id == widget.id){
+                                              List<ProductosModelo> productos = [];
+                                              CarritoModelo carr = new CarritoModelo();
+                                              ProductosModelo prod = new ProductosModelo();
+                                              prod.id = widget.id;
+                                              prod.nombre = widget.nombre;
+                                              prod.cantidad = cantidad;
+                                              prod.precio = precio3;
+                                              prod.casa = widget.casa;
+                                              prod.tipo = widget.tipo;
+                                              prod.foto = widget.foto;
+                                              for(int n=0; n<snapshot2.data[i].productos.length;n++){
+                                                ProductosModelo prod2 = new ProductosModelo();
+                                                prod2.id = snapshot2.data[i].productos[n].id;
+                                                prod2.nombre = snapshot2.data[i].productos[n].nombre;
+                                                prod2.cantidad = snapshot2.data[i].productos[n].cantidad;
+                                                prod2.precio = snapshot2.data[i].productos[n].precio;
+                                                prod2.casa = snapshot2.data[i].productos[n].casa;
+                                                prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                                prod2.foto = snapshot2.data[i].productos[n].foto;
+                                                productos.add(prod2);
+                                              } 
 
-                                          productos.add(prod);
-                                          carr.id = snapshot2.data[i].id;
-                                          carr.idUsuario = globals.usuario;
-                                          carr.productos = productos;
-                                          carrs = await actualizarCarrito(carr);
-                                          setState(() {
-                                            carrito = carr;
-                                          });   
+                                              productos.add(prod);
+                                              carr.id = snapshot2.data[i].id;
+                                              carr.idUsuario = globals.usuario;
+                                              carr.productos = productos;
+                                              carrs = await actualizarCarrito(carr);
+                                              setState(() {
+                                                carrito = carr;
+                                              });  
+                                            }else{
+                                              List<ProductosModelo> productos = [];
+                                              CarritoModelo carr = new CarritoModelo();
+                                              ProductosModelo prod = new ProductosModelo();
+                                              prod.id = widget.id;
+                                              prod.nombre = widget.nombre;
+                                              prod.cantidad = cantidad;
+                                              prod.precio = precio3;
+                                              prod.casa = widget.casa;
+                                              prod.tipo = widget.tipo;
+                                              prod.foto = widget.foto;
+                                              for(int n=0; n<snapshot2.data[i].productos.length;n++){
+                                                ProductosModelo prod2 = new ProductosModelo();
+                                                prod2.id = snapshot2.data[i].productos[n].id;
+                                                prod2.nombre = snapshot2.data[i].productos[n].nombre;
+                                                prod2.cantidad = snapshot2.data[i].productos[n].cantidad;
+                                                prod2.precio = snapshot2.data[i].productos[n].precio;
+                                                prod2.casa = snapshot2.data[i].productos[n].casa;
+                                                prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                                prod2.foto = snapshot2.data[i].productos[n].foto;
+                                                productos.add(prod2);
+                                              } 
+
+                                              productos.add(prod);
+                                              carr.id = snapshot2.data[i].id;
+                                              carr.idUsuario = globals.usuario;
+                                              carr.productos = productos;
+                                              carrs = await actualizarCarrito(carr);
+                                              setState(() {
+                                                carrito = carr;
+                                              });  
+
+                                            }
+                                          } 
+                                         
+                                          
                                         }
+                                        
                                       }
                                     }
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => CarritoTienda(),
-                                      ));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CarritoTienda(),
+                                    ));
                                 }
                               ),
                             );

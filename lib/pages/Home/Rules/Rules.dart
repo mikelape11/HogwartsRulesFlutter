@@ -5,6 +5,7 @@ import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/ComentariosRule.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/CrearComentarioRule.dart';
+import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 import 'dart:convert';
 import 'RulesAPI.dart';
 
@@ -145,16 +146,40 @@ class _RulesState extends State<Rules> {
                                   SizedBox(height: 10,), 
                                   Visibility(
                                     visible: snapshot.data[i].foto == "" ? _visible = false : _visible = true,
-                                    child: Container(
-                                      margin: EdgeInsets.all(4),
-                                      height: 170,
-                                      width: 250,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
-                                          fit: BoxFit.fill,
-                                        ),  
-                                      ) 
+                                    child: GestureDetector(
+                                      child: Container(
+                                        margin: EdgeInsets.all(4),
+                                        height: 170,
+                                        width: 250,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
+                                            fit: BoxFit.fitWidth,
+                                          ),  
+                                        ) 
+                                      ),
+                                      onTap: (){
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return CustomAlertDialog(
+                                              titlePadding: EdgeInsets.all(0.0),
+                                              contentPadding: EdgeInsets.all(0.0),
+                                              content: Container(
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
+                                                  fit: BoxFit.fitWidth,
+                                                  ),  
+                                                ),
+                                                width: 320,
+                                                height: 400,
+                                              ),
+                                            );                                                                
+                                          }
+                                        );
+                                      },
                                     ),
                                   ),
                                   //SizedBox(height: 10,),            
@@ -190,7 +215,7 @@ class _RulesState extends State<Rules> {
                                           child: Row(
                                             children: [ 
                                              
-                                                  LikeWidget(snapshot.data[i]),
+                                              LikeWidget(snapshot.data[i]),
                                                 
                                             ],
                                           ),
@@ -233,12 +258,13 @@ class _LikeWidgetState extends State<LikeWidget> {
   bool fav = false;
   int contFavs = 0;
   RulesModelo rule;
+  int cont = 0;
 
     Icon _iconoFav(){ //CAMBIO EL ICONO DEPENDIENDO DEL TEMA
         if(fav == false) {
-          return Icon(Icons.favorite_outline);
+          return Icon(Icons.favorite_outline,color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20);
         } else {
-          return Icon(Icons.favorite);
+          return Icon(Icons.favorite,color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 20);
         }
       }
 
@@ -247,47 +273,52 @@ class _LikeWidgetState extends State<LikeWidget> {
     return Row(
       children:[
         FutureBuilder(
-            future: getRules(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if(!snapshot.hasData)  
-                return Center(child: CircularProgressIndicator(strokeWidth: 2));
-              else
-                for(int j=0; j<snapshot.data.length; j++){
-                  if(snapshot.data[j].id == widget.snapshot.id){
-                    for(int i=0; i<snapshot.data[j].favoritos.length; i++){
-                       print(snapshot.data[j].favoritos[i].usuario);
-                      if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
-                        fav = true;
-                        break;
+          future: getRules(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if(!snapshot.hasData)  
+              return Center(child: CircularProgressIndicator(strokeWidth: 2));
+            else
+              for(int j=0; j<snapshot.data.length; j++){
+                if(snapshot.data[j].id == widget.snapshot.id){
+                  for(int i=0; i<snapshot.data[j].favoritos.length; i++){
+                      print(snapshot.data[j].favoritos[i].usuario);
+                    if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
+                      fav = true;
+                      cont++;
+                      if(cont == 2){
+                        fav = false;
                       }
                     }
                   }
-                }   
+                }
+              }   
          return Container(
             child: IconButton(
               icon: _iconoFav(), 
               onPressed: () {
                 setState(() async {
                   if(fav == true){
-                  FutureBuilder(
-                    future: getRules(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if(!snapshot.hasData)  
-                        return Center(child: CircularProgressIndicator(strokeWidth: 2));
-                      else
-                      for(int j=0; j<snapshot.data.length; j++){
-                        if(snapshot.data[j].id == widget.snapshot.id){
-                          for(int i=0; i<snapshot.data[j].favoritos.length; i++){
-                            if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
-                              fav = true;
-                            }else{
-                              fav = false;
-                            }
-                          }
-                        }
-                      
-                      }
-                    });
+                    // FutureBuilder(
+                    //   future: getRules(),
+                    //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    //     if(!snapshot.hasData)  
+                    //       return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                    //     else
+                    //     for(int j=0; j<snapshot.data.length; j++){
+                    //       if(snapshot.data[j].id == widget.snapshot.id){
+                    //         for(int i=0; i<snapshot.data[j].favoritos.length; i++){
+                    //           if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
+                    //             print("entra2");
+                    //             fav = true;
+                    //           }else{
+                    //              print("entra3");
+                    //             fav = false;
+                    //           }
+                    //         }
+                    //       }
+                        
+                    //     }
+                    //   });
                       List<RulesFavoritosModelo> favs = new List<RulesFavoritosModelo>();
                       RulesFavoritosModelo favorito = new RulesFavoritosModelo();
                       favorito.usuario = globals.usuario;
@@ -297,6 +328,7 @@ class _LikeWidgetState extends State<LikeWidget> {
                         fav = false;
                         contFavs--;
                       });
+                   
                   }else{
                       RulesModelo rules = new RulesModelo();
                       RulesModelo rul = new RulesModelo();
@@ -331,10 +363,8 @@ class _LikeWidgetState extends State<LikeWidget> {
             ),
            
         );
-        },
+          },
          ),
-        
-        SizedBox(width: 10,),
         Container(
           child: Text('${widget.snapshot.favoritos.length+contFavs}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),
         )

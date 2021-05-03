@@ -83,6 +83,13 @@ Future<List<ProductosModelo>> getProductos() async {
       return productos;
     }
 
+    Future<ProductosModelo> actualizarProductos(ProductosModelo productos) async{
+      var Url = "http://10.0.2.2:8080/actualizarProductos";
+      var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+      body: jsonEncode(productos));
+    }
+
+
     //DETALLES
     Future<FavoritosModelo> registrarFavorito(String idUsuario, List<ProductosModelo> productos) async{
     var Url = "http://10.0.2.2:8080/addFavorito";
@@ -144,15 +151,15 @@ Future<List<ProductosModelo>> getProductos() async {
       return carrito;
     }
     Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
-    var Url = "http://10.0.2.2:8080/addCarrito";
-    var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
-    body:jsonEncode(<String , dynamic>{
-      "idUsuario" : idUsuario,
-      "productos" : productos,
-    }));
+      var Url = "http://10.0.2.2:8080/addCarrito";
+      var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
+      body:jsonEncode(<String , dynamic>{
+        "idUsuario" : idUsuario,
+        "productos" : productos,
+      }));
     }
 
-    Future<CarritoModelo> actualizarCarrito(CarritoModelo favoritos) async{
+  Future<CarritoModelo> actualizarCarrito(CarritoModelo favoritos) async{
     var Url = "http://10.0.2.2:8080/actualizarCarrito";
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(favoritos));

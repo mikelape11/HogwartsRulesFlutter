@@ -150,22 +150,30 @@ class _CarritoTiendaState extends State<CarritoTienda> {
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Container(    
-                    margin: EdgeInsets.symmetric(horizontal: 15),                     
-                    child: RaisedButton(   
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      ),  
-                      padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withRed(100),
-                      child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
-                      onPressed: () async{
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => TiendaPagar(),
-                        ));
-                      }
-                    ),
+                  FutureBuilder(
+                    future: getCarrito(globals.usuario),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if(!snapshot.hasData){    
+                      return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                    } 
+                    return Container(    
+                      margin: EdgeInsets.symmetric(horizontal: 15),                     
+                      child: RaisedButton(   
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),  
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 30),                     
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withRed(100),
+                        child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
+                        onPressed: () async{
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => TiendaPagar(snapshot),
+                                ));
+                        }
+                      ),
+                    );
+                    }
                   ),
                   SizedBox(height: 25,),  
                 ],          

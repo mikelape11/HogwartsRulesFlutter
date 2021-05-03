@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
+
+import '../Home.dart';
 
 class TiendaPagar extends StatefulWidget {
+  AsyncSnapshot snapshot;
+
+  TiendaPagar(this.snapshot);
   @override
   _TiendaPagarState createState() => _TiendaPagarState();
 }
+ ProductosModelo prod2 = new ProductosModelo();
 
 class _TiendaPagarState extends State<TiendaPagar> {
   String cardNumber = '';
@@ -154,28 +162,62 @@ class _TiendaPagarState extends State<TiendaPagar> {
                             ),                       
                           ),
                           SizedBox(height: 40,),
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Container(
-                              margin: const EdgeInsets.all(8),
-                              child: const Text(
-                                'Comprar',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
+                          FutureBuilder(
+                            future: getProductos(),
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                              if(!snapshot.hasData)  
+                                return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                              else
+                            return RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Container(
+                                margin: const EdgeInsets.all(8),
+                                child: const Text(
+                                  'Comprar',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
-                            ),
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            onPressed: () {
-                              if (formKey.currentState.validate()) {
+                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                              onPressed: () async{
+                                 ProductosModelo prod = new ProductosModelo();
+                                if (formKey.currentState.validate()) {
+                                      
+                                        for(int i=0;i<snapshot.data.length;i++){  
+                                          for(int j=0;j<widget.snapshot.data.length;j++){
+                                            if(snapshot.data[i].id == widget.snapshot.data[j].id){
+                                                ProductosModelo producto = new ProductosModelo();
+                                                producto.id = snapshot.data[i].id;
+                                                producto.nombre = snapshot.data[i].nombre;
+                                                producto.cantidad = snapshot.data[i].cantidad - widget.snapshot.data[j].cantidad;
+                                                producto.precio = snapshot.data[i].precio;
+                                                producto.casa = snapshot.data[i].casa;
+                                                producto.tipo = snapshot.data[i].tipo;
+                                                producto.foto = snapshot.data[i].foto;
+                                                setState(() async{
+                                                  prod = await actualizarProductos(producto);
+                                                  prod2 = prod;
+                                                });
 
-                              } else {
+                                                Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (context) => Home(0),
+                                                ));
+                                            }
+                                          }
+                                        }
+                                      
+                                   
+                                   
+                                } else {
 
-                              }
-                            },
+                                }
+                              },
+                            );
+                            }
                           )
                         ],
                       ),

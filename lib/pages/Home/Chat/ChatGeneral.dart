@@ -608,6 +608,7 @@ class _MessageViewState extends State<MessageView> {
                                             titlePadding: EdgeInsets.all(0.0),
                                             contentPadding: EdgeInsets.all(0.0),
                                             content: Container(
+                                              margin: EdgeInsets.symmetric(vertical: 10),
                                               child: Image.network(
                                                 item.attachments.last.imageUrl,
                                                 // height: 200,
