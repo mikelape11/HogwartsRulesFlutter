@@ -102,37 +102,7 @@ class _CrearComentarioRuleState extends State<CrearComentarioRule> {
                     maxLength: 250, 
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 5),
-                       decoration: BoxDecoration(
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
-                        border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      width: 80,
-                      height: 80,
-                      child: Icon(Icons.add, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 30,),
-                    ),
-                    for(var i=0; i<3; i++)
-                    Container(
-                      margin: EdgeInsets.only(right: 5),
-                       decoration: BoxDecoration(
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
-                        border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      width: 80,
-                      height: 80,
-                    ),
-                  ],
-                ),
-              ),  
+              ), 
             SizedBox(height: 20,),       
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +119,7 @@ class _CrearComentarioRuleState extends State<CrearComentarioRule> {
                       child: Text('CANCELAR', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                       onPressed: () async{
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Rules(),
+                          builder: (context) => Home(1),
                         ));
                       }
                     ),

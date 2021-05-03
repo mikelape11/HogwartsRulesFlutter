@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
-
+import 'dart:convert';
 import 'RulesAPI.dart';
 
 
@@ -11,11 +11,12 @@ class ComentariosRule extends StatefulWidget {
   String usuario;
   String avatar;
   String rule;
+  String foto;
   int comentariosLength;
   List<RulesFavoritosModelo> favoritos;
   List<ComentariosModelo> comentarios;
 
-  ComentariosRule(this.id,this.usuario,this.avatar,this.rule,this.comentariosLength,this.favoritos,this.comentarios);
+  ComentariosRule(this.id,this.usuario,this.avatar,this.rule,this.foto,this.comentariosLength,this.favoritos,this.comentarios);
 
   @override
   _ComentariosRuleState createState() => _ComentariosRuleState();
@@ -106,7 +107,18 @@ class _ComentariosRuleState extends State<ComentariosRule> {
                               style: TextStyle(color: Colors.white70),
                             ),
                           ), 
-                          SizedBox(height: 20,),            
+                         SizedBox(height: 10,), 
+                            Container(
+                              margin: EdgeInsets.all(4),
+                              height: 170,
+                              width: 250,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: MemoryImage(base64Decode(widget.foto)),
+                                  fit: BoxFit.fill,
+                                ),  
+                              ) 
+                            ),       
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             width: MediaQuery.of(context).size.width/1.5,

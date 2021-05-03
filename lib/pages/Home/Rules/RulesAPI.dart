@@ -44,7 +44,7 @@ class RulesAPI extends StatefulWidget {
       "avatar": avatar,
       "rol" : rol.toString(),
       "rule": rule,
-      "foto": "",
+      "foto": foto,
       "comentarios": comentarios,
       "favoritos": favoritos,
     }));
@@ -56,6 +56,17 @@ class RulesAPI extends StatefulWidget {
     body: jsonEncode(rule));
   }
 
+
+
+  Future<RulesModelo> deleteLikeFavoritos(String id, List<RulesFavoritosModelo> favUsuario) async{
+   var Url =     Uri.parse('http://10.0.2.2:8080/eliminarFavorito');
+     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
+    body:jsonEncode(<String , dynamic>{
+      "_id" : id,
+      "favoritos" : favUsuario,
+    }));
+    
+  }
 
 
 class _RulesAPIState extends State<RulesAPI> {

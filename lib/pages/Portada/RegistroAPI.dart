@@ -21,7 +21,7 @@ class RegistroAPI extends StatefulWidget {
       "email": email,
       "casaHogwarts": "",
       "varita" : "",
-      "patronus" : "",
+      "patronus" : " ",
       "avatar": avatar,
       "rol": rol.toString()
     }));

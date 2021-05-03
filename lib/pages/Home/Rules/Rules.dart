@@ -5,7 +5,7 @@ import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/ComentariosRule.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/CrearComentarioRule.dart';
-
+import 'dart:convert';
 import 'RulesAPI.dart';
 
 class Rules extends StatefulWidget {
@@ -14,7 +14,8 @@ class Rules extends StatefulWidget {
   @override
   _RulesState createState() => _RulesState();
 }
-  
+bool _visible = false;
+
 class _RulesState extends State<Rules> {
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class _RulesState extends State<Rules> {
                                   '${snapshot.data[i].rule}',
                                   style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold, fontSize: 16),
                                 ),
-                              ),                   
+                              ),  
                             ],
                           ),
                         ),
@@ -138,10 +139,25 @@ class _RulesState extends State<Rules> {
                                     width: 280,
                                     child: Text(
                                       '${snapshot.data[i].rule}',
-                                      style: TextStyle(color: Colors.white70),
+                                      style: TextStyle(color: Colors.white70, fontSize: 18, fontWeight: FontWeight.bold),
                                     ),
-                                  ), 
-                                  SizedBox(height: 20,),            
+                                  ),
+                                  SizedBox(height: 10,), 
+                                  Visibility(
+                                    visible: snapshot.data[i].foto == "" ? _visible = false : _visible = true,
+                                    child: Container(
+                                      margin: EdgeInsets.all(4),
+                                      height: 170,
+                                      width: 250,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
+                                          fit: BoxFit.fill,
+                                        ),  
+                                      ) 
+                                    ),
+                                  ),
+                                  //SizedBox(height: 10,),            
                                   Container(
                                     padding: EdgeInsets.symmetric(horizontal: 20),
                                     width: MediaQuery.of(context).size.width/1.5,
@@ -172,8 +188,10 @@ class _RulesState extends State<Rules> {
                                         Container(
                                           margin: EdgeInsets.only(right: 30),
                                           child: Row(
-                                            children: [  
-                                              LikeWidget(snapshot.data[i]),
+                                            children: [ 
+                                             
+                                                  LikeWidget(snapshot.data[i]),
+                                                
                                             ],
                                           ),
                                         ),
@@ -188,7 +206,7 @@ class _RulesState extends State<Rules> {
                       ),
                       onTap: (){
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ComentariosRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].comentarios),
+                          builder: (context) => ComentariosRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule,snapshot.data[i].foto, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].comentarios),
                         ));
                       },
                     ),            
@@ -229,56 +247,57 @@ class _LikeWidgetState extends State<LikeWidget> {
     return Row(
       children:[
         FutureBuilder(
-        future: getRules(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if(!snapshot.hasData)  
-            return Center(child: CircularProgressIndicator(strokeWidth: 2));
-          else
-          for(int j=0; j<snapshot.data.length; j++){
-            if(snapshot.data[j].id == widget.snapshot.id){
-              for(int i=0; i<snapshot.data[j].favoritos.length; i++){
-                if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
-                  fav = true;   
-
-              }
-              }
-            }
-          } 
-          return Container(
+            future: getRules(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if(!snapshot.hasData)  
+                return Center(child: CircularProgressIndicator(strokeWidth: 2));
+              else
+                for(int j=0; j<snapshot.data.length; j++){
+                  if(snapshot.data[j].id == widget.snapshot.id){
+                    for(int i=0; i<snapshot.data[j].favoritos.length; i++){
+                       print(snapshot.data[j].favoritos[i].usuario);
+                      if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
+                        fav = true;
+                        break;
+                      }
+                    }
+                  }
+                }   
+         return Container(
             child: IconButton(
               icon: _iconoFav(), 
               onPressed: () {
                 setState(() async {
-                  if(fav == false){
-                      fav = true;    
-                      contFavs++;
-                      RulesModelo rules = new RulesModelo();
-                      RulesModelo rul = new RulesModelo();
-                      rules.id = widget.snapshot.id;
-                      rules.usuario = widget.snapshot.usuario;
-                      rules.avatar = widget.snapshot.avatar;
-                      rules.rule = widget.snapshot.rule;
-                      rules.foto = widget.snapshot.foto;
-                      List<RulesFavoritosModelo> lista = [];
-                      RulesFavoritosModelo favs = new RulesFavoritosModelo();
-                      for(int i=0; i<widget.snapshot.favoritos.length;i++){
-                        RulesFavoritosModelo favs2 = new RulesFavoritosModelo();
-                        favs2.usuario = widget.snapshot.favoritos[i].usuario;
-                        lista.add(favs2);
-                      }
-                      favs.usuario = globals.usuario;
-                      lista.add(favs);
-                      rules.favoritos = lista;
-                      rules.comentarios = widget.snapshot.comentarios;
-                      rul = await actualizarRule(rules);
-                      setState(() {
-                          rule = rules;
-                      });
-                        
+                  if(fav == true){
+                  FutureBuilder(
+                    future: getRules(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if(!snapshot.hasData)  
+                        return Center(child: CircularProgressIndicator(strokeWidth: 2));
+                      else
+                      for(int j=0; j<snapshot.data.length; j++){
+                        if(snapshot.data[j].id == widget.snapshot.id){
+                          for(int i=0; i<snapshot.data[j].favoritos.length; i++){
+                            if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
+                              fav = true;
+                            }else{
+                              fav = false;
+                            }
+                          }
+                        }
                       
-                  }else if(fav == true){
-                    fav = false;
-                    contFavs--;
+                      }
+                    });
+                      List<RulesFavoritosModelo> favs = new List<RulesFavoritosModelo>();
+                      RulesFavoritosModelo favorito = new RulesFavoritosModelo();
+                      favorito.usuario = globals.usuario;
+                      favs.add(favorito);
+                      await deleteLikeFavoritos(widget.snapshot.id, favs);
+                      setState(() {
+                        fav = false;
+                        contFavs--;
+                      });
+                  }else{
                       RulesModelo rules = new RulesModelo();
                       RulesModelo rul = new RulesModelo();
                       rules.id = widget.snapshot.id;
@@ -290,8 +309,10 @@ class _LikeWidgetState extends State<LikeWidget> {
                       RulesFavoritosModelo favs = new RulesFavoritosModelo();
                       for(int i=0; i<widget.snapshot.favoritos.length;i++){
                         RulesFavoritosModelo favs2 = new RulesFavoritosModelo();
-                        favs2.usuario = widget.snapshot.favoritos[i].usuario;
-                        lista.add(favs2);
+                        if(widget.snapshot.favoritos[i].usuario != globals.usuario){
+                          favs2.usuario = widget.snapshot.favoritos[i].usuario;
+                          lista.add(favs2);
+                        }  
                       }
                       favs.usuario = globals.usuario;
                       lista.add(favs);
@@ -299,15 +320,20 @@ class _LikeWidgetState extends State<LikeWidget> {
                       rules.comentarios = widget.snapshot.comentarios;
                       rul = await actualizarRule(rules);
                       setState(() {
-                          rule = rules;
-                      });
-                  }                               
+                        fav = true;    
+                        contFavs++;
+                        rule = rul;
+                      });      
+                  }                            
                 });
+              
               },
             ),
-          );
-        }
-        ),
+           
+        );
+        },
+         ),
+        
         SizedBox(width: 10,),
         Container(
           child: Text('${widget.snapshot.favoritos.length+contFavs}', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 15, fontWeight: FontWeight.bold),),

@@ -43,7 +43,8 @@ dependencies:
   flutter_credit_card: ^0.1.4
   stream_chat_persistence: ^1.5.1
   file_picker: ^2.1.7
-  
+  image_picker: ^0.6.6+5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -180,11 +181,11 @@ flutter:
     
     #VARITAS
     - images/Varitas/ElegirVarita.png
-    - images/Varitas/varita1.png
-    - images/Varitas/varita2.png
-    - images/Varitas/varita3.png
-    - images/Varitas/varita4.png
-    - images/Varitas/varita5.png
+    - images/Varitas/25 cm de largo, hecha de madera de espino, y un nucleo de pelo de unicornio.png
+    - images/Varitas/34 cm y cuarto de largo, hecha de tejo, con un nucleo de pluma de fenix.png
+    - images/Varitas/Hecha de vid, con nucleo de fibra de corazon de dragon y mide 27 centimetros.png
+    - images/Varitas/Madera de sauce, nucleo de Pelo de Unicornio y mide 36 centimetros.png
+    - images/Varitas/Veintiocho centimetros, hecha de acebo, con una pluma de fenix en su centro.png
 
     #PATRONUS
     - images/Patronus/ElegirPatronus.png
@@ -203,6 +204,11 @@ flutter:
     - images/Tienda/Libro.png
     - images/Tienda/Niki.png
     - images/Tienda/Taza.png
+
+    #JUEGOS
+    - images/Juego/Harry.png
+    - images/Juego/Hermione.png
+    - images/Juego/Ron.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

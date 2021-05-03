@@ -1,15 +1,17 @@
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/RulesAPI.dart';
-import 'package:hogwarts_rules/pages/Home/Rules/RulesGeneral.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io' as Io;
 import '../Home.dart';
-import 'Rules.dart';
+import 'dart:convert';
 
 class CrearRule extends StatefulWidget {
 
@@ -30,10 +32,21 @@ class _CrearRuleState extends State<CrearRule> {
     super.dispose();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
+  File _image;
+  bool imagenElegida = false;
+
+  _imgFromGallery() async {
+    File image = await  ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 50
+    );
+    setState(() {
+      _image = image;
+    });
+  }
 
   TextEditingController comentarioController = TextEditingController();
+  TextEditingController fotoController = TextEditingController();
   RulesModelo rule;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,29 +111,41 @@ class _CrearRuleState extends State<CrearRule> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 5),
-                       decoration: BoxDecoration(
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
-                        border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
+                    GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.only(right: 5),
+                         decoration: BoxDecoration(
+                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
+                          border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        width: 80,
+                        height: 80,
+                        child: imagenElegida == false ? Icon(Icons.add, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 30,
+                        ) : Container(
+                            decoration: BoxDecoration(
+                            border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Image.file(
+                          _image,
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.fitHeight,
                       ),
-                      width: 80,
-                      height: 80,
-                      child: Icon(Icons.add, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 30,),
-                    ),
-                    for(var i=0; i<3; i++)
-                    Container(
-                      margin: EdgeInsets.only(right: 5),
-                       decoration: BoxDecoration(
-                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withOpacity(0.9),
-                        border: Border.all(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
+                        ),
                       ),
-                      width: 80,
-                      height: 80,
+                      onTap: () async{
+                      _imgFromGallery();
+                      final bytes = await Io.File(_image.path).readAsBytes();
+                      String img64 = base64Encode(bytes);
+                      print(img64);
+                      fotoController.text = img64;
+                      setState(() {
+                        imagenElegida = true;
+                      });
+                    },
                     ),
-                    
                   ],
                 ),
               ), 
@@ -140,7 +165,7 @@ class _CrearRuleState extends State<CrearRule> {
                       child: Text('CANCELAR', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                       onPressed: () async{
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Rules(),
+                          builder: (context) => Home(1),
                         ));
                       }
                     ),
@@ -167,7 +192,7 @@ class _CrearRuleState extends State<CrearRule> {
                         List<RulesFavoritosModelo> lista = [];
                         // rulesFavs.usuario = globals.usuario;
                         // lista.add(rulesFavs);
-                        rules = await registrarRule(globals.usuario,avatar, 0, comentarioController.text, "", coments, lista);
+                        rules = await registrarRule(globals.usuario,avatar, 0, comentarioController.text, fotoController.text, coments, lista);
                         setState(() {
                           rule = rules;
                         });
