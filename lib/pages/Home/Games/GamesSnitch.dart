@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
-import 'package:hogwarts_rules/pages/Ajustes/Ajustes.dart';
+import 'package:hogwarts_rules/pages/Home/Games/GamesSnitchRanking.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 
 import '../Home.dart';
@@ -17,7 +17,7 @@ class _GamesSnitchState extends State<GamesSnitch> {
   Timer timer;
   Timer timer2;
   Timer timer3;
-  var contador = 5;
+  var contador = 20;
   var top = 300.0;
   var left = 500.0;
   var puntuacion = 0;
@@ -148,6 +148,12 @@ class _GamesSnitchState extends State<GamesSnitch> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -202,8 +208,9 @@ class _GamesSnitchState extends State<GamesSnitch> {
                 size: 25,
               ),
               onPressed: () {
+                timer.cancel();
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Ajustes(),
+                  builder: (context) => GamesSnitchRanking(),
                 ));
               }),
         ],
@@ -339,7 +346,7 @@ class _GamesSnitchState extends State<GamesSnitch> {
               margin: EdgeInsets.only(top: 80, left: 20, bottom: 20, right: 20),
               height: MediaQuery.of(context).size.height / 1,
               decoration: BoxDecoration(
-                  color: globals.gryPrincipal,
+                  color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                   border: Border.all(
                       color: globals.casaHogwarts == "Gryffindor"
                           ? globals.grySecundario

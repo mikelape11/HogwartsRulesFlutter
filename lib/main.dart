@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'pages/Home/Games/GamesSnitch.dart';
 import 'pages/Portada/Portada.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Portada(),
+      home: GamesSnitch(),
     );
   }
 }
