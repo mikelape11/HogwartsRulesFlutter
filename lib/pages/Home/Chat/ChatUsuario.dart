@@ -12,58 +12,63 @@ import 'dart:math' as math;
 import 'package:file_picker/file_picker.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 
-
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
-  if (!globals.conexion) {
-    globals.cliente = StreamChatClient('mnfxmhsn3j5t');
-//b67pax5b2wdq
-    WidgetsFlutterBinding.ensureInitialized();
+//   if (!globals.conexion) {
+//     globals.cliente = StreamChatClient('mnfxmhsn3j5t');
+// //b67pax5b2wdq
+//     WidgetsFlutterBinding.ensureInitialized();
 
-    /// Set the chatPersistenceClient for offline support
-    globals.cliente.chatPersistenceClient = StreamChatPersistenceClient(
-      logLevel: Level.INFO,
-      connectionMode: ConnectionMode.background,
-    );
+//     /// Set the chatPersistenceClient for offline support
+//     globals.cliente.chatPersistenceClient = StreamChatPersistenceClient(
+//       logLevel: Level.INFO,
+//       connectionMode: ConnectionMode.background,
+//     );
 
-    /// Set the current user. In a production scenario, this should be done using
-    /// a backend to generate a user token using our server SDK.
-    /// Please see the following for more information:
-    /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
-    ///
+//     /// Set the current user. In a production scenario, this should be done using
+//     /// a backend to generate a user token using our server SDK.
+//     /// Please see the following for more information:
+//     /// https://getstream.io/chat/docs/ios_user_setup_and_tokens/
+//     ///
 
-    await globals.cliente.connectUser(
-      User(
-        id: globals.usuario,
-        extraData: {
-          'image':
-              'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
-        },
-      ),
-      globals.cliente.devToken(globals.usuario),
-    );
+//     await globals.cliente.connectUser(
+//       User(
+//         id: globals.usuario,
+//         extraData: {
+//           'image':
+//               'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
+//         },
+//       ),
+//       globals.cliente.devToken(globals.usuario),
+//     );
 
-    //await client.connectGuestUser(User(id: 'Enetz'));
+//     //await client.connectGuestUser(User(id: 'Enetz'));
 
-    //await client.connectUserWithProvider(User(id: 'Enetz'));
-    //
-    //await client.connectUser(User(id: 'Enetz'), "z7dychbrkgg9dhvpf28cy66kabr5m5nr5m26t8ptt3ggv6r2nsejxkr6ytqjf2xw");
+//     //await client.connectUserWithProvider(User(id: 'Enetz'));
+//     //
+//     //await client.connectUser(User(id: 'Enetz'), "z7dychbrkgg9dhvpf28cy66kabr5m5nr5m26t8ptt3ggv6r2nsejxkr6ytqjf2xw");
 
-    /// Creates a channel using the type `messaging` and `godevs`.
-    /// Channels are containers for holding messages between different members. To
-    /// learn more about channels and some of our predefined types, checkout our
-    /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
-    channel = globals.cliente.channel('messaging', id: globals.casaHogwarts);
+//     /// Creates a channel using the type `messaging` and `godevs`.
+//     /// Channels are containers for holding messages between different members. To
+//     /// learn more about channels and some of our predefined types, checkout our
+//     /// our channel docs: https://getstream.io/chat/docs/initialize_channel/?language=dart
+//     channel = globals.cliente.channel('messaging', id: globals.casaHogwarts);
 
-    /// `.watch()` is used to create and listen to the channel for updates. If the
-    /// channel already exists, it will simply listen for new events.
-    await channel.watch();
+//     /// `.watch()` is used to create and listen to the channel for updates. If the
+//     /// channel already exists, it will simply listen for new events.
+//     await channel.watch();
 
-    globals.conexion = true;
-    return channel;
-  } else {
-    return channel;
-  }
+//     globals.conexion = true;
+//     return channel;
+
+  channel = globals.cliente
+      .channel('messaging', id: globals.numeroUsuario.toString());
+
+  //     /// `.watch()` is used to create and listen to the channel for updates. If the
+  //     /// channel already exists, it will simply listen for new events.
+  await channel.watch();
+
+  return channel;
 }
 
 /// Example using Stream's Low Level Dart client.
@@ -239,8 +244,8 @@ class _ChatUsuarioState extends State<ChatUsuario> {
                                           : globals.gryPrincipal),
                     ),
                   );
-              })  
-        ],       
+              })
+        ],
       ),
     );
   }
@@ -399,26 +404,28 @@ class _MessageViewState extends State<MessageView> {
                                         width: 150,
                                       ),
                                     ),
-                                    onTap: (){
+                                    onTap: () {
                                       showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return CustomAlertDialog(
-                                            titlePadding: EdgeInsets.all(0.0),
-                                            contentPadding: EdgeInsets.all(0.0),
-                                            content: Container(
-                                              margin: EdgeInsets.symmetric(vertical: 10),
-                                              child: Image.network(
-                                                item.attachments.last.imageUrl,
-                                                // height: 200,
-                                                // width: 150,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return CustomAlertDialog(
+                                              titlePadding: EdgeInsets.all(0.0),
+                                              contentPadding:
+                                                  EdgeInsets.all(0.0),
+                                              content: Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    vertical: 10),
+                                                child: Image.network(
+                                                  item.attachments.last
+                                                      .imageUrl,
+                                                  // height: 200,
+                                                  // width: 150,
+                                                ),
+                                                width: 302,
+                                                height: 431,
                                               ),
-                                              width: 302,
-                                              height: 431,
-                                            ),
-                                          );                                                                
-                                        }
-                                      );
+                                            );
+                                          });
                                     },
                                   ),
                                 if (item.text != null)
@@ -501,16 +508,16 @@ class _MessageViewState extends State<MessageView> {
                               if (item.attachments.isNotEmpty &&
                                   item.attachments.last.imageUrl != null)
                                 GestureDetector(
-                                    child: Container(
-                                      margin: EdgeInsets.symmetric(vertical: 10),
-                                      child: Image.network(
-                                        item.attachments.last.imageUrl,
-                                        height: 200,
-                                        width: 150,
-                                      ),
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    child: Image.network(
+                                      item.attachments.last.imageUrl,
+                                      height: 200,
+                                      width: 150,
                                     ),
-                                    onTap: (){
-                                      showDialog(
+                                  ),
+                                  onTap: () {
+                                    showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
                                           return CustomAlertDialog(
@@ -525,11 +532,10 @@ class _MessageViewState extends State<MessageView> {
                                               width: 302,
                                               height: 431,
                                             ),
-                                          );                                                                
-                                        }
-                                      );
-                                    },
-                                  ),
+                                          );
+                                        });
+                                  },
+                                ),
                               if (item.text != null)
                                 Container(
                                   child: Text(

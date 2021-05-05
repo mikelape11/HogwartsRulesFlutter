@@ -13,8 +13,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 import 'package:hogwarts_rules/pages/Home/Chat/ChatUsuario.dart';
 
-
-
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
   if (!globals.conexion) {
@@ -82,8 +80,15 @@ class _ChatGeneralState extends State<ChatGeneral> {
   PageController _controller = PageController(
     initialPage: 0,
   );
-
+  int suma = 0;
   String titulo = "Chat Grupal";
+
+  chatCambio() {
+    for (var i = 0; i < channel.memberCount; i++) {
+      if (channel.state.members.elementAt(i).user.id == channel.client.uid)
+        suma = i;
+    }
+  }
 
   @override
   void dispose() {
@@ -192,20 +197,20 @@ class _ChatGeneralState extends State<ChatGeneral> {
             preferredSize: Size.fromHeight(4.0)),
       ),
       body: PageView(
-        controller: _controller, 
-        onPageChanged: (int page) {   
-          if(page == 0){
+        controller: _controller,
+        onPageChanged: (int page) {
+          if (page == 0) {
             setState(() {
               titulo = "Chat Grupal";
             });
-          }else{
+          } else {
             setState(() {
               titulo = "Contactos";
             });
           }
-          print("Current Page: " + page.toString());       
-        },     
-        children:[
+          print("Current Page: " + page.toString());
+        },
+        children: [
           Stack(
             children: [
               Container(
@@ -261,77 +266,132 @@ class _ChatGeneralState extends State<ChatGeneral> {
                   })
             ],
           ),
-          Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+          Stack(children: [
+            Container(
+              decoration: BoxDecoration(
+                color: globals.casaHogwarts == "Gryffindor"
+                    ? globals.gryPrincipal
+                    : globals.casaHogwarts == "Slytherin"
+                        ? globals.slyPrincipal
+                        : globals.casaHogwarts == "Ravenclaw"
+                            ? globals.ravPrincipal
+                            : globals.casaHogwarts == "Hufflepuff"
+                                ? globals.hufPrincipal
+                                : globals.gryPrincipal,
               ),
-              Container(
-                child: Column(
-                  children: [
-                    for(var i=0; i<3; i++)
-                    GestureDetector(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario , width: 1.0)),      
-                          color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal.withRed(80),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: Row(
-                          children: [     
-                            Container(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    //image: AssetImage('${widget.snapshot.data[i].avatar}'),
-                                    image: AssetImage("images/admin.png"),
-                                    fit: BoxFit.fitHeight,  
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+            ),
+            Container(
+              child: Column(
+                children: [
+                  if (channel.memberCount != null)
+                    for (var i = 0; i < channel.memberCount; i++) ...{
+                      if (channel.state.members.elementAt(i).user.id !=
+                          channel.client.uid) ...{
+                        GestureDetector(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: globals.casaHogwarts ==
+                                              "Gryffindor"
+                                          ? globals.grySecundario
+                                          : globals.casaHogwarts == "Slytherin"
+                                              ? globals.slySecundario
+                                              : globals.casaHogwarts ==
+                                                      "Ravenclaw"
+                                                  ? globals.ravSecundario
+                                                  : globals.casaHogwarts ==
+                                                          "Hufflepuff"
+                                                      ? globals.hufSecundario
+                                                      : globals.grySecundario,
+                                      width: 1.0)),
+                              color: globals.casaHogwarts == "Gryffindor"
+                                  ? globals.gryPrincipal
+                                  : globals.casaHogwarts == "Slytherin"
+                                      ? globals.slyPrincipal
+                                      : globals.casaHogwarts == "Ravenclaw"
+                                          ? globals.ravPrincipal
+                                          : globals.casaHogwarts == "Hufflepuff"
+                                              ? globals.hufPrincipal
+                                              : globals.gryPrincipal
+                                                  .withRed(80),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        //image: AssetImage('${widget.snapshot.data[i].avatar}'),
+                                        image: AssetImage("images/admin.png"),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                    ),
+                                    height: 70,
+                                    width:
+                                        MediaQuery.of(context).size.width / 4,
                                   ),
                                 ),
-                                height: 70,
-                                width: MediaQuery.of(context).size.width/4,
-                              ),
-                            ),
-                            Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    child: Center(
-                                      child: Text('NOMBRE USUARIO', style: TextStyle(color: globals.casaHogwarts == "Gryffindor"
-                                        ? globals.grySecundario
-                                        : globals.casaHogwarts == "Slytherin"
-                                            ? globals.slySecundario
-                                            : globals.casaHogwarts == "Ravenclaw"
-                                                ? globals.ravSecundario
-                                                : globals.casaHogwarts == "Hufflepuff"
-                                                    ? globals.hufSecundario
-                                                    : globals.grySecundario,  fontWeight: FontWeight.bold, fontSize: 17), textAlign: TextAlign.start,),
-                                    ),
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 200,
+                                        child: Center(
+                                          child: Text(
+                                            channel.state.members
+                                                .elementAt(i)
+                                                .user
+                                                .id
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: globals.casaHogwarts ==
+                                                        "Gryffindor"
+                                                    ? globals.grySecundario
+                                                    : globals.casaHogwarts ==
+                                                            "Slytherin"
+                                                        ? globals.slySecundario
+                                                        : globals.casaHogwarts ==
+                                                                "Ravenclaw"
+                                                            ? globals
+                                                                .ravSecundario
+                                                            : globals.casaHogwarts ==
+                                                                    "Hufflepuff"
+                                                                ? globals
+                                                                    .hufSecundario
+                                                                : globals
+                                                                    .grySecundario,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                               
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
+                          onTap: () async {
+                            await chatCambio();
+                            globals.numeroUsuario = suma + i;
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ChatUsuario(),
+                            ));
+                          },
                         ),
-                      ),
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ChatUsuario(),
-                        ));
-                      },
-                    ),
-                  ],
-                ),
+                      }
+                    }
+                ],
               ),
-            ]
-          ),
-        ],       
+            ),
+          ]),
+        ],
       ),
     );
   }
@@ -435,7 +495,7 @@ class _MessageViewState extends State<MessageView> {
   }
 
   DateTime now = new DateTime.now();
-
+  List<String> miembros = new List<String>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -447,6 +507,8 @@ class _MessageViewState extends State<MessageView> {
             reverse: true,
             itemBuilder: (BuildContext context, int index) {
               final item = _messages[index];
+              miembros.add(item.user.id.toString());
+              channel.addMembers(miembros);
               if (item.user.id == widget.channel.client.uid) {
                 //MIS MENSAJES ---------------------------------------------------------
                 return Column(
@@ -490,26 +552,28 @@ class _MessageViewState extends State<MessageView> {
                                         width: 150,
                                       ),
                                     ),
-                                    onTap: (){
+                                    onTap: () {
                                       showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return CustomAlertDialog(
-                                            titlePadding: EdgeInsets.all(0.0),
-                                            contentPadding: EdgeInsets.all(0.0),
-                                            content: Container(
-                                              margin: EdgeInsets.symmetric(vertical: 10),
-                                              child: Image.network(
-                                                item.attachments.last.imageUrl,
-                                                // height: 200,
-                                                // width: 150,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return CustomAlertDialog(
+                                              titlePadding: EdgeInsets.all(0.0),
+                                              contentPadding:
+                                                  EdgeInsets.all(0.0),
+                                              content: Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    vertical: 10),
+                                                child: Image.network(
+                                                  item.attachments.last
+                                                      .imageUrl,
+                                                  // height: 200,
+                                                  // width: 150,
+                                                ),
+                                                width: 302,
+                                                height: 431,
                                               ),
-                                              width: 302,
-                                              height: 431,
-                                            ),
-                                          );                                                                
-                                        }
-                                      );
+                                            );
+                                          });
                                     },
                                   ),
                                 if (item.text != null)
@@ -592,23 +656,24 @@ class _MessageViewState extends State<MessageView> {
                               if (item.attachments.isNotEmpty &&
                                   item.attachments.last.imageUrl != null)
                                 GestureDetector(
-                                    child: Container(
-                                      margin: EdgeInsets.symmetric(vertical: 10),
-                                      child: Image.network(
-                                        item.attachments.last.imageUrl,
-                                        height: 200,
-                                        width: 150,
-                                      ),
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    child: Image.network(
+                                      item.attachments.last.imageUrl,
+                                      height: 200,
+                                      width: 150,
                                     ),
-                                    onTap: (){
-                                      showDialog(
+                                  ),
+                                  onTap: () {
+                                    showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
                                           return CustomAlertDialog(
                                             titlePadding: EdgeInsets.all(0.0),
                                             contentPadding: EdgeInsets.all(0.0),
                                             content: Container(
-                                              margin: EdgeInsets.symmetric(vertical: 10),
+                                              margin: EdgeInsets.symmetric(
+                                                  vertical: 10),
                                               child: Image.network(
                                                 item.attachments.last.imageUrl,
                                                 // height: 200,
@@ -617,11 +682,10 @@ class _MessageViewState extends State<MessageView> {
                                               width: 302,
                                               height: 431,
                                             ),
-                                          );                                                                
-                                        }
-                                      );
-                                    },
-                                  ),
+                                          );
+                                        });
+                                  },
+                                ),
                               if (item.text != null)
                                 Container(
                                   child: Text(
@@ -797,7 +861,7 @@ class _MessageViewState extends State<MessageView> {
                     }
                   },
                 ),
-              )
+              ),
             ],
           ),
         )

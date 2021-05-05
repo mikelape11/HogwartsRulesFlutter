@@ -6,7 +6,7 @@ import 'pages/Portada/Portada.dart';
 void main() {
   runApp(MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GamesSnitch(),
+      home: Portada(),
     );
   }
 }
-
