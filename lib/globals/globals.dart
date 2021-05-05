@@ -34,15 +34,19 @@ int color4 = 0xFF252525;
 //COLORES DE LAS CASAS
 HexColor gryPrincipal = HexColor('#551617');
 HexColor grySecundario = HexColor('#ff9800');
+HexColor gryTerciario = HexColor('#ffb400');
 
 HexColor slyPrincipal = HexColor('#09473e');
 HexColor slySecundario = HexColor('#b0b0b0');
+HexColor slyTerciario = HexColor('#d9d9d9');
 
 HexColor ravPrincipal = HexColor('#0e1a40');
 HexColor ravSecundario = HexColor('#946b2d');
+HexColor ravTerciario = HexColor('#cc8212');
 
 HexColor hufPrincipal = HexColor('#9c6c21');
 HexColor hufSecundario = HexColor('#050505');
+HexColor hufTerciario = HexColor('#151515');
 
 //LOGOS DE LAS CASAS
 String logoGry = "images/Gryffindor/LogoGry.png";

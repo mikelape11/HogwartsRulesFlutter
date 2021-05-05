@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:hogwarts_rules/pages/Portada/Login.dart';
 import 'package:hogwarts_rules/pages/Portada/RegistroOption.dart';
 import 'package:hogwarts_rules/pages/Portada/LoginOption.dart';
@@ -104,7 +105,38 @@ class CurvePainter extends CustomPainter{
     path.lineTo(size.width, 0);
 
     path.close();
+ 
+    var paint2 = Paint();
+    paint2.color = Colors.grey[700];
+    paint2.style = PaintingStyle.fill;
+    // paint2.shader = ui.Gradient.linear(
+    //   Offset(100, 100),
+    //   Offset(200, 200),
+    //   <Color>[
+    //     Colors.green.withOpacity(1.0),
+    //     Colors.green.withOpacity(0.3),
+    //     Colors.yellow.withOpacity(0.2),
+    //     Colors.red.withOpacity(0.1),
+    //     Colors.red.withOpacity(0.0),
+    //   ],
+    //   [
+    //     0.0,
+    //     0.5,
+    //     0.7,
+    //     0.9,
+    //     1.0,
+    //   ],
+    // );
 
+    Path path2 = Path();
+    path2.moveTo(0, 0);
+    path2.lineTo(0, size.height+10);
+    path2.quadraticBezierTo(size.width * 0.5, outterCurve ? size.height + 130 : size.height - 90, size.width, size.height+10);
+    path2.lineTo(size.width, 0);
+
+    path2.close();
+
+    canvas.drawPath(path2, paint2);
     canvas.drawPath(path, paint);
   }
   @override

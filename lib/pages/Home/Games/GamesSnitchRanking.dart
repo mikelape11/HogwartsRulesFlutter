@@ -14,7 +14,7 @@ class GamesSnitchRanking extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Home(4),
@@ -29,36 +29,36 @@ class GamesSnitchRanking extends StatelessWidget {
           'CLASIFICACIÓN',
           style: TextStyle(
               color: globals.casaHogwarts == "Gryffindor"
-                  ? globals.grySecundario
+                  ? globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario
                   : globals.casaHogwarts == "Slytherin"
                       ? globals.slySecundario
                       : globals.casaHogwarts == "Ravenclaw"
                           ? globals.ravSecundario
                           : globals.casaHogwarts == "Hufflepuff"
                               ? globals.hufSecundario
-                              : globals.grySecundario),
+                              : globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),
         ),
         backgroundColor: globals.casaHogwarts == "Gryffindor"
-            ? globals.gryPrincipal
+            ? globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal
             : globals.casaHogwarts == "Slytherin"
                 ? globals.slyPrincipal
                 : globals.casaHogwarts == "Ravenclaw"
                     ? globals.ravPrincipal
                     : globals.casaHogwarts == "Hufflepuff"
                         ? globals.hufPrincipal
-                        : globals.gryPrincipal,
+                        : globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
         centerTitle: true,
         bottom: PreferredSize(
             child: Container(
               color: globals.casaHogwarts == "Gryffindor"
-                  ? globals.grySecundario
+                  ? globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario
                   : globals.casaHogwarts == "Slytherin"
                       ? globals.slySecundario
                       : globals.casaHogwarts == "Ravenclaw"
                           ? globals.ravSecundario
                           : globals.casaHogwarts == "Hufflepuff"
                               ? globals.hufSecundario
-                              : globals.grySecundario,
+                              : globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
               height: 2.0,
             ),
             preferredSize: Size.fromHeight(4.0)),
@@ -67,19 +67,7 @@ class GamesSnitchRanking extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-              // image: DecorationImage(
-              //   image: globals.casaHogwarts == "Gryffindor"
-              //       ? AssetImage('${globals.fondoGry}')
-              //       : globals.casaHogwarts == "Slytherin"
-              //           ? AssetImage('${globals.fondoSly}')
-              //           : globals.casaHogwarts == "Ravenclaw"
-              //               ? AssetImage('${globals.fondoRav}')
-              //               : globals.casaHogwarts == "Hufflepuff"
-              //                   ? AssetImage('${globals.fondoHuf}')
-              //                   : AssetImage('${globals.fondoGry}'),
-              //   fit: BoxFit.fitWidth,
-              // ),
+              color: globals.casaHogwarts == "Gryffindor" ? globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,           
             ),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -88,14 +76,14 @@ class GamesSnitchRanking extends StatelessWidget {
                   children: <Widget>[ 
                     Container(
                       decoration: BoxDecoration(
-                        color: globals.gryPrincipal,
+                        color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
                         boxShadow: [
                           BoxShadow(
-                            color: globals.gryPrincipal.withRed(125),
-                            spreadRadius: 3,
-                            blurRadius: 2,
-                            offset: Offset(0,2),
+                            color: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white24 : globals.gryPrincipal.withRed(125),
+                            spreadRadius: 4,
+                            blurRadius: 5,
+                            offset: Offset(0,5),
                           ),
                         ],
                       ),
@@ -124,7 +112,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             fontFamily: 'arial',
                                             fontWeight: FontWeight.bold,
                                             fontSize: 34.0,
-                                            color: globals.grySecundario,                                     
+                                            color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,                                     
                                           ), 
                                         ),
                                       ),
@@ -133,10 +121,10 @@ class GamesSnitchRanking extends StatelessWidget {
                                         child:  GestureDetector(
                                           child: CircleAvatar(
                                             radius: 65,
-                                            backgroundColor: globals.grySecundario,
+                                            backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                                             child: CircleAvatar(
                                               radius:  60,
-                                              backgroundColor: globals.gryPrincipal,
+                                              backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                               // backgroundImage: fotos[0] == "images/perfil.png"
                                                 // ? AssetImage("images/perfil.png") 
                                                 // : FileImage(File(fotos[0]))
@@ -149,17 +137,14 @@ class GamesSnitchRanking extends StatelessWidget {
                                         alignment: Alignment.center,
                                         child: Column(
                                           children: [
-                                                GestureDetector(
-                                                
-                                                  child: Text(
-                                                    'CCCCC',
-                                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '30',
-                                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                                ),
+                                            Text(
+                                              'CCCCCCCCC',
+                                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),
+                                            ),
+                                            Text(
+                                              '30',
+                                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),
+                                            ),
                                           ],
                                         ),
                                       ),      
@@ -175,7 +160,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             fontFamily: 'arial',
                                             fontWeight: FontWeight.bold,
                                             fontSize: 34.0,
-                                            color: globals.grySecundario,                                     
+                                            color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,                                     
                                           ), 
                                         ),
                                       ),
@@ -184,10 +169,10 @@ class GamesSnitchRanking extends StatelessWidget {
                                         child: GestureDetector(
                                           child: CircleAvatar(
                                             radius: 50.0,
-                                            backgroundColor: globals.grySecundario,
+                                            backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                                             child: CircleAvatar(
                                               radius: 46.0,
-                                              backgroundColor: globals.gryPrincipal,
+                                              backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                               // backgroundImage: fotos[1] == "images/perfil.png"
                                                 // ? AssetImage("images/perfil.png") 
                                                 // : FileImage(File(fotos[1]))
@@ -195,22 +180,18 @@ class GamesSnitchRanking extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      Container( //NOMBRE SEGUNDA POSICION
-                                        
-                                        margin: EdgeInsets.only(top: 20, left: 5),
+                                      Container( //NOMBRE SEGUNDA POSICION                                     
+                                        margin: EdgeInsets.only(top: 15, left: 25),
                                         child: Column(
                                           children: [
-                                                GestureDetector(                                        
-                                                  child: Text(
-                                                    'AAAAA',
-                                                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                                                    
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '10',
-                                                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                                                ),
+                                            Text(
+                                              'AAAAAAA',
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),                                               
+                                            ),
+                                            Text(
+                                              '10',
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -226,7 +207,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             fontFamily: 'arial',
                                             fontWeight: FontWeight.bold,
                                             fontSize: 34.0,
-                                            color: globals.grySecundario,                                     
+                                            color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,                                     
                                           ), 
                                         ),
                                       ),
@@ -235,10 +216,10 @@ class GamesSnitchRanking extends StatelessWidget {
                                         child: GestureDetector(
                                           child: CircleAvatar(
                                             radius: 50.0,
-                                            backgroundColor: globals.grySecundario,
+                                            backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
                                             child: CircleAvatar(
                                               radius: 46.0,
-                                              backgroundColor: globals.gryPrincipal,
+                                              backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
                                               // backgroundImage: fotos[2] == "images/perfil.png"
                                                 // ? AssetImage("images/perfil.png") 
                                                 // : FileImage(File(fotos[2]))
@@ -248,18 +229,16 @@ class GamesSnitchRanking extends StatelessWidget {
                                       ), 
                                       Container( //NOMBRE TERCERA POSICION
                                         alignment: Alignment.center,
-                                        margin: EdgeInsets.only(top: 20, left: 270),
+                                        margin: EdgeInsets.only(top: 15, left: 270),
                                         child: Column(
                                           children: [
-                                            GestureDetector(                                        
-                                              child: Text(
-                                                'BBBBBBBB',
-                                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                              ),
+                                            Text(
+                                              'BBBBBBBB',
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),
                                             ),
                                             Text(
                                               '20',
-                                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),
                                             ),
                                           ],
                                         ),
@@ -274,84 +253,99 @@ class GamesSnitchRanking extends StatelessWidget {
                       )
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 10), 
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          //for(int n=3; n<listaRankingPuntos.length;n++)//HACE FALTA HACER UN FOR PARA TODOS LOS JUGADORES
-                          GestureDetector(                       
-                            child: Container( //CONTAINER PARA LOS DATOS DEL JUGADOR
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.only(top: 10),
-                              child: Row( //CREO UNA FILA PARA MOSTRARLOS
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Container( //NUMERO POSICION
-                                    width: 40,
-                                    height: 40,
-                                    color: globals.gryPrincipal,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '${4}', 
-                                      style: TextStyle(
-                                        fontFamily: 'arial',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 24.0,
-                                        //color: listaRankingNombres[n] == globals.usuario ? Colors.red [900] : Colors.grey[900],
-                                      )
+                      height: 340,
+                      margin: EdgeInsets.only(top: 15), 
+                      child: DraggableScrollableSheet(
+                        initialChildSize: 1,
+                        builder: (context, scrollController){
+                          return SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                for(int n=3; n<10;n++)//HACE FALTA HACER UN FOR PARA TODOS LOS JUGADORES
+                                GestureDetector(                       
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 10),
+                                    child: Card(
+                                      color: globals.casaHogwarts == "Gryffindor" ? globals.gryTerciario : globals.casaHogwarts == "Slytherin" ? globals.slyTerciario : globals.casaHogwarts == "Ravenclaw" ? globals.ravTerciario : globals.casaHogwarts == "Hufflepuff" ? globals.hufTerciario : globals.gryTerciario,           
+                                      elevation: 30,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 10), //CONTAINER PARA LOS DATOS DEL JUGADOR,
+                                        width: MediaQuery.of(context).size.width,
+                                        child: Row( //CREO UNA FILA PARA MOSTRARLOS
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container( //NUMERO POSICION
+                                              width: 40,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                '${4}', 
+                                                style: TextStyle(
+                                                  fontFamily: 'arial',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22.0,
+                                                  color: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,
+                                                )
+                                              )
+                                            ),
+                                            Container( //FOTO 
+                                              margin: EdgeInsets.only(left: 14),
+                                              width: 70,
+                                              height: 40,
+                                              child: CircleAvatar(
+                                                radius: 20.0,
+                                                backgroundColor: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,
+                                                child: CircleAvatar(
+                                                  radius: 17.0,
+                                                  backgroundColor: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
+                                                  // backgroundImage: fotos[n] == "images/perfil.png"
+                                                // ? AssetImage("images/perfil.png") 
+                                                // : FileImage(File(fotos[n]))
+                                                )            
+                                              ),
+                                            ),
+                                            Container( //NOMBRE DEL USUARIO
+                                              margin: EdgeInsets.only(left: 13),
+                                              width: 132,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'MIKEL', 
+                                                style: TextStyle(
+                                                  fontFamily: 'arial',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18.0,
+                                                  color: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,                                                )
+                                              )
+                                            ),
+                                            Container( //PUNTUACION
+                                              margin: EdgeInsets.only(left: 15),
+                                              width: 50,
+                                              height: 40, 
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                '${0}', 
+                                                style: TextStyle(
+                                                  fontFamily: 'arial',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18.0,
+                                                  color: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,                                                )
+                                              )
+                                            ),
+                                          ]
+                                        ),
+                                      ),
                                     )
                                   ),
-                                  Container( //FOTO 
-                                    margin: EdgeInsets.only(left: 14),
-                                    width: 70,
-                                    height: 40,
-                                    child: CircleAvatar(
-                                      radius: 20.0,
-                                      backgroundColor: globals.gryPrincipal,
-                                      child: CircleAvatar(
-                                        radius: 17.0,
-                                        backgroundColor: globals.grySecundario,
-                                        // backgroundImage: fotos[n] == "images/perfil.png"
-                                      // ? AssetImage("images/perfil.png") 
-                                      // : FileImage(File(fotos[n]))
-                                      )            
-                                    ),
-                                  ),
-                                  Container( //NOMBRE DEL USUARIO
-                                    margin: EdgeInsets.only(left: 13),
-                                    width: 132,
-                                    height: 40,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'MIKEL', 
-                                      style: TextStyle(
-                                        fontFamily: 'arial',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.0,
-                                        //color: listaRankingNombres[n] == globals.usuario ? Colors.red [900] : Theme.of(context).primaryColor == Colors.grey[900] ? Colors.white : Colors.black,
-                                      )
-                                    )
-                                  ),
-                                  Container( //PUNTUACION
-                                    margin: EdgeInsets.only(left: 15),
-                                    width: 50,
-                                    height: 40, 
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '${0}', 
-                                      style: TextStyle(
-                                        fontFamily: 'arial',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.0,
-                                        //color: listaRankingNombres[n] == globals.usuario ? Colors.red [900] : Theme.of(context).primaryColor == Colors.grey[900] ? Colors.white : Colors.black,
-                                      )
-                                    )
-                                  ),
-                                ]
-                              ),
+                                ), 
+                              ],                              
                             ),
-                          ), 
-                        ],
+                          );
+                        },
                       ),
                     ),
                   ],
