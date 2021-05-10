@@ -35,15 +35,6 @@ class _CrearRuleState extends State<CrearRule> {
   File _image;
   bool imagenElegida = false;
 
-  _imgFromGallery() async {
-    File image = await  ImagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50
-    );
-    setState(() {
-      _image = image;
-    });
-  }
-
   TextEditingController comentarioController = TextEditingController();
   TextEditingController fotoController = TextEditingController();
   RulesModelo rule;
@@ -136,12 +127,14 @@ class _CrearRuleState extends State<CrearRule> {
                         ),
                       ),
                       onTap: () async{
-                      _imgFromGallery();
+                       File image = await  ImagePicker.pickImage(
+                        source: ImageSource.gallery, imageQuality: 50
+                      );
+                      _image = image;
                       final bytes = await Io.File(_image.path).readAsBytes();
                       String img64 = base64Encode(bytes);
-                      print(img64);
-                      fotoController.text = img64;
                       setState(() {
+                        fotoController.text = img64;
                         imagenElegida = true;
                       });
                     },

@@ -161,28 +161,29 @@ class _TiendaPagarState extends State<TiendaPagar> {
                               ),
                             ),                       
                           ),
-                          SizedBox(height: 40,),                            
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Container(
-                              margin: const EdgeInsets.all(8),
-                              child: const Text(
-                                'Comprar',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
+                          SizedBox(height: 40,),
+                            RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Container(
+                                margin: const EdgeInsets.all(8),
+                                child: const Text(
+                                  'Comprar',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
-                            ),
-                            color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                            onPressed: () {                            
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Home(0),
-                              ));                                         
-                            }
-                          ),                         
+                              color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
+                              onPressed: () {
+                                
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Home(0),
+                                ));
+                              }
+                          )
                         ],
                       ),
                     ),

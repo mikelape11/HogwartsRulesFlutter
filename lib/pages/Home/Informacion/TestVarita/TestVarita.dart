@@ -96,7 +96,7 @@ class _TestVaritaState extends State<TestVarita> with SingleTickerProviderStateM
                         onTap: () async{
                           if(i==widget.snapshot.data.length-1){         
                             //var lista = ["Águila pescadora","Ardilla Gris","Búho marrón","Busardo","Gavilan","Lobo Irlandes"];                   
-                            var lista = ["varita1","varita2","varita3","varita4","varita5"];   
+                            var lista = ["25 cm de largo, hecha de madera de espino, y un nucleo de pelo de unicornio","34 cm y cuarto de largo, hecha de tejo, con un nucleo de pluma de fenix","Hecha de vid, con nucleo de fibra de corazon de dragon y mide 27 centimetros","Madera de sauce, nucleo de Pelo de Unicornio y mide 36 centimetros","Veintiocho centimetros, hecha de acebo, con una pluma de fenix en su centro"];   
                             var el = randomChoice(lista);
                             UsuarioModelo nuevo = new UsuarioModelo();
                             nuevo.usuario = globals.usuario;
