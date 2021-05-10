@@ -316,7 +316,7 @@ class _TiendaFavoritosState extends State<TiendaFavoritos> {
                                               ),
                                               onPressed: () async {
                                                 Navigator.of(context).push(MaterialPageRoute(
-                                                  builder: (context) => DetallesTienda(snapshot.data[i].productos[k].id,snapshot.data[i].productos[k].nombre,snapshot.data[i].productos[k].precio,snapshot.data[i].productos[k].cantidad,snapshot.data[i].productos[k].casa,snapshot.data[i].productos[k].tipo,snapshot.data[i].productos[k].foto, snapshot.data[i].productos[k].foto[j].thumbUrl.split(',').last),
+                                                  builder: (context) => DetallesTienda(snapshot.data[i].productos[k].id,snapshot.data[i].productos[k].nombre,snapshot.data[i].productos[k].precio,snapshot.data[i].productos[k].cantidad,snapshot.data[i].productos[k].casa,snapshot.data[i].productos[k].tipo,snapshot.data[i].productos[k].descripcion,snapshot.data[i].productos[k].foto, snapshot.data[i].productos[k].foto[j].thumbUrl.split(',').last),
                                                 ));
                                               }),
                                         ),

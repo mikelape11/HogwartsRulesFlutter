@@ -18,10 +18,11 @@ class DetallesTienda extends StatefulWidget {
   final int cantidad;
   final String casa;
   final String tipo;
+  final String descripcion;
   final List<imagenRespuestasModelo> foto;
   final String thumbUrl;
 
-  DetallesTienda(this.id,this.nombre,this.precio,this.cantidad,this.casa,this.tipo,this.foto,this.thumbUrl);
+  DetallesTienda(this.id,this.nombre,this.precio,this.cantidad,this.casa,this.tipo,this.descripcion,this.foto,this.thumbUrl);
 
   @override
   _DetallesTiendaState createState() => _DetallesTiendaState();
@@ -141,7 +142,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                   SizedBox(height: 20,),
                   Container(
                     child: Text(
-                      "Lorem ipsum dolor sit amet consectetur, adipiscing elit potenti facilisi dignissim lectus, netus nec suspendisse quam. Mauris pretium fringilla hendrerit lacinia ornare velit lectus aliquet varius venenatis.", 
+                      "${widget.descripcion}", 
                       style: TextStyle(color: Colors.white70, fontSize: 15))
                   ),
                   SizedBox(height: 20,),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:http/http.dart' as http;
 import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
-import 'package:hogwarts_rules/globals/globals.dart' as globals;
+
 import '../../../models/CarritoModelo.dart';
 import '../../../models/FavoritosModelo.dart';
 import '../../../models/FavoritosModelo.dart';
@@ -21,7 +21,7 @@ class TiendaAPI extends StatefulWidget {
 }
 
 Future<List<ProductosModelo>> getProductos() async {    
-      var data = await http.get(globals.ip+'/todosProductos');
+      var data = await http.get('http://10.0.2.2:8080/todosProductos');
       var jsonData = json.decode(data.body);
 
       List<ProductosModelo> productos = []; 
@@ -33,6 +33,7 @@ Future<List<ProductosModelo>> getProductos() async {
         producto.precio = e["precio"];
         producto.casa = e["casa"];
         producto.tipo = e["tipo"];
+        producto.descripcion = e["descripcion"];
         var list = e['foto'] as List;
         producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
 
@@ -42,7 +43,7 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
     Future<List<ProductosModelo>> getProductosCasa(String casa) async {    
-      var data = await http.get(globals.ip+'/todosProductosCasa/$casa');
+      var data = await http.get('http://10.0.2.2:8080/todosProductosCasa/$casa');
       var jsonData = json.decode(data.body);
 
       List<ProductosModelo> productos = []; 
@@ -54,6 +55,7 @@ Future<List<ProductosModelo>> getProductos() async {
         producto.precio = e["precio"];
         producto.casa = e["casa"];
         producto.tipo = e["tipo"];
+        producto.descripcion = e["descripcion"];
         var list = e['foto'] as List;
         producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
 
@@ -63,7 +65,7 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
     Future<List<ProductosModelo>> getProductosTipo(String tipo) async {    
-      var data = await http.get(globals.ip+'/todosProductosTipo/$tipo');
+      var data = await http.get('http://10.0.2.2:8080/todosProductosTipo/$tipo');
       var jsonData = json.decode(data.body);
 
       List<ProductosModelo> productos = []; 
@@ -75,6 +77,7 @@ Future<List<ProductosModelo>> getProductos() async {
         producto.precio = e["precio"];
         producto.casa = e["casa"];
         producto.tipo = e["tipo"];
+        producto.descripcion = e["descripcion"];
         var list = e['foto'] as List;
         producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
 
@@ -84,7 +87,7 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
     Future<ProductosModelo> actualizarProductos(ProductosModelo productos) async{
-      var Url = globals.ip+'/actualizarProductos';
+      var Url = "http://10.0.2.2:8080/actualizarProductos";
       var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
       body: jsonEncode(productos));
     }
@@ -92,7 +95,7 @@ Future<List<ProductosModelo>> getProductos() async {
 
     //DETALLES
     Future<FavoritosModelo> registrarFavorito(String idUsuario, List<ProductosModelo> productos) async{
-    var Url = globals.ip+'/addFavorito';
+    var Url = "http://10.0.2.2:8080/addFavorito";
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "idUsuario" : idUsuario,
@@ -101,13 +104,13 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
   Future<FavoritosModelo> actualizarFavoritos(FavoritosModelo favoritos) async{
-    var Url = globals.ip+'/actualizarFavoritos';
+    var Url = "http://10.0.2.2:8080/actualizarFavoritos";
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(favoritos));
   }
 
   Future<FavoritosModelo> deleteFavoritos(String id, List<ProductosModelo> prod) async{
-   var Url =     Uri.parse(globals.ip+'/eliminarProductoFav');
+   var Url =     Uri.parse('http://10.0.2.2:8080/eliminarProductoFav');
      var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "_id" : id,
@@ -119,7 +122,7 @@ Future<List<ProductosModelo>> getProductos() async {
 
   //FAVORITOS
   Future<List<FavoritosModelo>> getFavoritos(String idUsuario) async {    
-      var data = await http.get(globals.ip+'/todosFavoritos/$idUsuario');
+      var data = await http.get('http://10.0.2.2:8080/todosFavoritos/$idUsuario');
       var jsonData = json.decode(data.body);
 
       List<FavoritosModelo> favoritos = []; 
@@ -136,7 +139,7 @@ Future<List<ProductosModelo>> getProductos() async {
 
     //CARRITO
     Future<List<CarritoModelo>> getCarrito(String idUsuario) async {    
-      var data = await http.get(globals.ip+'/todosCarrito/$idUsuario');
+      var data = await http.get('http://10.0.2.2:8080/todosCarrito/$idUsuario');
       var jsonData = json.decode(data.body);
 
       List<CarritoModelo> carrito = []; 
@@ -151,7 +154,7 @@ Future<List<ProductosModelo>> getProductos() async {
       return carrito;
     }
     Future<CarritoModelo> registrarCarrito(String idUsuario, List<ProductosModelo> productos) async{
-      var Url = globals.ip+'/addCarrito';
+      var Url = "http://10.0.2.2:8080/addCarrito";
       var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
       body:jsonEncode(<String , dynamic>{
         "idUsuario" : idUsuario,
@@ -160,13 +163,13 @@ Future<List<ProductosModelo>> getProductos() async {
     }
 
   Future<CarritoModelo> actualizarCarrito(CarritoModelo favoritos) async{
-    var Url = globals.ip+'/actualizarCarrito';
+    var Url = "http://10.0.2.2:8080/actualizarCarrito";
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(favoritos));
   }
 
   Future<CarritoModelo> deleteCarrito(String id, List<ProductosModelo> prod) async{
-    var Url =     Uri.parse(globals.ip+'/eliminarCarrito');
+    var Url =     Uri.parse('http://10.0.2.2:8080/eliminarCarrito');
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "_id" : id,

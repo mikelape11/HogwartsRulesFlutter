@@ -95,7 +95,7 @@ class CurvePainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size){
     var paint = Paint();
-    paint.color = Color(globals.color1);
+    paint.color = Color(globals.color2);
     paint.style = PaintingStyle.fill;
 
     Path path = Path();
@@ -107,26 +107,17 @@ class CurvePainter extends CustomPainter{
     path.close();
  
     var paint2 = Paint();
-    paint2.color = Colors.grey[700];
+    // paint2.color = globals.grySecundario;
     paint2.style = PaintingStyle.fill;
-    // paint2.shader = ui.Gradient.linear(
-    //   Offset(100, 100),
-    //   Offset(200, 200),
-    //   <Color>[
-    //     Colors.green.withOpacity(1.0),
-    //     Colors.green.withOpacity(0.3),
-    //     Colors.yellow.withOpacity(0.2),
-    //     Colors.red.withOpacity(0.1),
-    //     Colors.red.withOpacity(0.0),
-    //   ],
-    //   [
-    //     0.0,
-    //     0.5,
-    //     0.7,
-    //     0.9,
-    //     1.0,
-    //   ],
-    // );
+    
+    paint2.shader = ui.Gradient.linear(
+      Offset(200, 0),
+      Offset(200, 0),
+      <Color>[
+        Colors.green.withOpacity(0.3),
+        Colors.green.withOpacity(1.0),
+      ],  
+    );
 
     Path path2 = Path();
     path2.moveTo(0, 0);
@@ -138,6 +129,9 @@ class CurvePainter extends CustomPainter{
 
     canvas.drawPath(path2, paint2);
     canvas.drawPath(path, paint);
+
+    //change the alpha color of your grey color like this 
+    //canvas.drawShadow(path, Colors.grey.withAlpha(50), 4.0, false);
   }
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;

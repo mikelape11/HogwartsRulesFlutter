@@ -35,7 +35,7 @@ class _TiendaState extends State<Tienda> {
   }
 
   Future<List<ProductosModelo>> devolverDatos() async{
-    var data = await http.get(globals.ip+'/todosProductos');
+    var data = await http.get('http://10.0.2.2:8080/todosProductos');
       var jsonData = json.decode(data.body);
 
       for (var e in jsonData) {
@@ -46,6 +46,7 @@ class _TiendaState extends State<Tienda> {
         producto.precio = e["precio"];
         producto.casa = e["casa"];
         producto.tipo = e["tipo"];
+        producto.descripcion = e["descripcion"];
         var list = e['foto'] as List;
         producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
 
@@ -489,7 +490,7 @@ class _TiendaState extends State<Tienda> {
                                     child: Text('Comprar', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => DetallesTienda(listaProductos[n].id, listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].casa, listaProductos[n].tipo, listaProductos[n].foto, listaProductos[n].foto[k].thumbUrl.split(',').last),
+                                        builder: (context) => DetallesTienda(listaProductos[n].id, listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].casa, listaProductos[n].tipo, listaProductos[n].descripcion, listaProductos[n].foto, listaProductos[n].foto[k].thumbUrl.split(',').last),
                                       ));
                                     }
                                   ),
