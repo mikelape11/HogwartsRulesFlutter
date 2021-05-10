@@ -12,7 +12,7 @@ class RankingAPI extends StatefulWidget {
 }
 
   Future<RankingModelo> registrarRanking(String usuario, String casaHogwarts, int puntos, String avatar) async{
-      var Url = "http://10.0.2.2:8080/nuevoRanking";
+      var Url = globals.ip+"/nuevoRanking";
       var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
       body:jsonEncode(<String , dynamic>{
         "usuario" : usuario,

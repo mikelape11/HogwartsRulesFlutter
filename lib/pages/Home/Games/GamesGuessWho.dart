@@ -170,7 +170,7 @@ class _GamesGuessWhoState extends State<GamesGuessWho> {
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   onPressed: () async {
-                    var data = await http.post('http://52.166.205.229:5000/guesswho',
+                    var data = await http.post('http://52.166.205.229:80/guesswho',
                         body: imageByte);
                     print(data.body);
                     showDialog(

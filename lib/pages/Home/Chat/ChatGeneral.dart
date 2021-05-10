@@ -58,8 +58,8 @@ ConseguirCliente() async {
     /// `.watch()` is used to create and listen to the channel for updates. If the
     /// channel already exists, it will simply listen for new events.
     await channel.watch();
-
     globals.conexion = true;
+    
     return channel;
   } else {
     return channel;
@@ -285,108 +285,108 @@ class _ChatGeneralState extends State<ChatGeneral> {
             Container(
               child: Column(
                 children: [
-                  if (channel.memberCount != null)
-                    for (var i = 0; i < channel.memberCount; i++) ...{
-                      if (channel.state.members.elementAt(i).user.id !=
-                          channel.client.uid) ...{
-                        GestureDetector(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: globals.casaHogwarts ==
-                                              "Gryffindor"
-                                          ? globals.grySecundario
-                                          : globals.casaHogwarts == "Slytherin"
-                                              ? globals.slySecundario
-                                              : globals.casaHogwarts ==
-                                                      "Ravenclaw"
-                                                  ? globals.ravSecundario
-                                                  : globals.casaHogwarts ==
-                                                          "Hufflepuff"
-                                                      ? globals.hufSecundario
-                                                      : globals.grySecundario,
-                                      width: 1.0)),
-                              color: globals.casaHogwarts == "Gryffindor"
-                                  ? globals.gryPrincipal
-                                  : globals.casaHogwarts == "Slytherin"
-                                      ? globals.slyPrincipal
-                                      : globals.casaHogwarts == "Ravenclaw"
-                                          ? globals.ravPrincipal
-                                          : globals.casaHogwarts == "Hufflepuff"
-                                              ? globals.hufPrincipal
-                                              : globals.gryPrincipal
-                                                  .withRed(80),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Row(
-                              children: [
-                                Container(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        //image: AssetImage('${widget.snapshot.data[i].avatar}'),
-                                        image: AssetImage("images/admin.png"),
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                    height: 70,
-                                    width:
-                                        MediaQuery.of(context).size.width / 4,
-                                  ),
-                                ),
-                                Container(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 200,
-                                        child: Center(
-                                          child: Text(
-                                            channel.state.members
-                                                .elementAt(i)
-                                                .user
-                                                .id
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: globals.casaHogwarts ==
-                                                        "Gryffindor"
-                                                    ? globals.grySecundario
-                                                    : globals.casaHogwarts ==
-                                                            "Slytherin"
-                                                        ? globals.slySecundario
-                                                        : globals.casaHogwarts ==
-                                                                "Ravenclaw"
-                                                            ? globals
-                                                                .ravSecundario
-                                                            : globals.casaHogwarts ==
-                                                                    "Hufflepuff"
-                                                                ? globals
-                                                                    .hufSecundario
-                                                                : globals
-                                                                    .grySecundario,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 17),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          onTap: () async {
-                            await chatCambio();
-                            globals.numeroUsuario = suma + i;
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ChatUsuario(),
-                            ));
-                          },
-                        ),
-                      }
-                    }
+                  // if (channel?.memberCount != null)
+                  //   for (var i = 0; i < channel.memberCount; i++) ...{
+                  //     if (channel.state.members.elementAt(i).user.id !=
+                  //         channel.client.uid) ...{
+                  //       GestureDetector(
+                  //         child: Container(
+                  //           decoration: BoxDecoration(
+                  //             border: Border(
+                  //                 bottom: BorderSide(
+                  //                     color: globals.casaHogwarts ==
+                  //                             "Gryffindor"
+                  //                         ? globals.grySecundario
+                  //                         : globals.casaHogwarts == "Slytherin"
+                  //                             ? globals.slySecundario
+                  //                             : globals.casaHogwarts ==
+                  //                                     "Ravenclaw"
+                  //                                 ? globals.ravSecundario
+                  //                                 : globals.casaHogwarts ==
+                  //                                         "Hufflepuff"
+                  //                                     ? globals.hufSecundario
+                  //                                     : globals.grySecundario,
+                  //                     width: 1.0)),
+                  //             color: globals.casaHogwarts == "Gryffindor"
+                  //                 ? globals.gryPrincipal
+                  //                 : globals.casaHogwarts == "Slytherin"
+                  //                     ? globals.slyPrincipal
+                  //                     : globals.casaHogwarts == "Ravenclaw"
+                  //                         ? globals.ravPrincipal
+                  //                         : globals.casaHogwarts == "Hufflepuff"
+                  //                             ? globals.hufPrincipal
+                  //                             : globals.gryPrincipal
+                  //                                 .withRed(80),
+                  //           ),
+                  //           padding: EdgeInsets.symmetric(
+                  //               vertical: 10, horizontal: 20),
+                  //           child: Row(
+                  //             children: [
+                  //               Container(
+                  //                 child: Container(
+                  //                   decoration: BoxDecoration(
+                  //                     image: DecorationImage(
+                  //                       //image: AssetImage('${widget.snapshot.data[i].avatar}'),
+                  //                       image: AssetImage("images/admin.png"),
+                  //                       fit: BoxFit.fitHeight,
+                  //                     ),
+                  //                   ),
+                  //                   height: 70,
+                  //                   width:
+                  //                       MediaQuery.of(context).size.width / 4,
+                  //                 ),
+                  //               ),
+                  //               Container(
+                  //                 child: Column(
+                  //                   children: [
+                  //                     Container(
+                  //                       width: 200,
+                  //                       child: Center(
+                  //                         child: Text(
+                  //                           channel.state.members
+                  //                               .elementAt(i)
+                  //                               .user
+                  //                               .id
+                  //                               .toString(),
+                  //                           style: TextStyle(
+                  //                               color: globals.casaHogwarts ==
+                  //                                       "Gryffindor"
+                  //                                   ? globals.grySecundario
+                  //                                   : globals.casaHogwarts ==
+                  //                                           "Slytherin"
+                  //                                       ? globals.slySecundario
+                  //                                       : globals.casaHogwarts ==
+                  //                                               "Ravenclaw"
+                  //                                           ? globals
+                  //                                               .ravSecundario
+                  //                                           : globals.casaHogwarts ==
+                  //                                                   "Hufflepuff"
+                  //                                               ? globals
+                  //                                                   .hufSecundario
+                  //                                               : globals
+                  //                                                   .grySecundario,
+                  //                               fontWeight: FontWeight.bold,
+                  //                               fontSize: 17),
+                  //                           textAlign: TextAlign.start,
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         onTap: () async {
+                  //           await chatCambio();
+                  //           globals.numeroUsuario = suma + i;
+                  //           Navigator.of(context).push(MaterialPageRoute(
+                  //             builder: (context) => ChatUsuario(),
+                  //           ));
+                  //         },
+                  //       ),
+                  //     }
+                  //   }
                 ],
               ),
             ),
