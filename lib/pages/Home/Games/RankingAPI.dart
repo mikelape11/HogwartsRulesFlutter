@@ -11,6 +11,18 @@ class RankingAPI extends StatefulWidget {
   _RankingAPIState createState() => _RankingAPIState();
 }
 
+  Future<RankingModelo> registrarRanking(String usuario, String casaHogwarts, int puntos, String avatar) async{
+      var Url = "http://10.0.2.2:8080/nuevoRanking";
+      var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
+      body:jsonEncode(<String , dynamic>{
+        "usuario" : usuario,
+        "casaHogwarts" : casaHogwarts,
+        "puntos": puntos,
+        "avatar": avatar
+      }));
+    }
+
+
     Future<List<RankingModelo>> getRankingPorCasa(String casaHogwarts) async {    
       var data = await http.get('http://10.0.2.2:8080//getOrdenado/$casaHogwarts');
       var jsonData = json.decode(data.body);
@@ -20,6 +32,7 @@ class RankingAPI extends StatefulWidget {
         RankingModelo ranking = new RankingModelo();
         ranking.id = e["_id"];
         ranking.usuario = e["usuario"];
+        ranking.avatar = e["avatar"];
         ranking.puntos = e["puntos"];
         ranking.casaHogwarts = e["casaHogwarts"];
         rankings.add(ranking);

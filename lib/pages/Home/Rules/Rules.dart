@@ -281,7 +281,6 @@ class _LikeWidgetState extends State<LikeWidget> {
               for(int j=0; j<snapshot.data.length; j++){
                 if(snapshot.data[j].id == widget.snapshot.id){
                   for(int i=0; i<snapshot.data[j].favoritos.length; i++){
-                      print(snapshot.data[j].favoritos[i].usuario);
                     if(snapshot.data[j].favoritos[i].usuario == globals.usuario){
                       fav = true;
                       cont++;

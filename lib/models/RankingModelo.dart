@@ -8,15 +8,17 @@ String RankingModeloToJson(RankingModelo data) => json.encode(data.toJson());
 class RankingModelo{
   String id;
   String usuario;
+  String avatar;
   int puntos;
   String casaHogwarts;
 
 
-  RankingModelo({this.id,this.usuario,this.puntos,this.casaHogwarts});
+  RankingModelo({this.id,this.usuario,this.avatar,this.puntos,this.casaHogwarts});
 
   factory RankingModelo.fromJson(Map<String,dynamic> json) => RankingModelo(
     id: json["_id"],
     usuario: json["usuario"],
+    avatar: json["avatar"],
     puntos: json["puntos"],
     casaHogwarts: json["casaHogwarts"],
   );
@@ -24,6 +26,7 @@ class RankingModelo{
   Map<String,dynamic> toJson()=>{
     "_id": id,
     "usuario": usuario,
+    "avatar": avatar,
     "puntos": puntos,
     "casaHogwarts": casaHogwarts,
   };

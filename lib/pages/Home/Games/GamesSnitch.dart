@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
+import 'package:hogwarts_rules/models/RankingModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Games/GamesSnitchRanking.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
 
 import '../Home.dart';
+import 'RankingAPI.dart';
 
 class GamesSnitch extends StatefulWidget {
   @override
@@ -115,7 +117,13 @@ class _GamesSnitchState extends State<GamesSnitch> {
                               'Aceptar',
                               style: TextStyle(color: Colors.red),
                             ),
-                            onPressed: () {
+                            onPressed: () async{
+                              RankingModelo ranking = new RankingModelo();
+                              String avatar = globals.avatarElegido != "images/Avatares/Avatar7.png" ?  globals.avatarElegido : globals.avatarDefecto;
+                              RankingModelo rank = await registrarRanking(globals.usuario, globals.casaHogwarts,puntuacion,avatar);
+                              setState(() {
+                                ranking = rank;
+                              });
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Home(4),
                               ));
