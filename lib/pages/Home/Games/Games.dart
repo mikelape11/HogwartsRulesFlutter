@@ -80,7 +80,7 @@ class Games extends StatelessWidget {
                         child: RaisedButton(                       
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                          child: Text('JUGAR', style: TextStyle(color: Colors.black, fontSize: 18),),
+                          child: Text('JUGAR', style: TextStyle(color: Colors.white70, fontSize: 18),),
                           onPressed: () {       
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => GamesGuessWho(),
@@ -158,7 +158,7 @@ class Games extends StatelessWidget {
                         child: RaisedButton(                       
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario,
-                          child: Text('JUGAR', style: TextStyle(color: Colors.black, fontSize: 18),),
+                          child: Text('JUGAR', style: TextStyle(color: Colors.white70, fontSize: 18),),
                           onPressed: () {       
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => GamesSnitch(),

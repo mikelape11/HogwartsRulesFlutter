@@ -162,13 +162,7 @@ class _TiendaPagarState extends State<TiendaPagar> {
                             ),                       
                           ),
                           SizedBox(height: 40,),
-                          FutureBuilder(
-                            future: getProductos(),
-                            builder: (BuildContext context, AsyncSnapshot snapshot) {
-                              if(!snapshot.hasData)  
-                                return Center(child: CircularProgressIndicator(strokeWidth: 2));
-                              else
-                            return RaisedButton(
+                            RaisedButton(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -183,41 +177,12 @@ class _TiendaPagarState extends State<TiendaPagar> {
                                 ),
                               ),
                               color: globals.casaHogwarts == "Gryffindor" ? globals.gryPrincipal : globals.casaHogwarts == "Slytherin" ? globals.slyPrincipal : globals.casaHogwarts == "Ravenclaw" ? globals.ravPrincipal : globals.casaHogwarts == "Hufflepuff" ? globals.hufPrincipal : globals.gryPrincipal,
-                              onPressed: () async{
-                                 ProductosModelo prod = new ProductosModelo();
-                                if (formKey.currentState.validate()) {
-                                      
-                                        for(int i=0;i<snapshot.data.length;i++){  
-                                          for(int j=0;j<widget.snapshot.data.length;j++){
-                                            if(snapshot.data[i].id == widget.snapshot.data[j].id){
-                                                ProductosModelo producto = new ProductosModelo();
-                                                producto.id = snapshot.data[i].id;
-                                                producto.nombre = snapshot.data[i].nombre;
-                                                producto.cantidad = snapshot.data[i].cantidad - widget.snapshot.data[j].cantidad;
-                                                producto.precio = snapshot.data[i].precio;
-                                                producto.casa = snapshot.data[i].casa;
-                                                producto.tipo = snapshot.data[i].tipo;
-                                                producto.foto = snapshot.data[i].foto;
-                                                setState(() async{
-                                                  prod = await actualizarProductos(producto);
-                                                  prod2 = prod;
-                                                });
-
-                                                Navigator.of(context).push(MaterialPageRoute(
-                                                  builder: (context) => Home(0),
-                                                ));
-                                            }
-                                          }
-                                        }
-                                      
-                                   
-                                   
-                                } else {
-
-                                }
-                              },
-                            );
-                            }
+                              onPressed: () {
+                                
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Home(0),
+                                ));
+                              }
                           )
                         ],
                       ),

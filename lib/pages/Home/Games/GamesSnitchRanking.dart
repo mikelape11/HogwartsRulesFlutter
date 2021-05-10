@@ -145,7 +145,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             children: [
                                               Text(
                                                 '${snapshot.data[0].usuario}',
-                                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),
+                                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: snapshot.data[0].usuario == globals.usuario ? Colors.red [900] : Colors.white70),
                                               ),
                                               Text(
                                                 '${snapshot.data[0].puntos}',
@@ -190,7 +190,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             children: [
                                               Text(
                                                 '${snapshot.data[1].usuario}',
-                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),                                               
+                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: snapshot.data[1].usuario == globals.usuario ? Colors.red [900] : Colors.white70),                                               
                                               ),
                                               Text(
                                                 '${snapshot.data[1].puntos}',
@@ -236,7 +236,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                             children: [
                                               Text(
                                                 '${snapshot.data[2].usuario}',
-                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white70),
+                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: snapshot.data[2].usuario == globals.usuario ? Colors.red [900] : Colors.white70),
                                               ),
                                               Text(
                                                 '${snapshot.data[2].puntos}',
@@ -285,7 +285,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  '${n}', 
+                                                  '${n+1}', 
                                                   style: TextStyle(
                                                     fontFamily: 'arial',
                                                     fontWeight: FontWeight.bold,
@@ -319,7 +319,7 @@ class GamesSnitchRanking extends StatelessWidget {
                                                     fontFamily: 'arial',
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 18.0,
-                                                    color: globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,                                                )
+                                                    color: snapshot.data[n].usuario == globals.usuario ? Colors.red [900] : globals.casaHogwarts == "Gryffindor" ? Colors.black87 : globals.casaHogwarts == "Slytherin" ? Colors.black87 : globals.casaHogwarts == "Ravenclaw" ? Colors.black87 : globals.casaHogwarts == "Hufflepuff" ? Colors.white70 : globals.gryPrincipal,                                                )
                                                 )
                                               ),
                                               Container( //PUNTUACION

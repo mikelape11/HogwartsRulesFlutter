@@ -93,7 +93,7 @@ class _TestPatronusState extends State<TestPatronus> with SingleTickerProviderSt
                         ),
                         onTap: () async{
                           if(i==widget.snapshot.data.length-1){           
-                            var lista = ["Águila pescadora","Ardilla Gris","Búho marrón","Busardo","Gavilan","Lobo Irlandes"];                   
+                            var lista = ["Aguila pescadora","Ardilla Gris","Buho marron","Busardo","Gavilan","Lobo Irlandes"];                   
                             var el = randomChoice(lista);
                             UsuarioModelo nuevo = new UsuarioModelo();
                             nuevo.usuario = globals.usuario;
