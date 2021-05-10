@@ -2,6 +2,10 @@ import 'package:flutter_color/flutter_color.dart';
 import 'package:stream_chat/stream_chat.dart';
 
 //DATOS USUARIO
+String ip = "http://52.166.205.229:8080/HogwartsRulesAPI";
+//52.166.205.229
+//http://10.0.2.2:8080
+String ipLocal = "localhost";
 String idUsuario = "";
 String usuario = "";
 bool conexion = false;

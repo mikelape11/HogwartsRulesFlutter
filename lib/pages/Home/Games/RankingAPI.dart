@@ -12,7 +12,7 @@ class RankingAPI extends StatefulWidget {
 }
 
     Future<List<RankingModelo>> getRankingPorCasa(String casaHogwarts) async {    
-      var data = await http.get('http://10.0.2.2:8080//getOrdenado/$casaHogwarts');
+      var data = await http.get(globals.ip+'//getOrdenado/$casaHogwarts');
       var jsonData = json.decode(data.body);
       
       List<RankingModelo> rankings = []; 

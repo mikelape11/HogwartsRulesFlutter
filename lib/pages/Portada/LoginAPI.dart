@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:hogwarts_rules/models/UsuarioModelo.dart';
-
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 class LoginAPI extends StatefulWidget {
   const LoginAPI({Key key}) : super(key: key);
 
@@ -12,7 +12,7 @@ class LoginAPI extends StatefulWidget {
 }
 
     Future<List<UsuarioModelo>> getUsuarios() async {    
-      var data = await http.get('http://10.0.2.2:8080/todos');
+      var data = await http.get(globals.ip+'/todos');
       var jsonData = json.decode(data.body);
       
       List<UsuarioModelo> usuario = []; 

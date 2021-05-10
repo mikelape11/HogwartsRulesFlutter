@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/models/PreguntasRespuestasTestVaritaPatronusModelo.dart';
 import 'package:hogwarts_rules/models/TestVaritaModelo.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import '../../../../models/UsuarioModelo.dart';
 
 class TestVaritaAPI extends StatefulWidget {
@@ -15,7 +15,7 @@ class TestVaritaAPI extends StatefulWidget {
 }
 
     Future<List<TestVaritaModelo>> getTestVarita() async {    
-      var data = await http.get('http://10.0.2.2:8080/getPreguntasRespuestasVarita');
+      var data = await http.get(globals.ip+'/getPreguntasRespuestasVarita');
       var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<TestVaritaModelo> preguntas = []; 
@@ -31,7 +31,7 @@ class TestVaritaAPI extends StatefulWidget {
     }
 
 Future<UsuarioModelo> actualiziarVarita(UsuarioModelo usuario) async{
-    var Url = "http://10.0.2.2:8080/actualiziarVarita";
+    var Url = globals.ip+'/actualiziarVarita';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(usuario));
   }

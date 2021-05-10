@@ -5,7 +5,7 @@ import 'package:hogwarts_rules/models/EleccionCasaModelo.dart';
 import 'package:hogwarts_rules/models/UsuarioModelo.dart';
 import 'package:http/http.dart' as http;
 import 'package:hogwarts_rules/models/PreguntasRespuestasModelo.dart';
-
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import '../../models/TestModelo.dart';
 
 class TestAPI extends StatefulWidget {
@@ -16,7 +16,7 @@ class TestAPI extends StatefulWidget {
 }
 
     Future<List<TestModelo>> getTest() async {    
-      var data = await http.get('http://10.0.2.2:8080/getPreguntasRespuestas');
+      var data = await http.get(globals.ip+'/getPreguntasRespuestas');
       var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<TestModelo> preguntas = []; 
@@ -32,7 +32,7 @@ class TestAPI extends StatefulWidget {
     }
 
      Future<List<EleccionCasaModelo>> geteleccionCasaTodos() async {    
-      var data = await http.get('http://10.0.2.2:8080/eleccionCasaTodos');
+      var data = await http.get(globals.ip+'/eleccionCasaTodos');
       var jsonData = json.decode(data.body);
       
       List<EleccionCasaModelo> puntos = []; 
@@ -52,14 +52,14 @@ class TestAPI extends StatefulWidget {
 
     
   Future<EleccionCasaModelo> actualizarPuntos(EleccionCasaModelo puntos) async{
-    var Url = "http://10.0.2.2:8080/actualizarPuntos";
+    var Url = globals.ip+'/actualizarPuntos';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(puntos));
   }
 
 
   Future<EleccionCasaModelo> registrarEleccionCasa(String idUsuario, int puntosGry, int puntosSly, int puntosHuff, int puntosRav) async{
-    var Url = "http://10.0.2.2:8080/registrarEleccionCasa";
+    var Url = globals.ip+'/registrarEleccionCasa';
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , String>{
       "idUsuario" : idUsuario,
@@ -74,7 +74,7 @@ class TestAPI extends StatefulWidget {
 
   Future<http.Response> deleteDatosTest(String idUsuario) async {
     final http.Response response = await http.delete(
-      "http://10.0.2.2:8080/eliminarDatosPorNombre/${idUsuario}",
+      globals.ip+'/eliminarDatosPorNombre/${idUsuario}',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -83,7 +83,7 @@ class TestAPI extends StatefulWidget {
   }
 
   Future<UsuarioModelo> actualiziarCasaHogwarts(UsuarioModelo usuario) async{
-    var Url = "http://10.0.2.2:8080/actualiziarCasaHogwarts";
+    var Url = globals.ip+'/actualiziarCasaHogwarts';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(usuario));
   }

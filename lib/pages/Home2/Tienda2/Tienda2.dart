@@ -34,7 +34,7 @@ class _Tienda2State extends State<Tienda2> {
   }
 
   Future<List<ProductosModelo>> devolverDatos() async{
-    var data = await http.get('http://10.0.2.2:8080/todosProductos');
+    var data = await http.get(globals.ip+'/todosProductos');
       var jsonData = json.decode(data.body);
 
       for (var e in jsonData) {

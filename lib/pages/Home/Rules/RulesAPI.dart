@@ -5,7 +5,7 @@ import 'package:hogwarts_rules/models/ComentariosModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 
 class RulesAPI extends StatefulWidget {
   const RulesAPI({Key key}) : super(key: key);
@@ -15,7 +15,7 @@ class RulesAPI extends StatefulWidget {
 }
 
      Future<List<RulesModelo>> getRules() async {    
-      var data = await http.get('http://10.0.2.2:8080/todosRules');
+      var data = await http.get(globals.ip+'/todosRules');
       var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<RulesModelo> rules = []; 
@@ -37,7 +37,7 @@ class RulesAPI extends StatefulWidget {
     }
 
   Future<RulesModelo> registrarRule(String usuario, String avatar, int rol, String rule, String foto, List<ComentariosModelo> comentarios, List<RulesFavoritosModelo> favoritos) async{
-    var Url = "http://10.0.2.2:8080/registrarRules";
+    var Url = globals.ip+'/registrarRules';
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "usuario" : usuario,
@@ -51,7 +51,7 @@ class RulesAPI extends StatefulWidget {
   }
 
   Future<RulesModelo> actualizarRule(RulesModelo rule) async{
-    var Url = "http://10.0.2.2:8080/actualizarRule";
+    var Url = globals.ip+'/actualizarRule';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(rule));
   }
@@ -59,7 +59,7 @@ class RulesAPI extends StatefulWidget {
 
 
   Future<RulesModelo> deleteLikeFavoritos(String id, List<RulesFavoritosModelo> favUsuario) async{
-   var Url =     Uri.parse('http://10.0.2.2:8080/eliminarFavorito');
+   var Url =     Uri.parse(globals.ip+'/eliminarFavorito');
      var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{
       "_id" : id,

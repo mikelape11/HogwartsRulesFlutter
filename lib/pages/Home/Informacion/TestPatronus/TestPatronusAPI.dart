@@ -5,7 +5,7 @@ import 'package:hogwarts_rules/models/PreguntasRespuestasTestVaritaPatronusModel
 import 'package:hogwarts_rules/models/TestPatronusModelo.dart';
 import 'package:hogwarts_rules/models/TestVaritaModelo.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import '../../../../models/UsuarioModelo.dart';
 
 class TestPatronusAPI extends StatefulWidget {
@@ -16,7 +16,7 @@ class TestPatronusAPI extends StatefulWidget {
 }
 
     Future<List<TestPatronusModelo>> getTestPatronus() async {    
-      var data = await http.get('http://10.0.2.2:8080/getPreguntasRespuestasPatronus');
+      var data = await http.get(globals.ip+'/getPreguntasRespuestasPatronus');
       var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<TestPatronusModelo> preguntas = []; 
@@ -32,7 +32,7 @@ class TestPatronusAPI extends StatefulWidget {
     }
 
 Future<UsuarioModelo> actualiziarPatronus(UsuarioModelo usuario) async{
-    var Url = "http://10.0.2.2:8080/actualiziarPatronus";
+    var Url = globals.ip+'/actualiziarPatronus';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(usuario));
   }
