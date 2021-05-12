@@ -199,6 +199,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -236,6 +237,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -273,6 +275,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -310,6 +313,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -347,6 +351,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -384,6 +389,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -421,6 +427,7 @@ class _TiendaState extends State<Tienda> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);

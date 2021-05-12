@@ -168,7 +168,7 @@ class _CarritoTiendaState extends State<CarritoTienda> {
                         child: Text('TERMINAR COMPRA', style: TextStyle(color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, fontSize: 18),),
                         onPressed: () async{
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => TiendaPagar(snapshot),
+                                  builder: (context) => TiendaPagar(),
                                 ));
                         }
                       ),

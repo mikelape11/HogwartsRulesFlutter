@@ -242,6 +242,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
+                                          prod.descripcion = widget.descripcion;
                                           prod.foto = widget.foto;
                                           productos.add(prod);
                                           favs = await registrarFavorito(globals.usuario, productos);
@@ -263,6 +264,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
+                                          prod.descripcion = widget.descripcion;
                                           prod.foto = widget.foto;
                                           for(int n=0; n<snapshot.data[i].productos.length;n++){
                                             ProductosModelo prod2 = new ProductosModelo();
@@ -273,6 +275,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                             prod2.precio = snapshot.data[i].productos[n].precio;
                                             prod2.casa = snapshot.data[i].productos[n].casa;
                                             prod2.tipo = snapshot.data[i].productos[n].tipo;
+                                            prod2.descripcion = snapshot.data[i].productos[n].descripcion;
                                             prod2.foto = snapshot.data[i].productos[n].foto;
                                             productos.add(prod2);
                                           } 
@@ -296,6 +299,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                           prod.precio = precio3;
                                           prod.casa = widget.casa;
                                           prod.tipo = widget.tipo;
+                                          prod.descripcion = widget.descripcion;
                                           prod.foto = widget.foto;
                                           productos.add(snapshot.data[i].productos);
                                           productos.add(prod);
@@ -337,6 +341,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                         producto.precio = precio3;
                                         producto.casa = widget.casa;
                                         producto.tipo = widget.tipo;
+                                        producto.descripcion = widget.descripcion;
                                         producto.foto = widget.foto;
                                         productos.add(producto);                         
                                         carrs = await registrarCarrito(globals.usuario, productos);
@@ -357,6 +362,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                               prod.precio = precio3;
                                               prod.casa = widget.casa;
                                               prod.tipo = widget.tipo;
+                                              prod.descripcion = widget.descripcion;
                                               prod.foto = widget.foto;
                                               for(int n=0; n<snapshot2.data[i].productos.length;n++){
                                                 ProductosModelo prod2 = new ProductosModelo();
@@ -366,6 +372,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                                 prod2.precio = snapshot2.data[i].productos[n].precio;
                                                 prod2.casa = snapshot2.data[i].productos[n].casa;
                                                 prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                                prod2.descripcion = snapshot2.data[i].productos[n].descripcion;
                                                 prod2.foto = snapshot2.data[i].productos[n].foto;
                                                 productos.add(prod2);
                                               } 
@@ -388,6 +395,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                               prod.precio = precio3;
                                               prod.casa = widget.casa;
                                               prod.tipo = widget.tipo;
+                                              prod.descripcion = widget.descripcion;
                                               prod.foto = widget.foto;
                                               for(int n=0; n<snapshot2.data[i].productos.length;n++){
                                                 ProductosModelo prod2 = new ProductosModelo();
@@ -397,6 +405,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                                                 prod2.precio = snapshot2.data[i].productos[n].precio;
                                                 prod2.casa = snapshot2.data[i].productos[n].casa;
                                                 prod2.tipo = snapshot2.data[i].productos[n].tipo;
+                                                prod2.descripcion = snapshot2.data[i].productos[n].descripcion;
                                                 prod2.foto = snapshot2.data[i].productos[n].foto;
                                                 productos.add(prod2);
                                               } 

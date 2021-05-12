@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ProductosModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
-import '../../../globals/globals.dart';
 import 'Tienda2Detalles.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -195,6 +194,7 @@ class _Tienda2State extends State<Tienda2> {
                                 nuevo.precio = snapshot.data[i].precio;
                                 nuevo.casa = snapshot.data[i].casa;
                                 nuevo.tipo = snapshot.data[i].tipo;
+                                nuevo.descripcion = snapshot.data[i].descripcion;
                                 nuevo.foto = snapshot.data[i].foto;
                                 setState(() {
                                     listaProductos.add(nuevo);
@@ -232,6 +232,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -269,6 +270,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -306,6 +308,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -343,6 +346,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -380,6 +384,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -417,6 +422,7 @@ class _Tienda2State extends State<Tienda2> {
                                   nuevo.precio = snapshot.data[i].precio;
                                   nuevo.casa = snapshot.data[i].casa;
                                   nuevo.tipo = snapshot.data[i].tipo;
+                                  nuevo.descripcion = snapshot.data[i].descripcion;
                                   nuevo.foto = snapshot.data[i].foto;
                                   setState(() {
                                      listaProductos.add(nuevo);
@@ -486,7 +492,7 @@ class _Tienda2State extends State<Tienda2> {
                                     child: Text('Comprar', style: TextStyle(color: Color(globals.color2)),),
                                     onPressed: () async{
                                       Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => Tienda2Detalles(listaProductos[n].id, listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].casa, listaProductos[n].tipo, listaProductos[n].foto, listaProductos[n].foto[k].thumbUrl.split(',').last),
+                                        builder: (context) => Tienda2Detalles(listaProductos[n].id, listaProductos[n].nombre, listaProductos[n].precio, listaProductos[n].cantidad, listaProductos[n].casa, listaProductos[n].tipo, listaProductos[n].descripcion, listaProductos[n].foto, listaProductos[n].foto[k].thumbUrl.split(',').last),
                                       ));
                                     }
                                   ),

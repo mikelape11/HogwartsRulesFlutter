@@ -11,9 +11,6 @@ import 'package:hogwarts_rules/pages/Home/Tienda/TiendaAPI.dart';
 import '../Home.dart';
 
 class TiendaPagar extends StatefulWidget {
-  AsyncSnapshot snapshot;
-
-  TiendaPagar(this.snapshot);
   @override
   _TiendaPagarState createState() => _TiendaPagarState();
 }
