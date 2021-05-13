@@ -12,7 +12,7 @@ class LoginAPI extends StatefulWidget {
 }
 
     Future<List<UsuarioModelo>> getUsuarios() async {    
-      var data = await http.get(globals.ip+'/todos');
+      var data = await http.get('http://10.0.2.2:8080/todos');
       var jsonData = json.decode(data.body);
       
       List<UsuarioModelo> usuario = []; 

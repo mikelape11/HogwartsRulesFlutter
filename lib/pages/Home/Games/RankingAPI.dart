@@ -12,7 +12,7 @@ class RankingAPI extends StatefulWidget {
 }
 
   Future<RankingModelo> registrarRanking(String usuario, String casaHogwarts, int puntos, String avatar) async{
-      var Url = globals.ip+"/nuevoRanking";
+      var Url = 'http://10.0.2.2:8080/nuevoRanking';
       var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
       body:jsonEncode(<String , dynamic>{
         "usuario" : usuario,
@@ -24,7 +24,7 @@ class RankingAPI extends StatefulWidget {
 
 
     Future<List<RankingModelo>> getRankingPorCasa(String casaHogwarts) async {    
-      var data = await http.get(globals.ip+'//getOrdenado/$casaHogwarts');
+      var data = await http.get('http://10.0.2.2:8080//getOrdenado/$casaHogwarts');
       var jsonData = json.decode(data.body);
       
       List<RankingModelo> rankings = []; 

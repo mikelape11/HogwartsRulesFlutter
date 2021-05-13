@@ -13,7 +13,7 @@ class RegistroAPI extends StatefulWidget {
 
 //funcion que registra un usuario en la base de datos
   Future<UsuarioModelo> registrarUsuario(String usuario, String password, String email, int rol, String avatar) async{
-    var Url = globals.ip+'/register';
+    var Url = 'http://10.0.2.2:8080/register';
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , String>{
       "usuario" : usuario,
@@ -29,7 +29,7 @@ class RegistroAPI extends StatefulWidget {
 
 //funcion que devuelve los usuarios de la api
     Future<List<UsuarioModelo>> getUsuarios() async {    
-      var data = await http.get(globals.ip+'/todos');
+      var data = await http.get('http://10.0.2.2:8080/todos');
       var jsonData = json.decode(data.body);
 
       List<UsuarioModelo> usuario = []; 

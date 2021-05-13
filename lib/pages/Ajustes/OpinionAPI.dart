@@ -15,7 +15,7 @@ class OpinionAPI extends StatefulWidget {
 }
 
   Future<OpinionModelo> registrarOpinion(String usuario, String valoracion, double puntuacion, String avatar) async{
-    var Url = globals.ip+'/guardarOpinion';
+    var Url = 'http://10.0.2.2:8080/guardarOpinion';
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , String>{
       "usuario" : usuario,
@@ -26,7 +26,7 @@ class OpinionAPI extends StatefulWidget {
   }
 
   Future<List<OpinionModelo>> getOpiniones() async {    
-      var data = await http.get(globals.ip+'/getOpinionesOrdenadas');
+      var data = await http.get('http://10.0.2.2:8080/getOpinionesOrdenadas');
       var jsonData = json.decode(data.body);
 
       

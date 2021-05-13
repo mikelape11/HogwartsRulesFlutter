@@ -15,7 +15,7 @@ class TestVaritaAPI extends StatefulWidget {
 }
 
     Future<List<TestVaritaModelo>> getTestVarita() async {    
-      var data = await http.get(globals.ip+'/getPreguntasRespuestasVarita');
+      var data = await http.get('http://10.0.2.2:8080/getPreguntasRespuestasVarita');
       var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<TestVaritaModelo> preguntas = []; 
@@ -31,7 +31,7 @@ class TestVaritaAPI extends StatefulWidget {
     }
 
 Future<UsuarioModelo> actualiziarVarita(UsuarioModelo usuario) async{
-    var Url = globals.ip+'/actualiziarVarita';
+    var Url = 'http://10.0.2.2:8080/actualiziarVarita';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(usuario));
   }

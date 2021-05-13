@@ -11,14 +11,14 @@ class CuentaAPI extends StatefulWidget {
 }
 
 Future<UsuarioModelo> actualizarUsuario(UsuarioModelo usuario) async{
-    var Url = globals.ip+'/actualizarUsuario';
+    var Url = 'http://10.0.2.2:8080/actualizarUsuario';
     var response = await http.put(Url,headers:<String , String>{"Content-Type": "application/json"},
     body: jsonEncode(usuario));
   }
 
 Future<http.Response> deleteCuenta(String usuario) async {
     final http.Response response = await http.delete(
-      globals.ip+'/eliminarPorNombre/${usuario}',
+      'http://10.0.2.2:8080/eliminarPorNombre/${usuario}',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
