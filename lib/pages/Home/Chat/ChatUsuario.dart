@@ -86,6 +86,22 @@ class _ChatUsuarioState extends State<ChatUsuario> {
     initialPage: 0,
   );
 
+  String nombreUsuario = "";
+  CogerNombre() {
+    for (var i = 0; i < 1; i++) {
+      if (channel.state.members.elementAt(i).user.id != channel.client.uid)
+        setState(() {
+          nombreUsuario = channel.state.members.elementAt(i).user.id;
+        });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    CogerNombre();
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -133,7 +149,7 @@ class _ChatUsuarioState extends State<ChatUsuario> {
               )),
         ),
         title: Text(
-          'NOMBRE USUARIO',
+          channel.state.members.elementAt(0).user.id,
           style: TextStyle(
               color: globals.casaHogwarts == "Gryffindor"
                   ? globals.grySecundario
@@ -349,7 +365,7 @@ class _MessageViewState extends State<MessageView> {
   }
 
   DateTime now = new DateTime.now();
-
+  List<String> miembros = new List<String>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -361,6 +377,8 @@ class _MessageViewState extends State<MessageView> {
             reverse: true,
             itemBuilder: (BuildContext context, int index) {
               final item = _messages[index];
+              miembros.add(item.user.id.toString());
+              channel.addMembers(miembros);
               if (item.user.id == widget.channel.client.uid) {
                 //MIS MENSAJES ---------------------------------------------------------
                 return Column(
