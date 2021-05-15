@@ -110,7 +110,7 @@ class HomeSeleccion extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10.0),
-                  child: Text(globals.varita == "" && globals.patronus == "" ? '¡Haz estos breves test para ver cual es tu varita y tu patronus!' : globals.varita == "" && globals.patronus != "" ? '¡Haz este breve test para ver cual es tu varita!' : 'Ya has completado los tests. Tu varita es ${globals.varita} y tu patronus es ${globals.patronus}', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
+                  child: Text(globals.varita == "" && globals.patronus == " " ? '¡Haz estos breves test para ver cual es tu varita y tu patronus!' : globals.varita == "" && globals.patronus != " " ? '¡Haz este breve test para ver cual es tu varita!' : 'Ya has completado los tests. Tu varita es ${globals.varita} y tu patronus es ${globals.patronus}', style: TextStyle(color: Colors.white, fontFamily: 'BluuNext', fontSize: 20), textAlign: TextAlign.center,)),
               ),
             )
           ]

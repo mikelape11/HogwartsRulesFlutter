@@ -260,7 +260,7 @@ class _RegistroState extends State<Registro> {
                         usuario = usuarios as String;
                       });
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Home2(),
+                        builder: (context) => Home2(1),
                       ));  
                     }
                   }  

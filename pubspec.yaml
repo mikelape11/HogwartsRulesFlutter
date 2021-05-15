@@ -74,6 +74,8 @@ flutter:
     - images/Slytherin/slytherin.jpg
     - images/Nosotros/mik.png
     - images/Nosotros/mel.png
+    - images/Nosotros/enetz.png
+    - images/Nosotros/endika.png
     - images/admin.png
     - images/guesswho.png
     - images/snitch.png
@@ -87,6 +89,8 @@ flutter:
     - images/Avatares/Avatar5.png
     - images/Avatares/Avatar6.png
     - images/Avatares/Avatar7.png
+    - images/Avatares/Avatar8.png
+    - images/Avatares/Avatar9.png
 
     #GRYFFINDOR
     - images/Gryffindor/gryffindor.png

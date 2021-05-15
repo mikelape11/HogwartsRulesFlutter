@@ -25,7 +25,7 @@ class Ajustes2 extends StatelessWidget {
                   icon: Icon(Icons.arrow_back, color: Color(globals.color2), size: 25,),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Home2(),
+                      builder: (context) => Home2(1),
                     ));
                   }
                 ),

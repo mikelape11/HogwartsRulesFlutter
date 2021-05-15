@@ -107,7 +107,6 @@ class GamesSnitchRanking extends StatelessWidget {
                               child: Row( //LAS 3 POSICIONES IRAN EN UNA FILA
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                for(int i=0;i<snapshot.data.length;i++)
                                 Stack( //PARA PODER COLOCAR LOS CONTAINERS DENTRO DE LA FILA
                                   children: [
                                     Column(

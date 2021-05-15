@@ -11,7 +11,8 @@ import 'package:hogwarts_rules/pages/Portada/Portada.dart';
 import '../Portada/Login.dart';
 
 class Home2 extends StatefulWidget {
-  const Home2({Key key}) : super(key: key);
+  int index;
+  Home2(this.index);
 
   @override
   _HomeState createState() => _HomeState();
@@ -23,7 +24,7 @@ class _HomeState extends State<Home2> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(widget.index != 1 ? widget.index : _selectedIndex),
       ),   
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -44,7 +45,7 @@ class _HomeState extends State<Home2> {
               label: 'ABOUT US',
             ),
           ],
-          currentIndex: _selectedIndex,
+          currentIndex: widget.index != 1 ? widget.index : _selectedIndex,
           selectedItemColor: Color(globals.color2),
           unselectedItemColor: Colors.grey[700],
           onTap: _onItemTapped,

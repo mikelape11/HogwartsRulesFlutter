@@ -132,6 +132,7 @@ class _DetallesTiendaState extends State<DetallesTienda> {
                 //border: Border(bottom: BorderSide(width: 2.0, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario)),
               ),
               width: MediaQuery.of(context).size.width,
+              height: 371,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

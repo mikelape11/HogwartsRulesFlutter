@@ -29,7 +29,7 @@ class _Tienda2PagarState extends State<Tienda2Pagar> {
         iconTheme: IconThemeData(
           color: Color(globals.color2)
         ),
-        title: Text('Favoritos', style: TextStyle(color: Color(globals.color2)),),
+        title: Text('Compra', style: TextStyle(color: Color(globals.color2)),),
         backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      

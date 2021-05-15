@@ -114,8 +114,8 @@ class CurvePainter extends CustomPainter{
       Offset(200, 0),
       Offset(200, 0),
       <Color>[
-        Colors.green.withOpacity(0.3),
-        Colors.green.withOpacity(1.0),
+        Colors.grey[700].withOpacity(0.3),
+        Colors.grey[700].withOpacity(1.0),
       ],  
     );
 

@@ -227,7 +227,7 @@ class _LoginState extends State<Login> {
                         globals.avatarElegido = snapshot.data[i].avatar;
                         if(snapshot.data[i].casaHogwarts == ""){
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Home2(),
+                            builder: (context) => Home2(1),
                           )); 
                         }else{
                           globals.casaHogwarts = snapshot.data[i].casaHogwarts;

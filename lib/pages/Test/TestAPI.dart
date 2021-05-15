@@ -33,7 +33,7 @@ class TestAPI extends StatefulWidget {
 
      Future<List<EleccionCasaModelo>> geteleccionCasaTodos() async {    
       var data = await http.get('http://10.0.2.2:8080/eleccionCasaTodos');
-      var jsonData = json.decode(data.body);
+      var jsonData = json.decode(utf8.decode(data.bodyBytes));
       
       List<EleccionCasaModelo> puntos = []; 
       for (var e in jsonData) {

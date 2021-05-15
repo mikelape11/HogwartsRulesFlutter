@@ -213,7 +213,7 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                         width: 30,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('images/Nosotros/mik.png'),                   
+                            image: AssetImage('images/Nosotros/enetz.png'),                   
                           )
                         ),
                       ),
@@ -265,7 +265,7 @@ class _Home2SobreNosotrosState extends State<Home2SobreNosotros> {
                         width: 30,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('images/Nosotros/mel.png'),                   
+                            image: AssetImage('images/Nosotros/endika.png'),                   
                           )
                         ),
                       ),

@@ -29,12 +29,13 @@ class _Tienda2State extends State<Tienda2> {
     @override
   void initState() { 
     super.initState();
+    listaProductos = [];
     devolverDatos();
   }
 
   Future<List<ProductosModelo>> devolverDatos() async{
     var data = await http.get('http://10.0.2.2:8080/todosProductos');
-      var jsonData = json.decode(data.body);
+      var jsonData = json.decode(utf8.decode(data.bodyBytes));
 
       for (var e in jsonData) {
         ProductosModelo producto = new ProductosModelo();
@@ -43,6 +44,7 @@ class _Tienda2State extends State<Tienda2> {
         producto.cantidad = e["cantidad"];
         producto.precio = e["precio"];
         producto.casa = e["casa"];
+        producto.descripcion = e["descripcion"];
         producto.tipo = e["tipo"];
         var list = e['foto'] as List;
         producto.foto =  list.map((i) => imagenRespuestasModelo.fromJson(i)).toList();

@@ -31,10 +31,10 @@ class _Tienda2FavoritosState extends State<Tienda2Favoritos> {
             child: Stack(
               children: <Widget>[
                 IconButton( //ICONO PARA IR AL PERFIL DE USUARIO
-                  icon: Icon(Icons.arrow_back, color: globals.casaHogwarts == "Gryffindor" ? globals.grySecundario : globals.casaHogwarts == "Slytherin" ? globals.slySecundario : globals.casaHogwarts == "Ravenclaw" ? globals.ravSecundario : globals.casaHogwarts == "Hufflepuff" ? globals.hufSecundario : globals.grySecundario, size: 25,),
+                  icon: Icon(Icons.arrow_back, color: Color(globals.color2), size: 25,),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Home2(),
+                      builder: (context) => Home2(0),
                     ));
                   }
                 ),
@@ -128,22 +128,7 @@ class _Tienda2FavoritosState extends State<Tienda2Favoritos> {
                                       //ICONO PARA IR AL PERFIL DE USUARIO
                                       icon: Icon(
                                         Icons.remove_circle_outline,
-                                        color: globals.casaHogwarts ==
-                                                "Gryffindor"
-                                            ? globals.grySecundario
-                                            : globals.casaHogwarts ==
-                                                    "Slytherin"
-                                                ? globals.slySecundario
-                                                : globals.casaHogwarts ==
-                                                        "Ravenclaw"
-                                                    ? globals.ravSecundario
-                                                    : globals.casaHogwarts ==
-                                                            "Hufflepuff"
-                                                        ? globals
-                                                            .hufSecundario
-                                                        : globals
-                                                            .grySecundario,
-                                        size: 25,
+                                        color: Color(globals.color2), size: 25,
                                       ),
                                       onPressed: () async{
                                         List<ProductosModelo> prods = new List<ProductosModelo>();

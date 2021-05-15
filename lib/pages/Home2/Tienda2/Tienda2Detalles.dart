@@ -63,7 +63,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
         iconTheme: IconThemeData(
           color: Color(globals.color2)//change your color here
         ),
-        title: Text('Home', style: TextStyle(color: Color(globals.color2)),),
+        title: Text('Detalles', style: TextStyle(color: Color(globals.color2)),),
         backgroundColor: Color(globals.color1),
         centerTitle: true,
         actions: [      
@@ -134,6 +134,7 @@ class _DetallesTiendaState extends State<Tienda2Detalles> {
                 //border: Border(bottom: BorderSide(width: 2.0, color: Color(globals.color2))),
               ),
               width: MediaQuery.of(context).size.width,
+              height: 371,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

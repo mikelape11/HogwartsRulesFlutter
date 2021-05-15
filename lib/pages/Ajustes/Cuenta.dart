@@ -463,7 +463,7 @@ class _CuentaState extends State<Cuenta2> {
                 ),
                   
                   items: [
-                    for(var i=1; i<8; i++)        
+                    for(var i=1; i<10; i++)        
                     GestureDetector(
                       child: Container(
                         margin: EdgeInsets.all(5.0),
