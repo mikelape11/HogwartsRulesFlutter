@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:hogwarts_rules/pages/Home/Rules/RulesAPI.dart';
@@ -132,7 +133,7 @@ class _CrearRuleState extends State<CrearRule> {
                       );
                       _image = image;
                       final bytes = await Io.File(_image.path).readAsBytes();
-                      String img64 = base64Encode(bytes);
+                      String img64 = "data:image/png;base64,"+base64Encode(bytes);
                       setState(() {
                         fotoController.text = img64;
                         imagenElegida = true;
@@ -185,7 +186,12 @@ class _CrearRuleState extends State<CrearRule> {
                         List<RulesFavoritosModelo> lista = [];
                         // rulesFavs.usuario = globals.usuario;
                         // lista.add(rulesFavs);
-                        rules = await registrarRule(globals.usuario,avatar, 0, comentarioController.text, fotoController.text, coments, lista);
+                        List<imagenRespuestasModelo> list = [];
+                        imagenRespuestasModelo foto = new imagenRespuestasModelo();
+                        foto.name ="";
+                        foto.thumbUrl = fotoController.text;
+                        list.add(foto);
+                        rules = await registrarRule(globals.usuario,avatar, 0, comentarioController.text, list, coments, lista);
                         setState(() {
                           rule = rules;
                         });

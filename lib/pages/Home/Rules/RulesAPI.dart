@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,8 @@ class RulesAPI extends StatefulWidget {
         rule.avatar = e["avatar"];
         rule.rol = e["rol"];
         rule.rule = e["rule"];
-        rule.foto = e["foto"];
+        var list3 = e['foto'] as List;
+        rule.foto =  list3.map((i) => imagenRespuestasModelo.fromJson(i)).toList();
         var list = e['comentarios'] as List;
         rule.comentarios =  list.map((i) => ComentariosModelo.fromJson(i)).toList();
         var list2= e['favoritos'] as List;
@@ -36,7 +38,7 @@ class RulesAPI extends StatefulWidget {
       return rules;
     }
 
-  Future<RulesModelo> registrarRule(String usuario, String avatar, int rol, String rule, String foto, List<ComentariosModelo> comentarios, List<RulesFavoritosModelo> favoritos) async{
+  Future<RulesModelo> registrarRule(String usuario, String avatar, int rol, String rule, List<imagenRespuestasModelo> foto, List<ComentariosModelo> comentarios, List<RulesFavoritosModelo> favoritos) async{
     var Url = 'http://10.0.2.2:8080/registrarRules';
     var response = await http.post(Url,headers:<String , String>{"Content-Type": "application/json"},
     body:jsonEncode(<String , dynamic>{

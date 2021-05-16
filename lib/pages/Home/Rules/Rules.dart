@@ -90,6 +90,7 @@ class _RulesState extends State<Rules> {
                     ),                    
                   ),
                 for(int i=0;i<snapshot.data.length;i++)
+                  for(int j=0; j<snapshot.data[i].foto.length; j++)
                   if(snapshot.data[i].rol == 0)
                     GestureDetector(
                       child: Container(
@@ -153,7 +154,7 @@ class _RulesState extends State<Rules> {
                                         width: 250,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
+                                            image: snapshot.data[i].foto[j].thumbUrl.split(',').last == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto[j].thumbUrl.split(',').last)),
                                             fit: BoxFit.fitWidth,
                                           ),  
                                         ) 
@@ -169,7 +170,7 @@ class _RulesState extends State<Rules> {
                                                 margin: EdgeInsets.symmetric(vertical: 10),
                                                 decoration: BoxDecoration(
                                                 image: DecorationImage(
-                                                  image: snapshot.data[i].foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto)),
+                                                  image: snapshot.data[i].foto[j].thumbUrl.split(',').last == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(snapshot.data[i].foto[j].thumbUrl.split(',').last)),
                                                   fit: BoxFit.fitWidth,
                                                   ),  
                                                 ),
@@ -199,7 +200,7 @@ class _RulesState extends State<Rules> {
                                                 ),
                                                 onTap: (){
                                                   Navigator.of(context).push(MaterialPageRoute(
-                                                    builder: (context) => CrearComentarioRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].foto, snapshot.data[i].comentarios),
+                                                    builder: (context) => CrearComentarioRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].foto, snapshot.data[i].foto[j].thumbUrl.split(',').last,snapshot.data[i].comentarios),
                                                   ));
                                                 },
                                               ),
@@ -231,7 +232,7 @@ class _RulesState extends State<Rules> {
                       ),
                       onTap: (){
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ComentariosRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule,snapshot.data[i].foto, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].comentarios),
+                          builder: (context) => ComentariosRule(snapshot.data[i].id, snapshot.data[i].usuario, snapshot.data[i].avatar, snapshot.data[i].rule,snapshot.data[i].foto[j].thumbUrl, snapshot.data[i].comentarios.length, snapshot.data[i].favoritos, snapshot.data[i].comentarios),
                         ));
                       },
                     ),            
@@ -338,7 +339,12 @@ class _LikeWidgetState extends State<LikeWidget> {
                       rules.foto = widget.snapshot.foto;
                       List<RulesFavoritosModelo> lista = [];
                       RulesFavoritosModelo favs = new RulesFavoritosModelo();
-                      for(int i=0; i<widget.snapshot.favoritos.length;i++){
+                   
+                      if(widget.snapshot.favoritos.length == 0){
+                        favs.usuario = globals.usuario;
+                        lista.add(favs);
+                      }else{
+                        for(int i=0; i<widget.snapshot.favoritos.length;i++){
                         RulesFavoritosModelo favs2 = new RulesFavoritosModelo();
                         if(widget.snapshot.favoritos[i].usuario != globals.usuario){
                           favs2.usuario = widget.snapshot.favoritos[i].usuario;
@@ -347,6 +353,7 @@ class _LikeWidgetState extends State<LikeWidget> {
                       }
                       favs.usuario = globals.usuario;
                       lista.add(favs);
+                      }
                       rules.favoritos = lista;
                       rules.comentarios = widget.snapshot.comentarios;
                       rul = await actualizarRule(rules);

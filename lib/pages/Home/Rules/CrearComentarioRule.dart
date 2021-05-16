@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/models/RulesModelo.dart';
 
@@ -17,10 +18,11 @@ class CrearComentarioRule extends StatefulWidget {
   String rule;
   int comentariosLength;
   List<RulesFavoritosModelo> favoritos;
-  String foto;
+  List<imagenRespuestasModelo> foto;
+  String thumbUrl;
   List<ComentariosModelo> comentarios;
 
-  CrearComentarioRule(this.id,this.usuario,this.avatar,this.rule,this.comentariosLength,this.favoritos,this.foto,this.comentarios);
+  CrearComentarioRule(this.id,this.usuario,this.avatar,this.rule,this.comentariosLength,this.favoritos,this.foto,this.thumbUrl,this.comentarios);
 
   @override
   _CrearComentarioRuleState createState() => _CrearComentarioRuleState();
@@ -154,13 +156,15 @@ class _CrearComentarioRuleState extends State<CrearComentarioRule> {
                             rules.favoritos = widget.favoritos;
 
                             for(int n=0;n<snapshot.data.length; n++){
-                              for(int m=0;m<snapshot.data[n].comentarios.length; m++){
-                              ComentariosModelo comentario2 = new ComentariosModelo();
-                              comentario2.usuario = snapshot.data[n].comentarios[m].usuario;
-                              comentario2.avatar = snapshot.data[n].comentarios[m].avatar;
-                              comentario2.comentario = snapshot.data[n].comentarios[m].comentario;
-                              coments.add(comentario2);
-                              }
+                                if(snapshot.data[n].id == widget.id){
+                                   for(int m=0;m<snapshot.data[n].comentarios.length; m++){
+                                      ComentariosModelo comentario2 = new ComentariosModelo();
+                                      comentario2.usuario = snapshot.data[n].comentarios[m].usuario;
+                                      comentario2.avatar = snapshot.data[n].comentarios[m].avatar;
+                                      comentario2.comentario = snapshot.data[n].comentarios[m].comentario;
+                                      coments.add(comentario2); 
+                                  }
+                                }
                             }
                             comentario.usuario = globals.usuario;
                             String avatar = globals.avatarElegido == "" ?  globals.avatarDefecto : globals.avatarElegido;

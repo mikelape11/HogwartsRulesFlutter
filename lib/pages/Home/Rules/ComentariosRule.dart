@@ -3,6 +3,8 @@ import 'package:hogwarts_rules/globals/globals.dart' as globals;
 import 'package:hogwarts_rules/models/ComentariosModelo.dart';
 import 'package:hogwarts_rules/models/RulesFavoritosModelo.dart';
 import 'package:hogwarts_rules/widgets/custom_alert_dialog.dart';
+import 'package:hogwarts_rules/models/ImagenRespuestasModelo.dart';
+
 import 'dart:convert';
 import 'RulesAPI.dart';
 
@@ -12,12 +14,12 @@ class ComentariosRule extends StatefulWidget {
   String usuario;
   String avatar;
   String rule;
-  String foto;
+  String thumbUrl;
   int comentariosLength;
   List<RulesFavoritosModelo> favoritos;
   List<ComentariosModelo> comentarios;
 
-  ComentariosRule(this.id,this.usuario,this.avatar,this.rule,this.foto,this.comentariosLength,this.favoritos,this.comentarios);
+  ComentariosRule(this.id,this.usuario,this.avatar,this.rule,this.thumbUrl,this.comentariosLength,this.favoritos,this.comentarios);
 
   @override
   _ComentariosRuleState createState() => _ComentariosRuleState();
@@ -111,7 +113,7 @@ class _ComentariosRuleState extends State<ComentariosRule> {
                             ), 
                            SizedBox(height: 10,), 
                               Visibility(
-                                visible: widget.foto == "" ? _visible = false : _visible = true,
+                                visible: widget.thumbUrl.split(',').last == "" ? _visible = false : _visible = true,
                                 child: GestureDetector(
                                   child: Container(
                                     margin: EdgeInsets.all(4),
@@ -119,7 +121,7 @@ class _ComentariosRuleState extends State<ComentariosRule> {
                                     width: 250,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
-                                        image: widget.foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(widget.foto)),
+                                        image: widget.thumbUrl.split(',').last == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(widget.thumbUrl.split(',').last)),
                                         fit: BoxFit.fitWidth,
                                       ),  
                                     ) 
@@ -135,7 +137,7 @@ class _ComentariosRuleState extends State<ComentariosRule> {
                                             margin: EdgeInsets.symmetric(vertical: 10),
                                             decoration: BoxDecoration(
                                             image: DecorationImage(
-                                              image: widget.foto == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(widget.foto)),
+                                              image: widget.thumbUrl.split(',').last == "" ? AssetImage("images/LOGOS/Logo3.png") : MemoryImage(base64Decode(widget.thumbUrl.split(',').last)),
                                               fit: BoxFit.fitWidth,
                                               ),  
                                             ),
