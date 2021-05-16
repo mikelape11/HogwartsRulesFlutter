@@ -16,8 +16,10 @@ import 'package:hogwarts_rules/pages/Home/Chat/ChatUsuario.dart';
 Channel channel = new Channel(null, null, null, null);
 ConseguirCliente() async {
   if (!globals.conexion) {
-    globals.cliente = StreamChatClient('mnfxmhsn3j5t');
+    globals.cliente = StreamChatClient('2e8tgs82czux');
+//mnfxmhsn3j5t
 //b67pax5b2wdq
+//2e8tgs82czux
     WidgetsFlutterBinding.ensureInitialized();
 
     /// Set the chatPersistenceClient for offline support
@@ -25,6 +27,17 @@ ConseguirCliente() async {
       logLevel: Level.INFO,
       connectionMode: ConnectionMode.background,
     );
+
+    // await globals.cliente.connectUser(
+    //   User(
+    //     id: 'cool-shadow-7',
+    //     extraData: {
+    //       'image':
+    //           'https://getstream.io/random_png/?id=cool-shadow-7&amp;name=Cool+shadow',
+    //     },
+    //   ),
+    //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiY29vbC1zaGFkb3ctNyJ9.gkOlCRb1qgy4joHPaxFwPOdXcGvSPvp6QY0S4mpRkVo',
+    // );
 
     /// Set the current user. In a production scenario, this should be done using
     /// a backend to generate a user token using our server SDK.
@@ -43,7 +56,9 @@ ConseguirCliente() async {
       globals.cliente.devToken(globals.usuario),
     );
 
-    //await client.connectGuestUser(User(id: 'Enetz'));
+    //await globals.cliente.connectAnonymousUser();
+
+    //await globals.cliente.connectGuestUser(User(id: 'Enetz'));
 
     //await client.connectUserWithProvider(User(id: 'Enetz'));
     //
@@ -508,6 +523,7 @@ class _MessageViewState extends State<MessageView> {
             itemBuilder: (BuildContext context, int index) {
               final item = _messages[index];
               miembros.add(item.user.id.toString());
+              print(miembros);
               channel.addMembers(miembros);
               if (item.user.id == widget.channel.client.uid) {
                 //MIS MENSAJES ---------------------------------------------------------

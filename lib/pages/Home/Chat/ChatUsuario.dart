@@ -99,7 +99,7 @@ class _ChatUsuarioState extends State<ChatUsuario> {
   @override
   void initState() {
     super.initState();
-    CogerNombre();
+    //CogerNombre();
   }
 
   @override
@@ -149,7 +149,7 @@ class _ChatUsuarioState extends State<ChatUsuario> {
               )),
         ),
         title: Text(
-          channel.state.members.elementAt(0).user.id,
+          "USUARIO",
           style: TextStyle(
               color: globals.casaHogwarts == "Gryffindor"
                   ? globals.grySecundario
